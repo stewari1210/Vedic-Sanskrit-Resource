@@ -49,6 +49,13 @@ def retrieve_and_rerank_node(state: GraphState, reranking_retriever):
     # Use the combined retriever with the reranker
     retrieved_docs = reranking_retriever.invoke(enhanced_question)
 
+    # Log what was retrieved for debugging
+    logger.info(f"Query: {enhanced_question}")
+    logger.info(f"Retrieved {len(retrieved_docs)} documents")
+    for i, doc in enumerate(retrieved_docs[:2]):  # Log first 2 docs
+        preview = doc.page_content[:200].replace('\n', ' ')
+        logger.info(f"Doc {i+1} preview: {preview}...")
+
     # Update the state with the retrieved documents
     return {"documents": retrieved_docs}
 
@@ -131,14 +138,32 @@ def parse_failed_generation(error_message: str):
     """
     try:
         # Use a regular expression to find the 'failed_generation' field's content.
-        # This is a robust way to extract the JSON string.
+        # Look for the function call format: <function=...> {...}
         match = re.search(
-            r"'failed_generation': '(.+?)'\}\}'$", error_message, re.DOTALL
+            r"'failed_generation': '.*?<function=\w+>\s*(\{.+?\})\s*</function>'",
+            error_message,
+            re.DOTALL
         )
-        if not match:
-            return None, []
 
-        json_str = match.group(1).replace("\\'", "'").replace('\\"', '"').strip()
+        if not match:
+            # Try alternative format without function tags
+            match = re.search(
+                r"'failed_generation': '(.+?)'\}\}'?$", error_message, re.DOTALL
+            )
+            if match:
+                json_str = match.group(1)
+            else:
+                logger.warning("Could not find failed_generation field in error")
+                return "I could not generate a proper response. Please try again.", []
+        else:
+            json_str = match.group(1)
+
+        # Clean up the JSON string
+        json_str = json_str.replace("\\'", "'").replace('\\"', '"').strip()
+
+        # Remove the function wrapper if present
+        json_str = re.sub(r'<function=\w+>\s*', '', json_str)
+        json_str = re.sub(r'\s*</function>', '', json_str)
 
         # Load the extracted string as a JSON object
         failed_generation_data = json.loads(json_str)
@@ -147,10 +172,11 @@ def parse_failed_generation(error_message: str):
         answer = failed_generation_data.get("answer", "No answer found.")
         citations = failed_generation_data.get("citations", [])
 
+        logger.info(f"Successfully parsed failed generation: {len(citations)} citations found")
         return answer, citations
 
     except (json.JSONDecodeError, AttributeError) as e:
-        print(f"Error parsing failed generation data: {e}")
+        logger.error(f"Error parsing failed generation data: {e}")
         return "Parsing error: Could not extract a valid answer.", []
 
 
@@ -190,7 +216,9 @@ def call_llm_node(state: GraphState):
     except groq.BadRequestError as e:
         logger.error(f"Response does not conform to InitialRagResponse: {e}")
         try:
-            part_answer, citations = parse_failed_generation(e)
+            # Convert error to string before parsing
+            part_answer, citations = parse_failed_generation(str(e))
+            logger.info(f"Extracted answer from failed generation: {part_answer[:100]}...")
             # Return a fallback response
             return {
                 "answer": {
@@ -198,8 +226,8 @@ def call_llm_node(state: GraphState):
                     "citations": citations,
                 }
             }
-        except Exception as e:
-            logger.error(f"An unexpected error occurred: {e}")
+        except Exception as parse_error:
+            logger.error(f"Failed to parse error message: {parse_error}")
             # General fallback
             return {
                 "answer": {
@@ -307,7 +335,8 @@ def evaluate_response_node(state: GraphState):
         answer_dict["confidence"] = evals
     except groq.BadRequestError as e:
         logger.info(f"Evaluation output not as expected {e}. using fallback")
-        conf_dict = parse_confidence_score_from_error(e)
+        # Convert error to string before parsing
+        conf_dict = parse_confidence_score_from_error(str(e))
         answer_dict["confidence"] = conf_dict
 
     # Add the evaluation result to the answer dictionary
@@ -358,7 +387,8 @@ def refine_response_node(state: GraphState):
 
     except groq.BadRequestError as e:
         logger.info(f"Response does not conform to RAGResponse: {e}. Falling back")
-        part_answer, citations = parse_failed_generation(e)
+        # Convert error to string before parsing
+        part_answer, citations = parse_failed_generation(str(e))
         return {
             "answer": part_answer,
             "citations": citations,

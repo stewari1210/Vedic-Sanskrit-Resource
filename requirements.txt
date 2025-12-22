@@ -7,7 +7,8 @@ qdrant-client==1.16.2
 # LangChain subpackages / integrations (loose pins — update if needed)
 langchain-text-splitters>=0.1.0
 langchain-groq>=0.0.1
-langchain-google-genai>=0.0.1
+langchain-google-genai>=0.0.1  # Optional: only needed if using Gemini embeddings
+langchain-huggingface>=0.0.1  # For Sentence Transformers local embeddings
 langgraph>=0.0.1
 
 # Utilities

@@ -1,4 +1,5 @@
 from helper import logger
+from config import RETRIEVAL_K
 
 
 def create_retriever(vec_db, documents, top_n=5):
@@ -8,7 +9,9 @@ def create_retriever(vec_db, documents, top_n=5):
     CLI can run without installing `rank_bm25`. If BM25 is installed, it will
     be created but we default to returning the Qdrant retriever (best for
     vector search)."""
-    qdrant_retriever = vec_db.as_retriever()
+    # Configure Qdrant retriever to return more documents (default is only 4)
+    # For large documents, we need more context to provide comprehensive answers
+    qdrant_retriever = vec_db.as_retriever(search_kwargs={"k": RETRIEVAL_K})
 
     try:
         # Import lazily because rank_bm25 is an optional extra that may not be

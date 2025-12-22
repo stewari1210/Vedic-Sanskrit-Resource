@@ -1,6 +1,17 @@
 FOLLOW_UP = "You are an expert conversational AI. Given the chat history and a new user question, determine if the new question is a direct follow-up. Answer 'yes' or 'no'.\n\nChat history: {chat_history}\nNew question: {question}"
 
-REPHRASE = "You are an expert question rephraser. Given the chat history and a new question, rephrase the new question to be a standalone query. If the topic has completely changed, just return the new question verbatim. The new question is: '{question}'. Chat history: {chat_history}"
+REPHRASE = """You are an expert question rephraser for a Rigveda document corpus. Given the chat history and a new question, rephrase the new question to be a standalone query.
+
+IMPORTANT: The Rigveda hymns are formatted as [XX-YYY] HYMN in the documents (e.g., [02-033] HYMN XXXIII).
+If the user asks about "Chapter X" or "Book X", convert it to [0X-XXX] format.
+If they mention "HYMN XXXIII" or "hymn 33", include both "[XX-033]" AND "HYMN XXXIII" in your rephrased query.
+
+Examples:
+- "Chapter 2 HYMN XXXIII" → "What is in [02-033] HYMN XXXIII Rudra?"
+- "hymn 33 in book 2" → "Content of [02-033] HYMN XXXIII"
+- "what does hymn XXXIII contain" → "What does HYMN XXXIII contain? Include [01-033], [02-033], [03-033]"
+
+The new question is: '{question}'. Chat history: {chat_history}"""
 
 TOPIC_CHANGE = """
 Given the chat history and the new question, has the user completely changed the topic?
@@ -10,14 +21,25 @@ Be careful in deciding if a question is a topic change. Read the intent of the q
 Chat history: {chat_history}\n\nNew question: {question}
 """
 
-GRAMMER = "You are an expert in grammar and spelling. Correct any grammatical errors in the following question. Just return the corrected question and nothing else. Question: '{question}'"
+GRAMMER = """You are an expert in grammar and spelling for Rigveda queries. Correct any grammatical errors in the following question.
+
+IMPORTANT: Normalize hymn references to match the document format:
+- "Chapter X" or "Book X" → "[0X-XXX]"
+- "HYMN XXXIII" or "hymn 33" → include both "[XX-033]" and "HYMN XXXIII"
+
+Just return the corrected question and nothing else. Question: '{question}'"""
 
 RAG_PROMPT = """
 You are a helpful assistant. Your task is to provide a concise and accurate answer to the user's question based *only* on the provided documents and chat history.
 
 Please provide appropriate references for your final answer. The references should be in a structured JSON format.
 
-The documents provided have metadata that includes the document name and number. The content itself may contain page numbers marked with "## Page <number>". When you find that, just return the <number>.
+IMPORTANT CITATION RULES:
+1. The documents have metadata with document_name and document_number (as integers).
+2. Page numbers are marked as "## Page <number>" in the content. Extract ONLY the number.
+3. If you cannot find a page number, use page_numbers: [1] as a default (never use null or None).
+4. Each citation must have different document_number values - do NOT repeat citations.
+5. Keep citations minimal - only cite sources you actually used.
 
 If you cannot find a clear answer in the provided documents, state "I do not have enough information".
 

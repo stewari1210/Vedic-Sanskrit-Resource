@@ -33,9 +33,14 @@ EVAL_MODEL = os.getenv("EVAL_MODEL") or model_name or None
 COLLECTION_NAME = os.getenv("COLLECTION_NAME", "ancient_history")
 LOCAL_FOLDER = os.getenv("LOCAL_FOLDER", "local_store")
 VECTORDB_FOLDER = os.getenv("VECTORDB_FOLDER", "vector_store")
+
+# Embedding configuration
+EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "local-fast")  # local-fast, local-best, or gemini
 EMBED_MODEL = os.getenv("EMBED_MODEL")
-CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "512"))
-CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "64"))
+
+CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1024"))  # Increased from 512 for better context & speed
+CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "128"))  # Scaled proportionally
+RETRIEVAL_K = int(os.getenv("RETRIEVAL_K", "10"))  # Number of chunks to retrieve per query
 
 CHAT_MEMORY_WINDOW = (
     int(os.getenv("CHAT_MEMORY_WINDOW", "5")) * 2
