@@ -251,7 +251,37 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore
         with open(CHUNKS_FILE, "rb") as f:
             chunks = pickle.load(f)
 
+        # Connect to existing Qdrant vector store WITHOUT re-embedding
+        # This is much faster since embeddings already exist in the collection
         try:
+            from qdrant_client import QdrantClient
+
+            try:
+                client = QdrantClient(path=VECTORDB_FOLDER)
+                logger.info(f"Connected to existing Qdrant at {VECTORDB_FOLDER}")
+            except RuntimeError as rte:
+                logger.warning(
+                    "Could not open local Qdrant at %s: %s. Creating temporary storage.",
+                    VECTORDB_FOLDER,
+                    rte,
+                )
+                tmp_folder = VECTORDB_FOLDER + f"_tmp_{uuid4().hex}"
+                os.makedirs(tmp_folder, exist_ok=True)
+                client = QdrantClient(path=tmp_folder)
+
+            # Create vector store by connecting to existing collection (no re-embedding)
+            vector_store = QdrantVectorStore(
+                client=client,
+                collection_name=COLLECTION_NAME,
+                embedding=Settings.embed_model,
+            )
+            logger.info(f"Loaded existing collection '{COLLECTION_NAME}' with {len(chunks)} chunks")
+
+        except Exception as e:
+            logger.warning(
+                f"Failed to connect to existing Qdrant collection: {e}. Falling back to re-indexing."
+            )
+            # Fallback: re-create from documents if connection fails
             vector_store = QdrantVectorStore.from_documents(
                 documents=chunks,
                 embedding=Settings.embed_model,
@@ -259,99 +289,6 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore
                 collection_name=COLLECTION_NAME,
                 force_recreate=False,
             )
-        except AssertionError as e:
-            logger.warning(
-                "QdrantVectorStore.from_documents (existing index path) failed with AssertionError (%s). Using fallback to create/upsert.",
-                e,
-            )
-            try:
-                from qdrant_client import QdrantClient
-                from qdrant_client.http.models import VectorParams, Distance
-
-                try:
-                    client = QdrantClient(path=VECTORDB_FOLDER)
-                except RuntimeError as rte:
-                    logger.warning(
-                        "Could not open local Qdrant at %s: %s. Creating temporary storage.",
-                        VECTORDB_FOLDER,
-                        rte,
-                    )
-                    tmp_folder = VECTORDB_FOLDER + f"_tmp_{uuid4().hex}"
-                    os.makedirs(tmp_folder, exist_ok=True)
-                    client = QdrantClient(path=tmp_folder)
-                # Attach `search` shim if necessary (see note above)
-                try:
-                    import types
-
-                    if not hasattr(client, "search"):
-                        def _search(
-                            self,
-                            collection_name,
-                            query_vector,
-                            query_filter=None,
-                            search_params=None,
-                            limit=4,
-                            offset=0,
-                            with_payload=True,
-                            with_vectors=False,
-                            score_threshold=None,
-                            consistency=None,
-                            **kwargs,
-                        ):
-                            res = self.query_points(
-                                collection_name=collection_name,
-                                query=query_vector,
-                                query_filter=query_filter,
-                                search_params=search_params,
-                                limit=limit,
-                                offset=offset,
-                                with_payload=with_payload,
-                                with_vectors=with_vectors,
-                                score_threshold=score_threshold,
-                                consistency=consistency,
-                                **kwargs,
-                            )
-                            if hasattr(res, "points"):
-                                return res.points
-                            try:
-                                return list(res)
-                            except Exception:
-                                return res
-
-                        client.search = types.MethodType(_search, client)
-                except Exception:
-                    logger.exception("Failed to attach 'search' shim to QdrantClient; search may fail.")
-                # Determine vector size by embedding one chunk
-                if len(chunks) == 0:
-                    raise ValueError("No document chunks available to determine embedding size")
-                sample_vec = Settings.embed_model.embed_documents([chunks[0].page_content])[0]
-                dim = len(sample_vec)
-                vectors_config = VectorParams(size=dim, distance=Distance.COSINE)
-                try:
-                    client.create_collection(collection_name=COLLECTION_NAME, vectors_config=vectors_config)
-                except Exception:
-                    logger.debug("create_collection raised; continuing and attempting to upsert")
-                qdrant_store = QdrantVectorStore(client=client, collection_name=COLLECTION_NAME, embedding=Settings.embed_model)
-                try:
-                    qdrant_store.add_documents(chunks)
-                    vector_store = qdrant_store
-                except Exception as e:
-                    logger.exception("Failed while adding documents to Qdrant (existing index path): %s", e)
-                    try:
-                        client.delete_collection(collection_name=COLLECTION_NAME)
-                        logger.info("Deleted partial collection %s due to failure", COLLECTION_NAME)
-                    except Exception:
-                        logger.debug("Could not delete partial collection (it may not exist)")
-                    try:
-                        if Path(CHUNKS_FILE).is_file():
-                            os.remove(CHUNKS_FILE)
-                            logger.info("Removed chunks file %s after failed indexing", CHUNKS_FILE)
-                    except Exception:
-                        logger.exception("Failed to remove chunks file after failed indexing")
-                    raise
-            except Exception:
-                logger.exception("Failed to create Qdrant collection via fallback path")
-                raise
 
         logger.info(f"Returning existing vector store at {VECTORDB_FOLDER}")
     return vector_store, chunks

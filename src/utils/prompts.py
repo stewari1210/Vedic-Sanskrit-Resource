@@ -3,13 +3,19 @@ FOLLOW_UP = "You are an expert conversational AI. Given the chat history and a n
 REPHRASE = """You are an expert question rephraser for a Rigveda document corpus. Given the chat history and a new question, rephrase the new question to be a standalone query.
 
 IMPORTANT: The Rigveda hymns are formatted as [XX-YYY] HYMN in the documents (e.g., [02-033] HYMN XXXIII).
-If the user asks about "Chapter X" or "Book X", convert it to [0X-XXX] format.
-If they mention "HYMN XXXIII" or "hymn 33", include both "[XX-033]" AND "HYMN XXXIII" in your rephrased query.
 
-Examples:
-- "Chapter 2 HYMN XXXIII" → "What is in [02-033] HYMN XXXIII Rudra?"
+ONLY add hymn numbers if:
+1. User explicitly mentions a specific chapter/book number (e.g., "Chapter 2")
+2. User explicitly mentions a specific hymn number (e.g., "HYMN XXXIII" or "hymn 33")
+
+DO NOT add hymn numbers for general questions like:
+- "Which hymns talk about X?" → Keep as "Which hymns talk about X?"
+- "What hymns mention Y?" → Keep as "What hymns mention Y?"
+
+Conversion rules ONLY when specific hymns are mentioned:
+- "Chapter 2 HYMN XXXIII" → "What is in [02-033] HYMN XXXIII?"
 - "hymn 33 in book 2" → "Content of [02-033] HYMN XXXIII"
-- "what does hymn XXXIII contain" → "What does HYMN XXXIII contain? Include [01-033], [02-033], [03-033]"
+- "tell me about HYMN XXXIII" → "What does HYMN XXXIII contain?" (no specific book = no [XX-YYY])
 
 The new question is: '{question}'. Chat history: {chat_history}"""
 
@@ -23,13 +29,19 @@ Chat history: {chat_history}\n\nNew question: {question}
 
 GRAMMER = """You are an expert in grammar and spelling for Rigveda queries. Correct any grammatical errors in the following question.
 
-CRITICAL: Preserve exact document format:
-- Keep square brackets EXACTLY as [02-033], never change to (02-033) or 02-033
-- If user writes "[02-033]", keep it as [02-033]
-- If user writes "Chapter 2 HYMN XXXIII", add [02-033] but keep brackets: "[02-033] HYMN XXXIII"
-- NEVER use parentheses () for hymn numbers, ALWAYS use square brackets []
+CRITICAL RULES:
+- ONLY fix spelling and grammar errors
+- Do NOT add hymn numbers or references that are not in the original question
+- If user already has [XX-YYY] format, keep it exactly as is with square brackets
+- If user writes "Chapter 2 HYMN XXXIII", you MAY convert to "[02-033] HYMN XXXIII"
+- NEVER add hymn numbers to questions that don't mention specific hymns
 - Do NOT add diacritical marks to names (keep "Sudas" as "Sudas", not "Sūdaḥ" or "Sūdas")
 - Keep proper nouns in their simple romanized form without accents
+
+Examples:
+- "Which hymns talk about horse sacrifice?" → "Which hymns talk about horse sacrifice?" (NO changes)
+- "what is the purpose of horse sacrifice?" → "What is the purpose of horse sacrifice?" (ONLY capitalization)
+- "tell me about Chapter 2 HYMN XXXIII" → "Tell me about [02-033] HYMN XXXIII" (convert chapter format)
 
 Just return the corrected question and nothing else. Question: '{question}'"""
 

@@ -50,6 +50,10 @@ CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1024"))  # Increased from 512 for bett
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "128"))  # Scaled proportionally
 RETRIEVAL_K = int(os.getenv("RETRIEVAL_K", "10"))  # Number of chunks to retrieve per query
 
+# Hybrid retriever weights (must sum to 1.0)
+SEMANTIC_WEIGHT = float(os.getenv("SEMANTIC_WEIGHT", "0.7"))  # Weight for Qdrant semantic search (conceptual)
+KEYWORD_WEIGHT = float(os.getenv("KEYWORD_WEIGHT", "0.3"))     # Weight for BM25 keyword search (exact matches)
+
 CHAT_MEMORY_WINDOW = (
     int(os.getenv("CHAT_MEMORY_WINDOW", "5")) * 2
 )  # to account for human and ai messages

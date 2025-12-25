@@ -1,5 +1,5 @@
 from helper import logger
-from config import RETRIEVAL_K
+from config import RETRIEVAL_K, SEMANTIC_WEIGHT, KEYWORD_WEIGHT
 from typing import List
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
@@ -65,25 +65,41 @@ class HybridRetriever(BaseRetriever):
             has_target2 = '[02-033]' in keyword_docs[1].page_content
             logger.info(f"HybridRetriever: BM25 #2 result [has [02-033]: {has_target2}]: {preview2}...")
 
-        # Merge and deduplicate (keep order: keyword results first, then semantic)
-        seen_content = set()
-        merged_docs = []
+        # Merge with WEIGHTED scoring: Semantic + Keyword
+        # SEMANTIC_WEIGHT (default 70%): Prioritizes conceptual understanding (e.g., "Vashistha" associated with "Sudas")
+        # KEYWORD_WEIGHT (default 30%): Boosts exact matches (e.g., "[02-033]", "HYMN XXXIII")
+        seen_content = {}
+        doc_scores = {}
 
-        # Add keyword results first (prioritize exact matches)
-        for doc in keyword_docs:
+        # Score semantic results
+        for i, doc in enumerate(semantic_docs):
             content_hash = hash(doc.page_content)
-            if content_hash not in seen_content:
-                seen_content.add(content_hash)
-                merged_docs.append(doc)
+            # Higher position = higher score (inverse rank)
+            score = (len(semantic_docs) - i) * SEMANTIC_WEIGHT
+            seen_content[content_hash] = doc
+            doc_scores[content_hash] = score
 
-        # Add semantic results (skip duplicates)
-        for doc in semantic_docs:
+        # Score keyword results (boosts if already in semantic)
+        for i, doc in enumerate(keyword_docs):
             content_hash = hash(doc.page_content)
-            if content_hash not in seen_content:
-                seen_content.add(content_hash)
-                merged_docs.append(doc)
+            score = (len(keyword_docs) - i) * KEYWORD_WEIGHT
+
+            if content_hash in doc_scores:
+                # Document appears in BOTH - boost it significantly
+                doc_scores[content_hash] += score * 2  # Double the keyword boost
+            else:
+                # Keyword-only result (rare, but possible for exact matches)
+                seen_content[content_hash] = doc
+                doc_scores[content_hash] = score
+
+        # Sort by combined score (highest first)
+        sorted_hashes = sorted(doc_scores.keys(), key=lambda h: doc_scores[h], reverse=True)
+        merged_docs = [seen_content[h] for h in sorted_hashes]
 
         logger.info(f"HybridRetriever: Merged to {len(merged_docs)} unique docs, returning top {self.k}")
+        if merged_docs and len(merged_docs) > 0:
+            top_score = doc_scores[sorted_hashes[0]]
+            logger.info(f"HybridRetriever: Top doc score={top_score:.2f} (semantic {SEMANTIC_WEIGHT:.0%}, keyword {KEYWORD_WEIGHT:.0%})")
 
         # Return top k results
         return merged_docs[:self.k]

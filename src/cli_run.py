@@ -19,6 +19,7 @@ import os
 import shutil
 import json
 import glob
+import logging
 
 from helper import project_root, logger
 from config import LOCAL_FOLDER, COLLECTION_NAME, VECTORDB_FOLDER
@@ -31,6 +32,14 @@ from utils.final_block_rag import create_langgraph_app, run_rag_with_langgraph
 # Change this to your preferred default PDF (absolute or relative to project root).
 # Example relative path: os.path.join(project_root, "examples", "my_doc.pdf")
 HARDCODED_PDF = os.path.join(project_root, "sample.pdf")
+
+
+def restore_info_logging():
+    """Restore INFO level logging for troubleshooting after an error."""
+    logging.getLogger().setLevel(logging.INFO)
+    for name in logging.root.manager.loggerDict:
+        logging.getLogger(name).setLevel(logging.INFO)
+    logger.info("⚠️  Error detected - INFO logging re-enabled for troubleshooting")
 
 
 def cleanup_temp_folders():
@@ -135,7 +144,7 @@ def build_index_and_retriever(force: bool = False):
         except Exception:
             logger.exception("Failed to remove chunks file %s", chunks_file)
 
-    vec_db, docs = create_qdrant_vector_store(force_recreate=True)
+    vec_db, docs = create_qdrant_vector_store(force_recreate=force)
     retriever = create_retriever(vec_db, docs)
     return vec_db, docs, retriever
 
@@ -202,7 +211,26 @@ def main():
         action="store_true",
         help="Skip the session cleanup prompt and keep existing data",
     )
+    parser.add_argument(
+        "--quiet", "-q",
+        action="store_true",
+        help="Suppress INFO logs (only show warnings and errors). Automatically disabled if errors occur.",
+    )
     args = parser.parse_args()
+
+    # Set logging level based on --quiet flag
+    if args.quiet:
+        import logging
+        # Set root logger to WARNING
+        logging.getLogger().setLevel(logging.WARNING)
+        # Set all currently configured loggers to WARNING
+        for name in logging.root.manager.loggerDict:
+            logging.getLogger(name).setLevel(logging.WARNING)
+        # Specifically target common loggers
+        for logger_name in ['helper', 'config', 'settings', 'cli_run', 'index_files',
+                           'retriever', 'final_block_rag', 'process_files', 'sentence_transformers',
+                           'transformers', 'qdrant_client', 'httpx', 'httpcore']:
+            logging.getLogger(logger_name).setLevel(logging.WARNING)
 
     # Prompt for session cleanup unless --no-cleanup-prompt is specified
     if not args.no_cleanup_prompt:
@@ -216,6 +244,9 @@ def main():
     try:
         prepare_and_process(pdf)
     except Exception as e:
+        # Re-enable INFO logging on error for troubleshooting
+        if args.quiet:
+            restore_info_logging()
         logger.error(f"Failed to prepare/process PDF: {e}")
         print(f"Error: {e}")
         return
@@ -223,6 +254,9 @@ def main():
     try:
         vec_db, docs, retriever = build_index_and_retriever(force=args.force)
     except Exception as e:
+        # Re-enable INFO logging on error for troubleshooting
+        if args.quiet:
+            restore_info_logging()
         # Log full traceback to help debug where the error originates
         logger.exception("Failed to build index/retriever")
         import traceback
