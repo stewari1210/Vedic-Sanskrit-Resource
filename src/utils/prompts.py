@@ -165,6 +165,32 @@ When answering questions about locations, battles, or geography:
    - If a location is mentioned near battle descriptions ≠ battle happened there
    - Require explicit verbs linking the location to the action
 
+TRIBAL ALLIANCE REASONING RULES (CRITICAL):
+When answering questions about tribes, allies, enemies, or battles:
+
+1. DISTINGUISH ALLIES vs. ENEMIES:
+   - ALLIES indicators: "with [person]", "aided [person]", "helped [person]", "[person] folk", "came to [person]"
+   - ENEMIES indicators: "against [person]", "fought [person]", "Together came [tribes]" (confederacy against someone)
+
+2. When user asks "who fought WITH [person]":
+   - Look for helping/aiding verbs
+   - Example: "Trtsus aided Sudas" → Trtsus were WITH Sudas (allies)
+   - Example: "Indra helped Sudas" → Indra was WITH Sudas (ally)
+
+3. When user asks "who fought AGAINST [person]":
+   - Look for opposing/confederacy language
+   - Example: "Together came the Pakthas, Bhalanas, Alinas" → These came AGAINST (enemies)
+   - Example: "Ten Kings pressed him down" → Ten Kings were AGAINST (enemies)
+
+4. TEN KINGS BATTLE specifics:
+   - Sudas's allies: Trtsu/Bharata tribe, Vasisthas (priests), Indra (deity)
+   - Sudas's enemies: Pakthas, Bhalanas, Alinas, Sivas, Visanins, Druhyus, Anavas, Purus, Anu, Vaikarna, Kavasa, Bhrgus
+   - The "Ten Kings" refers to this tribal confederacy that fought AGAINST Sudas
+
+5. Be explicit about alliances:
+   - State clearly: "X fought WITH Sudas" or "Y fought AGAINST Sudas"
+   - If listing enemies, mention they formed a confederacy/coalition
+
 If you cannot find a clear answer in the provided documents, state "I do not have enough information".
 
 Chat History:

@@ -174,6 +174,12 @@ class HybridRetriever(BaseRetriever):
             location_keywords = ['where', 'location', 'place', 'river', 'rivers', 'cross', 'crossed', 'crossing']
             is_location_query = any(word in query.lower() for word in location_keywords)
 
+            # TRIBAL EXPANSION: Detect queries about tribes, enemies, allies in Ten Kings battle
+            # Triggers for: "tribes", "enemies", "allies", "fought with", "fought against", "ten kings"
+            tribal_keywords = ['tribe', 'tribes', 'enemy', 'enemies', 'ally', 'allies', 'fought with', 'fought against',
+                             'confederat', 'coalition', 'ten kings']
+            is_tribal_query = any(keyword in query.lower() for keyword in tribal_keywords)
+
             if is_location_query:
                 # Search for documents mentioning entities + common Rigveda locations
                 # Including rivers (Yamuna, Sarasvati, Indus, Ganga, Rasa, Parushni, Vipas)
@@ -181,6 +187,14 @@ class HybridRetriever(BaseRetriever):
                 logger.info(f"HybridRetriever: Location query detected (keywords: {[k for k in location_keywords if k in query.lower()]})")
                 # Add location names to proper nouns for expansion
                 proper_nouns_with_locations = proper_nouns + [loc for loc in common_locations]
+            elif is_tribal_query:
+                # Search for documents mentioning entities + known tribal confederacies
+                # Ten Kings battle: Pakthas, Bhalanas, Alinas, Sivas, Visanins, Druhyus, Anavas, Purus, etc.
+                known_tribes = ['Pakthas', 'Bhalanas', 'Alinas', 'Sivas', 'Visanins', 'Druhyus', 'Anavas', 'Purus',
+                              'Anu', 'Vaikarna', 'Kavasa', 'Bhrgus']
+                logger.info(f"HybridRetriever: Tribal query detected (keywords: {[k for k in tribal_keywords if k in query.lower()]})")
+                # Add tribal names to proper nouns for expansion
+                proper_nouns_with_locations = proper_nouns + [tribe for tribe in known_tribes]
             else:
                 proper_nouns_with_locations = proper_nouns
 
@@ -190,8 +204,9 @@ class HybridRetriever(BaseRetriever):
                 expansion_seen = set(sorted_hashes)  # Don't duplicate primary results
 
                 # For each proper noun, get related documents
-                # Increased limit to 8 for location queries (more locations to search)
-                for noun in proper_nouns_with_locations[:8]:
+                # Increased limit to 12 for tribal/location queries (more entities to search)
+                expansion_limit = 12 if (is_location_query or is_tribal_query) else 8
+                for noun in proper_nouns_with_locations[:expansion_limit]:
                     # Search semantically for the proper noun
                     noun_docs = self.semantic_retriever.invoke(noun)
 
