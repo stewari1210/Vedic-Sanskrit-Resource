@@ -13,7 +13,7 @@ wheels/
 output.log
 # tests folder
 tests/
-
+CONVERSATION_CONTEXT.md
 local_store/
 vector_store/
 .env

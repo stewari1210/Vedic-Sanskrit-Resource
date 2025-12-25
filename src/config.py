@@ -54,6 +54,9 @@ RETRIEVAL_K = int(os.getenv("RETRIEVAL_K", "10"))  # Number of chunks to retriev
 SEMANTIC_WEIGHT = float(os.getenv("SEMANTIC_WEIGHT", "0.7"))  # Weight for Qdrant semantic search (conceptual)
 KEYWORD_WEIGHT = float(os.getenv("KEYWORD_WEIGHT", "0.3"))     # Weight for BM25 keyword search (exact matches)
 
+# Query expansion via proper noun association
+EXPANSION_DOCS = int(os.getenv("EXPANSION_DOCS", "3"))  # Number of additional docs to retrieve per proper noun for context expansion
+
 CHAT_MEMORY_WINDOW = (
     int(os.getenv("CHAT_MEMORY_WINDOW", "5")) * 2
 )  # to account for human and ai messages

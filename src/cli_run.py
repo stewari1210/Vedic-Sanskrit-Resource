@@ -152,6 +152,10 @@ def build_index_and_retriever(force: bool = False):
 def run_repl(retriever):
     app = create_langgraph_app(retriever)
     print("\nReady. Enter questions (type 'exit' or 'quit' to stop).\n")
+
+    # Initialize chat history outside the loop to persist across questions
+    chat_history = []
+
     while True:
         try:
             question = input("Q> ").strip()
@@ -168,7 +172,7 @@ def run_repl(retriever):
 
         graph_state = {
             "question": question,
-            "chat_history": [],
+            "chat_history": chat_history,  # Use persistent chat history
             "documents": [],
             "answer": "",
             "enhanced_question": "",
@@ -177,6 +181,11 @@ def run_repl(retriever):
         }
 
         result = run_rag_with_langgraph(graph_state, app)
+
+        # Update the persistent chat history with the result
+        if result and "chat_history" in result:
+            chat_history = result["chat_history"]
+
         if isinstance(result, str):
             # sometimes returns serialized JSON
             try:

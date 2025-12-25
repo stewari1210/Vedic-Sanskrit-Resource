@@ -12,6 +12,7 @@ from utils.prompts import (
     FOLLOW_UP,
     REPHRASE,
     GRAMMER,
+    QUERY_EXPANSION,
     TOPIC_CHANGE,
     RAG_PROMPT,
     EVALUATION_PROMPT,
@@ -132,6 +133,40 @@ def correct_grammar_node(state: GraphState):
     enhanced_question = enhanced_question.strip().strip("'\"")
 
     return {"enhanced_question": enhanced_question}
+
+
+def expand_query_node(state: GraphState):
+    """Expands query with entities from chat history to improve retrieval."""
+    logger.info("---EXPANDING QUERY---")
+    enhanced_question = state.get("enhanced_question", state["question"])
+    chat_history = state["chat_history"]
+
+    # Only expand if we have chat history
+    if not chat_history:
+        logger.info("No chat history, skipping query expansion")
+        return {"enhanced_question": enhanced_question}
+
+    short_chat_history = (
+        chat_history[:CHAT_MEMORY_WINDOW]
+        if len(chat_history) > CHAT_MEMORY_WINDOW
+        else chat_history
+    )
+
+    expansion_chain = (
+        ChatPromptTemplate.from_template(QUERY_EXPANSION) | llm | StrOutputParser()
+    )
+
+    expanded_question = expansion_chain.invoke(
+        {"chat_history": short_chat_history, "question": enhanced_question}
+    )
+
+    # Strip surrounding quotes
+    expanded_question = expanded_question.strip().strip("'\"")
+
+    logger.info(f"Original: {enhanced_question}")
+    logger.info(f"Expanded: {expanded_question}")
+
+    return {"enhanced_question": expanded_question}
 
 
 def parse_failed_generation(error_message: str):
@@ -456,6 +491,7 @@ def create_langgraph_app(retriever):
     workflow.add_node("check_follow_up", check_follow_up_node)
     workflow.add_node("process_follow_up", process_follow_up_node)
     workflow.add_node("correct_grammar", correct_grammar_node)
+    # Removed expand_query node - query expansion now in retriever
     workflow.add_node(
         "retrieve_documents", lambda state: retrieve_and_rerank_node(state, retriever)
     )
@@ -475,6 +511,8 @@ def create_langgraph_app(retriever):
         },
     )
 
+    # Removed expand_query node - it was rewriting questions incorrectly
+    # Query expansion now happens in retriever via proper noun association
     workflow.add_edge("process_follow_up", "retrieve_documents")
     workflow.add_edge("correct_grammar", "retrieve_documents")
     workflow.add_edge("retrieve_documents", "call_llm")

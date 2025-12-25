@@ -1,23 +1,89 @@
 from helper import logger
-from config import RETRIEVAL_K, SEMANTIC_WEIGHT, KEYWORD_WEIGHT
+from config import RETRIEVAL_K, SEMANTIC_WEIGHT, KEYWORD_WEIGHT, EXPANSION_DOCS
 from typing import List
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
+import re
 
 
 class HybridRetriever(BaseRetriever):
     """Custom hybrid retriever that combines semantic and keyword search.
 
     Retrieves from BOTH:
-    - Semantic search (Qdrant): Good for conceptual queries like 'appearance', 'skin color'
-    - Keyword search (BM25): Good for exact matches like 'HYMN XXXIII', '[02-033]'
+    - Semantic search (Qdrant): Good for conceptual queries, relationships, meanings
+    - Keyword search (BM25): Good for exact matches like hymn numbers, specific phrases
 
     Then merges and deduplicates results, prioritizing exact keyword matches."""
 
     semantic_retriever: BaseRetriever
     keyword_retriever: BaseRetriever
     k: int = 10
+
+    def _extract_proper_nouns(self, text: str) -> List[str]:
+        """Extract proper nouns from query using heuristics.
+
+        Targets: Names of people, places, tribes (Pakthas, Sudas, Vashistha, etc.)
+        Excludes: Common words, question words, prepositions, generic nouns
+        """
+        # Comprehensive blacklist of common English words that get capitalized
+        common_words = {
+            # Question words
+            'What', 'When', 'Where', 'Which', 'Who', 'Whom', 'Whose', 'Why', 'How',
+            # Pronouns
+            'I', 'You', 'He', 'She', 'It', 'We', 'They', 'This', 'That', 'These', 'Those',
+            # Conjunctions
+            'And', 'But', 'Or', 'Nor', 'For', 'Yet', 'So', 'If', 'Then', 'Because',
+            # Prepositions
+            'In', 'On', 'At', 'By', 'For', 'With', 'From', 'To', 'Of', 'Into', 'Through', 'During', 'Before', 'After', 'Above', 'Below', 'Between', 'Among',
+            # Articles
+            'The', 'A', 'An',
+            # Common verbs (past participle often capitalized)
+            'Is', 'Are', 'Was', 'Were', 'Be', 'Been', 'Being', 'Have', 'Has', 'Had', 'Do', 'Does', 'Did', 'Will', 'Would', 'Could', 'Should', 'May', 'Might', 'Must', 'Can',
+            # Generic nouns that might appear capitalized
+            'War', 'Wars', 'Battle', 'Battles', 'King', 'Kings', 'Queen', 'Queens', 'Hymn', 'Hymns', 'Book', 'Books', 'Chapter', 'Chapters',
+            'Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Hundred', 'Thousand',
+            # Question starters
+            'Tell', 'Explain', 'Describe', 'Name', 'List', 'Give', 'Show', 'Find',
+            # Determiners
+            'All', 'Some', 'Any', 'Each', 'Every', 'Both', 'Either', 'Neither', 'Many', 'Few', 'Several',
+            # Modal auxiliaries
+            'Shall', 'Should', 'Will', 'Would', 'Can', 'Could', 'May', 'Might', 'Must',
+        }
+
+        words = text.split()
+        proper_nouns = []
+        seen = set()  # Deduplicate
+
+        for i, word in enumerate(words):
+            # Skip first word (sentence start capitalization)
+            if i == 0:
+                continue
+
+            # Remove punctuation from word
+            clean_word = re.sub(r'[^\w]', '', word)
+
+            # Must start with uppercase and be at least 3 characters
+            if not clean_word or len(clean_word) < 3 or not clean_word[0].isupper():
+                continue
+
+            # Skip if it's a common word
+            if clean_word in common_words:
+                continue
+
+            # Skip if it's all uppercase (likely acronym or emphasis, not a name)
+            if clean_word.isupper():
+                continue
+
+            # Skip if already seen
+            if clean_word in seen:
+                continue
+
+            # Likely a proper noun (person, place, tribe name)
+            proper_nouns.append(clean_word)
+            seen.add(clean_word)
+
+        return proper_nouns
 
     def _get_relevant_documents(
         self, query: str, *, run_manager: CallbackManagerForRetrieverRun = None
@@ -27,7 +93,7 @@ class HybridRetriever(BaseRetriever):
         logger.info(f"HybridRetriever: Query = '{query}'")
 
         # Extract keywords for BM25 (remove action words like "summarize", "explain", etc.)
-        # This helps BM25 match on the actual content patterns like "[02-033]" or "HYMN XXXIII"
+        # This helps BM25 match on the actual content patterns like hymn numbers or specific terms
         import re
         import unicodedata
         # Keep hymn references, numbers in brackets, and important nouns
@@ -39,7 +105,7 @@ class HybridRetriever(BaseRetriever):
         keyword_query_normalized = unicodedata.normalize('NFD', keyword_query)
         keyword_query_normalized = ''.join(char for char in keyword_query_normalized if unicodedata.category(char) != 'Mn')
 
-        # Remove punctuation except hyphens and brackets (keep [02-033] intact)
+        # Remove punctuation except hyphens and brackets (keep hymn references intact)
         keyword_query_normalized = re.sub(r'[^\w\s\[\]\-]', '', keyword_query_normalized)
         keyword_query_normalized = keyword_query_normalized.strip()
 
@@ -58,16 +124,14 @@ class HybridRetriever(BaseRetriever):
         logger.info(f"HybridRetriever: BM25 returned {len(keyword_docs)} docs, Qdrant returned {len(semantic_docs)} docs")
         if keyword_docs:
             preview = keyword_docs[0].page_content[:100].replace('\n', ' ')
-            has_target = '[02-033]' in keyword_docs[0].page_content
-            logger.info(f"HybridRetriever: BM25 top result [has [02-033]: {has_target}]: {preview}...")
+            logger.info(f"HybridRetriever: BM25 top result: {preview}...")
         if keyword_docs and len(keyword_docs) > 1:
             preview2 = keyword_docs[1].page_content[:100].replace('\n', ' ')
-            has_target2 = '[02-033]' in keyword_docs[1].page_content
-            logger.info(f"HybridRetriever: BM25 #2 result [has [02-033]: {has_target2}]: {preview2}...")
+            logger.info(f"HybridRetriever: BM25 #2 result: {preview2}...")
 
         # Merge with WEIGHTED scoring: Semantic + Keyword
         # SEMANTIC_WEIGHT (default 70%): Prioritizes conceptual understanding (e.g., "Vashistha" associated with "Sudas")
-        # KEYWORD_WEIGHT (default 30%): Boosts exact matches (e.g., "[02-033]", "HYMN XXXIII")
+        # KEYWORD_WEIGHT (default 30%): Boosts exact matches (e.g., specific hymn numbers, exact phrases)
         seen_content = {}
         doc_scores = {}
 
@@ -101,14 +165,60 @@ class HybridRetriever(BaseRetriever):
             top_score = doc_scores[sorted_hashes[0]]
             logger.info(f"HybridRetriever: Top doc score={top_score:.2f} (semantic {SEMANTIC_WEIGHT:.0%}, keyword {KEYWORD_WEIGHT:.0%})")
 
-        # Return top k results
-        return merged_docs[:self.k]
+        # QUERY EXPANSION: Add documents related to proper nouns in the query
+        if EXPANSION_DOCS > 0:
+            proper_nouns = self._extract_proper_nouns(query)
+
+            # LOCATION-AWARE EXPANSION: Detect queries about geographic locations
+            # Triggers for: "where", "which river", "cross", "location", "place"
+            location_keywords = ['where', 'location', 'place', 'river', 'rivers', 'cross', 'crossed', 'crossing']
+            is_location_query = any(word in query.lower() for word in location_keywords)
+
+            if is_location_query:
+                # Search for documents mentioning entities + common Rigveda locations
+                # Including rivers (Yamuna, Sarasvati, Indus, Ganga, Rasa, Parushni, Vipas)
+                common_locations = ['Yamuna', 'Sarasvati', 'Indus', 'Ganga', 'Rasa', 'Parushni', 'Vipas', 'Sutudri']
+                logger.info(f"HybridRetriever: Location query detected (keywords: {[k for k in location_keywords if k in query.lower()]})")
+                # Add location names to proper nouns for expansion
+                proper_nouns_with_locations = proper_nouns + [loc for loc in common_locations]
+            else:
+                proper_nouns_with_locations = proper_nouns
+
+            if proper_nouns_with_locations:
+                logger.info(f"HybridRetriever: Found proper nouns for expansion: {proper_nouns_with_locations}")
+                expansion_docs = []
+                expansion_seen = set(sorted_hashes)  # Don't duplicate primary results
+
+                # For each proper noun, get related documents
+                # Increased limit to 8 for location queries (more locations to search)
+                for noun in proper_nouns_with_locations[:8]:
+                    # Search semantically for the proper noun
+                    noun_docs = self.semantic_retriever.invoke(noun)
+
+                    for doc in noun_docs[:EXPANSION_DOCS]:
+                        content_hash = hash(doc.page_content)
+                        if content_hash not in expansion_seen:
+                            expansion_docs.append(doc)
+                            expansion_seen.add(content_hash)
+                            # Break after getting EXPANSION_DOCS per noun
+                            if len(expansion_docs) >= EXPANSION_DOCS * len(proper_nouns[:3]):
+                                break
+
+                if expansion_docs:
+                    logger.info(f"HybridRetriever: Added {len(expansion_docs)} expansion docs via proper noun association")
+                    merged_docs = merged_docs[:self.k] + expansion_docs
+                    logger.info(f"HybridRetriever: Total docs (primary + expansion) = {len(merged_docs)}")
+
+        # Return top k primary results (expansion docs come after for LLM context)
+        return merged_docs[:self.k + (EXPANSION_DOCS * 3 if EXPANSION_DOCS > 0 else 0)]
+
+
 def create_retriever(vec_db, documents, top_n=5):
     """Create a hybrid retriever combining semantic (Qdrant) and keyword (BM25) search.
 
     This combines the best of both:
-    - BM25 for exact matches: 'HYMN XXXIII', '[02-033]'
-    - Semantic for concepts: 'appearance', 'skin color', 'Rudra description'
+    - BM25 for exact matches: specific hymn numbers, exact phrases
+    - Semantic for concepts: understanding meanings, associations, relationships
     """
 
     # Configure Qdrant semantic retriever
@@ -119,9 +229,6 @@ def create_retriever(vec_db, documents, top_n=5):
 
         # Create BM25 keyword retriever
         logger.info(f"Creating BM25 retriever with {len(documents)} documents")
-        # Check if [02-033] exists in documents
-        matching = [i for i, doc in enumerate(documents) if '[02-033]' in doc.page_content]
-        logger.info(f"BM25 input: Found [02-033] in {len(matching)} documents (indices: {matching[:5]})")
 
         bm25_retriever = BM25Retriever.from_documents(documents=documents)
         bm25_retriever.k = RETRIEVAL_K
