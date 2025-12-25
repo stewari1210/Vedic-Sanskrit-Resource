@@ -10,7 +10,8 @@ except RuntimeError:
     asyncio.set_event_loop(loop)
 
 from langchain_groq import ChatGroq
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_ollama import ChatOllama
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from helper import logger
@@ -18,6 +19,12 @@ from config import (
     GROQ_API_KEY,
     GEMINI_API_KEY,
     EMBED_MODEL,
+    LLM_PROVIDER,
+    EVAL_LLM_PROVIDER,
+    OLLAMA_BASE_URL,
+    OLLAMA_MODEL,
+    OLLAMA_EVAL_MODEL,
+    GEMINI_MODEL,
     EVAL_MODEL,
     MODEL_SPECS,
     CHUNK_SIZE,
@@ -110,31 +117,71 @@ class Settings:
             encode_kwargs={'normalize_embeddings': True}
         )
 
-    # Validate Groq model configuration. ChatGroq requires a `model` string
-    # during initialization; passing no model causes a pydantic ValidationError
-    # that is hard to debug. If a GROQ API key is present but no model is
-    # configured, raise a clear error prompting the user to set the MODEL
-    # or GROQ_MODEL environment variable.
-    groq_model = MODEL_SPECS.get("model")
-    if GROQ_API_KEY and not groq_model:
-        raise RuntimeError(
-            "GROQ_API_KEY is set but no model is configured. Please set the MODEL or GROQ_MODEL environment variable to a valid Groq model name."
+    # LLM Provider Selection: Groq or Ollama for main QA
+    llm_provider = LLM_PROVIDER.lower()
+    eval_llm_provider = EVAL_LLM_PROVIDER.lower()
+
+    if llm_provider == "ollama":
+        logger.info(f"Using Ollama LLM for QA: {OLLAMA_MODEL} at {OLLAMA_BASE_URL}")
+        llm = ChatOllama(
+            base_url=OLLAMA_BASE_URL,
+            model=OLLAMA_MODEL,
+            temperature=MODEL_SPECS["temperature"],
+            num_ctx=8192,  # Context window size
+        )
+    else:  # Default to Groq
+        # Validate Groq model configuration
+        groq_model = MODEL_SPECS.get("model")
+        if GROQ_API_KEY and not groq_model:
+            raise RuntimeError(
+                "GROQ_API_KEY is set but no model is configured. Please set the MODEL or GROQ_MODEL environment variable to a valid Groq model name."
+            )
+
+        logger.info(f"Using Groq LLM for QA: {groq_model}")
+        llm = ChatGroq(
+            api_key=GROQ_API_KEY,
+            model=groq_model,
+            max_tokens=MODEL_SPECS["max_tokens"],
+            timeout=MODEL_SPECS["timeout"],
+            max_retries=MODEL_SPECS["max_retries"],
         )
 
-    llm = ChatGroq(
-        api_key=GROQ_API_KEY,
-        model=groq_model,
-        max_tokens=MODEL_SPECS["max_tokens"],
-        timeout=MODEL_SPECS["timeout"],
-        max_retries=MODEL_SPECS["max_retries"],
-    )
+    # Evaluator LLM - can use different provider (e.g., Gemini for evaluating Ollama 8B responses)
+    if eval_llm_provider == "ollama":
+        logger.info(f"Using Ollama LLM for Evaluation: {OLLAMA_EVAL_MODEL} at {OLLAMA_BASE_URL}")
+        evaluator_llm = ChatOllama(
+            base_url=OLLAMA_BASE_URL,
+            model=OLLAMA_EVAL_MODEL,
+            temperature=MODEL_SPECS["temperature"],
+            num_ctx=8192,
+        )
+    elif eval_llm_provider == "gemini":
+        if not GEMINI_API_KEY:
+            logger.warning("No GEMINI_API_KEY found for evaluation. Falling back to same LLM as QA.")
+            evaluator_llm = llm
+        else:
+            logger.info(f"Using Google Gemini LLM for Evaluation: {GEMINI_MODEL}")
+            evaluator_llm = ChatGoogleGenerativeAI(
+                model=GEMINI_MODEL,
+                google_api_key=GEMINI_API_KEY,
+                temperature=MODEL_SPECS["temperature"],
+                max_tokens=MODEL_SPECS["max_tokens"],
+                timeout=MODEL_SPECS["timeout"],
+                max_retries=MODEL_SPECS["max_retries"],
+            )
+    else:  # Use Groq for evaluation
+        if not GROQ_API_KEY:
+            logger.warning("No GROQ_API_KEY found for evaluation. Falling back to same LLM as QA.")
+            evaluator_llm = llm
+        else:
+            logger.info(f"Using Groq LLM for Evaluation: {EVAL_MODEL}")
+            evaluator_llm = ChatGroq(
+                api_key=GROQ_API_KEY,
+                model=EVAL_MODEL,
+                max_tokens=MODEL_SPECS["max_tokens"],
+                timeout=MODEL_SPECS["timeout"],
+                max_retries=MODEL_SPECS["max_retries"],
+            )
 
-    evaluator_llm = ChatGroq(
-        api_key=GROQ_API_KEY,
-        model=EVAL_MODEL,
-        max_tokens=MODEL_SPECS["max_tokens"],
-        timeout=MODEL_SPECS["timeout"],
-        max_retries=MODEL_SPECS["max_retries"],
-    )
     chunk_size = CHUNK_SIZE
     chunk_overlap = CHUNK_OVERLAP

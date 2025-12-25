@@ -128,6 +128,9 @@ def correct_grammar_node(state: GraphState):
 
     enhanced_question = grammar_chain.invoke({"question": question})
 
+    # Strip surrounding quotes that LLM might add
+    enhanced_question = enhanced_question.strip().strip("'\"")
+
     return {"enhanced_question": enhanced_question}
 
 

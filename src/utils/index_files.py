@@ -4,7 +4,7 @@ import pickle
 import tempfile
 from uuid import uuid4
 from pathlib import Path
-from langchain_community.vectorstores import Qdrant
+from langchain_qdrant import QdrantVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
@@ -66,7 +66,7 @@ def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 6
     return chunks
 
 
-def create_qdrant_vector_store(force_recreate: bool = True) -> Qdrant:
+def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore:
     """
     Creates and populates a local Qdrant vector store.
 
@@ -112,12 +112,12 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> Qdrant:
             pickle.dump(chunks, f)
         # Create the Qdrant vector store from the documents
         try:
-            vector_store = Qdrant.from_documents(
+            vector_store = QdrantVectorStore.from_documents(
                 documents=chunks,
                 embedding=Settings.embed_model,
                 path=VECTORDB_FOLDER,
                 collection_name=COLLECTION_NAME,
-                force_recreate_collection=force_recreate,
+                force_recreate=force_recreate,
             )
         except AssertionError as e:
             # Fallback for qdrant-client / langchain mismatch where
@@ -125,7 +125,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> Qdrant:
             # (e.g. 'init_from'). Create the collection manually and
             # populate it using the lower-level API.
             logger.warning(
-                "Qdrant.from_documents failed with AssertionError (%s). Falling back to manual collection creation.",
+                "QdrantVectorStore.from_documents failed with AssertionError (%s). Falling back to manual collection creation.",
                 e,
             )
             try:
@@ -213,7 +213,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> Qdrant:
                     logger.debug("create_collection raised; continuing and attempting to upsert")
 
                 # Construct the LangChain Qdrant wrapper and add documents
-                qdrant_store = Qdrant(client, COLLECTION_NAME, embeddings=Settings.embed_model)
+                qdrant_store = QdrantVectorStore(client=client, collection_name=COLLECTION_NAME, embedding=Settings.embed_model)
                 try:
                     qdrant_store.add_documents(chunks)
                     vector_store = qdrant_store
@@ -252,16 +252,16 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> Qdrant:
             chunks = pickle.load(f)
 
         try:
-            vector_store = Qdrant.from_documents(
+            vector_store = QdrantVectorStore.from_documents(
                 documents=chunks,
                 embedding=Settings.embed_model,
                 path=VECTORDB_FOLDER,
                 collection_name=COLLECTION_NAME,
-                force_recreate_collection=False,
+                force_recreate=False,
             )
         except AssertionError as e:
             logger.warning(
-                "Qdrant.from_documents (existing index path) failed with AssertionError (%s). Using fallback to create/upsert.",
+                "QdrantVectorStore.from_documents (existing index path) failed with AssertionError (%s). Using fallback to create/upsert.",
                 e,
             )
             try:
@@ -331,7 +331,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> Qdrant:
                     client.create_collection(collection_name=COLLECTION_NAME, vectors_config=vectors_config)
                 except Exception:
                     logger.debug("create_collection raised; continuing and attempting to upsert")
-                qdrant_store = Qdrant(client, COLLECTION_NAME, embeddings=Settings.embed_model)
+                qdrant_store = QdrantVectorStore(client=client, collection_name=COLLECTION_NAME, embedding=Settings.embed_model)
                 try:
                     qdrant_store.add_documents(chunks)
                     vector_store = qdrant_store

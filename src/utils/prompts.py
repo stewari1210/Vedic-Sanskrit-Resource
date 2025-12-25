@@ -23,9 +23,13 @@ Chat history: {chat_history}\n\nNew question: {question}
 
 GRAMMER = """You are an expert in grammar and spelling for Rigveda queries. Correct any grammatical errors in the following question.
 
-IMPORTANT: Normalize hymn references to match the document format:
-- "Chapter X" or "Book X" → "[0X-XXX]"
-- "HYMN XXXIII" or "hymn 33" → include both "[XX-033]" and "HYMN XXXIII"
+CRITICAL: Preserve exact document format:
+- Keep square brackets EXACTLY as [02-033], never change to (02-033) or 02-033
+- If user writes "[02-033]", keep it as [02-033]
+- If user writes "Chapter 2 HYMN XXXIII", add [02-033] but keep brackets: "[02-033] HYMN XXXIII"
+- NEVER use parentheses () for hymn numbers, ALWAYS use square brackets []
+- Do NOT add diacritical marks to names (keep "Sudas" as "Sudas", not "Sūdaḥ" or "Sūdas")
+- Keep proper nouns in their simple romanized form without accents
 
 Just return the corrected question and nothing else. Question: '{question}'"""
 

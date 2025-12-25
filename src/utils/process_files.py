@@ -106,16 +106,16 @@ def get_metadata(file_path: str, markdown: str):
     try:
         metadata_obj = Metadata.model_validate_json(response)
     except Exception as e:
-        logger.warning("Metadata JSON validation failed: %s. Attempting to extract JSON substring.", e)
+        logger.debug("Metadata JSON validation failed: %s. Attempting to extract JSON substring.", e)
         json_sub = extract_first_json(response)
         if json_sub:
             try:
                 metadata_obj = Metadata.model_validate_json(json_sub)
             except Exception:
-                logger.exception("Failed to parse extracted JSON from LLM response. Falling back to empty metadata.")
+                logger.debug("Failed to parse extracted JSON from LLM response. Falling back to empty metadata.")
                 metadata_obj = None
         else:
-            logger.error("No JSON object could be extracted from LLM response. Falling back to empty metadata.")
+            logger.debug("No JSON object could be extracted from LLM response. Using basic metadata only.")
             metadata_obj = None
 
     if metadata_obj:

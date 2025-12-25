@@ -123,10 +123,38 @@ The project structure is organized as follows:
 
 ### Running the CLI
 
+**IMPORTANT:** This project uses the `rag-py311` conda environment. You have several options to run it:
+
+#### Option 1: Use the Launcher Script (Recommended)
+
+```bash
+./run_rag.sh --pdf path/to/your_document.pdf
+```
+
+The `run_rag.sh` script automatically uses the correct Python environment.
+
+#### Option 2: Activate Environment First
+
+```bash
+# Activate the environment
+source activate_env.sh
+
+# Then run the chatbot
+python src/cli_run.py --pdf path/to/your_document.pdf
+```
+
+#### Option 3: Use Explicit Python Path
+
+```bash
+/Users/shivendratewari/miniforge-arm64/envs/rag-py311/bin/python src/cli_run.py --pdf path/to/your_document.pdf
+```
+
+### Interactive Session
+
 1.  **Process a PDF and start the interactive session:**
 
     ```bash
-    python src/cli_run.py --pdf path/to/your_document.pdf
+    ./run_rag.sh --pdf path/to/your_document.pdf
     ```
 
 2.  **Session cleanup prompt:**
@@ -146,6 +174,8 @@ The project structure is organized as follows:
 ### CLI Options
 
 ```bash
+./run_rag.sh --pdf /path/to/document.pdf
+# Or:
 python src/cli_run.py --pdf /path/to/document.pdf [OPTIONS]
 ```
 

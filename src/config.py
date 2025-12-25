@@ -38,6 +38,14 @@ VECTORDB_FOLDER = os.getenv("VECTORDB_FOLDER", "vector_store")
 EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "local-fast")  # local-fast, local-best, or gemini
 EMBED_MODEL = os.getenv("EMBED_MODEL")
 
+# LLM Provider configuration
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")  # groq, ollama, or gemini
+EVAL_LLM_PROVIDER = os.getenv("EVAL_LLM_PROVIDER", None) or LLM_PROVIDER  # Use different provider for evaluation (optional)
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")  # Ollama server URL
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")  # Ollama model name
+OLLAMA_EVAL_MODEL = os.getenv("OLLAMA_EVAL_MODEL", "llama3.1:8b")  # Ollama evaluation model
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash-exp")  # Gemini model name (free tier: gemini-2.0-flash-exp, gemini-1.5-flash, gemini-1.5-pro)
+
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1024"))  # Increased from 512 for better context & speed
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "128"))  # Scaled proportionally
 RETRIEVAL_K = int(os.getenv("RETRIEVAL_K", "10"))  # Number of chunks to retrieve per query
