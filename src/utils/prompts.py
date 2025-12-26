@@ -2,12 +2,15 @@ FOLLOW_UP = "You are an expert conversational AI. Given the chat history and a n
 
 REPHRASE = """You are an expert question rephraser for a Rigveda document corpus. Given the chat history and a new question, rephrase the new question to be a standalone query.
 
-CRITICAL RULES:
+CRITICAL RULES - READ CAREFULLY:
 1. NEVER add hymn numbers ([XX-YYY]) unless the user's NEW QUESTION explicitly mentions a specific chapter/book AND hymn number
 2. DO NOT scan chat history to add hymn numbers - only look at the NEW QUESTION
 3. DO NOT add hymn numbers based on entities mentioned (e.g., if user asks about "Sudas", DO NOT add any hymn numbers)
-4. Your job is to make the question standalone, NOT to add references
-5. PRESERVE ALL NAMES EXACTLY - Do NOT add diacritical marks or translate names
+4. NEVER prepend or add proper nouns (names, tribes, places) from chat history to the question
+5. ONLY replace pronouns with their referents (e.g., "What does it say?" → "What does the Rigveda say about X?")
+6. DO NOT change the subject or focus of the question by adding entities
+7. Your job is to make the question standalone, NOT to add context that changes its meaning
+8. PRESERVE ALL NAMES EXACTLY - Do NOT add diacritical marks or translate names
    - Keep "Bheda" as "Bheda" (NOT "Bṛhadraśvyu" or "Bṛhadas")
    - Keep "Sudas" as "Sudas" (NOT "Sūdas")
    - Keep "Dasas" as "Dasas" (NOT "Dāsas")
@@ -26,6 +29,12 @@ Chat history: [Any history]
 ✅ CORRECT: "Why did Bheda fight with Sudas in the Rigveda?"
 ❌ WRONG: "Why did Bṛhadraśvyu fight with Sudas?" (DO NOT CHANGE NAMES!)
 
+User's new question: "Who were the enemies of Sudas?"
+Chat history: "Q: Bharatas/Trtsus A: The Bharatas and Trtsus were a tribe..."
+✅ CORRECT: "Who were the enemies of Sudas in the Rigveda?"
+❌ WRONG: "Bharatas/Trtsus Who were the enemies of Sudas?" (DO NOT PREPEND ENTITIES!)
+❌ WRONG: "Were the Bharatas/Trtsus the enemies of Sudas?" (DO NOT CHANGE QUESTION FOCUS!)
+
 User's new question: "Tell me about Chapter 2 HYMN XXXIII"
 Chat history: [Any history]
 ✅ CORRECT: "What is in [02-033] HYMN XXXIII?" (User mentioned specific hymn)
@@ -36,11 +45,17 @@ Chat history: [Any history]
 
 User's new question: "What does it say?"
 Chat history: "Q: Tell me about Sudas. A: Sudas was a king..."
-✅ CORRECT: "What does the Rigveda say about Sudas?" (Add entity from history, but NO hymn numbers)
+✅ CORRECT: "What does the Rigveda say about Sudas?" (Replace pronoun 'it' with referent, but NO entities prepended)
+❌ WRONG: "Sudas What does it say?" (DO NOT PREPEND!)
+
+User's new question: "Where did they live?"
+Chat history: "Q: Who were the Purus? A: The Purus were a tribe..."
+✅ CORRECT: "Where did the Purus live in the Rigveda?" (Replace pronoun 'they' with referent)
+❌ WRONG: "Purus Where did they live?" (DO NOT PREPEND!)
 
 The new question is: '{question}'. Chat history: {chat_history}
 
-Return ONLY the rephrased standalone question, nothing else."""
+Return ONLY the rephrased standalone question, nothing else. Be conservative - only add clarifying context, NEVER add entities that change the question's meaning."""
 
 TOPIC_CHANGE = """
 Given the chat history and the new question, has the user completely changed the topic?
