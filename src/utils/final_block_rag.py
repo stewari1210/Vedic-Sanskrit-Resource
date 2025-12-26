@@ -20,10 +20,63 @@ from utils.prompts import (
 )
 from utils.structure_output import RAGResponse, ConfidenceScore, InitialRAGResponse
 import json
-from config import CHAT_MEMORY_WINDOW, TOPIC_CHANGE_WINDOW
+from config import (
+    CHAT_MEMORY_WINDOW,
+    TOPIC_CHANGE_WINDOW,
+    USE_REGENERATION,
+    REGENERATION_PROVIDER,
+    REGENERATION_MODEL,
+    GROQ_API_KEY,
+    GEMINI_API_KEY,
+    MAX_REGENERATION_ATTEMPTS
+)
 
 llm = Settings.llm
 evaluator_llm = Settings.evaluator_llm
+
+# Initialize regeneration LLM based on provider
+regeneration_llm = None
+
+if USE_REGENERATION:
+    if REGENERATION_PROVIDER == "groq" and GROQ_API_KEY:
+        from langchain_groq import ChatGroq
+        regeneration_llm = ChatGroq(
+            api_key=GROQ_API_KEY,
+            model=REGENERATION_MODEL,
+            temperature=0,
+            max_tokens=2048,
+            timeout=600,
+            max_retries=2,
+        )
+        logger.info(f"Regeneration enabled with Groq: {REGENERATION_MODEL}")
+
+    elif REGENERATION_PROVIDER == "gemini" and GEMINI_API_KEY:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+        regeneration_llm = ChatGoogleGenerativeAI(
+            model=REGENERATION_MODEL,
+            google_api_key=GEMINI_API_KEY,
+            temperature=0,
+            max_tokens=2048,
+            timeout=600,
+            max_retries=2,
+        )
+        logger.info(f"Regeneration enabled with Gemini: {REGENERATION_MODEL}")
+
+    elif REGENERATION_PROVIDER == "ollama":
+        from langchain_ollama import ChatOllama
+        regeneration_llm = ChatOllama(
+            model=REGENERATION_MODEL,
+            temperature=0,
+            num_predict=2048,
+        )
+        logger.info(f"Regeneration enabled with Ollama: {REGENERATION_MODEL}")
+
+    else:
+        logger.warning(
+            f"USE_REGENERATION=true but provider '{REGENERATION_PROVIDER}' not configured properly. "
+            "Will use standard refinement."
+        )
+
 
 
 class GraphState(TypedDict):
@@ -38,6 +91,7 @@ class GraphState(TypedDict):
     answer: dict
     is_follow_up: bool
     reset_history: bool
+    regeneration_count: int  # Track regeneration attempts to prevent infinite loops
 
 
 def retrieve_and_rerank_node(state: GraphState, reranking_retriever):
@@ -447,20 +501,116 @@ def refine_response_node(state: GraphState):
         }
 
 
-def route_to_refiner(state: GraphState) -> Literal["refine", "end"]:
+def regenerate_with_groq_node(state: GraphState):
     """
-    Determines whether to refine the answer or end the graph.
+    Regenerates answer with a superior model when confidence is low.
+    This uses a better model to generate a fresh answer from scratch,
+    rather than asking the same model to refine its own mistakes.
+
+    IMPORTANT: Increments regeneration_count to prevent infinite loops.
+    """
+    logger.info(f"---REGENERATING WITH {REGENERATION_PROVIDER.upper()}---")
+
+    enhanced_question = state["enhanced_question"]
+    documents = state["documents"]
+    chat_history = state["chat_history"]
+    regeneration_count = state.get("regeneration_count", 0)
+
+    short_chat_history = (
+        chat_history[:CHAT_MEMORY_WINDOW]
+        if len(chat_history) > CHAT_MEMORY_WINDOW
+        else chat_history
+    )
+
+    inputs = {
+        "question": enhanced_question,
+        "documents": documents,
+        "chat_history": short_chat_history,
+    }
+
+    # Use RAG_PROMPT (not REFINE_PROMPT) - start fresh!
+    # This is key: we don't give it the bad answer to "improve",
+    # we let it generate a completely new answer
+    rag_chain = ChatPromptTemplate.from_template(
+        RAG_PROMPT
+    ) | regeneration_llm.with_structured_output(RAGResponse)
+
+    try:
+        structured_response = rag_chain.invoke(inputs)
+        logger.info(f"Successfully regenerated answer with {REGENERATION_PROVIDER.upper()}")
+        return {
+            "answer": structured_response.model_dump(),
+            "regeneration_count": regeneration_count + 1  # Increment counter
+        }
+
+    except groq.BadRequestError as e:
+        logger.error(f"Regeneration failed with BadRequestError: {e}")
+        # Try to parse partial response
+        try:
+            part_answer, citations = parse_failed_generation(str(e))
+            return {
+                "answer": {
+                    "answer": part_answer,
+                    "citations": citations,
+                    "confidence": {
+                        "confidence_score": 50,
+                        "reasoning": "Regeneration partial success",
+                    },
+                },
+                "regeneration_count": regeneration_count + 1  # Increment counter
+            }
+        except Exception as parse_error:
+            logger.error(f"Failed to parse error: {parse_error}")
+            # Fall back to original answer from state
+            logger.warning("Regeneration failed, keeping original answer")
+            return {"regeneration_count": regeneration_count + 1}  # Still increment to prevent retry
+
+    except Exception as e:
+        logger.error(f"Regeneration failed with unexpected error: {e}")
+        logger.warning("Keeping original answer due to regeneration failure")
+        return {"regeneration_count": regeneration_count + 1}  # Still increment to prevent retry
+
+
+def route_to_refiner(state: GraphState) -> Literal["refine", "regenerate", "end"]:
+    """
+    Determines whether to refine, regenerate, or end based on confidence score.
+
+    If USE_REGENERATION=true and regeneration LLM is available:
+        Low confidence → regenerate with superior model (better results)
+    Otherwise:
+        Low confidence → refine with same model (fallback)
+    High confidence → end (accept answer)
+
+    SAFEGUARD: Limits regeneration attempts (configurable via MAX_REGENERATION_ATTEMPTS)
+    to prevent infinite loops and API exhaustion when documents lack information.
     """
     answer_dict = state["answer"].get("confidence", {})
     confidence_score = answer_dict.get("confidence_score", None)
-    if confidence_score is not None and confidence_score > -1 and confidence_score < 75:
-        logger.info(f"Confidence is low {confidence_score}. Refining the answer.")
-        return "refine"
+    regeneration_count = state.get("regeneration_count", 0)
+
+    if regeneration_count >= MAX_REGENERATION_ATTEMPTS:
+        logger.warning(
+            f"Maximum regeneration attempts ({MAX_REGENERATION_ATTEMPTS}) reached. "
+            f"Accepting answer despite low confidence ({confidence_score}). "
+            "This likely means the source documents don't contain enough information."
+        )
+        return "end"
+
+    # Treat -1 (not enough info) and scores < 75 as low confidence
+    if confidence_score is not None and (confidence_score == -1 or confidence_score < 75):
+        # Low confidence - need to improve answer
+        if USE_REGENERATION and regeneration_llm is not None:
+            logger.info(
+                f"Confidence is low ({confidence_score}). "
+                f"Regenerating with {REGENERATION_PROVIDER.upper()} (attempt {regeneration_count + 1}/{MAX_REGENERATION_ATTEMPTS})..."
+            )
+            return "regenerate"
+        else:
+            logger.info(f"Confidence is low ({confidence_score}). Refining with same model...")
+            return "refine"
     else:
         logger.info("Confidence is high enough. Ending the process.")
         return "end"
-
-
 def update_chat_history_node(state: GraphState):
     """Updates the chat history with the new question and answer."""
     logger.info("---UPDATING CHAT HISTORY---")
@@ -498,6 +648,7 @@ def create_langgraph_app(retriever):
     workflow.add_node("call_llm", call_llm_node)
     workflow.add_node("evaluator", evaluate_response_node)
     workflow.add_node("refiner", refine_response_node)
+    workflow.add_node("regenerator", regenerate_with_groq_node)
     workflow.add_node("update_chat_history", update_chat_history_node)
 
     workflow.set_entry_point("check_follow_up")
@@ -517,15 +668,22 @@ def create_langgraph_app(retriever):
     workflow.add_edge("correct_grammar", "retrieve_documents")
     workflow.add_edge("retrieve_documents", "call_llm")
     workflow.add_edge("call_llm", "evaluator")
+
     # Add the conditional edge from the evaluator
+    # Routes to regenerate (Groq 70B) if enabled, otherwise refine (same model)
     workflow.add_conditional_edges(
         "evaluator",
         route_to_refiner,
-        {"refine": "refiner", "end": "update_chat_history"},
+        {
+            "refine": "refiner",
+            "regenerate": "regenerator",
+            "end": "update_chat_history"
+        },
     )
 
-    # The refiner node is then again sent to evaluator to recompute the confidence.
+    # Both refiner and regenerator nodes go back to evaluator to check new confidence
     workflow.add_edge("refiner", "evaluator")
+    workflow.add_edge("regenerator", "evaluator")
     workflow.add_edge("update_chat_history", END)
 
     app = workflow.compile()
@@ -552,6 +710,7 @@ if __name__ == "__main__":
         "enhanced_question": "",
         "is_follow_up": False,
         "reset_history": False,
+        "regeneration_count": 0,
     }
     app = create_langgraph_app(None)
     logger.info("---RUNNING STANDALONE QUESTION WORKFLOW---")
@@ -573,6 +732,7 @@ if __name__ == "__main__":
         "enhanced_question": "",
         "is_follow_up": False,
         "reset_history": False,
+        "regeneration_count": 0,
     }
     logger.info("---RUNNING FOLLOW-UP QUESTION WORKFLOW---")
     final_state_2 = app.invoke(initial_state_2)

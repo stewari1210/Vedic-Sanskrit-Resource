@@ -170,8 +170,9 @@ class HybridRetriever(BaseRetriever):
             proper_nouns = self._extract_proper_nouns(query)
 
             # LOCATION-AWARE EXPANSION: Detect queries about geographic locations
-            # Triggers for: "where", "which river", "cross", "location", "place"
-            location_keywords = ['where', 'location', 'place', 'river', 'rivers', 'cross', 'crossed', 'crossing']
+            # Triggers for: "where", "which river", "cross", "location", "place", "dwell", "live"
+            location_keywords = ['where', 'location', 'place', 'river', 'rivers', 'cross', 'crossed', 'crossing',
+                               'dwell', 'dwelling', 'lived', 'live', 'settled', 'settlement', 'bank', 'banks']
             is_location_query = any(word in query.lower() for word in location_keywords)
 
             # TRIBAL EXPANSION: Detect queries about tribes, enemies, allies in Ten Kings battle
@@ -181,9 +182,19 @@ class HybridRetriever(BaseRetriever):
             is_tribal_query = any(keyword in query.lower() for keyword in tribal_keywords)
 
             if is_location_query:
-                # Search for documents mentioning entities + common Rigveda locations
-                # Including rivers (Yamuna, Sarasvati, Indus, Ganga, Rasa, Parushni, Vipas)
-                common_locations = ['Yamuna', 'Sarasvati', 'Indus', 'Ganga', 'Rasa', 'Parushni', 'Vipas', 'Sutudri']
+                # Search for documents mentioning entities + comprehensive Rigveda locations
+                # Rivers: Major rivers mentioned in Rigveda (Sarasvati mentioned 72 times, Sindhu 50 times)
+                # Mountains: Sacred mountains (Mujavat, Himavat, Trikakud)
+                # "Seven Rivers" = collective term for the sacred rivers
+                common_locations = [
+                    # Major rivers (sorted by frequency in text)
+                    'Sarasvati', 'Sindhu', 'Indus', 'Rasa', 'Yamuna', 'Ganga',
+                    'Vipas', 'Parushni', 'Sutudri', 'Arjikiya', 'Susoma',
+                    # Mountains and geographic features
+                    'Mujavat', 'Himavat', 'Trikakud',
+                    # Special terms
+                    'Seven Rivers',  # Collective reference to all sacred rivers
+                ]
                 logger.info(f"HybridRetriever: Location query detected (keywords: {[k for k in location_keywords if k in query.lower()]})")
                 # Add location names to proper nouns for expansion
                 proper_nouns_with_locations = proper_nouns + [loc for loc in common_locations]

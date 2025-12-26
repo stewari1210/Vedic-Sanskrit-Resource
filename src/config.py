@@ -57,6 +57,12 @@ KEYWORD_WEIGHT = float(os.getenv("KEYWORD_WEIGHT", "0.3"))     # Weight for BM25
 # Query expansion via proper noun association
 EXPANSION_DOCS = int(os.getenv("EXPANSION_DOCS", "3"))  # Number of additional docs to retrieve per proper noun for context expansion
 
+# Low-confidence answer handling
+USE_REGENERATION = os.getenv("USE_REGENERATION", "true").lower() == "true"  # Enable/disable regeneration with superior model
+REGENERATION_PROVIDER = os.getenv("REGENERATION_PROVIDER", "groq").lower()  # Provider for regeneration: groq, gemini, or ollama
+REGENERATION_MODEL = os.getenv("REGENERATION_MODEL", "llama-3.3-70b-versatile")  # Model for regeneration (provider-specific)
+MAX_REGENERATION_ATTEMPTS = int(os.getenv("MAX_REGENERATION_ATTEMPTS", "2"))  # Maximum regeneration attempts to prevent infinite loops (default: 2)
+
 CHAT_MEMORY_WINDOW = (
     int(os.getenv("CHAT_MEMORY_WINDOW", "5")) * 2
 )  # to account for human and ai messages

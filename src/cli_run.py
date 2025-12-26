@@ -178,6 +178,7 @@ def run_repl(retriever):
             "enhanced_question": "",
             "is_follow_up": False,
             "reset_history": False,
+            "regeneration_count": 0,  # Initialize regeneration counter
         }
 
         result = run_rag_with_langgraph(graph_state, app)

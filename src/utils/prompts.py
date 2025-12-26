@@ -74,24 +74,28 @@ CRITICAL RULES - READ CAREFULLY:
 4. If user writes "Chapter 2 HYMN XXXIII", you MAY convert to "[02-033] HYMN XXXIII"
 5. NEVER add hymn numbers to questions that don't mention specific hymns
 
-NAME PRESERVATION (MOST IMPORTANT):
-- Do NOT change, translate, or "correct" any proper nouns (names of people, places, tribes)
-- Keep ALL names EXACTLY as the user wrote them - do NOT add diacritical marks
-- Do NOT transform names to Sanskrit equivalents (e.g., "Bheda" stays "Bheda", NOT "Bṛhadraśvyu" or "Bṛhadas")
-- Do NOT add accents to names (e.g., "Sudas" stays "Sudas", NOT "Sūdas" or "Sūdaḥ")
-- Do NOT change "Dasas" to "Dāsas", keep it exactly as user typed
-- The user knows what names they're asking about - respect their spelling!
+NAME HANDLING (IMPORTANT):
+- Fix OBVIOUS typos in proper nouns (e.g., "Trstus" → "Trtsus", "Sudaas" → "Sudas")
+- Do NOT add diacritical marks (ā, ī, ū, ṣ, ṛ) - keep ASCII only
+- Do NOT translate to Sanskrit equivalents (keep "Bheda" as "Bheda", NOT "Bṛhadraśvyu")
+- Do NOT add accents (keep "Sudas" NOT "Sūdas" or "Sūdaḥ")
+- When in doubt, prefer the user's original spelling
+
+Common Rigveda names (for typo correction reference):
+  Tribes/Groups: Trtsus, Bharatas, Purus, Yadus, Anus, Druhyus, Turvasas, Dasas
+  People: Sudas, Vasishta/Vasistha, Indra, Agni, Varuna, Mitra
+  Rivers: Sarasvati, Yamuna, Ganga, Sindhu/Indus, Rasa
 
 Examples:
 ✅ CORRECT:
 - "Which hymns talk about horse sacrifice?" → "Which hymns talk about horse sacrifice?" (NO changes)
 - "what is the purpose of horse sacrifice?" → "What is the purpose of horse sacrifice?" (ONLY capitalization)
 - "tell me about Chapter 2 HYMN XXXIII" → "Tell me about [02-033] HYMN XXXIII" (convert chapter format)
-- "Why did Bheda fight with Sudas?" → "Why did Bheda fight with Sudas?" (keep "Bheda" as-is)
-- "Where did the Dasas come from?" → "Where did the Dasas come from?" (keep "Dasas" as-is)
+- "Where did Trstus live?" → "Where did Trtsus live?" (fix typo: missing 't')
+- "Why did Bheda fight with Sudas?" → "Why did Bheda fight with Sudas?" (keep names as-is)
 
 ❌ WRONG (DO NOT DO THIS):
-- "Why did Bheda fight?" → "Why did Bṛhadraśvyu fight?" (NEVER change names!)
+- "Why did Bheda fight?" → "Why did Bṛhadraśvyu fight?" (NEVER translate names!)
 - "Tell me about Sudas" → "Tell me about Sūdas" (NEVER add diacritics!)
 - "Who were the Dasas?" → "Who were the Dāsas?" (NEVER add accents!)
 
@@ -157,28 +161,49 @@ NAME PRESERVATION RULES:
 LOCATION REASONING RULES (CRITICAL):
 When answering questions about locations, battles, or geography:
 
-1. DISTINGUISH TRAVEL vs. BATTLE:
-   - TRAVEL indicators: "crossed X", "crossed the river X", "passed through X", "chariot broke at X", "came to X"
-   - BATTLE indicators: "fought at X", "sought X", "battle at X", "conflict at X", "war at X"
+1. DISTINGUISH PERMANENT RESIDENCE vs. TEMPORARY MOVEMENT:
+   - PERMANENT RESIDENCE verbs: "dwell", "reside", "settled", "inhabited", "lived"
+   - TEMPORARY MOVEMENT verbs: "crossed", "fared across", "fared over", "traversed", "passed through", "came to"
 
-2. When user asks "which rivers did [person] cross":
+   CRITICAL: Do NOT confuse crossing/traveling with living/residing!
+   Example: "Bharatas fared across Vipas" means they CROSSED it (journey), NOT that they LIVED there
+
+2. When user asks "where did [person] live/reside/dwell":
+   - Look ONLY for PERMANENT RESIDENCE verbs in documents
+   - Do NOT use river crossing passages as evidence of residence
+   - River crossing hymns describe journeys/campaigns, NOT homes
+   - If only movement verbs found, state: "The text describes [person] traveling through [location]"
+   - Example: Document says "Purus dwell on thy two grassy banks" → They LIVED there
+   - Example: Document says "Bharatas fared across Vipas" → They CROSSED it (don't say they lived there)
+
+3. DISTINGUISH TRAVEL vs. BATTLE:
+   - TRAVEL indicators: "crossed X", "crossed the river X", "passed through X", "chariot broke at X", "fared across X"
+   - BATTLE indicators: "fought at X", "sought X", "battle at X", "conflict at X", "war at X", "parted X" (blocking river)
+
+4. When user asks "which rivers did [person] cross":
    - Look for crossing/travel verbs
    - Answer with the rivers that were CROSSED (travel route)
-   - Example: "crossed Vipas and Sutudri" = These are travel rivers
+   - Example: "fared across Vipas and Sutudri" = These are travel rivers
 
-3. When user asks "where did [person] fight":
+5. When user asks "where did [person] fight":
    - Look for battle/fight verbs
    - Answer with the location that was SOUGHT or where BATTLE occurred
    - Example: "sought Parushni" or "fought at Parushni" = This is battle location
 
-4. If documents mention multiple locations:
-   - Identify which are travel routes (crossed, passed)
-   - Identify which are battle sites (fought, sought, battle)
-   - Be explicit: "crossed Vipas (travel) but fought at Parushni (battle)"
+6. If documents mention multiple locations:
+   - Identify which are HOMES (dwell verbs)
+   - Identify which are TRAVEL ROUTES (crossing verbs)
+   - Identify which are BATTLE SITES (fight verbs)
+   - Be explicit: "lived in Sarasvati region (permanent), crossed Vipas (travel), fought at Parushni (battle)"
 
-5. Do NOT confuse proximity with causality:
+7. Do NOT confuse proximity with causality:
    - If a location is mentioned near battle descriptions ≠ battle happened there
    - Require explicit verbs linking the location to the action
+
+EXAMPLES:
+  ✅ CORRECT: "Document says 'Purus dwell on Sarasvati banks' → The Purus lived on the Sarasvati"
+  ❌ WRONG: "Document says 'Bharatas fared across Vipas' → The Bharatas lived near Vipas"
+  ✅ CORRECT: "Document says 'Bharatas fared across Vipas' → The Bharatas crossed the Vipas during a campaign"
 
 TRIBAL ALLIANCE REASONING RULES (CRITICAL):
 When answering questions about tribes, allies, enemies, or battles:
