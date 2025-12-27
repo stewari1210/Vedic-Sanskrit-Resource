@@ -339,10 +339,17 @@
     "Sudas": {
       "canonical": "Sudas",
       "variants": ["Sudāsa", "Sudase", "Sudasah", "Sudaso", "Sudasam", "Sudasas", "Sudasi", "Sudasa", "Sudasu", "Sudaḥ"],
-      "role": "King",
+      "role": "King of Bharatas (Trtsu-Bharata clan)",
       "clan": "Trtsu-Bharata",
       "priest": "Vasishtha",
       "achievement": "Victory in Battle of Ten Kings",
+      "battle_context": {
+        "enemies_in_ten_kings_battle": ["Scorned Puru faction", "Anu", "Druhyu", "Pakthas", "Bhalanas", "Alinas", "Sivas", "Visanins"],
+        "allies": ["Trtsus", "Bharatas", "Indra"],
+        "note": "RV 7.18.13 says 'conquer scorned Puru' - refers to hostile Puru FACTION, not all Purus"
+      },
+      "historical_context": "Purus and Bharatas later formed Kuru confederation (Yajurveda period)",
+      "key_verse": "RV 7.18.13",
       "sources": {
         "Rigveda-Sharma": 37,
         "Griffith-Rigveda": 35,
@@ -351,7 +358,7 @@
       },
       "total_occurrences": 72,
       "priority": "HIGH",
-      "note": "10 Sanskrit case variants, appears only in Rigvedas"
+      "note": "CRITICAL: Sudas was BHARATA king fighting hostile Puru faction. NOT a Puru king. Purus+Bharatas later united as Kurus."
     },
     "Divodasa": {
       "canonical": "Divodasa",
