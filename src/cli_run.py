@@ -168,9 +168,11 @@ def build_index_and_retriever(force: bool = False):
     return vec_db, docs, retriever
 
 
-def run_repl(retriever):
+def run_repl(retriever, debug=False):
     app = create_langgraph_app(retriever)
     print("\nReady. Enter questions (type 'exit' or 'quit' to stop).\n")
+    if debug:
+        print("🔍 DEBUG MODE: Detailed retrieval info will be shown\n")
 
     # Initialize chat history outside the loop to persist across questions
     chat_history = []
@@ -198,6 +200,7 @@ def run_repl(retriever):
             "is_follow_up": False,
             "reset_history": False,
             "regeneration_count": 0,  # Initialize regeneration counter
+            "debug": debug,  # Pass debug flag to RAG pipeline
         }
 
         result = run_rag_with_langgraph(graph_state, app)
@@ -218,6 +221,17 @@ def run_repl(retriever):
         # result expected to be a dict with "answer"
         if isinstance(result, dict):
             answer = result.get("answer")
+
+            # Show debug info if enabled
+            if debug and "evaluation" in result:
+                eval_data = result["evaluation"]
+                print(f"\n📊 Confidence: {eval_data.get('confidence_score', 'N/A')}%")
+                if "reasoning" in eval_data:
+                    print(f"💭 Reasoning: {eval_data['reasoning']}")
+                if "documents" in result:
+                    print(f"📄 Retrieved {len(result['documents'])} documents")
+                print()
+
             # If the answer is a structured object with 'answer' text inside
             if isinstance(answer, dict):
                 print(answer.get("answer", "(no answer returned)"))
@@ -288,6 +302,11 @@ Examples:
         "--no-cleanup-prompt",
         action="store_true",
         help="Skip the session cleanup prompt and keep existing data",
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Show detailed retrieval info: query processing, document previews, confidence scores, and evaluation reasoning",
     )
     parser.add_argument(
         "--quiet", "-q",
@@ -363,7 +382,7 @@ Examples:
         print(f"Indexing error: {e}")
         return
 
-    run_repl(retriever)
+    run_repl(retriever, debug=args.debug)
 
 
 if __name__ == "__main__":

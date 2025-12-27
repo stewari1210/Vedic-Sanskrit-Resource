@@ -435,9 +435,11 @@ def evaluate_response_node(state: GraphState):
 
     logger.info(f"Evaluation: {answer_dict['confidence']}%")
 
-    # Return the updated answer dictionary, which LangGraph will
-    # merge back into the state's "answer" key.
-    return {"answer": answer_dict}
+    # Return the updated answer dictionary AND store evaluation in state for debug mode
+    return {
+        "answer": answer_dict,
+        "evaluation": answer_dict["confidence"]  # Store for debug output
+    }
 
 
 def refine_response_node(state: GraphState):
@@ -632,7 +634,16 @@ def update_chat_history_node(state: GraphState):
     updated_history.append(HumanMessage(content=question))
     updated_history.append(AIMessage(content=json.dumps(answer, indent=2)))
 
-    return {"chat_history": updated_history}
+    # Include evaluation data in return for debug mode
+    result = {"chat_history": updated_history}
+
+    # Pass through evaluation data if available
+    if "evaluation" in state:
+        result["evaluation"] = state["evaluation"]
+    if "documents" in state:
+        result["documents"] = state["documents"]
+
+    return result
 
 
 # --- Building the Graph (no changes needed here) ---
