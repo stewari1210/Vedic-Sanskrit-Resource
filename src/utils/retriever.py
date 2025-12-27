@@ -224,14 +224,20 @@ class HybridRetriever(BaseRetriever):
 
             # Apply context-based disambiguation for homonyms
             # Example: "Bharata in battle" → searches for Bharata tribe, not sage
-            disambiguated_nouns = [self._disambiguate_proper_noun(noun, query) for noun in proper_nouns]
+            # NOTE: We keep BOTH original and disambiguated for proper variant lookup
+            proper_nouns_disambiguated = []
+            for noun in proper_nouns:
+                disambiguated_form, role = disambiguate_proper_noun(noun, query)
+                # Only log if disambiguation changed the form
+                if disambiguated_form != noun:
+                    logger.info(f"HybridRetriever: Disambiguated '{noun}' → '{disambiguated_form}' (role: {role}) based on context: '{query}'")
+                # Store tuple of (original, disambiguated, role) for later use
+                proper_nouns_disambiguated.append((noun, disambiguated_form, role))
 
-            # Log disambiguation results
-            for original, disambiguated in zip(proper_nouns, disambiguated_nouns):
+            # Log disambiguation results (for the old format logs)
+            for original, disambiguated, role in proper_nouns_disambiguated:
                 if original != disambiguated:
-                    logger.info(f"HybridRetriever: Query expansion using '{disambiguated}' instead of '{original}'")
-
-            # LOCATION-AWARE EXPANSION: Detect queries about geographic locations
+                    logger.info(f"HybridRetriever: Query expansion using '{disambiguated}' instead of '{original}'")            # LOCATION-AWARE EXPANSION: Detect queries about geographic locations
             # Triggers for: "where", "which river", "cross", "location", "place", "dwell", "live"
             location_keywords = ['where', 'location', 'place', 'river', 'rivers', 'cross', 'crossed', 'crossing',
                                'dwell', 'dwelling', 'lived', 'live', 'settled', 'settlement', 'bank', 'banks']
@@ -258,28 +264,29 @@ class HybridRetriever(BaseRetriever):
                     'Seven Rivers',  # Collective reference to all sacred rivers
                 ]
                 logger.info(f"HybridRetriever: Location query detected (keywords: {[k for k in location_keywords if k in query.lower()]})")
-                # Add location names to proper nouns for expansion
-                proper_nouns_with_locations = disambiguated_nouns + [loc for loc in common_locations]
+                # Add location names to proper nouns for expansion (use original nouns, not disambiguated)
+                nouns_for_expansion = [orig for orig, _, _ in proper_nouns_disambiguated] + common_locations
             elif is_tribal_query:
                 # Search for documents mentioning entities + known tribal confederacies
                 # Ten Kings battle: Pakthas, Bhalanas, Alinas, Sivas, Visanins, Druhyus, Anavas, Purus, etc.
                 known_tribes = ['Pakthas', 'Bhalanas', 'Alinas', 'Sivas', 'Visanins', 'Druhyus', 'Anavas', 'Purus',
                               'Anu', 'Vaikarna', 'Kavasa', 'Bhrgus']
                 logger.info(f"HybridRetriever: Tribal query detected (keywords: {[k for k in tribal_keywords if k in query.lower()]})")
-                # Add tribal names to proper nouns for expansion
-                proper_nouns_with_locations = disambiguated_nouns + [tribe for tribe in known_tribes]
+                # Add tribal names to proper nouns for expansion (use original nouns)
+                nouns_for_expansion = [orig for orig, _, _ in proper_nouns_disambiguated] + known_tribes
             else:
-                proper_nouns_with_locations = disambiguated_nouns
+                # Use original nouns for variant lookup
+                nouns_for_expansion = [orig for orig, _, _ in proper_nouns_disambiguated]
 
-            if proper_nouns_with_locations:
-                logger.info(f"HybridRetriever: Found proper nouns for expansion: {proper_nouns_with_locations}")
+            if nouns_for_expansion:
+                logger.info(f"HybridRetriever: Found proper nouns for expansion: {nouns_for_expansion}")
                 expansion_docs = []
                 expansion_seen = set(sorted_hashes)  # Don't duplicate primary results
 
                 # For each proper noun, get related documents
                 # Increased limit to 12 for tribal/location queries (more entities to search)
                 expansion_limit = 12 if (is_location_query or is_tribal_query) else 8
-                for noun in proper_nouns_with_locations[:expansion_limit]:
+                for noun in nouns_for_expansion[:expansion_limit]:
                     # Get transliteration variants (e.g., Sudas → Sudasa, Vasishtha → Vasistha)
                     variants = self._get_transliteration_variants(noun)
                     logger.info(f"HybridRetriever: Searching variants for '{noun}': {variants}")
