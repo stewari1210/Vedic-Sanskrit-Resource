@@ -1,0 +1,442 @@
+{
+  "_comment": "Proper noun variant mappings for cross-translation normalization - ALL 4 TRANSLATIONS",
+  "_usage": "When a proper noun is detected, search for all its variants to improve retrieval",
+  "_sources": "Rigveda (Sharma + Griffith), Yajurveda (Sharma + Griffith)",
+  "_total_translations": 4,
+  "_total_occurrences": 43706,
+  "_last_updated": "2025-12-27",
+
+  "sages": {
+    "Kashyapa": {
+      "variants": ["Kasyapa", "Kāśyapa", "Kashyap"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "sources": {
+        "Rigveda-Sharma": 44,
+        "Griffith-Rigveda": 2,
+        "Yajurveda-Sharma": 14,
+        "Griffith-Yajurveda": 6
+      },
+      "total_occurrences": 66,
+      "priority": "MEDIUM",
+      "pattern": "Sharma prefers 'Kashyapa', Griffith-Y uses 'Kasyapa'"
+    },
+    "Vasishtha": {
+      "variants": ["Vasistha", "Vasiṣṭha", "Vasishta"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "context": "Priest of Bharatas in Rigveda",
+      "sources": {
+        "Rigveda-Sharma": 119,
+        "Griffith-Rigveda": 68,
+        "Yajurveda-Sharma": 53,
+        "Griffith-Yajurveda": 10
+      },
+      "total_occurrences": 250,
+      "priority": "CRITICAL",
+      "pattern": "Sharma consistently uses 'Vasishtha', Griffith-Rigveda exclusively uses 'Vasistha'",
+      "note": "HIGHEST PRIORITY - Griffith-R is ONLY translation using 'Vasistha' heavily"
+    },
+    "Vishwamitra": {
+      "variants": ["Vishvamitra", "Viśvāmitra", "Viswamitra", "Visvamitra"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "sources": {
+        "Rigveda-Sharma": 54,
+        "Griffith-Rigveda": 6,
+        "Yajurveda-Sharma": 34,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 94,
+      "priority": "HIGH",
+      "pattern": "Sharma strongly prefers 'Vishvamitra', Griffith-R uses 'Visvamitra'"
+    },
+    "Gautama": {
+      "variants": ["Gotama", "Gautam"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "sources": {
+        "Rigveda-Sharma": 91,
+        "Griffith-Rigveda": 16,
+        "Yajurveda-Sharma": 79,
+        "Griffith-Yajurveda": 2
+      },
+      "total_occurrences": 188,
+      "priority": "HIGH",
+      "pattern": "Sharma-R prefers 'Gautama', but Sharma-Y switches to 'Gotama'"
+    },
+    "Bharadvaja": {
+      "variants": ["Bharadvija", "Bhāradvāja"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "sources": {
+        "Rigveda-Sharma": 87,
+        "Griffith-Rigveda": 26,
+        "Yajurveda-Sharma": 38,
+        "Griffith-Yajurveda": 2
+      },
+      "total_occurrences": 153,
+      "priority": "MEDIUM",
+      "pattern": "Nearly universal agreement on 'Bharadvaja' (149 vs 4 Bharadvija)"
+    },
+    "Jamadagni": {
+      "variants": ["Jamadagni", "Jāmadagni"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "sources": ["Rigveda-Sharma", "Yajurveda-Sharma", "Griffith-Rigveda"]
+    },
+    "Atri": {
+      "variants": ["Atri", "Ātri"],
+      "role": "Sage (Rshi)",
+      "group": "Saptarishi (Seven Sages)",
+      "sources": {
+        "Rigveda-Sharma": 120,
+        "Griffith-Rigveda": 107,
+        "Yajurveda-Sharma": 16,
+        "Griffith-Yajurveda": 6
+      },
+      "total_occurrences": 249,
+      "priority": "LOW",
+      "pattern": "Consistent spelling across translations"
+    },
+    "Kanva": {
+      "variants": ["Kanva", "Kāṇva"],
+      "role": "Sage (Rshi)",
+      "sources": {
+        "Rigveda-Sharma": 111,
+        "Griffith-Rigveda": 93,
+        "Yajurveda-Sharma": 7,
+        "Griffith-Yajurveda": 5
+      },
+      "total_occurrences": 216,
+      "priority": "LOW",
+      "pattern": "Mostly consistent spelling"
+    },
+    "Yajnavalkya": {
+      "variants": ["Yajnavalkya", "Yājñavalkya", "Yagnavalkya"],
+      "role": "Sage (Rshi)",
+      "context": "Founder of White Yajurveda school, major philosopher",
+      "sources": {
+        "Rigveda-Sharma": 0,
+        "Griffith-Rigveda": 0,
+        "Yajurveda-Sharma": 31,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 31,
+      "priority": "MEDIUM",
+      "pattern": "UNIQUE to Sharma-Yajurveda",
+      "note": "Major philosophical figure in Yajurveda"
+    },
+    "Agastya": {
+      "variants": ["Agastya", "Agasti"],
+      "role": "Sage (Rshi)",
+      "sources": {
+        "Rigveda-Sharma": 34,
+        "Griffith-Rigveda": 16,
+        "Yajurveda-Sharma": 19,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 69,
+      "priority": "LOW"
+    },
+    "Grtsamada": {
+      "variants": ["Grtsamada", "Gṛtsamada"],
+      "role": "Sage (Rshi)",
+      "sources": {
+        "Rigveda-Sharma": 38,
+        "Griffith-Rigveda": 0,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 38,
+      "priority": "LOW",
+      "note": "UNIQUE to Sharma-Rigveda"
+    }
+  },
+
+  "tribes_and_kingdoms": {
+    "Bharatas": {
+      "canonical": "Bharatas",
+      "variants": ["Bharata", "Bhāratas"],
+      "role": "Tribe",
+      "context": "Victorious in Battle of Ten Kings, led by King Sudas",
+      "priest": "Vasishtha",
+      "evolution": "Merged with Purus to form Kurus",
+      "sources": {
+        "Rigveda-Sharma": 7,
+        "Griffith-Rigveda": 13,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 2
+      },
+      "total_occurrences": 22,
+      "note": "DIFFERENT from Bharata (sage) in Yajurveda-Sharma - see homonyms"
+    },
+    "Purus": {
+      "canonical": "Purus",
+      "variants": ["Puru", "Pūrus"],
+      "role": "Tribe",
+      "context": "Rivals of Bharatas, later merged to form Kurus",
+      "sources": {
+        "Rigveda-Sharma": 166,
+        "Griffith-Rigveda": 23,
+        "Yajurveda-Sharma": 60,
+        "Griffith-Yajurveda": 1
+      },
+      "total_occurrences": 250,
+      "note": "DIFFERENT from Purusha (cosmic being) - see homonyms"
+    },
+    "Kurus": {
+      "canonical": "Kurus",
+      "variants": ["Kuru", "Kurukshetra"],
+      "role": "Kingdom",
+      "context": "Formed from merger of Bharatas and Purus",
+      "era": "Yajurvedic period",
+      "sources": {
+        "Rigveda-Sharma": 0,
+        "Griffith-Rigveda": 0,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 4
+      },
+      "total_occurrences": 4,
+      "note": "Appears mainly in Yajurveda ritual context"
+    },
+    "Panchalas": {
+      "canonical": "Panchalas",
+      "variants": ["Panchala", "Pañcālas"],
+      "role": "Kingdom/Confederacy",
+      "context": "Allied with Kurus (Kuru-Panchala)",
+      "origin": "Possibly from Krivi tribe",
+      "sources": {
+        "Rigveda-Sharma": 0,
+        "Griffith-Rigveda": 0,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 4
+      },
+      "total_occurrences": 4,
+      "note": "Appears mainly in Yajurveda ritual context"
+    },
+    "Trtsus": {
+      "canonical": "Trtsus",
+      "variants": ["Tritsu", "Tṛtsus"],
+      "role": "Bharata sub-clan",
+      "context": "Led by Sudas in Battle of Ten Kings",
+      "relationship": "Trtsu-Bharatas",
+      "sources": {
+        "Rigveda-Sharma": 0,
+        "Griffith-Rigveda": 10,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 10,
+      "priority": "MEDIUM",
+      "note": "UNIQUE to Griffith-Rigveda - not in any Sharma translation"
+    },
+    "Magadha": {
+      "canonical": "Magadha",
+      "variants": ["Magadha", "Māgadha"],
+      "role": "Region/Kingdom",
+      "context": "Eastern frontier, possibly descended from Kikatas",
+      "status": "Considered outsiders in early Vedic period",
+      "sources": ["Yajurveda-Sharma", "Griffith-Yajurveda"]
+    }
+  },
+
+  "homonyms": {
+    "Bharata": [
+      {
+        "form": "Bharata (Rshi)",
+        "role": "Sage",
+        "context": "Hymn composer with Devavata",
+        "sources": {
+          "Rigveda-Sharma": 0,
+          "Griffith-Rigveda": 0,
+          "Yajurveda-Sharma": 5,
+          "Griffith-Yajurveda": 0
+        },
+        "disambiguation": "When appearing as '(Bharata Rshi)' or 'Bharata and Devavata' or in hymn/spiritual context",
+        "translation_style": "Philosophical/Spiritual (Sharma-Y)"
+      },
+      {
+        "form": "Bharatas (tribe)",
+        "role": "Tribe/Kingdom",
+        "context": "Defeated Purus, led by Sudas, Ten Kings Battle",
+        "sources": {
+          "Rigveda-Sharma": 29,
+          "Griffith-Rigveda": 29,
+          "Yajurveda-Sharma": 0,
+          "Griffith-Yajurveda": 8
+        },
+        "disambiguation": "When appearing in battle/historical context, with Vasishtha, or with 'defeated Purus'",
+        "translation_style": "Historical/Literal (both Rigvedas)"
+      }
+    ],
+    "Purusha_vs_Puru": [
+      {
+        "form": "Purusha",
+        "role": "Cosmic Being/Philosophical Concept",
+        "context": "Supreme Self, Embodied Spirit, Cosmic Man, Purusha Sukta",
+        "sources": {
+          "Rigveda-Sharma": "HIGH (697 combined with Puru)",
+          "Griffith-Rigveda": "LOW (71 combined)",
+          "Yajurveda-Sharma": "HIGH",
+          "Griffith-Yajurveda": "MEDIUM (ritual sacrifice)"
+        },
+        "disambiguation": "When appearing with Prakriti, philosophical context, or 'cosmic' keywords",
+        "translation_style": "Philosophical (Sharma translations)"
+      },
+      {
+        "form": "Puru/Purus",
+        "role": "Tribe",
+        "context": "Historical rivals of Bharatas, Ten Kings Battle",
+        "sources": {
+          "Rigveda-Sharma": 166,
+          "Griffith-Rigveda": 23,
+          "Yajurveda-Sharma": "mixed with Purusha",
+          "Griffith-Yajurveda": 1
+        },
+        "disambiguation": "When appearing in battle/tribal context, with 'defeated by Bharatas'",
+        "translation_style": "Historical/Literal (Griffith-R)"
+      }
+    ],
+    "Prajapati": [
+      {
+        "form": "Prajapati (Devata)",
+        "role": "Deity",
+        "context": "Lord of Creatures, Creator",
+        "sources": ["Rigveda-Sharma", "Yajurveda-Sharma", "Griffith-Rigveda", "Griffith-Yajurveda"],
+        "disambiguation": "When appearing as '(Prajapati Devata)' or in deity context"
+      },
+      {
+        "form": "Parameshthi Prajapati (Rshi)",
+        "role": "Sage",
+        "context": "Seer of mantras",
+        "sources": ["Yajurveda-Sharma"],
+        "disambiguation": "When appearing as '(Parameshthi Prajapati Rshi)'"
+      }
+    ]
+  },
+
+  "kings_and_heroes": {
+    "Sudas": {
+      "canonical": "Sudas",
+      "variants": ["Sudāsa", "Sudase", "Sudasah", "Sudaso", "Sudasam", "Sudasas", "Sudasi", "Sudasa", "Sudasu", "Sudaḥ"],
+      "role": "King",
+      "clan": "Trtsu-Bharata",
+      "priest": "Vasishtha",
+      "achievement": "Victory in Battle of Ten Kings",
+      "sources": {
+        "Rigveda-Sharma": 37,
+        "Griffith-Rigveda": 35,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 72,
+      "priority": "HIGH",
+      "note": "10 Sanskrit case variants, appears only in Rigvedas"
+    },
+    "Divodasa": {
+      "canonical": "Divodasa",
+      "variants": ["Divódāsa"],
+      "role": "King",
+      "sources": {
+        "Rigveda-Sharma": 29,
+        "Griffith-Rigveda": 31,
+        "Yajurveda-Sharma": 0,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 60,
+      "note": "Rigveda-specific king"
+    },
+    "Mudgala": {
+      "canonical": "Mudgala",
+      "variants": ["Mudgalani"],
+      "role": "Warrior/Hero",
+      "context": "Famous battle narrative",
+      "sources": {
+        "Rigveda-Sharma": 6,
+        "Griffith-Rigveda": 6,
+        "Yajurveda-Sharma": 1,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 13
+    },
+    "Pururavas": {
+      "canonical": "Pururavas",
+      "variants": ["Pururava", "Pūrūravas"],
+      "role": "Legendary King",
+      "context": "Associated with Urvasi legend",
+      "sources": ["Yajurveda-Sharma", "Griffith-Yajurveda"]
+    }
+  },
+
+  "deities": {
+    "Indra": {
+      "variants": ["Indra", "Śakra", "Sakra"],
+      "role": "Deity",
+      "domain": "Thunder, War, King of Gods",
+      "sources": ["Rigveda-Sharma", "Yajurveda-Sharma", "Griffith-Rigveda", "Griffith-Yajurveda"]
+    },
+    "Agni": {
+      "variants": ["Agni", "Fire"],
+      "role": "Deity",
+      "domain": "Fire, Sacrifice, Messenger",
+      "sources": ["Rigveda-Sharma", "Yajurveda-Sharma", "Griffith-Rigveda", "Griffith-Yajurveda"]
+    },
+    "Soma": {
+      "variants": ["Soma", "Pavamana"],
+      "role": "Deity",
+      "domain": "Sacred drink, Moon, Purification",
+      "sources": ["Rigveda-Sharma", "Yajurveda-Sharma", "Griffith-Rigveda", "Griffith-Yajurveda"]
+    },
+    "Varuna": {
+      "variants": ["Varuna", "Varuṇa"],
+      "role": "Deity",
+      "domain": "Cosmic order, Waters, Sky",
+      "sources": ["Rigveda-Sharma", "Yajurveda-Sharma", "Griffith-Rigveda", "Griffith-Yajurveda"]
+    }
+  },
+
+  "translation_patterns": {
+    "spelling_conventions": {
+      "Sharma_translations": {
+        "preference": "sh forms",
+        "examples": ["Vasishtha", "Vishvamitra", "Kashyapa"],
+        "era": "2014 (modern)",
+        "approach": "Philosophical/Interpretive"
+      },
+      "Griffith_Rigveda": {
+        "preference": "s forms",
+        "examples": ["Vasistha", "Visvamitra", "Kasyapa"],
+        "era": "1896 (Victorian)",
+        "approach": "Literal/Scholarly",
+        "note": "ONLY translation using 'Vasistha' heavily (68×)"
+      },
+      "Griffith_Yajurveda": {
+        "preference": "mixed (closer to Sharma)",
+        "examples": ["Vasishtha (10×)", "Kasyapa (6×)"],
+        "era": "1927",
+        "approach": "Literal with ritual focus"
+      }
+    },
+    "content_emphasis": {
+      "Rigveda_Sharma": {
+        "focus": "Philosophical + some historical",
+        "unique": "Most complete (1,028 Suktas)",
+        "battle_references": "562 mentions"
+      },
+      "Rigveda_Griffith": {
+        "focus": "Historical/Literal with tribal warfare",
+        "unique": "Trtsus tribe (10×), Ten Kings Battle explicit",
+        "battle_references": "257 mentions"
+      },
+      "Yajurveda_Sharma": {
+        "focus": "Philosophical/Spiritual",
+        "unique": "Yajnavalkya (31×), most complete (1,830 verses)"
+      },
+      "Yajurveda_Griffith": {
+        "focus": "Ritual/Ceremonial",
+        "unique": "Kurus/Panchalas (4× each), practical instructions"
+      }
+    }
+  }
+}

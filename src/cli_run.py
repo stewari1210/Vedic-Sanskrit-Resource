@@ -1,18 +1,26 @@
-"""Simple CLI to process a hardcoded PDF, build the index and ask questions.
+"""Simple CLI to process one or more documents (PDFs and TXT files), build the index and ask questions.
 
 Usage:
-  - Edit HARDCODED_PDF below to point to your PDF, OR
-  - Run with --pdf /full/path/to/file.pdf to override the hardcoded path.
+  - Edit HARDCODED_FILES below to point to your file(s), OR
+  - Run with --file /path/to/file1.pdf --file /path/to/file2.txt to override
+  - Run with --files /path/to/file1.pdf /path/to/file2.txt (space-separated)
+
+Supported formats: PDF, TXT
 
 This script will:
-  1. Copy the PDF into the project's LOCAL_FOLDER/COLLECTION_NAME directory.
-  2. Call `process_uploaded_pdfs` to convert it to markdown and extract metadata.
-  3. Create the Qdrant vector store and retriever.
-  4. Start a simple REPL to ask questions against the indexed document.
+  1. Copy all files into the project's LOCAL_FOLDER/COLLECTION_NAME directory.
+  2. Call `process_uploaded_pdfs` to convert them to markdown and extract metadata.
+     - PDFs: Extract text using PDF extractor
+     - TXT: Convert directly to markdown format
+  3. Create a unified Qdrant vector store and retriever (all documents in one collection).
+  4. Start a simple REPL to ask questions against the indexed documents.
 
-Note: the processing function deletes the copied PDF after processing (same behavior
-as the Streamlit frontend). If you want to keep the original, point to a different
-source location when overriding with --pdf.
+Each document maintains its source metadata (filename) so you can identify which
+file each answer came from.
+
+Note: the processing function deletes the copied files after processing (same behavior
+as the Streamlit frontend). If you want to keep the originals, point to different
+source locations when overriding with --file.
 """
 import argparse
 import os
@@ -29,9 +37,13 @@ from utils.retriever import create_retriever
 from utils.final_block_rag import create_langgraph_app, run_rag_with_langgraph
 
 
-# Change this to your preferred default PDF (absolute or relative to project root).
-# Example relative path: os.path.join(project_root, "examples", "my_doc.pdf")
-HARDCODED_PDF = os.path.join(project_root, "sample.pdf")
+# Change this to your preferred default file(s) (absolute or relative to project root).
+# Example single PDF: [os.path.join(project_root, "examples", "my_doc.pdf")]
+# Example multiple files: [
+#     os.path.join(project_root, "rigveda-griffith.pdf"),
+#     os.path.join(project_root, "yajurveda-griffith.txt"),
+# ]
+HARDCODED_FILES = [os.path.join(project_root, "sample.pdf")]
 
 
 def restore_info_logging():
@@ -102,23 +114,30 @@ def prompt_cleanup_session():
             print("Please enter 'y' or 'n'")
 
 
-def prepare_and_process(pdf_path: str):
-    """Copy PDF into LOCAL_FOLDER/COLLECTION_NAME and call processing."""
+def prepare_and_process(file_paths: list):
+    """Copy files (PDFs/TXT) into LOCAL_FOLDER/COLLECTION_NAME and call processing.
+
+    Args:
+        file_paths: List of paths to files (PDF or TXT) to process
+    """
     target_folder = os.path.join(project_root, LOCAL_FOLDER, COLLECTION_NAME)
     os.makedirs(target_folder, exist_ok=True)
 
-    if not os.path.isfile(pdf_path):
-        raise FileNotFoundError(f"PDF not found: {pdf_path}")
+    dest_paths = []
+    for file_path in file_paths:
+        if not os.path.isfile(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
 
-    dest_path = os.path.join(target_folder, os.path.basename(pdf_path))
-    # copy the file so process_uploaded_pdfs behaves like the frontend
-    shutil.copy2(pdf_path, dest_path)
-    logger.info(f"Copied PDF to {dest_path}")
+        dest_path = os.path.join(target_folder, os.path.basename(file_path))
+        # copy the file so process_uploaded_pdfs behaves like the frontend
+        shutil.copy2(file_path, dest_path)
+        logger.info(f"Copied file to {dest_path}")
+        dest_paths.append(dest_path)
 
-    # process the copied file (this removes the file after processing)
-    process_uploaded_pdfs([dest_path], extract_metadata=True)
-
-
+    # process all copied files at once (this removes files after processing)
+    logger.info(f"Processing {len(dest_paths)} file(s)...")
+    process_uploaded_pdfs(dest_paths, extract_metadata=True)
+    logger.info(f"Successfully processed {len(dest_paths)} file(s)")
 def build_index_and_retriever(force: bool = False):
     """Create Qdrant vector store and retriever from processed docs.
 
@@ -209,8 +228,57 @@ def run_repl(retriever):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Process a hardcoded PDF and query it via CLI")
-    parser.add_argument("--pdf", type=str, help="Path to PDF (overrides hardcoded path)")
+    parser = argparse.ArgumentParser(
+        description="Process one or more documents (PDFs or TXT files) and query them via CLI",
+        epilog="""
+Examples:
+  # Process single PDF
+  python src/cli_run.py --file rigveda.pdf
+
+  # Process single TXT file
+  python src/cli_run.py --file yajurveda.txt
+
+  # Process multiple files (option 1: multiple --file flags)
+  python src/cli_run.py --file rigveda.pdf --file yajurveda.txt
+
+  # Process multiple files (option 2: --files with space-separated list)
+  python src/cli_run.py --files rigveda.pdf yajurveda.txt
+
+  # Force reindex with multiple files
+  python src/cli_run.py --files rigveda.pdf yajurveda.txt --force
+
+  # Mix PDFs and TXT files
+  python src/cli_run.py --files doc1.pdf doc2.txt doc3.pdf
+        """,
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "--file",
+        type=str,
+        action='append',
+        dest='file_list',
+        help="Path to file (PDF or TXT) - can be used multiple times: --file file1.pdf --file file2.txt"
+    )
+    parser.add_argument(
+        "--files",
+        type=str,
+        nargs='+',
+        help="Space-separated list of file paths (PDFs or TXT) - alternative to multiple --file flags"
+    )
+    # Keep --pdf and --pdfs for backward compatibility
+    parser.add_argument(
+        "--pdf",
+        type=str,
+        action='append',
+        dest='pdf_list',
+        help="Path to PDF (can be used multiple times: --pdf file1.pdf --pdf file2.pdf)"
+    )
+    parser.add_argument(
+        "--pdfs",
+        type=str,
+        nargs='+',
+        help="Space-separated list of PDF paths (alternative to multiple --pdf flags)"
+    )
     parser.add_argument(
         "--force",
         action="store_true",
@@ -227,6 +295,31 @@ def main():
         help="Suppress INFO logs (only show warnings and errors). Automatically disabled if errors occur.",
     )
     args = parser.parse_args()
+
+    # Collect all file paths from --file/--files and --pdf/--pdfs arguments (backward compatibility)
+    file_paths = []
+    if args.file_list:
+        file_paths.extend(args.file_list)
+    if args.files:
+        file_paths.extend(args.files)
+    if args.pdf_list:
+        file_paths.extend(args.pdf_list)
+    if args.pdfs:
+        file_paths.extend(args.pdfs)
+
+    # If no files specified via arguments, use hardcoded defaults
+    if not file_paths:
+        file_paths = HARDCODED_FILES
+
+    # Convert relative paths to absolute paths
+    absolute_file_paths = []
+    for file_path in file_paths:
+        if not os.path.isabs(file_path):
+            # make relative paths relative to project root
+            file_path = os.path.join(project_root, file_path)
+        absolute_file_paths.append(file_path)
+
+    logger.info(f"Will process {len(absolute_file_paths)} file(s): {[os.path.basename(p) for p in absolute_file_paths]}")
 
     # Set logging level based on --quiet flag
     if args.quiet:
@@ -246,18 +339,13 @@ def main():
     if not args.no_cleanup_prompt:
         prompt_cleanup_session()
 
-    pdf = args.pdf or HARDCODED_PDF
-    if not os.path.isabs(pdf):
-        # make relative paths relative to project root
-        pdf = os.path.join(project_root, pdf)
-
     try:
-        prepare_and_process(pdf)
+        prepare_and_process(absolute_file_paths)
     except Exception as e:
         # Re-enable INFO logging on error for troubleshooting
         if args.quiet:
             restore_info_logging()
-        logger.error(f"Failed to prepare/process PDF: {e}")
+        logger.error(f"Failed to prepare/process file(s): {e}")
         print(f"Error: {e}")
         return
 

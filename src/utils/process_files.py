@@ -26,8 +26,10 @@ class Metadata(BaseModel):
     summary: str = Field(default="")
 
 
+# Use OCR mode for scanned PDFs (like Yajurveda)
+# Change to TABLE_IMAGE_LINKS for text-based PDFs if needed
 extractor = PDFTextExtractor(
-    ExtractionMode.TABLE_IMAGE_LINKS, print_page_number=True, remove_header_footer=False
+    ExtractionMode.OCR_UNSTRUCTURED, print_page_number=True, remove_header_footer=False
 )
 
 
@@ -35,33 +37,60 @@ def process_uploaded_pdfs(
     file_paths: List[str], extract_metadata: bool = False
 ):  # -> List[Document]:
     """
-    Process the uploaded PDFs. Extracts Markdown text from PDFs and saves it along with metadata
+    Process uploaded PDFs and TXT files.
+    - PDFs: Extracts text/markdown using PDF extractor
+    - TXT files: Converts to markdown format directly
+    Saves as markdown along with metadata.
     """
     all_docs = []
     for file_path in file_paths:
         filename = os.path.basename(file_path).split(".")[0]
+        file_ext = os.path.splitext(file_path)[1].lower()
         folder = os.sep.join(file_path.split(os.sep)[:-1])
         text_folder = os.path.join(folder, filename)
         image_folder = os.path.join(text_folder, "images")
         os.makedirs(text_folder, exist_ok=True)
-        # os.makedirs(image_folder, exist_ok=True)
 
-        # markdown = pymupdf4llm.to_markdown(
-        #     file_path,
-        #     write_images=True,
-        #     table_strategy="lines_strict",
-        #     image_path=image_folder,  # Folder where images will be saved
-        #     image_format="png",
-        # )
+        # Handle different file types
+        if file_ext == '.txt':
+            logger.info(f"Processing TXT file: {filename}")
+            # Read text file and convert to markdown format
+            with open(file_path, 'r', encoding='utf-8') as f:
+                text_content = f.read()
 
-        markdown = extractor.extract(file_path, image_folder=image_folder)
+            # Simple conversion: add page markers if needed
+            # Split by form feed or keep as is
+            if '\f' in text_content:
+                # Split by form feed (page break)
+                pages = text_content.split('\f')
+                markdown = '\n\n'.join([f"## Page {i+1}\n\n{page.strip()}"
+                                       for i, page in enumerate(pages) if page.strip()])
+            else:
+                # No page breaks, use as single document
+                markdown = text_content
 
-        # all_docs.extend(mark)
+            logger.info(f"TXT file converted to markdown: {len(markdown)} chars")
+
+        elif file_ext == '.pdf':
+            logger.info(f"Processing PDF file: {filename}")
+            # os.makedirs(image_folder, exist_ok=True)
+            markdown = extractor.extract(file_path, image_folder=image_folder)
+            logger.info(f"PDF extracted to markdown: {len(markdown)} chars")
+        else:
+            logger.warning(f"Unsupported file type: {file_ext} for {filename}")
+            continue
+
+        # Save markdown
         save_file(os.path.join(text_folder, filename + ".md"), markdown)
+
+        # Extract metadata if requested
         if extract_metadata:
             get_metadata(file_path, markdown)
+
+        # Remove original file after processing
         os.remove(file_path)
-    logger.info("Successfully processed input PDFs")
+
+    logger.info(f"Successfully processed {len(file_paths)} input file(s)")
     return all_docs
 
 

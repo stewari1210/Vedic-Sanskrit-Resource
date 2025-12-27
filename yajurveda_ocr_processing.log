@@ -1,0 +1,11 @@
+[2025-12-26 19:20:07,034: INFO: helper]: /Users/shivendratewari/github/RAG-CHATBOT-CLI-Version
+[2025-12-26 19:20:07,047: INFO: config]: GEMINI API Key loaded successfully.
+[2025-12-26 19:20:07,047: INFO: config]: GROQ API Key loaded successfully.
+[2025-12-26 19:20:08,299: INFO: settings]: Using local embeddings: sentence-transformers/all-mpnet-base-v2 (best quality)
+[2025-12-26 19:20:09,289: INFO: SentenceTransformer]: Load pretrained SentenceTransformer: sentence-transformers/all-mpnet-base-v2
+[2025-12-26 19:20:10,193: INFO: settings]: Using Ollama LLM for QA: llama3.1:8b at http://localhost:11434
+[2025-12-26 19:20:10,200: INFO: settings]: Using Ollama LLM for Evaluation: qwen2.5:32b at http://localhost:11434
+[2025-12-26 19:20:10,556: INFO: final_block_rag]: Regeneration enabled with Gemini: gemini-2.5-flash-lite
+[2025-12-26 19:20:10,557: INFO: cli_run]: Will process 1 PDF(s): ['griffith-yajurveda.pdf']
+/Users/shivendratewari/miniforge-arm64/envs/rag-py311/lib/python3.11/site-packages/torch/utils/data/dataloader.py:692: UserWarning: 'pin_memory' argument is set as true but not supported on MPS now, device pinned memory won't be used.
+  warnings.warn(warn_msg)

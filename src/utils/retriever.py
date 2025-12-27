@@ -5,6 +5,7 @@ from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
 import re
+from src.utils.proper_noun_variants import get_proper_noun_variants, disambiguate_proper_noun
 
 
 class HybridRetriever(BaseRetriever):
@@ -19,6 +20,40 @@ class HybridRetriever(BaseRetriever):
     semantic_retriever: BaseRetriever
     keyword_retriever: BaseRetriever
     k: int = 10
+
+    def _get_transliteration_variants(self, word: str) -> List[str]:
+        """Get transliteration variants for Sanskrit/Vedic proper nouns.
+
+        Now uses comprehensive ProperNounVariantManager with data from:
+        - Rigveda-Sharma (1,028 Suktas, 31,593 proper nouns)
+        - Griffith-Rigveda (943 hymns, 4,473 proper nouns)
+        - Yajurveda-Sharma (1,830 verses, 6,661 proper nouns)
+        - Griffith-Yajurveda (296 sections, 979 proper nouns)
+
+        Total: 43,706 proper noun references across 4 translations
+        """
+        variants = [word]  # Always include original
+
+        # Get comprehensive variants from database (includes all 4 translations)
+        db_variants = get_proper_noun_variants(word)
+        if db_variants:
+            variants.extend(db_variants)
+            logger.info(f"HybridRetriever: Found {len(db_variants)} database variants for '{word}': {db_variants}")
+        else:
+            # Fallback: Try common suffix patterns if not in database
+            # Pattern-based variants (final 's' vs 'sa')
+            if word.endswith('as'):
+                variants.append(word + 'a')  # Sudas → Sudasa
+            elif word.endswith('asa'):
+                variants.append(word[:-1])  # Sudasa → Sudas
+
+            # sh ↔ s pattern (Sharma vs Griffith)
+            if 'sh' in word.lower():
+                variants.append(word.replace('sh', 's').replace('Sh', 'S'))
+            elif 's' in word.lower() and 'sh' not in word.lower():
+                variants.append(word.replace('s', 'sh').replace('S', 'Sh'))
+
+        return list(set(variants))  # Remove duplicates
 
     def _extract_proper_nouns(self, text: str) -> List[str]:
         """Extract proper nouns from query using heuristics.
@@ -84,6 +119,24 @@ class HybridRetriever(BaseRetriever):
             seen.add(clean_word)
 
         return proper_nouns
+
+    def _disambiguate_proper_noun(self, noun: str, query: str) -> str:
+        """Apply context-based disambiguation for homonyms.
+
+        Examples:
+        - "Bharata" + "battle" context → "Bharata (tribe)"
+        - "Bharata" + "sage/hymn" context → "Bharata (sage)"
+        - "Puru" + "battle/enemy" context → "Puru (tribe)"
+        - "Purusha" + "cosmic/creation" context → "Purusha (Cosmic Being)"
+        """
+        # disambiguate_proper_noun returns a tuple (form, role)
+        disambiguated_form, role = disambiguate_proper_noun(noun, query)
+
+        # Only log if disambiguation changed the form
+        if disambiguated_form != noun:
+            logger.info(f"HybridRetriever: Disambiguated '{noun}' → '{disambiguated_form}' (role: {role}) based on context: '{query}'")
+
+        return disambiguated_form
 
     def _get_relevant_documents(
         self, query: str, *, run_manager: CallbackManagerForRetrieverRun = None
@@ -169,6 +222,15 @@ class HybridRetriever(BaseRetriever):
         if EXPANSION_DOCS > 0:
             proper_nouns = self._extract_proper_nouns(query)
 
+            # Apply context-based disambiguation for homonyms
+            # Example: "Bharata in battle" → searches for Bharata tribe, not sage
+            disambiguated_nouns = [self._disambiguate_proper_noun(noun, query) for noun in proper_nouns]
+
+            # Log disambiguation results
+            for original, disambiguated in zip(proper_nouns, disambiguated_nouns):
+                if original != disambiguated:
+                    logger.info(f"HybridRetriever: Query expansion using '{disambiguated}' instead of '{original}'")
+
             # LOCATION-AWARE EXPANSION: Detect queries about geographic locations
             # Triggers for: "where", "which river", "cross", "location", "place", "dwell", "live"
             location_keywords = ['where', 'location', 'place', 'river', 'rivers', 'cross', 'crossed', 'crossing',
@@ -197,7 +259,7 @@ class HybridRetriever(BaseRetriever):
                 ]
                 logger.info(f"HybridRetriever: Location query detected (keywords: {[k for k in location_keywords if k in query.lower()]})")
                 # Add location names to proper nouns for expansion
-                proper_nouns_with_locations = proper_nouns + [loc for loc in common_locations]
+                proper_nouns_with_locations = disambiguated_nouns + [loc for loc in common_locations]
             elif is_tribal_query:
                 # Search for documents mentioning entities + known tribal confederacies
                 # Ten Kings battle: Pakthas, Bhalanas, Alinas, Sivas, Visanins, Druhyus, Anavas, Purus, etc.
@@ -205,9 +267,9 @@ class HybridRetriever(BaseRetriever):
                               'Anu', 'Vaikarna', 'Kavasa', 'Bhrgus']
                 logger.info(f"HybridRetriever: Tribal query detected (keywords: {[k for k in tribal_keywords if k in query.lower()]})")
                 # Add tribal names to proper nouns for expansion
-                proper_nouns_with_locations = proper_nouns + [tribe for tribe in known_tribes]
+                proper_nouns_with_locations = disambiguated_nouns + [tribe for tribe in known_tribes]
             else:
-                proper_nouns_with_locations = proper_nouns
+                proper_nouns_with_locations = disambiguated_nouns
 
             if proper_nouns_with_locations:
                 logger.info(f"HybridRetriever: Found proper nouns for expansion: {proper_nouns_with_locations}")
@@ -218,17 +280,26 @@ class HybridRetriever(BaseRetriever):
                 # Increased limit to 12 for tribal/location queries (more entities to search)
                 expansion_limit = 12 if (is_location_query or is_tribal_query) else 8
                 for noun in proper_nouns_with_locations[:expansion_limit]:
-                    # Search semantically for the proper noun
-                    noun_docs = self.semantic_retriever.invoke(noun)
+                    # Get transliteration variants (e.g., Sudas → Sudasa, Vasishtha → Vasistha)
+                    variants = self._get_transliteration_variants(noun)
+                    logger.info(f"HybridRetriever: Searching variants for '{noun}': {variants}")
 
-                    for doc in noun_docs[:EXPANSION_DOCS]:
-                        content_hash = hash(doc.page_content)
-                        if content_hash not in expansion_seen:
-                            expansion_docs.append(doc)
-                            expansion_seen.add(content_hash)
-                            # Break after getting EXPANSION_DOCS per noun
-                            if len(expansion_docs) >= EXPANSION_DOCS * len(proper_nouns[:3]):
-                                break
+                    # Search semantically for the proper noun and all its variants
+                    for variant in variants:
+                        noun_docs = self.semantic_retriever.invoke(variant)
+
+                        for doc in noun_docs[:EXPANSION_DOCS]:
+                            content_hash = hash(doc.page_content)
+                            if content_hash not in expansion_seen:
+                                expansion_docs.append(doc)
+                                expansion_seen.add(content_hash)
+                                # Break after getting EXPANSION_DOCS per noun
+                                if len(expansion_docs) >= EXPANSION_DOCS * len(proper_nouns[:3]):
+                                    break
+
+                        # Stop searching variants if we have enough docs
+                        if len(expansion_docs) >= EXPANSION_DOCS * len(proper_nouns[:3]):
+                            break
 
                 if expansion_docs:
                     logger.info(f"HybridRetriever: Added {len(expansion_docs)} expansion docs via proper noun association")
