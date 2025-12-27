@@ -157,10 +157,20 @@
   "tribes_and_kingdoms": {
     "Bharatas": {
       "canonical": "Bharatas",
-      "variants": ["Bharata", "Bhāratas"],
-      "role": "Tribe",
-      "context": "Victorious in Battle of Ten Kings, led by King Sudas",
-      "priest": "Vasishtha",
+      "variants": ["Bharata", "Bhāratas", "Trtsus"],
+      "role": "Tribe/Priestly Lineage (Multi-faceted)",
+      "context": "Victorious in Battle of Ten Kings, led by King Sudas; also priestly clan skilled in song",
+      "priest": "Vasishtha (chief priest)",
+      "sub_clans": {
+        "Trtsus": {
+          "role": "Warrior-priests of Bharata confederacy",
+          "description": "White-robed, braided hair, skilled in song and battle",
+          "sources": {
+            "Griffith-Rigveda": 10,
+            "note": "OMITTED from Sharma translations (consolidated into 'Bharata sages')"
+          }
+        }
+      },
       "evolution": "Merged with Purus to form Kurus",
       "sources": {
         "Rigveda-Sharma": 7,
@@ -169,7 +179,7 @@
         "Griffith-Yajurveda": 2
       },
       "total_occurrences": 22,
-      "note": "DIFFERENT from Bharata (sage) in Yajurveda-Sharma - see homonyms"
+      "note": "Multi-faceted identity: military tribe AND priestly lineage. Not strictly separate from 'Bharata sages'. Trtsus = Bharata priests in Griffith."
     },
     "Purus": {
       "canonical": "Purus",
@@ -217,10 +227,17 @@
     },
     "Trtsus": {
       "canonical": "Trtsus",
-      "variants": ["Tritsu", "Tṛtsus"],
-      "role": "Bharata sub-clan",
-      "context": "Led by Sudas in Battle of Ten Kings",
-      "relationship": "Trtsu-Bharatas",
+      "variants": ["Tritsu", "Tṛtsus", "Bharatas"],
+      "role": "Warrior-Priest sub-clan of Bharatas",
+      "context": "Led by Sudas in Battle of Ten Kings; white-robed singers with braided hair",
+      "identity": "Both military AND priestly - sang hymns AND fought battles",
+      "relationship": "Trtsu-Bharatas (interchangeable in Griffith)",
+      "priest": "Vasishtha",
+      "key_verses": {
+        "military": "These Trtsus under Indra's careful guidance came speeding like loosed waters (RV 7.18.15)",
+        "priestly": "white-robed Trtsus with their braided hair, skilled in song (RV 7.83.8)",
+        "identity": "the Bharatas were found defenceless: then widely were the Trtsus' clans extended (RV 7.33.6)"
+      },
       "sources": {
         "Rigveda-Sharma": 0,
         "Griffith-Rigveda": 10,
@@ -229,7 +246,7 @@
       },
       "total_occurrences": 10,
       "priority": "MEDIUM",
-      "note": "UNIQUE to Griffith-Rigveda - not in any Sharma translation"
+      "note": "UNIQUE to Griffith-Rigveda. Sharma consolidates into 'Bharata sages/tribe'. Trtsus = priestly lineage within Bharata confederacy."
     },
     "Magadha": {
       "canonical": "Magadha",
@@ -244,30 +261,32 @@
   "homonyms": {
     "Bharata": [
       {
-        "form": "Bharata (Rshi)",
+        "form": "Bharata (individual sage)",
         "role": "Sage",
-        "context": "Hymn composer with Devavata",
+        "context": "Individual Rshi, hymn composer with Devavata",
         "sources": {
           "Rigveda-Sharma": 0,
           "Griffith-Rigveda": 0,
           "Yajurveda-Sharma": 5,
           "Griffith-Yajurveda": 0
         },
-        "disambiguation": "When appearing as '(Bharata Rshi)' or 'Bharata and Devavata' or in hymn/spiritual context",
-        "translation_style": "Philosophical/Spiritual (Sharma-Y)"
+        "disambiguation": "ONLY when explicitly appearing as 'Bharata (Rshi)' with 'Devavata' in Yajurveda-Sharma",
+        "translation_style": "Philosophical/Spiritual (Sharma-Y only)",
+        "note": "This is a SPECIFIC sage named Bharata, distinct from the Bharata priestly lineage"
       },
       {
-        "form": "Bharatas (tribe)",
-        "role": "Tribe/Kingdom",
-        "context": "Defeated Purus, led by Sudas, Ten Kings Battle",
+        "form": "Bharatas (tribe-priest collective)",
+        "role": "Multi-faceted: Military tribe AND Priestly lineage",
+        "context": "Defeated Purus in Ten Kings Battle (military); White-robed singers skilled in hymns (priestly); Trtsus sub-clan",
         "sources": {
           "Rigveda-Sharma": 29,
           "Griffith-Rigveda": 29,
           "Yajurveda-Sharma": 0,
           "Griffith-Yajurveda": 8
         },
-        "disambiguation": "When appearing in battle/historical context, with Vasishtha, or with 'defeated Purus'",
-        "translation_style": "Historical/Literal (both Rigvedas)"
+        "disambiguation": "Default for most contexts - Bharatas were BOTH warriors AND priests",
+        "translation_style": "Historical (Griffith preserves dual nature via 'Trtsus'); Philosophical (Sharma consolidates)",
+        "note": "NOT strictly separate from 'sages'. Trtsus = Bharata priest-warriors in Griffith"
       }
     ],
     "Purusha_vs_Puru": [
@@ -422,20 +441,35 @@
       "Rigveda_Sharma": {
         "focus": "Philosophical + some historical",
         "unique": "Most complete (1,028 Suktas)",
-        "battle_references": "562 mentions"
+        "battle_references": "562 mentions",
+        "consolidation": "Treats Bharatas as unified entity (consolidates Trtsus into 'Bharata sages')"
       },
       "Rigveda_Griffith": {
         "focus": "Historical/Literal with tribal warfare",
-        "unique": "Trtsus tribe (10×), Ten Kings Battle explicit",
-        "battle_references": "257 mentions"
+        "unique": "Trtsus tribe (10×) - warrior-priests distinct from Bharatas, Ten Kings Battle explicit",
+        "battle_references": "257 mentions",
+        "preservation": "Preserves dual nature of Bharatas via separate 'Trtsus' designation"
       },
       "Yajurveda_Sharma": {
         "focus": "Philosophical/Spiritual",
-        "unique": "Yajnavalkya (31×), most complete (1,830 verses)"
+        "unique": "Yajnavalkya (31×), individual sage 'Bharata (Rshi)' with Devavata (5×), most complete (1,830 verses)",
+        "consolidation": "Distinguishes individual sage from Bharata collective"
       },
       "Yajurveda_Griffith": {
         "focus": "Ritual/Ceremonial",
-        "unique": "Kurus/Panchalas (4× each), practical instructions"
+        "unique": "Kurus/Panchalas (4× each), practical instructions, Bharatas in ritual context (8×)"
+      }
+    },
+    "bharata_identity_notes": {
+      "historical_reality": "Bharatas were multi-faceted: military tribe AND priestly lineage",
+      "trtsus_role": "Trtsus = warrior-priest sub-clan within Bharata confederacy",
+      "griffith_approach": "Preserves complexity: 'Bharatas' (tribe) + 'Trtsus' (priests) mentioned separately",
+      "sharma_approach": "Consolidates: 'Bharata' covers both military and spiritual aspects",
+      "exception": "Yajurveda-Sharma has individual sage 'Bharata (Rshi)' - distinct from collective",
+      "key_evidence": {
+        "military": "Led by King Sudas, defeated Purus in Ten Kings Battle (RV 7.18)",
+        "priestly": "White-robed Trtsus with braided hair, skilled in song (RV 7.83.8)",
+        "unity": "The Bharatas were found defenceless; then widely were the Trtsus' clans extended (RV 7.33.6)"
       }
     }
   }

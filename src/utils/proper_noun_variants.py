@@ -144,18 +144,20 @@ class ProperNounVariantManager:
             return (normalized, "Unknown")
 
         # Check for Bharata disambiguation
+        # NOTE: Bharatas were multi-faceted - both military tribe AND priestly lineage
+        # Only distinguish when there's VERY specific context for individual sage "Bharata (Rshi)"
         if normalized.lower() in ['bharata', 'bharatas']:
             for entry in self.variants_data['homonyms'].get('Bharata', []):
-                disambiguation_hints = [
-                    'battle', 'war', 'defeated', 'puru', 'sudas', 'tribe', 'vasishtha'
-                ]
-                if any(hint in context_lower for hint in disambiguation_hints):
-                    return (entry['form'], entry['role'])
-
-                sage_hints = ['rshi', 'sage', 'hymn', 'devavata', 'composed']
-                if any(hint in context_lower for hint in sage_hints):
-                    if 'Rshi' in entry['form']:
+                # Only return individual sage form if explicitly mentioned with Devavata or in Yajurveda-only context
+                if 'individual sage' in entry.get('form', '').lower() or 'Rshi' in entry.get('form', ''):
+                    individual_sage_hints = ['devavata', 'with devavata', 'bharata and devavata']
+                    if any(hint in context_lower for hint in individual_sage_hints):
                         return (entry['form'], entry['role'])
+
+                # Default: Return the collective tribe-priest form (covers both military and spiritual)
+                # This is more historically accurate - Bharatas were BOTH warriors and singers
+                if 'tribe-priest collective' in entry.get('form', '').lower() or 'Multi-faceted' in entry.get('role', ''):
+                    return (entry['form'], entry['role'])
 
         # Check for Purusha vs Puru
         if normalized.lower() in ['puru', 'purus', 'purusha']:
