@@ -250,18 +250,50 @@ class HybridRetriever(BaseRetriever):
             is_tribal_query = any(keyword in query.lower() for keyword in tribal_keywords)
 
             if is_location_query:
-                # Search for documents mentioning entities + comprehensive Rigveda locations
-                # Rivers: Major rivers mentioned in Rigveda (Sarasvati mentioned 72 times, Sindhu 50 times)
-                # Mountains: Sacred mountains (Mujavat, Himavat, Trikakud)
-                # "Seven Rivers" = collective term for the sacred rivers
+                # Search for documents mentioning entities + comprehensive Vedic geographic locations
+                # Sources: Rigveda, Yajurveda (both Sharma and Griffith translations)
+                # Rivers: Major rivers (Sarasvati 72×, Sindhu 50×, plus tributaries)
+                # Mountains: Sacred peaks (Mujavat, Himavat/Himalaya, Trikakud)
+                # Regions: Geographic and cultural regions
                 common_locations = [
-                    # Major rivers (sorted by frequency in text)
-                    'Sarasvati', 'Sindhu', 'Indus', 'Rasa', 'Yamuna', 'Ganga',
-                    'Vipas', 'Parushni', 'Sutudri', 'Arjikiya', 'Susoma',
-                    # Mountains and geographic features
-                    'Mujavat', 'Himavat', 'Trikakud',
-                    # Special terms
-                    'Seven Rivers',  # Collective reference to all sacred rivers
+                    # ===== MAJOR RIVERS (Primary Sapta Sindhu system) =====
+                    'Sarasvati',     # Most sacred river, 72 mentions
+                    'Sindhu', 'Indus',  # Sindhu = Indus river, 50 mentions
+                    'Ganga', 'Ganges',  # Ganga/Ganges
+                    'Yamuna', 'Jumna',  # Yamuna/Jumna
+
+                    # ===== PUNJAB TRIBUTARIES (Five Rivers region) =====
+                    'Vipas', 'Vipasa', 'Beas',     # Modern Beas
+                    'Sutudri', 'Sutlej',            # Modern Sutlej
+                    'Parushni', 'Parusni', 'Ravi',  # Modern Ravi, Battle of Ten Kings site
+                    'Askini', 'Asikni', 'Chenab',   # Modern Chenab
+                    'Vitasta', 'Jhelum',            # Modern Jhelum
+
+                    # ===== OTHER RIVERS =====
+                    'Rasa',          # Mysterious northwestern river
+                    'Arjikiya',      # Tributary
+                    'Susoma',        # Lesser river
+                    'Gomati', 'Gomti',  # Gomati/Gomti
+                    'Sarayu',        # Sarayu river
+                    'Drsadvati', 'Drishadvati',  # Drishadva ti paired with Sarasvati
+                    'Kubha', 'Kabul',   # Kabul river (Afghanistan)
+                    'Krumu', 'Kurram',  # Kurram river
+                    'Marudvrdha',    # River in Rigveda
+
+                    # ===== MOUNTAINS AND PEAKS =====
+                    'Mujavat', 'Mūjavat',  # Sacred mountain, soma source
+                    'Himavat', 'Himalaya', 'Himalayas',  # Himalayan ranges
+                    'Trikakud',      # Three-peaked mountain
+                    'Meru',          # Cosmic mountain
+
+                    # ===== REGIONS AND PLACES =====
+                    'Kurukshetra',   # Sacred plain, Kuru region
+                    'Sapta Sindhu', 'Seven Rivers',  # Land of Seven Rivers
+                    'Aryavarta',     # Land of Aryans
+
+                    # ===== GEOGRAPHIC TERMS =====
+                    'forests', 'forest',    # Forest regions (Yajurveda)
+                    'plains', 'valleys',    # Geographic features
                 ]
                 logger.info(f"HybridRetriever: Location query detected (keywords: {[k for k in location_keywords if k in query.lower()]})")
                 # Add location names to proper nouns for expansion (use original nouns, not disambiguated)
