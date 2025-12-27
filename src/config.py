@@ -55,7 +55,8 @@ SEMANTIC_WEIGHT = float(os.getenv("SEMANTIC_WEIGHT", "0.7"))  # Weight for Qdran
 KEYWORD_WEIGHT = float(os.getenv("KEYWORD_WEIGHT", "0.3"))     # Weight for BM25 keyword search (exact matches)
 
 # Query expansion via proper noun association
-EXPANSION_DOCS = int(os.getenv("EXPANSION_DOCS", "3"))  # Number of additional docs to retrieve per proper noun for context expansion
+# Increased from 3 to 5 to capture more variant context (e.g., Bharatas → Trtsus warrior-priest content)
+EXPANSION_DOCS = int(os.getenv("EXPANSION_DOCS", "5"))  # Number of additional docs to retrieve per proper noun for context expansion
 
 # Low-confidence answer handling
 USE_REGENERATION = os.getenv("USE_REGENERATION", "true").lower() == "true"  # Enable/disable regeneration with superior model
