@@ -450,6 +450,98 @@
       "priority": "LOW"
     }
   },
+  "plants_and_materials": {
+    "Khadira": {
+      "canonical": "Khadira",
+      "variants": [
+        "Khayar",
+        "Khadira",
+        "Khādira",
+        "Khadir"
+      ],
+      "botanical_name": "Acacia catechu",
+      "common_names": ["Cutch tree", "Black Catechu", "Catechu"],
+      "role": "Sacred wood / Construction material",
+      "uses": [
+        "Chariot construction (axle, frame)",
+        "Ritual fire-sticks (Arani)",
+        "Medicine (catechu extract)",
+        "Tanning"
+      ],
+      "key_references": [
+        "RV 3.53.19: 'Enclose thee in the heart of Khayar timber'",
+        "RV 5.43.11: Khadira wood for Soma sacrifice"
+      ],
+      "geography": "Native to Indian subcontinent",
+      "properties": "Hard, durable, termite-resistant wood",
+      "sources": {
+        "Griffith-Rigveda": 2,
+        "Griffith-Yajurveda": 1
+      },
+      "total_occurrences": 3,
+      "priority": "MEDIUM"
+    },
+    "Simshapa": {
+      "canonical": "Simshapa",
+      "variants": [
+        "Sinsapa",
+        "Simshapa",
+        "Śiṃśapā",
+        "Shisham"
+      ],
+      "botanical_name": "Dalbergia sissoo",
+      "common_names": ["Indian Rosewood", "Sissoo", "Sheesham"],
+      "role": "Premium wood / Construction material",
+      "uses": [
+        "Chariot construction (body, frame)",
+        "Musical instruments",
+        "Furniture",
+        "Ritual implements"
+      ],
+      "key_references": [
+        "RV 3.53.19: 'in the car wrought of Sinsapa put firmness'"
+      ],
+      "geography": "Native to Indian subcontinent, Himalayan foothills",
+      "properties": "Strong, beautiful grain, water-resistant, premium quality",
+      "sources": {
+        "Griffith-Rigveda": 1,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 1,
+      "priority": "MEDIUM"
+    },
+    "Udumbara": {
+      "canonical": "Udumbara",
+      "variants": [
+        "Udumbara",
+        "Udumbarā",
+        "Gular"
+      ],
+      "botanical_name": "Ficus racemosa (syn. Ficus glomerata)",
+      "common_names": ["Cluster fig", "Indian fig tree", "Gular"],
+      "role": "Sacred tree / Construction material",
+      "uses": [
+        "Chariot frames",
+        "Ritual implements",
+        "Sacrificial posts",
+        "Soma pressing stones"
+      ],
+      "key_references": [
+        "RV 1.23: Udumbara wood for chariot",
+        "RV 6.47: Udumbara for chariot",
+        "AV: Throne of Udumbara wood",
+        "YV: Sacrificial implements"
+      ],
+      "geography": "Native to Indian subcontinent",
+      "properties": "Large deciduous tree, sacred in Hindu tradition, strong wood",
+      "sources": {
+        "Griffith-Rigveda": 2,
+        "Griffith-Yajurveda": 3
+      },
+      "total_occurrences": 5,
+      "priority": "HIGH"
+    }
+  },
   "homonyms": {
     "Bharata": [
       {

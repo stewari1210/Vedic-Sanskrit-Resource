@@ -50,7 +50,7 @@ class ProperNounVariantManager:
         self.variant_to_canonical = {}
 
         # Process all categories
-        for category in ['sages', 'tribes_and_kingdoms', 'kings_and_heroes', 'deities']:
+        for category in ['sages', 'tribes_and_kingdoms', 'kings_and_heroes', 'deities', 'plants_and_materials']:
             if category not in self.variants_data:
                 continue
 
@@ -86,7 +86,7 @@ class ProperNounVariantManager:
         variants = [canonical]  # Always include canonical
 
         # Search all categories
-        for category in ['sages', 'tribes_and_kingdoms', 'kings_and_heroes', 'deities']:
+        for category in ['sages', 'tribes_and_kingdoms', 'kings_and_heroes', 'deities', 'plants_and_materials']:
             if category not in self.variants_data:
                 continue
 
@@ -107,7 +107,7 @@ class ProperNounVariantManager:
         canonical = self.variant_to_canonical.get(normalized.lower(), normalized)
 
         # Search all categories
-        for category in ['sages', 'tribes_and_kingdoms', 'kings_and_heroes', 'deities']:
+        for category in ['sages', 'tribes_and_kingdoms', 'kings_and_heroes', 'deities', 'plants_and_materials']:
             if category not in self.variants_data:
                 continue
 
