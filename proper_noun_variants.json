@@ -540,6 +540,36 @@
       },
       "total_occurrences": 5,
       "priority": "HIGH"
+    },
+    "Wheel_Spokes": {
+      "canonical": "Wheel Spokes",
+      "variants": [
+        "spokes",
+        "spoked wheel",
+        "wheel spokes",
+        "spoke"
+      ],
+      "role": "Chariot technical specification",
+      "context": "Multiple wheel configurations mentioned in Rigveda - CRITICAL: both 5-spoked and 12-spoked wheels referenced",
+      "key_references": [
+        "RV 1.164.11: 'Formed with twelve spokes' (12-spoked wheel of Order/Time)",
+        "RV 1.164.13: 'Upon this five-spoked wheel revolving ever' (5-spoked wheel)",
+        "RV 1.164.48: 'spokes three hundred and sixty' (360 spokes = days in year)"
+      ],
+      "historical_significance": {
+        "twelve_spokes": "Matches Sintashta war chariot archaeology (10-12 spokes, ~2000 BCE)",
+        "five_spokes": "Does NOT match Sintashta chariots - possibly ceremonial/symbolic",
+        "interpretation": "12-spoked = physical war chariots, 5-spoked = cosmic/symbolic wheel"
+      },
+      "archaeological_context": "Sintashta-Petrovka culture (modern Russia/Kazakhstan, ~2100-1800 BCE) had 10-12 spoked wheels",
+      "vedic_context": "Hymn 1.164 is cosmological/mystical - wheels may represent cosmic order, not just physical chariots",
+      "note": "BOTH numbers must be mentioned when discussing wheel spokes - they appear in same hymn with different symbolic meanings",
+      "sources": {
+        "Griffith-Rigveda": 3,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 3,
+      "priority": "HIGH"
     }
   },
   "homonyms": {
