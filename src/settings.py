@@ -1,6 +1,11 @@
 import asyncio
 import time
 from typing import List
+import os
+
+# Disable tokenizers parallelism warning when forking processes
+# This prevents deadlock warnings when using HuggingFace tokenizers with multiprocessing
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # This needs to be done once at the top of your script
 try:
