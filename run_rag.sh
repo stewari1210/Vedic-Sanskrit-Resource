@@ -1,6 +1,20 @@
 #!/bin/bash
 # RAG Chatbot Launcher
 # Automatically uses the correct Python environment
+#
+# Usage Examples:
+# 1. Run with all 4 Vedic translations:
+#    ./run_rag.sh --files rigveda-sharma_COMPLETE_english_with_metadata.txt \
+#                          griffith-rigveda_COMPLETE_english_with_metadata.txt \
+#                          yajurveda-sharma_COMPLETE_english_with_metadata.txt \
+#                          yajurveda-griffith_COMPLETE_english_with_metadata.txt
+#
+# 2. Skip cleanup prompt (use existing indexed data):
+#    ./run_rag.sh --no-cleanup-prompt --files rigveda-sharma_COMPLETE_english_with_metadata.txt
+#
+# 3. Combine options:
+#    ./run_rag.sh --no-cleanup-prompt --files rigveda-sharma_COMPLETE_english_with_metadata.txt \
+#                                              griffith-rigveda_COMPLETE_english_with_metadata.txt
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

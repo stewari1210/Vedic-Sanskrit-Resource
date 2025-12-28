@@ -232,6 +232,82 @@ def get_proper_noun_context(proper_noun: str) -> Optional[Dict]:
     return get_manager().get_context(proper_noun)
 
 
+def get_confederation_for_tribe(tribe_name: str) -> Optional[str]:
+    """Get the confederation that a constituent tribe belongs to.
+
+    Args:
+        tribe_name: Name of a tribe (e.g., "Krivis", "Turvashas")
+
+    Returns:
+        Name of the confederation (e.g., "Panchalas") or None
+
+    Example:
+        >>> get_confederation_for_tribe("Krivis")
+        "Panchalas"
+        >>> get_confederation_for_tribe("Bharatas")
+        "Kurus"  # (if Bharatas merged into Kurus)
+    """
+    manager = get_manager()
+    tribe_normalized = tribe_name.strip().lower()
+
+    # Check tribes_and_kingdoms for confederations
+    if 'tribes_and_kingdoms' not in manager.variants_data:
+        return None
+
+    # Panchala constituents
+    panchala_constituents = ['krivis', 'krivi', 'turvashas', 'turvasha', 'turvasa',
+                             'srinjayas', 'srinjaya', 'somakas', 'somaka',
+                             'keshins', 'keshin']
+    if tribe_normalized in panchala_constituents:
+        return "Panchalas"
+
+    # Kuru formation (Bharatas + Purus)
+    kuru_constituents = ['bharatas', 'bharata', 'purus', 'puru']
+    if tribe_normalized in kuru_constituents:
+        # Check if context explicitly mentions merger
+        return "Kurus"
+
+    return None
+
+
+def get_constituent_tribes(confederation_name: str) -> List[str]:
+    """Get the constituent tribes that formed a confederation.
+
+    Args:
+        confederation_name: Name of confederation (e.g., "Panchalas")
+
+    Returns:
+        List of constituent tribe names
+
+    Example:
+        >>> get_constituent_tribes("Panchalas")
+        ["Krivis", "Turvashas", "Srinjayas", "Somakas", "Keshins"]
+    """
+    manager = get_manager()
+    confed_normalized = confederation_name.strip().lower()
+
+    # Direct lookup in metadata
+    if 'tribes_and_kingdoms' not in manager.variants_data:
+        return []
+
+    tribes_data = manager.variants_data['tribes_and_kingdoms']
+
+    # Check Panchalas
+    if confed_normalized in ['panchalas', 'panchala']:
+        if 'Panchalas' in tribes_data:
+            formation = tribes_data['Panchalas'].get('formation', {})
+            constituents = formation.get('constituent_tribes', [])
+            # Extract just the names (remove parenthetical descriptions)
+            return [c.split('(')[0].strip() for c in constituents]
+
+    # Check Kurus
+    if confed_normalized in ['kurus', 'kuru']:
+        # Bharatas + Purus formed Kurus
+        return ["Bharatas", "Purus"]
+
+    return []
+
+
 # Example usage
 if __name__ == "__main__":
     # Test the variant system
@@ -259,3 +335,17 @@ if __name__ == "__main__":
     for name, ctx in test_cases:
         disambig, role = manager.disambiguate(name, ctx)
         print(f"{name} ({ctx[:30]}...): {disambig} [{role}]")
+
+    print("\n=== Testing Confederation Lookup ===")
+    test_tribes = ["Krivis", "Turvashas", "Srinjayas", "Bharatas", "Purus"]
+    for tribe in test_tribes:
+        confed = get_confederation_for_tribe(tribe)
+        if confed:
+            print(f"{tribe} → {confed}")
+
+    print("\n=== Testing Constituent Lookup ===")
+    test_confeds = ["Panchalas", "Kurus"]
+    for confed in test_confeds:
+        constituents = get_constituent_tribes(confed)
+        print(f"{confed} ← {constituents}")
+

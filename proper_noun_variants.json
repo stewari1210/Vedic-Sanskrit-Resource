@@ -57,16 +57,23 @@
     "Gautama": {
       "variants": [
         "Gotama",
-        "Gautam"
+        "Gautam",
+        "Gotamas"
       ],
-      "role": "Sage (Rshi)",
-      "group": "Saptarishi (Seven Sages)",
+      "role": "Priestly Family/Sage lineage (Rshi)",
+      "group": "Saptarishi (Seven Sages) - Gautama is one of the seven",
+      "context": "Prominent priestly family in Rigveda, composers of multiple hymns",
+      "hymn_composers": "Composed/recited hymns to Maruts (RV 1.88), Agni (RV 1.78, 1.79), Indra (RV 1.61, 1.62, 1.63)",
+      "distinguishing_features": "Known for 'making their prayer with singing', pushed the well's lid up to drink water (RV 1.88.4)",
+      "primary_text": "Rigveda (extensively featured)",
+      "yajurveda_presence": "Only in commentary/footnotes listing seven sages, not in primary verses",
       "sources": {
-        "Griffith-Rigveda": 16,
+        "Griffith-Rigveda": 22,
         "Griffith-Yajurveda": 2
       },
-      "total_occurrences": 18,
-      "priority": "MEDIUM"
+      "total_occurrences": 24,
+      "priority": "HIGH",
+      "note": "Often confused as Yajurveda content - actually from Rigveda. Yajurveda only mentions in editorial notes."
     },
     "Bharadvaja": {
       "variants": [
@@ -218,35 +225,84 @@
       "canonical": "Kurus",
       "variants": [
         "Kuru",
-        "Kurukshetra"
+        "Kurukshetra",
+        "Kaurayan",
+        "Kauravya"
       ],
-      "role": "Kingdom",
-      "context": "Formed from merger of Bharatas and Purus",
-      "era": "Yajurvedic period",
+      "role": "Kingdom/Tribe",
+      "context": "Formed from merger of Bharatas and Purus after Rigvedic period",
+      "era": "Yajurvedic period (major presence)",
+      "rigveda_lineage": {
+        "early_references": [
+          "Trasadasyu (famous ancestor)",
+          "Kurusravana (king, grandson of Trasadasyu, RV 10.33.4)",
+          "Pakasthaman Kaurayan (patron/chieftain, RV 8.3.21-24)"
+        ],
+        "kuru_identity": "The 'Kuru-ness' (Kauravya) is the common thread connecting these figures",
+        "historical_interpretation": "Griffith and historians see these as pieces of the same puzzle—the rise of the Kuru dynasty"
+      },
+      "historical_evolution": "Rigveda: Individual Kuru-affiliated leaders (Kaurayan, Kurusravana) → Yajurveda: Full Kuru kingdom",
+      "yajurveda_prominence": "Major tribal/royal entity in Yajurveda ritual contexts",
+      "region": "Kurukshetra (sacred plain in modern Haryana)",
       "sources": {
-        "Griffith-Rigveda": 0,
+        "Griffith-Rigveda": 5,
         "Griffith-Yajurveda": 4
       },
-      "total_occurrences": 4,
-      "note": "Appears mainly in Yajurveda ritual context",
-      "priority": "LOW"
+      "total_occurrences": 9,
+      "note": "Dynasty traces from Trasadasyu → Kurusravana → Kaurayan lineage in RV, emerges as unified kingdom in YV",
+      "priority": "HIGH"
     },
     "Panchalas": {
       "canonical": "Panchalas",
       "variants": [
         "Panchala",
-        "Pañcālas"
+        "Pañcālas",
+        "Pañcāla",
+        "Pancala"
       ],
       "role": "Kingdom/Confederacy",
-      "context": "Allied with Kurus (Kuru-Panchala)",
-      "origin": "Possibly from Krivi tribe",
+      "context": "Allied with Kurus (Kuru-Panchala confederation)",
+      "formation": {
+        "constituent_tribes": [
+          "Krivis (dominant core)",
+          "Turvashas (from Five Tribes/Pancha-janah)",
+          "Keshins (ritual specialists)",
+          "Srinjayas (Bharata allies)",
+          "Somakas (royal lineage)"
+        ],
+        "historical_process": "Multiple Rigvedic tribes merged to form Panchala identity by Yajurveda period"
+      },
+      "tribal_details": {
+        "Krivis": {
+          "rigveda_location": "Indus and Chenab region (RV 8.20, 8.22)",
+          "migration": "Moved east to Doab (Ganges-Yamuna region) by Yajurveda period",
+          "role": "Dominant core of Panchala confederation"
+        },
+        "Turvashas": {
+          "origin": "One of the Five Tribes (Pancha-janah) in Rigveda",
+          "history": "Enemies of Sudas in Battle of Ten Kings, later merged into Panchala",
+          "significance": "Former enemies became confederates"
+        },
+        "Keshins": {
+          "specialization": "Ritual knowledge specialists"
+        },
+        "Srinjayas": {
+          "alliance": "Closely allied with Bharatas in Rigveda"
+        },
+        "Somakas": {
+          "role": "Royal lineage providing Panchala kings in later literature"
+        }
+      },
+      "region": "Doab region (between Ganges and Yamuna)",
+      "historical_sources": "Satapatha Brahmana, Witzel's Vedic studies",
+      "era": "Formed by Yajurveda period from Rigvedic tribes",
       "sources": {
         "Griffith-Rigveda": 0,
         "Griffith-Yajurveda": 4
       },
       "total_occurrences": 4,
-      "note": "Appears mainly in Yajurveda ritual context",
-      "priority": "LOW"
+      "note": "Complex confederation formed from former rivals and allies; appears in YV ritual contexts as established kingdom",
+      "priority": "MEDIUM"
     },
     "Trtsus": {
       "canonical": "Trtsus",
@@ -285,6 +341,113 @@
         "Yajurveda-Sharma",
         "Griffith-Yajurveda"
       ]
+    },
+    "Krivis": {
+      "canonical": "Krivis",
+      "variants": [
+        "Krivi",
+        "Kṛvi"
+      ],
+      "role": "Tribe (constituent of Panchalas)",
+      "rigveda_context": "Located in Indus and Chenab region",
+      "key_references": [
+        "RV 1.101.1: 'laid Krivi on the earth' (Indra's conquest)",
+        "RV 1.103.2: 'overcame Krivi by might'"
+      ],
+      "migration": "Moved east to Doab (Ganges-Yamuna) by Yajurveda period",
+      "historical_role": "Dominant core tribe that formed Panchala confederation",
+      "becomes": "Core of Panchalas (see Panchalas entry)",
+      "sources": {
+        "Griffith-Rigveda": 2,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 2,
+      "note": "Early Rigvedic enemy of Indra → migrated east → became Panchala core",
+      "priority": "MEDIUM"
+    },
+    "Turvashas": {
+      "canonical": "Turvashas",
+      "variants": [
+        "Turvasha",
+        "Turvasa",
+        "Turvaśa"
+      ],
+      "role": "Tribe (one of Five Tribes/Pancha-janah, constituent of Panchalas)",
+      "rigveda_context": "One of the famous 'Five Tribes' (Pancha-janah); enemies of Sudas in Battle of Ten Kings",
+      "key_characteristic": "Former enemies of Bharatas who later merged into Panchala confederation",
+      "historical_significance": "Demonstrates how rival tribes could unify into larger confederacies",
+      "becomes": "Constituent tribe of Panchalas (see Panchalas entry)",
+      "sources": {
+        "Griffith-Rigveda": 26,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 26,
+      "note": "Frequently mentioned in Rigveda; transformation from enemy to confederate is historically significant",
+      "priority": "HIGH"
+    },
+    "Srinjayas": {
+      "canonical": "Srinjayas",
+      "variants": [
+        "Srinjaya",
+        "Sṛñjaya",
+        "Srnjaya"
+      ],
+      "role": "Clan/Dynasty (constituent of Panchalas)",
+      "rigveda_context": "Closely allied with Bharatas",
+      "key_references": [
+        "RV 10.60.4: 'Srnjaya, Devavata's son'",
+        "Associated with prince Sahadeva Somaka"
+      ],
+      "historical_role": "Allied clan that merged into Panchala confederation",
+      "becomes": "Constituent clan of Panchalas (see Panchalas entry)",
+      "sources": {
+        "Griffith-Rigveda": 3,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 3,
+      "note": "Bharata allies who became part of Panchala formation",
+      "priority": "LOW"
+    },
+    "Somakas": {
+      "canonical": "Somakas",
+      "variants": [
+        "Somaka"
+      ],
+      "role": "Royal lineage (constituent of Panchalas)",
+      "rigveda_context": "Prince Sahadeva Somaka mentioned in RV 10.60",
+      "key_references": [
+        "RV 10.60.9: 'the princely son of Sahadeva, Somaka'"
+      ],
+      "historical_role": "Royal lineage that provided Panchala kings in later literature",
+      "becomes": "Royal lineage of Panchalas (see Panchalas entry)",
+      "sources": {
+        "Griffith-Rigveda": 1,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 1,
+      "note": "Single mention but historically important as source of Panchala royal line",
+      "priority": "LOW"
+    },
+    "Keshins": {
+      "canonical": "Keshins",
+      "variants": [
+        "Keshin",
+        "Keśin"
+      ],
+      "role": "Ascetic group/Ritual specialists (constituent of Panchalas)",
+      "rigveda_context": "Long-haired ascetics (Munis) with specialized ritual knowledge",
+      "key_references": [
+        "RV 10.136: Hymn to Kesins (long-haired ones)"
+      ],
+      "historical_role": "Ritual knowledge specialists who merged into Panchala confederation",
+      "becomes": "Ritual specialists of Panchalas (see Panchalas entry)",
+      "sources": {
+        "Griffith-Rigveda": 1,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 1,
+      "note": "Ascetic group contributing ritual expertise to Panchala formation",
+      "priority": "LOW"
     }
   },
   "homonyms": {
@@ -416,6 +579,75 @@
       "total_occurrences": 35,
       "priority": "HIGH",
       "note": "CRITICAL: Sudas was BHARATA king fighting hostile Puru faction. NOT a Puru king. Purus+Bharatas later united as Kurus."
+    },
+    "Pakasthaman_Kaurayan": {
+      "canonical": "Pakasthaman Kaurayan",
+      "variants": [
+        "Pakasthaman",
+        "Kaurayan",
+        "Pakasthāman"
+      ],
+      "role": "Patron/Chieftain",
+      "clan_affiliation": "Kuru (Kaurayan = 'of the Kurus')",
+      "dynasty_context": "Part of Kuru dynasty lineage alongside Trasadasyu and Kurusravana",
+      "context": "Historical king or chieftain of Kuru clan who provided material support to Vedic poets",
+      "gift": "Ruddy horse to Indra and Maruts",
+      "hymn_reference": "RV 8.3.21-24",
+      "page_reference": "Griffith-Rigveda page 298",
+      "relation_to_kurus": "Kaurayan suffix indicates descent/affiliation with Kuru clan; represents 'Kuru-ness' (Kauravya) that connects to later Kuru kingdom",
+      "related_figures": "See Trasadasyu (ancestor), Kurusravana (contemporary king), Kurus (later kingdom)",
+      "sources": {
+        "Griffith-Rigveda": 4,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 4,
+      "priority": "MEDIUM",
+      "note": "Kuru clan later becomes major tribe/kingdom in Yajurveda (Kurus mentioned 4× in ritual contexts)"
+    },
+    "Kurusravana": {
+      "canonical": "Kurusravana",
+      "variants": [
+        "Kuruśravaṇa",
+        "Kuru-sravana",
+        "Kurusravana"
+      ],
+      "role": "King",
+      "dynasty": "Kuru dynasty",
+      "lineage": "Grandson of Trasadasyu",
+      "hymn_reference": "RV 10.33.4",
+      "context": "Part of the emerging Kuru royal lineage in late Rigvedic period",
+      "historical_significance": "Represents the continuity of Kuru dynasty from Rigveda to Yajurveda period",
+      "name_etymology": "Kuru + sravana (hearing/fame) = 'Fame of the Kurus' or 'Hearing about Kurus'",
+      "kuru_connection": "Name explicitly contains 'Kuru', linking to Kaurayan (Pakasthaman) and later Kuru kingdom",
+      "sources": {
+        "Griffith-Rigveda": 1,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 1,
+      "priority": "MEDIUM",
+      "note": "Griffith identifies this as part of Kuru dynasty rise; the 'Kuru-ness' (Kauravya) connects Pakasthaman Kaurayan → Kurusravana → later Kuru kingdom"
+    },
+    "Trasadasyu": {
+      "canonical": "Trasadasyu",
+      "variants": [
+        "Trasadaśyu",
+        "Trasa-dasyu",
+        "Trasadasyu"
+      ],
+      "role": "Famous King/Warrior",
+      "achievement": "Renowned ancestor in Kuru lineage",
+      "descendants": "Kurusravana (grandson)",
+      "context": "Celebrated warrior king whose descendants include Kuru dynasty members",
+      "hymn_reference": "RV 10.33.4 (mentions his grandson Kurusravana)",
+      "fame": "Named in genealogies as illustrious ancestor",
+      "dynasty_role": "Progenitor figure in Kuru royal lineage",
+      "sources": {
+        "Griffith-Rigveda": 3,
+        "Griffith-Yajurveda": 0
+      },
+      "total_occurrences": 3,
+      "priority": "MEDIUM",
+      "note": "Famous ancestor establishing legitimacy of later Kuru dynasty through genealogical descent"
     },
     "Divodasa": {
       "canonical": "Divodasa",

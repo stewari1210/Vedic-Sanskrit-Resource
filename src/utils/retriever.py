@@ -5,7 +5,12 @@ from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
 import re
-from src.utils.proper_noun_variants import get_proper_noun_variants, disambiguate_proper_noun
+from src.utils.proper_noun_variants import (
+    get_proper_noun_variants,
+    disambiguate_proper_noun,
+    get_confederation_for_tribe,
+    get_constituent_tribes
+)
 
 
 class HybridRetriever(BaseRetriever):
@@ -138,12 +143,105 @@ class HybridRetriever(BaseRetriever):
 
         return disambiguated_form
 
+    def _detect_source_text_filter(self, query: str) -> tuple[list[str], bool]:
+        """Detect if query mentions specific source texts and should filter results.
+
+        Returns:
+            tuple: (list of source identifiers, whether to apply strict filtering)
+
+        Examples:
+            "What is X in Rigveda?" -> (['rigveda'], True)
+            "Compare X in Rigveda and Yajurveda" -> (['rigveda', 'yajurveda'], False)
+            "Tell me about X" -> ([], False)
+        """
+        query_lower = query.lower()
+
+        # Define source text identifiers and their variations
+        source_mapping = {
+            'rigveda': ['rigveda', 'rig veda', 'rig-veda', 'rgveda'],
+            'yajurveda': ['yajurveda', 'yajur veda', 'yajur-veda'],
+            'griffith-rigveda': ['griffith rigveda', 'griffith\'s rigveda', 'griffith rig veda'],
+            'griffith-yajurveda': ['griffith yajurveda', 'griffith\'s yajurveda', 'griffith yajur veda'],
+        }
+
+        detected_sources = []
+
+        # Check for each source
+        for source_key, variations in source_mapping.items():
+            for variation in variations:
+                if variation in query_lower:
+                    # Determine the base source (rigveda or yajurveda)
+                    if 'rigveda' in source_key or 'rig' in source_key:
+                        if 'rigveda' not in detected_sources:
+                            detected_sources.append('rigveda')
+                    elif 'yajurveda' in source_key or 'yajur' in source_key:
+                        if 'yajurveda' not in detected_sources:
+                            detected_sources.append('yajurveda')
+                    break
+
+        # Determine if strict filtering (only one source mentioned)
+        strict_filter = len(detected_sources) == 1
+
+        # Check for comparative queries (both texts mentioned)
+        comparative_keywords = ['both', 'compare', 'comparison', 'versus', 'vs', 'and', 'between']
+        is_comparative = any(keyword in query_lower for keyword in comparative_keywords)
+
+        # If comparative, ensure balanced retrieval (not strict)
+        if is_comparative and len(detected_sources) > 1:
+            strict_filter = False
+
+        if detected_sources:
+            filter_type = "strict (single source)" if strict_filter else "balanced (multiple sources)"
+            logger.info(f"HybridRetriever: Detected source filter: {detected_sources} ({filter_type})")
+
+        return detected_sources, strict_filter
+
+    def _filter_docs_by_source(self, docs: List[Document], source_filters: list[str], strict: bool) -> List[Document]:
+        """Filter documents based on source text.
+
+        Args:
+            docs: Documents to filter
+            source_filters: List of source identifiers ('rigveda', 'yajurveda')
+            strict: If True, only return docs from specified sources. If False, boost them.
+
+        Returns:
+            Filtered/reordered documents
+        """
+        if not source_filters:
+            return docs
+
+        matching_docs = []
+        non_matching_docs = []
+
+        for doc in docs:
+            filename = doc.metadata.get('filename', '').lower()
+
+            # Check if document matches any of the source filters
+            matches = any(source in filename for source in source_filters)
+
+            if matches:
+                matching_docs.append(doc)
+            else:
+                non_matching_docs.append(doc)
+
+        if strict:
+            # Strict mode: only return matching docs
+            logger.info(f"HybridRetriever: Strict filter applied - {len(matching_docs)} docs match {source_filters}, {len(non_matching_docs)} filtered out")
+            return matching_docs
+        else:
+            # Balanced mode: matching docs first, then others
+            logger.info(f"HybridRetriever: Balanced filter - {len(matching_docs)} docs from {source_filters} prioritized, {len(non_matching_docs)} others included")
+            return matching_docs + non_matching_docs
+
     def _get_relevant_documents(
         self, query: str, *, run_manager: CallbackManagerForRetrieverRun = None
     ) -> List[Document]:
         """Get relevant documents from both retrievers and merge."""
 
         logger.info(f"HybridRetriever: Query = '{query}'")
+
+        # Detect source text filters (Rigveda, Yajurveda, etc.)
+        source_filters, strict_filter = self._detect_source_text_filter(query)
 
         # Extract keywords for BM25 (remove action words like "summarize", "explain", etc.)
         # This helps BM25 match on the actual content patterns like hymn numbers or specific terms
@@ -217,6 +315,10 @@ class HybridRetriever(BaseRetriever):
         if merged_docs and len(merged_docs) > 0:
             top_score = doc_scores[sorted_hashes[0]]
             logger.info(f"HybridRetriever: Top doc score={top_score:.2f} (semantic {SEMANTIC_WEIGHT:.0%}, keyword {KEYWORD_WEIGHT:.0%})")
+
+        # APPLY SOURCE TEXT FILTERING (if specific texts mentioned in query)
+        if source_filters:
+            merged_docs = self._filter_docs_by_source(merged_docs, source_filters, strict_filter)
 
         # QUERY EXPANSION: Add documents related to proper nouns in the query
         if EXPANSION_DOCS > 0:
@@ -306,6 +408,21 @@ class HybridRetriever(BaseRetriever):
                 logger.info(f"HybridRetriever: Tribal query detected (keywords: {[k for k in tribal_keywords if k in query.lower()]})")
                 # Add tribal names to proper nouns for expansion (use original nouns)
                 nouns_for_expansion = [orig for orig, _, _ in proper_nouns_disambiguated] + known_tribes
+
+                # CONFEDERATION EXPANSION: If constituent tribes detected, add confederation names
+                confederation_expansions = set()
+                for noun in nouns_for_expansion:
+                    confed = get_confederation_for_tribe(noun)
+                    if confed:
+                        confederation_expansions.add(confed)
+                        logger.info(f"HybridRetriever: Detected constituent tribe '{noun}' → adding confederation '{confed}'")
+                        # Also add the constituent tribes of that confederation
+                        constituents = get_constituent_tribes(confed)
+                        confederation_expansions.update(constituents)
+                        logger.info(f"HybridRetriever: Adding all '{confed}' constituents: {constituents}")
+
+                # Add confederations to expansion list
+                nouns_for_expansion.extend(list(confederation_expansions))
             else:
                 # Use original nouns for variant lookup
                 nouns_for_expansion = [orig for orig, _, _ in proper_nouns_disambiguated]
@@ -341,6 +458,10 @@ class HybridRetriever(BaseRetriever):
                             break
 
                 if expansion_docs:
+                    # Apply source filtering to expansion docs as well
+                    if source_filters:
+                        expansion_docs = self._filter_docs_by_source(expansion_docs, source_filters, strict_filter)
+
                     logger.info(f"HybridRetriever: Added {len(expansion_docs)} expansion docs via proper noun association")
                     merged_docs = merged_docs[:self.k] + expansion_docs
                     logger.info(f"HybridRetriever: Total docs (primary + expansion) = {len(merged_docs)}")
