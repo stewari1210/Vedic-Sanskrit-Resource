@@ -22,8 +22,11 @@ Note: the processing function deletes the copied files after processing (same be
 as the Streamlit frontend). If you want to keep the originals, point to different
 source locations when overriding with --file.
 """
-import argparse
 import os
+# CRITICAL: Set this BEFORE any HuggingFace/transformers imports (including transitive imports via helper/settings)
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+import argparse
 import shutil
 import json
 import glob
