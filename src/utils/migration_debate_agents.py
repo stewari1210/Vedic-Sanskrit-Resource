@@ -384,24 +384,84 @@ Rate the verse's evidential value:
 ❌ Do NOT overstate certainty where ambiguity exists
 ❌ Do NOT ignore inconvenient evidence for your preferred view
 
+## ⚠️ CRITICAL: Apply Rigorous Logical Classification ⚠️
+
+Before categorizing ANY point as a "strength" or "weakness," ask yourself:
+
+**"Does this evidence SUPPORT or CONTRADICT the theory?"**
+
+### Classification Rules:
+
+**Theory Strength** = Evidence/argument that SUPPORTS the theory's core claims
+**Theory Weakness** = Evidence/argument that CONTRADICTS or UNDERMINES the theory's core claims
+
+### Examples to Prevent Common Errors:
+
+❌ **WRONG Classification:**
+- Listing "Assumption X is unsupported" under weaknesses of the theory that OPPOSES assumption X
+- Example: "Assumption of external chariot origin is unsupported" under OIT weaknesses
+
+✅ **CORRECT Classification:**
+- "Assumption X is unsupported" is a WEAKNESS of the theory that RELIES ON assumption X
+- Example: "Assumption of external chariot origin is unsupported" → AMT WEAKNESS (because AMT relies on this assumption)
+
+### Apply This Logic:
+
+**AMT STRENGTHS** = Evidence supporting external migration
+- West-to-east river sequences
+- Linguistic connections to PIE
+- Sintashta chariot parallels
+- Dasa-Arya conflict narratives
+
+**AMT WEAKNESSES** = Evidence contradicting external migration
+- Indigenous archaeological evidence (Sinauli predating migration)
+- Absence of migration memory
+- Deep Sarasvati knowledge
+- Native flora/fauna familiarity
+- **"Assumption of external X is unsupported" = AMT WEAKNESS!**
+
+**OIT STRENGTHS** = Evidence supporting indigenous origins
+- Pre-migration archaeology (Sinauli chariots at 2100 BCE)
+- Sarasvati as major perennial river
+- No memory of arriving from elsewhere
+- Deep geographic knowledge
+- Native materials (Khadira/Simsipa wood)
+
+**OIT WEAKNESSES** = Evidence contradicting indigenous origins
+- Clear linguistic links to Central Asian languages
+- Genetic admixture from steppes
+- Post-IVC chronology challenges
+- **"Assumption of indigenous X is unsupported" = OIT WEAKNESS!**
+
+### Before Writing Each Bullet Point:
+
+1. Identify what the evidence/argument claims
+2. Ask: "Does this SUPPORT or UNDERMINE AMT?"
+3. Ask: "Does this SUPPORT or UNDERMINE OIT?"
+4. Place in appropriate category based on answers
+
 ## Output Format
 
 ### Evidence Assessment for [Verse Reference]
 
 **What This Verse CLEARLY Shows:**
-[Unambiguous textual facts]
+[Unambiguous textual facts - no interpretation]
 
 **AMT Interpretation - Strengths:**
-[Where AMT reading is compelling]
+[Evidence that actively supports external migration hypothesis]
+[Each point must be something that, if true, makes AMT more plausible]
 
 **AMT Interpretation - Weaknesses:**
-[Where AMT reading requires assumptions or conflicts with evidence]
+[Evidence that contradicts AMT or undermines its assumptions]
+[Each point must be something that, if true, makes AMT less plausible]
 
 **OIT Interpretation - Strengths:**
-[Where OIT reading is compelling]
+[Evidence that actively supports indigenous origins hypothesis]
+[Each point must be something that, if true, makes OIT more plausible]
 
 **OIT Interpretation - Weaknesses:**
-[Where OIT reading requires assumptions or conflicts with evidence]
+[Evidence that contradicts OIT or undermines its assumptions]
+[Each point must be something that, if true, makes OIT less plausible]
 
 **External Evidence (Archaeological/Genetic/Linguistic):**
 [How non-textual evidence bears on this verse]
