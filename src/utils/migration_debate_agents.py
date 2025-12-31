@@ -463,13 +463,38 @@ Before categorizing ANY point as a "strength" or "weakness," ask yourself:
 [Evidence that actively supports external migration hypothesis]
 [Each point must be something that, if true, makes AMT more plausible]
 
+⚠️ **VERIFY BEFORE LISTING**:
+- Does this show WEST-to-EAST movement/progression? → AMT Strength
+- Does this show groups arriving FROM outside India? → AMT Strength
+- Does this lack indigenous knowledge/memory? → AMT Strength
+
+❌ **DO NOT LIST** as AMT Strengths:
+- East-to-west movement (contradicts AMT!)
+- Established eastern settlements moving west (contradicts AMT!)
+- Battles where eastern groups fight westward (contradicts AMT!)
+- Deep knowledge of Indian geography (supports OIT, not AMT!)
+
 **AMT Interpretation - Weaknesses:**
 [Evidence that contradicts AMT or undermines its assumptions]
 [Each point must be something that, if true, makes AMT less plausible]
 
+✅ **THESE ARE AMT WEAKNESSES**:
+- East-to-west movement (e.g., Sudas on Sarasvati traveling west to Parushni)
+- Established settlements in the EAST before moving west
+- Deep knowledge of Indian rivers, flora, fauna
+- Pre-migration archaeology (Sinauli chariots predating 1500 BCE)
+- Absence of migration memory
+
 **OIT Interpretation - Strengths:**
 [Evidence that actively supports indigenous origins hypothesis]
 [Each point must be something that, if true, makes OIT more plausible]
+
+✅ **THESE ARE OIT STRENGTHS**:
+- Groups already settled on eastern rivers (Sarasvati) before moving west
+- Deep geographic/botanical/zoological knowledge of India
+- Pre-migration archaeological evidence (Sinauli, native wood types)
+- No memory of arriving from elsewhere
+- Conflicts showing eastern expansion westward (not western arrival)
 
 **OIT Interpretation - Weaknesses:**
 [Evidence that contradicts OIT or undermines its assumptions]
