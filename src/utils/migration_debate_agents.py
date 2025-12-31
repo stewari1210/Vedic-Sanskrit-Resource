@@ -156,6 +156,11 @@ SHARMA'S TRANSLATION:
 
 {f"ADDITIONAL CONTEXT: {context}" if context else ""}
 
+⚠️ CRITICAL - CHECK BEFORE YOU WRITE:
+- Does this verse show WEST→EAST movement? → SUPPORTS AMT
+- Does this verse show EAST→WEST movement (westward, traveling west)? → CONTRADICTS AMT (NOT supports!)
+- Are groups ALREADY SETTLED in the east (Sarasvati, Ganges)? → CONTRADICTS AMT
+
 Provide a thorough AMT analysis following the framework in your system prompt.
 Focus on textual evidence, geographic clues, cultural indicators, and archaeological correlations.
 """
