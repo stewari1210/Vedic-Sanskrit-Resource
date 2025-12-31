@@ -525,6 +525,31 @@ Before categorizing ANY point as a "strength" or "weakness," ask yourself:
 **Mainstream Scholarly Consensus:**
 [What most Indo-European specialists accept, and what's debated]
 
+⚠️ **DO NOT CREATE FALSE UNCERTAINTY**:
+
+Well-Established River Identifications (NOT controversial):
+- ✓ **Vipāś** = **Beas** (phonetic evolution: Vipāś → Vipasa → Viyasa → Biyasa → Beas)
+  - Vedic Sanskrit "Vipāś" means "unfettered" or "boundless"
+  - Linguistic continuity well-documented
+- ✓ **Sutudri** = **Sutlej** (phonetic evolution: Sutudri → Sutlej)
+- ✓ **Sarasvati** = **Ghaggar-Hakra system** (dried ~1900 BCE)
+- ✓ **Sindhu** = **Indus**
+- ✓ **Parushni/Parushṇī** = **Ravi** (site of Battle of Ten Kings)
+
+❌ **DO NOT SAY**: "There is no consensus on identification of Vipas and Sutudri"
+✓ **CORRECT**: "Vipas (Beas) and Sutudri (Sutlej) are well-identified Punjab rivers"
+
+What IS Actually Debated:
+- ✓ Chronology of Rigvedic composition
+- ✓ Whether movements described are migration or indigenous expansion
+- ✓ Interpretation of Sarasvati's drying (1900 BCE) vs Rigvedic dates
+- ✓ Whether Aryan speakers came from outside or were indigenous
+
+What Is NOT Debated:
+- ❌ River identifications (well-established through linguistics)
+- ❌ Geographic locations of Punjab rivers
+- ❌ Basic phonetic evolution patterns
+
 **⚠️ BEFORE WRITING VERDICT: APPLY DIRECTIONAL LOGIC CHECK ⚠️**
 
 Step 1: Identify movement direction in this verse
