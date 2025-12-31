@@ -48,7 +48,8 @@ def create_llm(use_google: bool = False):
             model=OLLAMA_MODEL,
             temperature=MODEL_SPECS.get("temperature", 0.7),
             timeout=180,  # 3 minute timeout
-            num_ctx=4096  # Limit context window to prevent huge prompts
+            num_ctx=4096,  # Limit context window to prevent huge prompts
+            num_predict=2048  # Limit response length to 2048 tokens (~1500 words)
         )
 
 

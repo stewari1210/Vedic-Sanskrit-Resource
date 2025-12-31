@@ -38,6 +38,7 @@ from utils.process_files import process_uploaded_pdfs
 from utils.index_files import create_qdrant_vector_store
 from utils.retriever import create_retriever
 from utils.final_block_rag import create_langgraph_app, run_rag_with_langgraph
+from utils.debate_agents import create_debate_orchestrator
 
 
 # Change this to your preferred default file(s) (absolute or relative to project root).
@@ -244,6 +245,260 @@ def run_repl(retriever, debug=False):
             print(result)
 
 
+def auto_retrieve_both_translations(retriever, verse_reference: str):
+    """Auto-retrieve verse text from BOTH Griffith and Sharma translations.
+
+    This allows each agent to debate their own translator's version of the verse,
+    rather than both debating the same text.
+
+    Returns:
+        tuple: (griffith_text, sharma_text) or (None, None) if retrieval fails
+    """
+    try:
+        # Parse verse reference to extract book and hymn numbers
+        # Examples: "RV 2.33", "RV 10.85.12", "YV 40.1"
+        import re
+        match = re.match(r'(RV|YV)\s*(\d+)\.(\d+)', verse_reference.upper())
+
+        if match:
+            veda, book, hymn = match.groups()
+            # Format as Griffith uses: [02-033] for RV Book 2, Hymn 33
+            griffith_hymn_id = f"[{int(book):02d}-{int(hymn):03d}]"
+
+            # Use descriptive terms that appear in the actual hymns
+            # This helps semantic search while avoiding the "233" number collision
+            query = f"Book {int(book)} Hymn {int(hymn)} Mandala {int(book)} Sukta {int(hymn)}"
+            logger.info(f"Searching for: Griffith {griffith_hymn_id}, Sharma MANDAL-{book}/SUKTA-{hymn}")
+        else:
+            # Fallback to generic search
+            query = f"{verse_reference} hymn verse translation"
+            griffith_hymn_id = None
+
+        docs = retriever.invoke(query)
+
+        if not docs:
+            return None, None
+
+        # Separate docs by translator
+        griffith_docs = [d for d in docs if 'griffith' in d.metadata.get('filename', '').lower()]
+        sharma_docs = [d for d in docs if 'sharma' in d.metadata.get('filename', '').lower()]
+
+        # Filter out index/metadata pages (look for actual verse content)
+        def is_likely_verse_content(text):
+            """Check if text looks like actual verse content, not index/metadata."""
+            text_lower = text.lower()
+            # Exclude common index/metadata patterns
+            if any(pattern in text_lower for pattern in ['page', 'index', 'contents', '---', '***']):
+                return False
+            # Look for verse-like content (has words, not just numbers/symbols)
+            word_count = len([w for w in text.split() if w.isalpha() and len(w) > 2])
+            return word_count > 10  # At least 10 real words
+
+        def matches_hymn_id(text, hymn_id):
+            """Check if text contains the specific hymn ID."""
+            if not hymn_id:
+                return True
+            return hymn_id in text
+
+        # Find best match from Griffith - prioritize correct hymn ID
+        griffith_text = None
+        if griffith_docs:
+            # First try: exact hymn ID match (search ALL docs, not just top 10)
+            if griffith_hymn_id:
+                exact_matches = [doc for doc in griffith_docs if matches_hymn_id(doc.page_content, griffith_hymn_id)]
+                logger.info(f"Found {len(exact_matches)} Griffith docs matching {griffith_hymn_id}")
+
+                for doc in exact_matches:
+                    if is_likely_verse_content(doc.page_content):
+                        griffith_text = doc.page_content[:800].strip()  # Get more text
+                        logger.info(f"✓ Found Griffith text with hymn ID {griffith_hymn_id}")
+                        break
+
+                # If exact matches exist but all are metadata, take the first one anyway
+                if not griffith_text and exact_matches:
+                    griffith_text = exact_matches[0].page_content[:800].strip()
+                    logger.warning(f"Using Griffith match {griffith_hymn_id} despite low verse quality")
+
+            # Fallback: any verse-like content
+            if not griffith_text:
+                for doc in griffith_docs[:5]:
+                    if is_likely_verse_content(doc.page_content):
+                        griffith_text = doc.page_content[:500].strip()
+                        break
+
+            # Last resort
+            if not griffith_text and griffith_docs:
+                griffith_text = griffith_docs[0].page_content[:500].strip()
+
+        # Find best match from Sharma - look for MANDAL/SUKTA pattern
+        sharma_text = None
+        if sharma_docs:
+            # Sharma uses format: "MANDAL - 2 / SUKTA - 33"
+            if match:
+                veda, book, hymn = match.groups()
+                sharma_pattern = f"MANDAL - {int(book)} / SUKTA - {int(hymn)}"
+                exact_matches = [doc for doc in sharma_docs if sharma_pattern.upper() in doc.page_content.upper()]
+                logger.info(f"Found {len(exact_matches)} Sharma docs matching {sharma_pattern}")
+
+                for doc in exact_matches:
+                    content = doc.page_content
+                    # Skip the introduction/preface text
+                    if 'arjuna stood before' in content.lower() or 'all rights reserved' in content.lower():
+                        continue
+                    if is_likely_verse_content(content):
+                        sharma_text = content[:800].strip()
+                        logger.info(f"✓ Found Sharma text with pattern {sharma_pattern}")
+                        break
+
+                # Take first exact match even if not ideal verse content
+                if not sharma_text and exact_matches:
+                    for doc in exact_matches:
+                        content = doc.page_content
+                        if 'arjuna stood before' not in content.lower():
+                            sharma_text = content[:800].strip()
+                            logger.warning(f"Using Sharma match {sharma_pattern} despite low verse quality")
+                            break
+
+            # Fallback: skip introduction text
+            if not sharma_text:
+                for doc in sharma_docs[:10]:
+                    content = doc.page_content
+                    # Skip the introduction/preface text
+                    if 'arjuna stood before' in content.lower() or 'all rights reserved' in content.lower():
+                        continue
+                    if is_likely_verse_content(content):
+                        sharma_text = content[:500].strip()
+                        logger.info(f"Found Sharma text (avoiding introduction)")
+                        break
+                    break
+
+            # Fallback if nothing found
+            if not sharma_text and sharma_docs:
+                for doc in sharma_docs[:5]:
+                    if is_likely_verse_content(doc.page_content):
+                        sharma_text = doc.page_content[:500].strip()
+                        break
+
+        return griffith_text, sharma_text
+
+    except Exception as e:
+        logger.warning(f"Failed to auto-retrieve verse texts: {e}")
+        return None, None
+
+
+def run_debate_mode(retriever):
+    """Run debate between Griffith (literal) and Sharma (philosophical) agents."""
+    print("\n" + "=" * 80)
+    print("🔥 VEDIC VERSE DEBATE MODE 🔥")
+    print("=" * 80)
+    print("Griffith Agent: Literal/Historical interpretation")
+    print("Sharma Agent:   Philosophical/Spiritual interpretation")
+    print("=" * 80)
+    print("\nEnter verse details (type 'exit' or 'quit' to stop)\n")
+
+    orchestrator = create_debate_orchestrator(griffith_retriever=retriever)
+
+    while True:
+        try:
+            # Get verse reference
+            verse_ref = input("Verse Reference (e.g., RV 1.32, YV 40.1): ").strip()
+            if not verse_ref:
+                continue
+            if verse_ref.lower() in {"exit", "quit"}:
+                print("\nExiting debate mode.")
+                break
+
+            # Get verse text (optional - can be auto-retrieved)
+            print("Verse Text Options:")
+            print("  1) Press Enter to AUTO-RETRIEVE both translations (Griffith + Sharma)")
+            print("  2) Type 'manual' to provide your own text")
+            print("  3) Paste verse text now (both agents will use same text)\n")
+
+            choice = input("Your choice: ").strip().lower()
+
+            verse_text = None
+            griffith_text = None
+            sharma_text = None
+
+            if choice == "" or choice == "1":
+                # Auto-retrieve both translations
+                print("🔍 Auto-retrieving translations from both Griffith and Sharma...")
+                griffith_text, sharma_text = auto_retrieve_both_translations(retriever, verse_ref)
+
+                if griffith_text and sharma_text:
+                    print("\n✓ Found Griffith's translation:")
+                    print(f"  {griffith_text[:150]}...")
+                    print("\n✓ Found Sharma's translation:")
+                    print(f"  {sharma_text[:150]}...")
+                    print("\n⚠️  Please verify these are the correct verses!")
+                    confirm = input("Continue with these texts? (y/n): ").strip().lower()
+                    if confirm not in ['y', 'yes']:
+                        print("Please try again or provide text manually.\n")
+                        continue
+                elif griffith_text or sharma_text:
+                    print("⚠️  Could only find one translation. Both agents will use it.")
+                    verse_text = griffith_text or sharma_text
+                    griffith_text = None
+                    sharma_text = None
+                else:
+                    print("⚠️  Could not auto-retrieve verse texts. Please enter manually.")
+                    continue
+
+            elif choice == "manual" or choice == "2":
+                # Manual input
+                print("Enter verse text (press Enter twice when done):")
+                lines = []
+                while True:
+                    line = input()
+                    if line == "":
+                        break
+                    lines.append(line)
+                verse_text = "\n".join(lines).strip()
+                if not verse_text:
+                    print("⚠️  No text provided. Please try again.")
+                    continue
+
+            else:
+                # User pasted text directly
+                verse_text = choice            # Get number of rounds
+            rounds_input = input("Number of debate rounds (default: 2): ").strip()
+            num_rounds = int(rounds_input) if rounds_input else 2
+
+            print("\n" + "=" * 80)
+            print(f"🎭 Starting debate on {verse_ref}")
+            print("=" * 80 + "\n")
+
+            # Run the debate
+            result = orchestrator.run_debate(
+                verse_reference=verse_ref,
+                verse_text=verse_text,
+                griffith_text=griffith_text,
+                sharma_text=sharma_text,
+                num_rounds=num_rounds
+            )
+
+            print("\n" + "=" * 80)
+            print("✅ DEBATE COMPLETED")
+            print("=" * 80)
+            print(f"\nVerse: {verse_ref}")
+            print(f"Rounds: {len(result['debate_transcript'])}")
+            print(f"\n📊 FINAL SYNTHESIS:")
+            print("=" * 80)
+            print(result['synthesis'])
+            print("=" * 80 + "\n")
+
+        except (EOFError, KeyboardInterrupt):
+            print("\n\nExiting debate mode.")
+            break
+        except ValueError as e:
+            print(f"⚠️  Invalid input: {e}\n")
+            continue
+        except Exception as e:
+            logger.exception("Error during debate")
+            print(f"⚠️  Error: {e}\n")
+            continue
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Process one or more documents (PDFs or TXT files) and query them via CLI",
@@ -266,6 +521,15 @@ Examples:
 
   # Mix PDFs and TXT files
   python src/cli_run.py --files doc1.pdf doc2.txt doc3.pdf
+
+  # Start interactive debate mode (Griffith vs Sharma)
+  python src/cli_run.py --debate --no-cleanup-prompt
+
+  # Run debate with auto-retrieved verse text (NEW - verse text optional!)
+  python src/cli_run.py --debate --no-cleanup-prompt --verse "RV 1.32" --rounds 2
+
+  # Run debate with manual verse text
+  python src/cli_run.py --debate --no-cleanup-prompt --verse "RV 1.32" --verse-text "Indra slew Vritra..." --rounds 3
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
@@ -310,6 +574,27 @@ Examples:
         "--debug",
         action="store_true",
         help="Show detailed retrieval info: query processing, document previews, confidence scores, and evaluation reasoning",
+    )
+    parser.add_argument(
+        "--debate",
+        action="store_true",
+        help="Start debate mode: Griffith (literal) vs Sharma (philosophical) interpretation of Vedic verses",
+    )
+    parser.add_argument(
+        "--verse",
+        type=str,
+        help="Verse reference for debate mode (e.g., 'RV 1.32'). Use with --debate flag.",
+    )
+    parser.add_argument(
+        "--verse-text",
+        type=str,
+        help="Verse text for debate mode (OPTIONAL - will auto-retrieve from corpus if omitted). Use with --debate and --verse flags.",
+    )
+    parser.add_argument(
+        "--rounds",
+        type=int,
+        default=2,
+        help="Number of debate rounds (default: 2). Use with --debate flag.",
     )
     parser.add_argument(
         "--quiet", "-q",
@@ -361,15 +646,24 @@ Examples:
     if not args.no_cleanup_prompt:
         prompt_cleanup_session()
 
-    try:
-        prepare_and_process(absolute_file_paths)
-    except Exception as e:
-        # Re-enable INFO logging on error for troubleshooting
-        if args.quiet:
-            restore_info_logging()
-        logger.error(f"Failed to prepare/process file(s): {e}")
-        print(f"Error: {e}")
-        return
+    # Check if vector store already exists
+    vec_store_path = os.path.join(project_root, VECTORDB_FOLDER, COLLECTION_NAME)
+    vector_store_exists = os.path.exists(vec_store_path) and os.path.isdir(vec_store_path)
+
+    # Skip file processing if vector store exists and we're not forcing reindex
+    if vector_store_exists and not args.force:
+        logger.info("Vector store already exists. Skipping file processing.")
+        logger.info("Use --force flag to rebuild the index from scratch.")
+    else:
+        try:
+            prepare_and_process(absolute_file_paths)
+        except Exception as e:
+            # Re-enable INFO logging on error for troubleshooting
+            if args.quiet:
+                restore_info_logging()
+            logger.error(f"Failed to prepare/process file(s): {e}")
+            print(f"Error: {e}")
+            return
 
     try:
         vec_db, docs, retriever = build_index_and_retriever(force=args.force)
@@ -385,7 +679,61 @@ Examples:
         print(f"Indexing error: {e}")
         return
 
-    run_repl(retriever, debug=args.debug)
+    # Run debate mode or regular REPL
+    if args.debate:
+        if args.verse:
+            # Non-interactive mode: single debate
+            verse_text = args.verse_text
+            griffith_text = None
+            sharma_text = None
+
+            # Auto-retrieve verse texts if not provided
+            if not verse_text:
+                print(f"🔍 Auto-retrieving translations for {args.verse}...")
+                griffith_text, sharma_text = auto_retrieve_both_translations(retriever, args.verse)
+
+                if not griffith_text and not sharma_text:
+                    print(f"❌ Could not find verse texts for {args.verse}")
+                    print("Please provide --verse-text or use interactive mode.")
+                    return
+
+                if griffith_text and sharma_text:
+                    print(f"✓ Found Griffith: {griffith_text[:100]}...")
+                    print(f"✓ Found Sharma: {sharma_text[:100]}...\n")
+                else:
+                    # Only one found - both agents will use it
+                    verse_text = griffith_text or sharma_text
+                    griffith_text = None
+                    sharma_text = None
+                    print(f"✓ Found: {verse_text[:100]}...\n")
+
+            print("\n" + "=" * 80)
+            print(f"🎭 Running debate on {args.verse}")
+            print("=" * 80 + "\n")
+
+            orchestrator = create_debate_orchestrator(griffith_retriever=retriever)
+            result = orchestrator.run_debate(
+                verse_reference=args.verse,
+                verse_text=verse_text,
+                griffith_text=griffith_text,
+                sharma_text=sharma_text,
+                num_rounds=args.rounds
+            )
+
+            print("\n" + "=" * 80)
+            print("✅ DEBATE COMPLETED")
+            print("=" * 80)
+            print(f"\nVerse: {args.verse}")
+            print(f"Rounds: {len(result['debate_transcript'])}")
+            print(f"\n📊 FINAL SYNTHESIS:")
+            print("=" * 80)
+            print(result['synthesis'])
+            print("=" * 80 + "\n")
+        else:
+            # Interactive mode: multiple debates
+            run_debate_mode(retriever)
+    else:
+        run_repl(retriever, debug=args.debug)
 
 
 if __name__ == "__main__":

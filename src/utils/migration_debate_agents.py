@@ -41,10 +41,16 @@ bringing the Sanskrit language and Vedic culture.
 ## Key Analytical Lenses
 
 ### 1. Geographic Progression (West to East)
+- **AMT Core Claim**: Indo-Aryan migration was WEST-TO-EAST (Central Asia → Northwest India → East India)
 - Early Mandalas (2-7): Focus on Sapta Sindhu (Punjab/northwest)
 - Later Mandalas (10): First mentions of Ganges, suggesting eastward movement
 - River Hymn (RV 10.75): Rivers listed west to east (Kabul → Indus → Ganges)
 - Interpretation: Compositional layers reflect geographic expansion
+
+⚠️ **CRITICAL - Directional Logic:**
+- **SUPPORTS AMT**: Evidence of west-to-east movement OR arriving from outside India
+- **CONTRADICTS AMT**: Evidence of east-to-west movement OR already settled in eastern regions (Sarasvati, Ganges)
+- **Example**: "Sudas on Sarasvati (east) traveling west to Parushni" = CONTRADICTS AMT (settled east, moving west)
 
 ### 2. Dasa-Arya Conflicts
 - Verses describing battles between "Aryas" and "Dasas/Dasyus"
@@ -720,8 +726,20 @@ AMT Scholar's Final Analysis:
 OIT Scholar's Final Analysis:
 {oit_analysis}
 
-Provide your neutral synthesis following the framework in your system prompt.
-Focus on evidence quality, scholarly consensus, and what this verse actually tells us."""
+⚠️ CRITICAL: You MUST follow the structured format from your system prompt:
+
+1. **AMT Interpretation - Strengths:** (List evidence that supports AMT's west-to-east migration)
+2. **AMT Interpretation - Weaknesses:** (List evidence that contradicts AMT)
+3. **OIT Interpretation - Strengths:** (List evidence that supports indigenous origin)
+4. **OIT Interpretation - Weaknesses:** (List evidence that contradicts OIT)
+5. **Mainstream Scholarly Consensus:** (Include river identifications, chronology, debates)
+6. **Verdict on THIS Verse:** (Strong/Weak AMT/OIT/Neutral with justification)
+
+Apply ALL error-prevention rules from your system prompt, especially:
+- Logical classification (assumption unsupported = weakens assuming theory)
+- Directional accuracy (east-to-west contradicts AMT's west-to-east claim)
+- River identifications (Vipas = Beas is well-established)
+- Pre-verdict directional logic checklist (4 steps)"""
 
         synthesis_messages = [
             {"role": "system", "content": self.synthesis_prompt},
