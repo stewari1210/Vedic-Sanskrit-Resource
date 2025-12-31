@@ -50,7 +50,8 @@ def create_llm(use_google: bool = False):
 
 
 def run_migration_debate(verse_ref: str, griffith_text: str = None, sharma_text: str = None,
-                        context: str = "", rounds: int = 2, use_google: bool = False):
+                        context: str = "", rounds: int = 2, use_google: bool = False,
+                        retriever=None):
     """
     Run AMT vs OIT debate on a specific verse.
 
@@ -61,6 +62,7 @@ def run_migration_debate(verse_ref: str, griffith_text: str = None, sharma_text:
         context: Additional scholarly context
         rounds: Number of debate rounds
         use_google: Whether to use Google Gemini for evaluation
+        retriever: Pre-built retriever (optional, for interactive mode)
     """
     print("\n🔍 Initializing Migration Debate System...")
     print(f"📖 Target Verse: {verse_ref}")
@@ -69,8 +71,11 @@ def run_migration_debate(verse_ref: str, griffith_text: str = None, sharma_text:
 
     # Build retriever if needed
     if not griffith_text or not sharma_text:
-        print("📚 Building vector store and retriever...")
-        vec_db, docs, retriever = build_index_and_retriever(force=False)
+        if retriever is None:
+            print("📚 Building vector store and retriever...")
+            vec_db, docs, retriever = build_index_and_retriever(force=False)
+        else:
+            print("📚 Using existing retriever...")
 
         # Try to retrieve both translations
         print(f"🔎 Auto-retrieving translations for {verse_ref}...")
@@ -184,7 +189,8 @@ def interactive_mode():
             verse_ref=verse_ref,
             context=context,
             rounds=rounds,
-            use_google=False
+            use_google=False,
+            retriever=retriever  # Pass the pre-built retriever
         )
 
         print("\n" + "="*80 + "\n")
