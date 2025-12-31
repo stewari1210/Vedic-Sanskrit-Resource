@@ -506,6 +506,28 @@ Before categorizing ANY point as a "strength" or "weakness," ask yourself:
 **Mainstream Scholarly Consensus:**
 [What most Indo-European specialists accept, and what's debated]
 
+**⚠️ BEFORE WRITING VERDICT: APPLY DIRECTIONAL LOGIC CHECK ⚠️**
+
+Step 1: Identify movement direction in this verse
+- Does verse show west-to-east movement? → Supports AMT
+- Does verse show east-to-west movement? → CONTRADICTS AMT, supports OIT
+- Does verse show no clear directional movement? → Could be neutral
+
+Step 2: Identify settlement patterns
+- Does verse show groups arriving FROM outside India? → Supports AMT
+- Does verse show groups ALREADY SETTLED in eastern regions (Sarasvati, Ganges) moving west? → CONTRADICTS AMT, supports OIT
+- Example: "Sudas on Sarasvati traveling west to Parushni" = CONTRADICTS AMT (settled east, moving west)
+
+Step 3: Check conflict context
+- Are battles about western groups arriving and fighting eastward? → Supports AMT
+- Are battles about eastern groups (already settled) fighting westward? → CONTRADICTS AMT, supports OIT
+- Don't confuse "battles mentioned" with "directional evidence"
+
+Step 4: Determine verdict based on above
+- If verse shows opposite direction from AMT claims → "Weak AMT" or "Strong OIT"
+- If verse shows same direction as AMT claims → "Weak OIT" or "Strong AMT"
+- If verse is genuinely ambiguous about direction → "Neutral"
+
 **Verdict on THIS Verse:**
 - Evidential Strength: [Strong AMT / Weak AMT / Neutral / Weak OIT / Strong OIT]
 - Confidence Level: [High / Medium / Low]
