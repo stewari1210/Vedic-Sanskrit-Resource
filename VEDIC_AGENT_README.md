@@ -200,16 +200,142 @@ Original Rishi likely intended BOTH:
 
 ---
 
+## � Migration Debate System (NEW)
+
+### Purpose: AMT vs OIT Evidence Analysis
+
+In addition to the **philosophical debate** (Griffith vs Sharma), this branch includes a **migration theory debate system** that evaluates verses for historical/archaeological evidence:
+
+- **AMT (Aryan Migration Theory)**: Indo-Aryan speakers entered India ~1500 BCE from Central Asia
+- **OIT (Out of India Theory)**: Vedic civilization indigenous to India, predating proposed migration
+
+### Key Difference
+
+| Feature | Griffith-Sharma Debate | AMT-OIT Debate |
+|---------|----------------------|----------------|
+| **Focus** | Meaning & interpretation | Historical origins & evidence |
+| **Question** | What did the Rishi mean? | Where/when were the Rishis? |
+| **Evidence** | Textual symbolism | Geography, archaeology, linguistics |
+| **Goal** | Recover original intent | Evaluate migration vs indigenous theory |
+
+### Usage
+
+**Basic Analysis:**
+```bash
+# Test Sarasvati verse (strong OIT evidence)
+python migration_debate_cli.py --verse "RV 7.95.2"
+
+# Test River Hymn (AMT geographic progression)
+python migration_debate_cli.py --verse "RV 10.75"
+
+# With multiple rounds
+python migration_debate_cli.py --verse "RV 6.27.5" --rounds 3
+
+# Add scholarly context
+python migration_debate_cli.py --verse "RV 7.95.2" \
+  --context "Geological: Ghaggar-Hakra dried ~1900 BCE"
+
+# Use Google Gemini for higher quality
+python migration_debate_cli.py --verse "RV 7.95.2" --google
+```
+
+**Interactive Mode:**
+```bash
+python migration_debate_cli.py --interactive
+```
+
+The system will:
+1. Display key verses to try (AMT vs OIT evidence)
+2. Prompt for verse reference (e.g., "RV 7.95.2")
+3. Ask for optional context
+4. Ask for number of rounds
+5. Run full debate and synthesis
+6. Allow analyzing multiple verses without reloading
+
+**Interactive Session Example:**
+```
+🌍 MIGRATION DEBATE SYSTEM - Interactive Mode
+================================================================================
+
+Key Verses to Try:
+  AMT Evidence:
+    - RV 10.75 (River Hymn - geographic progression)
+    - RV 1.101.1 (Dasa conflicts - 'krishna tvach')
+
+  OIT Evidence:
+    - RV 7.95.2 (Sarasvati 'mighty river to sea')
+    - RV 8.30.3 (Fathers' ancestral path')
+
+Enter verse reference: RV 7.95.2
+Context: River dried 1900 BCE
+Number of rounds [2]: 2
+
+[Debate runs...]
+
+Analyze another verse? (y/n): y
+```
+
+### Key Verses to Test
+
+**Strong AMT Evidence:**
+- `RV 10.75` - River Hymn (west→east geographic progression)
+- `RV 1.101.1, 1.130.8` - "Dark-skinned" Dasas
+- `RV 7.18` - Battle of Ten Kings (inter-tribal warfare)
+- `RV 5.29.10` - Anāsa (speechless/different language)
+- `RV 1.174.2` - Indra as fort-destroyer
+
+**Strong OIT Evidence:**
+- `RV 7.95.2, 6.61.2, 6.61.8` - Sarasvati "mighty river to sea" (dried ~1900 BCE)
+- `RV 8.30.3` - "Lead us not from fathers' path" (no migration memory)
+- `RV 6.27.5` - Hariyupiya (Harappa?) - Vedic-IVC contemporary
+- `RV 1.163.1` - Elephant (indigenous fauna)
+- `RV 7.3.7, 7.15.14` - Vedic people have forts too
+
+### Agent Roles (Migration Debate)
+
+**AMT Agent:**
+- Analyzes geographic progression (west→east)
+- Examines Dasa-Arya conflicts as ethnic encounters
+- Identifies northern homeland markers (winter references)
+- Correlates with Sintashta culture, post-Harappan context
+
+**OIT Agent:**
+- Evaluates Sarasvati evidence (requires pre-1900 BCE)
+- Highlights absence of migration memory
+- Points to indigenous flora/fauna
+- Argues Harappan continuity
+
+**Neutral Synthesis:**
+- Rates evidence: Strong AMT / Weak AMT / Neutral / Weak OIT / Strong OIT
+- Considers external evidence (genetics, archaeology, linguistics)
+- Notes mainstream scholarly consensus
+- Identifies what verse actually tells us
+
+### Output
+
+Debates saved to: `migration_debates/migration_debate_RV_X_Y_Z_TIMESTAMP.json`
+
+### Documentation
+
+See comprehensive guides:
+- `MIGRATION_DEBATE_README.md` - Full documentation (~800 lines)
+- `MIGRATION_DEBATE_QUICKREF.md` - Quick command reference
+- `MIGRATION_DEBATE_SUMMARY.md` - Implementation details
+
+---
+
 ## 🏗️ Technical Architecture
 
 ### Components
 
 ```
-debate_cli.py                    # Main CLI interface
-src/utils/debate_agents.py       # Agent implementations
-src/cli_run.py                   # Vector store & retriever
-src/utils/retriever.py          # Hybrid retrieval (BM25 + semantic)
-src/utils/vector_store.py       # Qdrant vector database
+debate_cli.py                         # Philosophical debate CLI
+migration_debate_cli.py               # Migration theory debate CLI (NEW)
+src/utils/debate_agents.py            # Griffith/Sharma agents
+src/utils/migration_debate_agents.py  # AMT/OIT agents (NEW)
+src/cli_run.py                        # Vector store & retriever
+src/utils/retriever.py                # Hybrid retrieval (BM25 + semantic)
+src/utils/vector_store.py             # Qdrant vector database
 ```
 
 ### Retrieval Strategy
@@ -379,11 +505,13 @@ This system has been carefully designed to avoid embedding controversial theorie
 
 ```
 RAG-CHATBOT-CLI-Version/
-├── debate_cli.py                      # Vedic debate CLI
+├── debate_cli.py                      # Philosophical debate CLI (Griffith vs Sharma)
+├── migration_debate_cli.py            # Migration debate CLI (AMT vs OIT) - NEW
 ├── src/
 │   ├── cli_run.py                     # Standard RAG CLI (untouched)
 │   ├── utils/
-│   │   ├── debate_agents.py           # Agent implementations
+│   │   ├── debate_agents.py           # Philosophical debate agents
+│   │   ├── migration_debate_agents.py # Migration debate agents - NEW
 │   │   ├── retriever.py               # Hybrid retrieval
 │   │   ├── vector_store.py            # Qdrant integration
 │   │   └── process_files.py           # Document processing
@@ -392,13 +520,18 @@ RAG-CHATBOT-CLI-Version/
 │   └── ancient_history/
 │       ├── docs_chunks.pkl            # Pickled document chunks
 │       └── [qdrant files]
-├── debates/                           # Saved debate transcripts
-└── local_store/                       # Source documents
-    └── ancient_history/
-        ├── griffith/
-        │   └── griffith.md            # Griffith Rigveda
-        └── sharma/
-            └── sharma_rigveda.md      # Sharma Rigveda
+├── debates/                           # Philosophical debate transcripts
+├── migration_debates/                 # Migration debate transcripts - NEW
+├── local_store/                       # Source documents
+│   └── ancient_history/
+│       ├── griffith/
+│       │   └── griffith.md            # Griffith Rigveda
+│       └── sharma/
+│           └── sharma_rigveda.md      # Sharma Rigveda
+├── VEDIC_AGENT_README.md              # This file (main documentation)
+├── MIGRATION_DEBATE_README.md         # Migration debate guide - NEW
+├── MIGRATION_DEBATE_QUICKREF.md       # Quick reference - NEW
+└── MIGRATION_DEBATE_SUMMARY.md        # Implementation details - NEW
 ```
 
 ### Key Design Decisions
@@ -443,28 +576,40 @@ python debate_cli.py --hymn "RV 2.33" --rounds 1
 ### vedic-agent Branch (December 2025)
 
 **Major Features:**
-- ✅ Dual-translation debate system
+- ✅ Dual-translation debate system (Griffith vs Sharma)
+- ✅ **Migration theory debate system (AMT vs OIT)** - NEW
 - ✅ Complete hymn/sukta retrieval
 - ✅ Specific verse extraction (Griffith)
 - ✅ Archaeological neutrality
-- ✅ Separate CLI (`debate_cli.py`)
-- ✅ Dialectical synthesis
-- ✅ Debate transcript saving
+- ✅ Separate CLIs (`debate_cli.py` + `migration_debate_cli.py`)
+- ✅ Dialectical synthesis for both debate types
+- ✅ Interactive modes for both systems
+- ✅ Debate transcript saving (JSON format)
 
 **Key Fixes:**
-- Removed Aryan Migration Theory bias
+- Removed Aryan Migration Theory bias from Griffith agent
 - Added Sinauli evidence (2100 BCE chariots)
 - Fixed sequential chunk collection for Griffith
 - Removed retriever calls from agents
 - Implemented proper verse extraction regex
+- Added `parse_verse_reference()` utility function
 
-**Files Added:**
-- `debate_cli.py` - Main debate interface
-- `src/utils/debate_agents.py` - Agent implementations
-- `VEDIC_AGENT_README.md` - This file
+**Files Added (Philosophical Debate):**
+- `debate_cli.py` - Griffith vs Sharma debate interface
+- `src/utils/debate_agents.py` - GriffithAgent, SharmaAgent, DebateOrchestrator
+- Multiple documentation files (DEBATE_*.md)
+
+**Files Added (Migration Debate):**
+- `migration_debate_cli.py` - AMT vs OIT debate interface
+- `src/utils/migration_debate_agents.py` - AMTAgent, OITAgent, MigrationDebateOrchestrator
+- `MIGRATION_DEBATE_README.md` - Comprehensive guide (~800 lines)
+- `MIGRATION_DEBATE_QUICKREF.md` - Quick command reference
+- `MIGRATION_DEBATE_SUMMARY.md` - Implementation details
 
 **Files Modified:**
-- `src/cli_run.py` - Added export functions for debate system
+- `src/cli_run.py` - Added export functions for debate systems
+- `debate_cli.py` - Added `parse_verse_reference()` function
+- `VEDIC_AGENT_README.md` - This file (updated with migration debate docs)
 
 ---
 

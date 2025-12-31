@@ -19,6 +19,28 @@ from cli_run import build_index_and_retriever
 from src.utils.debate_agents import create_debate_orchestrator
 
 
+def parse_verse_reference(verse_reference: str):
+    """Parse verse reference string into components.
+
+    Args:
+        verse_reference: String like "RV 2.33", "RV 2.33.8", etc.
+
+    Returns:
+        tuple: (mandala, sukta, verse_num, original_text) or None if invalid
+        verse_num will be None for complete hymn references
+    """
+    match = re.match(r'(RV|YV)\s*(\d+)\.(\d+)(?:\.(\d+))?', verse_reference.upper())
+    if match:
+        veda, mandala, sukta, verse_num = match.groups()
+        return (
+            int(mandala),
+            int(sukta),
+            int(verse_num) if verse_num else None,
+            verse_reference
+        )
+    return None
+
+
 def auto_retrieve_both_translations(retriever, verse_reference: str):
     """Auto-retrieve verse text from BOTH Griffith and Sharma translations.
 

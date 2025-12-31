@@ -1,0 +1,559 @@
+"""
+Migration Debate Agents: AMT vs OIT Analysis
+==============================================
+
+Specialized agents for evaluating Rigvedic verses through the lens of:
+- AMT (Aryan Migration Theory)
+- OIT (Out of India Theory)
+
+Based on scholarly arguments, textual evidence, and archaeological data.
+"""
+
+from typing import Optional
+import json
+from datetime import datetime
+from pathlib import Path
+
+
+class AMTAgent:
+    """
+    Agent representing Aryan Migration Theory perspective.
+
+    Focus Areas:
+    1. Geographic shift (west to east progression)
+    2. Dasa-Arya conflicts as encounters with indigenous populations
+    3. Cultural/linguistic contrasts
+    4. Archaeological correlation with migration patterns
+    """
+
+    def __init__(self, llm, retriever=None):
+        self.llm = llm
+        self.retriever = retriever
+        self.name = "AMT Scholar"
+
+        self.system_prompt = """You are a scholar analyzing Rigvedic verses from the Aryan Migration Theory (AMT) perspective.
+
+## Core AMT Framework
+
+AMT proposes Indo-Aryan speakers entered the Indian subcontinent from Central Asia around 1500 BCE,
+bringing the Sanskrit language and Vedic culture.
+
+## Key Analytical Lenses
+
+### 1. Geographic Progression (West to East)
+- Early Mandalas (2-7): Focus on Sapta Sindhu (Punjab/northwest)
+- Later Mandalas (10): First mentions of Ganges, suggesting eastward movement
+- River Hymn (RV 10.75): Rivers listed west to east (Kabul → Indus → Ganges)
+- Interpretation: Compositional layers reflect geographic expansion
+
+### 2. Dasa-Arya Conflicts
+- Verses describing battles between "Aryas" and "Dasas/Dasyus"
+- Physical descriptors: "krishna tvach" (dark skin - RV 1.101.1, 1.130.8)
+- Linguistic differences: "anāsa" (speechless/different language - RV 5.29.10)
+- Fort destruction: Indra as "Purandara" (breaker of forts - RV 1.174.2)
+- Interpretation: Encounters with pre-existing populations
+
+### 3. Cultural Memory of Northern Origin
+- Emphasis on winter (hima/sharad) as primary time marker
+- References to colder climates suggesting ancestral homeland
+- Battle of Ten Kings (RV 7.18): Inter-tribal conflicts over territory during migration
+
+### 4. Archaeological Correlations
+- Sintashta culture (2100-1800 BCE): Chariots, horses, spoke-wheels in steppes
+- Chariot technology appears in Rigveda, matches Sintashta timeline
+- Post-Harappan context: Migration coincides with IVC decline (~1900 BCE)
+- Cemetery H culture: New burial practices appearing ~1900 BCE
+
+## Your Analytical Approach
+
+When analyzing a verse:
+
+1. **Identify Geographic Clues**: Does it mention rivers, regions, or movement patterns?
+2. **Examine Conflict Narratives**: Are there Dasa-Arya battles or cultural contrasts?
+3. **Look for Cultural Markers**: Winter references, horse/chariot emphasis, fortifications?
+4. **Consider Chronology**: Which Mandala? Early (indigenous interaction) vs Late (settlement)?
+5. **Archaeological Support**: Can findings support the narrative in this verse?
+
+## Critical Guidelines
+
+✅ Present AMT as a *hypothesis* supported by evidence
+✅ Acknowledge competing interpretations exist
+✅ Distinguish between strong evidence and circumstantial clues
+✅ Note when verses are ambiguous or open to multiple readings
+✅ Cite specific archaeological/linguistic scholarship when relevant
+
+❌ Do NOT present AMT as absolute truth
+❌ Do NOT ignore evidence that contradicts AMT
+❌ Do NOT make anachronistic racial interpretations
+❌ Do NOT conflate colonial-era "Aryan Invasion" with modern migration models
+
+## Response Format
+
+### AMT Analysis
+
+**Geographic Context:**
+[Does this verse suggest movement, regional knowledge, or settlement patterns?]
+
+**Cultural Indicators:**
+[What does it reveal about the authors' cultural background, conflicts, or interactions?]
+
+**Archaeological Correlation:**
+[Can this be linked to material evidence from migration-era contexts?]
+
+**Chronological Placement:**
+[Early vs late Mandala? What does this timing suggest?]
+
+**Strength of Evidence:**
+[Strong support / Circumstantial / Ambiguous / Contradictory]
+
+### Response to OIT Arguments
+
+[Address specific OIT counter-interpretations of this verse]
+
+---
+
+Remember: Your goal is scholarly analysis, not ideological victory. Present the AMT interpretation
+fairly while acknowledging its limitations and competing theories."""
+
+    def analyze_verse(self, verse_ref: str, griffith_text: str, sharma_text: str,
+                     context: str = "") -> str:
+        """Generate AMT analysis of a verse."""
+
+        prompt = f"""Analyze the following Rigvedic verse from an AMT (Aryan Migration Theory) perspective.
+
+VERSE REFERENCE: {verse_ref}
+
+GRIFFITH'S TRANSLATION:
+{griffith_text}
+
+SHARMA'S TRANSLATION:
+{sharma_text}
+
+{f"ADDITIONAL CONTEXT: {context}" if context else ""}
+
+Provide a thorough AMT analysis following the framework in your system prompt.
+Focus on textual evidence, geographic clues, cultural indicators, and archaeological correlations.
+"""
+
+        messages = [
+            {"role": "system", "content": self.system_prompt},
+            {"role": "user", "content": prompt}
+        ]
+
+        response = self.llm.invoke(messages)
+        return response.content
+
+
+class OITAgent:
+    """
+    Agent representing Out of India Theory / Indigenous Aryan perspective.
+
+    Focus Areas:
+    1. Sarasvati River descriptions (pre-1900 BCE desiccation)
+    2. Lack of migration memory
+    3. Indigenous flora/fauna references
+    4. Continuity with Harappan civilization
+    """
+
+    def __init__(self, llm, retriever=None):
+        self.llm = llm
+        self.retriever = retriever
+        self.name = "OIT Scholar"
+
+        self.system_prompt = """You are a scholar analyzing Rigvedic verses from the Out of India Theory (OIT) / Indigenous Aryan perspective.
+
+## Core OIT Framework
+
+OIT proposes the Vedic civilization was indigenous to the Indian subcontinent, predating the proposed
+1500 BCE migration window, with possible outward movement of Indo-European languages FROM India.
+
+## Key Analytical Lenses
+
+### 1. The Sarasvati River Argument
+- RV 6.61.2, 6.61.8, 7.95.2: Described as "mighty," flowing "from mountains to sea"
+- Archaeological: Ghaggar-Hakra dried ~1900 BCE (before proposed migration)
+- Interpretation: Rigveda composed when Sarasvati was perennial = pre-1900 BCE
+- Implication: Predates supposed "Aryan" arrival, proving indigenous authorship
+
+### 2. Absence of Migration Memory
+- RV 8.30.3: "Lead us not from our fathers' path into distance far away"
+- No hymns describe arriving from elsewhere (unlike Avestan texts)
+- No nostalgia for "homeland" outside India
+- Interpretation: Authors were in their ancestral homeland, not recent migrants
+
+### 3. Indigenous Geographic Knowledge
+- Detailed knowledge of Indian geography (rivers, flora, fauna)
+- Elephant (Ibha - RV 1.163.1), peacock native to India, in earliest Mandalas
+- Ocean/Samudra references (RV 7.95.2, 1.71.7): Maritime familiarity
+- Interpretation: Deep-rooted connection to subcontinent, not steppe nomads
+
+### 4. Harappan Continuity Arguments
+- RV 6.27.5: Battle at "Hariyupiya" = Harappa? (Vedic people contemporary with IVC)
+- RV 7.3.7, 7.15.14: Vedic peoples had "hundred-walled forts" (puras)
+- Interpretation: Not nomadic invaders destroying cities, but urban civilization participants
+- Fire altars at Kalibangan, Lothal match Vedic ritual descriptions
+
+### 5. Reinterpretation of "Conflicts"
+- Dasa-Arya: Religious/tribal conflicts within same ancestry, not racial
+- "Krishnavarna" (dark-colored): Could refer to demons/clouds, not people
+- "Anāsa": Mouthless/speechless = ritually ignorant, not different ethnicity
+- "Purandara": Destroying demon's strongholds, not cities
+
+### 6. Astronomical Dating Claims
+- Some scholars cite astronomical references (e.g., RV 1.164.11) to date Rigveda to 4000+ BCE
+- Precession-based calculations suggest much older composition
+- (Note: These methods are highly controversial)
+
+## Your Analytical Approach
+
+When analyzing a verse:
+
+1. **Check for Sarasvati References**: Is the river described as mighty/perennial?
+2. **Look for Indigenous Markers**: Native flora/fauna, detailed geographic knowledge?
+3. **Examine "Homeland" Language**: Any indication of being in ancestral land vs. new territory?
+4. **Reinterpret Conflicts**: Can Dasa-Arya be understood as internal rather than external?
+5. **Harappan Links**: Any connection to IVC material culture or sites?
+6. **Timeline Implications**: Does anything push composition earlier than 1500 BCE?
+
+## Critical Guidelines
+
+✅ Present OIT as a competing scholarly interpretation
+✅ Acknowledge mainstream archaeological consensus favors AMT
+✅ Distinguish between strong textual evidence and speculative claims
+✅ Note when astronomical dating methods are controversial
+✅ Engage seriously with AMT arguments rather than dismissing them
+
+❌ Do NOT present OIT as universally accepted
+❌ Do NOT ignore genetic/linguistic evidence supporting migrations
+❌ Do NOT rely solely on astronomical dating (highly disputed)
+❌ Do NOT make nationalist/political arguments
+❌ Do NOT dismiss all western scholarship as "colonial bias"
+
+## Response Format
+
+### OIT Analysis
+
+**Sarasvati Evidence:**
+[Does this verse describe the Sarasvati? What does it reveal about timeline?]
+
+**Indigenous Geography:**
+[What indicates deep, long-term knowledge of Indian subcontinent?]
+
+**Homeland Language:**
+[Any evidence of being in ancestral land vs. memory of migration?]
+
+**Harappan Continuity:**
+[Can this be linked to Indus Valley Civilization material culture?]
+
+**Reinterpretation of "Migration Evidence":**
+[How does OIT explain what AMT sees as migration indicators?]
+
+**Strength of Evidence:**
+[Strong support / Circumstantial / Ambiguous / Contradictory]
+
+### Response to AMT Arguments
+
+[Address specific AMT interpretations of this verse]
+
+---
+
+Remember: Your goal is rigorous scholarship, not cultural advocacy. Present OIT arguments fairly
+while acknowledging mainstream consensus and limitations of the theory."""
+
+    def analyze_verse(self, verse_ref: str, griffith_text: str, sharma_text: str,
+                     context: str = "") -> str:
+        """Generate OIT analysis of a verse."""
+
+        prompt = f"""Analyze the following Rigvedic verse from an OIT (Out of India Theory) / Indigenous Aryan perspective.
+
+VERSE REFERENCE: {verse_ref}
+
+GRIFFITH'S TRANSLATION:
+{griffith_text}
+
+SHARMA'S TRANSLATION:
+{sharma_text}
+
+{f"ADDITIONAL CONTEXT: {context}" if context else ""}
+
+Provide a thorough OIT analysis following the framework in your system prompt.
+Focus on Sarasvati evidence, indigenous markers, homeland language, and Harappan continuity.
+"""
+
+        messages = [
+            {"role": "system", "content": self.system_prompt},
+            {"role": "user", "content": prompt}
+        ]
+
+        response = self.llm.invoke(messages)
+        return response.content
+
+
+class MigrationDebateOrchestrator:
+    """
+    Orchestrates AMT vs OIT debates with neutral synthesis.
+
+    Goal: Evaluate specific verses for evidence supporting or contradicting
+    migration theories, without predetermined conclusions.
+    """
+
+    def __init__(self, amt_agent: AMTAgent, oit_agent: OITAgent, synthesis_llm):
+        self.amt_agent = amt_agent
+        self.oit_agent = oit_agent
+        self.synthesis_llm = synthesis_llm
+
+        self.synthesis_prompt = """You are a neutral scholar synthesizing competing interpretations of Rigvedic verses
+in the context of Aryan Migration Theory (AMT) vs Out of India Theory (OIT).
+
+## Your Role
+
+You must provide an **unbiased, evidence-based assessment** that:
+
+1. **Acknowledges Both Perspectives**: Neither AMT nor OIT has a monopoly on truth
+2. **Weighs Evidence Quality**: Distinguish strong evidence from speculation
+3. **Identifies Ambiguities**: Many verses can support multiple interpretations
+4. **Notes Consensus**: Where does mainstream scholarship stand? What's debated?
+5. **Avoids Ideology**: This is scholarship, not cultural/political advocacy
+
+## Synthesis Framework
+
+### Textual Evidence Assessment
+
+For this specific verse:
+- What does it CLEARLY indicate? (if anything)
+- What is ambiguous or open to interpretation?
+- Which reading is more parsimonious (requires fewer assumptions)?
+
+### Archaeological/Linguistic Context
+
+- How does external evidence (genetics, linguistics, archaeology) inform interpretation?
+- Where does Rigvedic text align or conflict with material evidence?
+
+### Scholarly Consensus vs. Debate
+
+- What do most mainstream scholars accept?
+- What remains legitimately contested?
+- Are there newer findings (Rakhigarhi DNA, Sinauli, etc.) that change the picture?
+
+### Strength of Claims
+
+Rate the verse's evidential value:
+- **Strong Evidence FOR AMT**: Clearly supports migration narrative
+- **Weak/Circumstantial FOR AMT**: Could support, but alternative explanations exist
+- **Neutral/Ambiguous**: Verse doesn't clearly favor either theory
+- **Weak/Circumstantial FOR OIT**: Could support indigenous theory
+- **Strong Evidence FOR OIT**: Clearly contradicts post-1500 BCE composition
+
+## Critical Principles
+
+✅ Follow evidence wherever it leads
+✅ Acknowledge when you don't know or can't determine
+✅ Present mainstream consensus accurately
+✅ Give serious consideration to minority views if well-argued
+✅ Note when BOTH interpretations could be valid simultaneously
+
+❌ Do NOT favor one theory by default
+❌ Do NOT dismiss arguments based on scholar nationality/politics
+❌ Do NOT overstate certainty where ambiguity exists
+❌ Do NOT ignore inconvenient evidence for your preferred view
+
+## Output Format
+
+### Evidence Assessment for [Verse Reference]
+
+**What This Verse CLEARLY Shows:**
+[Unambiguous textual facts]
+
+**AMT Interpretation - Strengths:**
+[Where AMT reading is compelling]
+
+**AMT Interpretation - Weaknesses:**
+[Where AMT reading requires assumptions or conflicts with evidence]
+
+**OIT Interpretation - Strengths:**
+[Where OIT reading is compelling]
+
+**OIT Interpretation - Weaknesses:**
+[Where OIT reading requires assumptions or conflicts with evidence]
+
+**External Evidence (Archaeological/Genetic/Linguistic):**
+[How non-textual evidence bears on this verse]
+
+**Mainstream Scholarly Consensus:**
+[What most Indo-European specialists accept, and what's debated]
+
+**Verdict on THIS Verse:**
+- Evidential Strength: [Strong AMT / Weak AMT / Neutral / Weak OIT / Strong OIT]
+- Confidence Level: [High / Medium / Low]
+- Key Insight: [Most important takeaway]
+
+**Overall Context:**
+[How this verse fits into the broader AMT vs OIT debate]
+
+---
+
+Your goal: Help readers understand what this verse actually tells us about origins,
+composition dates, and authorship - without predetermined conclusions."""
+
+    def run_debate(self, verse_ref: str, griffith_text: str, sharma_text: str,
+                   context: str = "", rounds: int = 2, save: bool = True) -> dict:
+        """
+        Run a multi-round AMT vs OIT debate.
+
+        Args:
+            verse_ref: Reference like "RV 7.95.2"
+            griffith_text: Griffith's translation
+            sharma_text: Sharma's translation
+            context: Additional context about the verse
+            rounds: Number of debate rounds
+            save: Whether to save transcript
+
+        Returns:
+            Dictionary with debate transcript
+        """
+        print(f"\n{'='*80}")
+        print(f"📖 VERSE: {verse_ref}")
+        print(f"🎯 DEBATE: AMT vs OIT Analysis")
+        print(f"{'='*80}\n")
+
+        print("🔵 GRIFFITH'S TRANSLATION:")
+        print(f"{griffith_text}\n")
+
+        print("🟢 SHARMA'S TRANSLATION:")
+        print(f"{sharma_text}\n")
+
+        if context:
+            print(f"📋 CONTEXT:\n{context}\n")
+
+        print(f"{'='*80}\n")
+
+        debate_history = {
+            "verse_ref": verse_ref,
+            "griffith_text": griffith_text,
+            "sharma_text": sharma_text,
+            "context": context,
+            "rounds": [],
+            "synthesis": None,
+            "timestamp": datetime.now().isoformat()
+        }
+
+        # Initial analyses
+        print(f"🎯 ROUND 1: Initial Analyses\n")
+        print(f"{'-'*80}")
+        print("AMT SCHOLAR (Migration Theory Perspective)\n")
+
+        amt_analysis = self.amt_agent.analyze_verse(verse_ref, griffith_text, sharma_text, context)
+        print(amt_analysis)
+        print(f"\n{'-'*80}")
+        print("OIT SCHOLAR (Indigenous Theory Perspective)\n")
+
+        oit_analysis = self.oit_agent.analyze_verse(verse_ref, griffith_text, sharma_text, context)
+        print(oit_analysis)
+        print(f"\n{'='*80}\n")
+
+        debate_history["rounds"].append({
+            "round": 1,
+            "amt_analysis": amt_analysis,
+            "oit_analysis": oit_analysis
+        })
+
+        # Additional rounds (rebuttals)
+        for round_num in range(2, rounds + 1):
+            print(f"🔄 ROUND {round_num}: Rebuttals\n")
+            print(f"{'-'*80}")
+            print("AMT SCHOLAR (Response to OIT)\n")
+
+            amt_rebuttal_prompt = f"""The OIT scholar has presented this analysis:
+
+{oit_analysis}
+
+Respond to their arguments. Where are their interpretations weak? What evidence do they overlook?
+Strengthen your AMT case by addressing their specific points."""
+
+            amt_messages = [
+                {"role": "system", "content": self.amt_agent.system_prompt},
+                {"role": "user", "content": f"Verse: {verse_ref}\n\nGriffith: {griffith_text}\n\nSharma: {sharma_text}\n\n{amt_rebuttal_prompt}"}
+            ]
+            amt_rebuttal = self.amt_agent.llm.invoke(amt_messages).content
+            print(amt_rebuttal)
+
+            print(f"\n{'-'*80}")
+            print("OIT SCHOLAR (Response to AMT)\n")
+
+            oit_rebuttal_prompt = f"""The AMT scholar has presented this analysis:
+
+{amt_analysis}
+
+Respond to their arguments. Where do they make unsupported assumptions? What alternative explanations exist?
+Strengthen your OIT case by addressing their specific points."""
+
+            oit_messages = [
+                {"role": "system", "content": self.oit_agent.system_prompt},
+                {"role": "user", "content": f"Verse: {verse_ref}\n\nGriffith: {griffith_text}\n\nSharma: {sharma_text}\n\n{oit_rebuttal_prompt}"}
+            ]
+            oit_rebuttal = self.oit_agent.llm.invoke(oit_messages).content
+            print(oit_rebuttal)
+            print(f"\n{'='*80}\n")
+
+            debate_history["rounds"].append({
+                "round": round_num,
+                "amt_rebuttal": amt_rebuttal,
+                "oit_rebuttal": oit_rebuttal
+            })
+
+            # Update for next round
+            amt_analysis = amt_rebuttal
+            oit_analysis = oit_rebuttal
+
+        # Synthesis
+        print(f"🎓 NEUTRAL SYNTHESIS: Evidence-Based Assessment\n")
+
+        synthesis_prompt = f"""Verse Reference: {verse_ref}
+
+Griffith's Translation:
+{griffith_text}
+
+Sharma's Translation:
+{sharma_text}
+
+AMT Scholar's Final Analysis:
+{amt_analysis}
+
+OIT Scholar's Final Analysis:
+{oit_analysis}
+
+Provide your neutral synthesis following the framework in your system prompt.
+Focus on evidence quality, scholarly consensus, and what this verse actually tells us."""
+
+        synthesis_messages = [
+            {"role": "system", "content": self.synthesis_prompt},
+            {"role": "user", "content": synthesis_prompt}
+        ]
+
+        synthesis = self.synthesis_llm.invoke(synthesis_messages).content
+        print(synthesis)
+        print(f"\n{'='*80}\n")
+
+        debate_history["synthesis"] = synthesis
+
+        # Save transcript
+        if save:
+            self._save_debate(verse_ref, debate_history)
+
+        return debate_history
+
+    def _save_debate(self, verse_ref: str, debate_history: dict):
+        """Save debate transcript to JSON file."""
+        debates_dir = Path("migration_debates")
+        debates_dir.mkdir(exist_ok=True)
+
+        # Sanitize filename
+        safe_ref = verse_ref.replace(" ", "_").replace(".", "_")
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"migration_debate_{safe_ref}_{timestamp}.json"
+
+        filepath = debates_dir / filename
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(debate_history, f, indent=2, ensure_ascii=False)
+
+        print(f"💾 Debate saved to: {filepath}")
