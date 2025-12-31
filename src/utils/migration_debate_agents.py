@@ -104,10 +104,17 @@ When analyzing a verse:
 
 ## Response Format
 
+### ⚠️ BEFORE WRITING - CHECK DIRECTIONAL LOGIC:
+- AMT claims WEST→EAST migration (Central Asia → India)
+- WEST→EAST movement = SUPPORTS AMT
+- EAST→WEST movement = CONTRADICTS AMT (not supports!)
+- Already settled in EAST (Sarasvati/Ganges) = CONTRADICTS AMT
+
 ### AMT Analysis
 
 **Geographic Context:**
 [Does this verse suggest movement, regional knowledge, or settlement patterns?]
+⚠️ CHECK: Is movement west→east (supports AMT) or east→west (contradicts AMT)?
 
 **Cultural Indicators:**
 [What does it reveal about the authors' cultural background, conflicts, or interactions?]
@@ -425,18 +432,24 @@ Before categorizing ANY point as a "strength" or "weakness," ask yourself:
 
 ### Apply This Logic:
 
-**AMT STRENGTHS** = Evidence supporting external migration
-- West-to-east river sequences
+**AMT STRENGTHS** = Evidence supporting external migration FROM WEST
+- West-to-east river sequences (RV 10.75: Kabul → Indus → Ganges)
 - Linguistic connections to PIE
 - Sintashta chariot parallels
-- Dasa-Arya conflict narratives
+- Dasa-Arya conflict narratives showing arrival
 
 **AMT WEAKNESSES** = Evidence contradicting external migration
+- **EAST-TO-WEST movement (contradicts west-to-east AMT claim!)**
+- **Already settled in EAST (Sarasvati/Ganges) when moving west**
 - Indigenous archaeological evidence (Sinauli predating migration)
 - Absence of migration memory
 - Deep Sarasvati knowledge
 - Native flora/fauna familiarity
 - **"Assumption of external X is unsupported" = AMT WEAKNESS!**
+
+⚠️ **CRITICAL EXAMPLE - Directional Logic:**
+- ❌ WRONG: "Sudas traveling from Sarasvati (east) to Parushni (west) supports AMT"
+- ✅ CORRECT: "Sudas traveling from Sarasvati (east) to Parushni (west) = EAST-TO-WEST movement = CONTRADICTS AMT's west-to-east claim = AMT WEAKNESS"
 
 **OIT STRENGTHS** = Evidence supporting indigenous origins
 - Pre-migration archaeology (Sinauli chariots at 2100 BCE)
