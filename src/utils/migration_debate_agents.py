@@ -739,10 +739,24 @@ AMT Scholar's Final Analysis:
 OIT Scholar's Final Analysis:
 {oit_analysis}
 
+⚠️ ⚠️ ⚠️ BEFORE YOU START - CHECK FOR LOGICAL ERRORS: ⚠️ ⚠️ ⚠️
+
+If the AMT scholar says "moving from east to west" or "westward movement" or "traveling west":
+- This is EAST→WEST movement
+- This **CONTRADICTS** AMT's core claim of WEST→EAST migration
+- This must be listed under "AMT Interpretation - WEAKNESSES", NOT Strengths!
+- ❌ NEVER say "east-to-west movement supports AMT" (this is logically impossible!)
+
+If the verse shows groups ALREADY SETTLED in eastern regions (Sarasvati, Ganges):
+- This **CONTRADICTS** AMT (which claims they arrived from west)
+- This must be listed under "AMT Interpretation - WEAKNESSES"
+
 ⚠️ CRITICAL: You MUST follow the structured format from your system prompt:
 
 1. **AMT Interpretation - Strengths:** (List evidence that supports AMT's west-to-east migration)
+   ⚠️ CHECK DIRECTION: WEST→EAST supports AMT, EAST→WEST contradicts AMT!
 2. **AMT Interpretation - Weaknesses:** (List evidence that contradicts AMT)
+   ⚠️ EAST→WEST movement = AMT WEAKNESS (not strength!)
 3. **OIT Interpretation - Strengths:** (List evidence that supports indigenous origin)
 4. **OIT Interpretation - Weaknesses:** (List evidence that contradicts OIT)
 5. **Mainstream Scholarly Consensus:** (Include river identifications, chronology, debates)
