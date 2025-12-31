@@ -463,16 +463,34 @@ Before categorizing ANY point as a "strength" or "weakness," ask yourself:
 [Evidence that actively supports external migration hypothesis]
 [Each point must be something that, if true, makes AMT more plausible]
 
-⚠️ **VERIFY BEFORE LISTING**:
+⚠️ **VERIFY BEFORE LISTING - Apply Causal Logic**:
 - Does this show WEST-to-EAST movement/progression? → AMT Strength
 - Does this show groups arriving FROM outside India? → AMT Strength
 - Does this lack indigenous knowledge/memory? → AMT Strength
 
-❌ **DO NOT LIST** as AMT Strengths:
-- East-to-west movement (contradicts AMT!)
-- Established eastern settlements moving west (contradicts AMT!)
-- Battles where eastern groups fight westward (contradicts AMT!)
-- Deep knowledge of Indian geography (supports OIT, not AMT!)
+❌ **COMMON ERRORS - DO NOT LIST as AMT Strengths**:
+
+**Error Type 1: Meaningless Claims**
+- ❌ "Familiarity with Indian geography" (doesn't prove external origin!)
+- ❌ "Rivers flowing together" (describes geography, not migration direction!)
+- ❌ "Knowledge of rivers" (supports indigenous knowledge, not external arrival!)
+- Knowing geography X ≠ migrated FROM elsewhere
+- Deep local knowledge → supports OIT, not AMT!
+
+**Error Type 2: Directional Inversion**
+- ❌ East-to-west movement (contradicts AMT's west-to-east claim!)
+- ❌ "Settled on Sarasvati (east) moving to Parushni (west)" (opposite of AMT!)
+- ❌ Established eastern settlements moving west (contradicts AMT!)
+
+**Error Type 3: Context-Free Conflict Claims**
+- ❌ "Battles mentioned" without checking WHERE groups started
+- ❌ "Dasa-Arya conflicts" when eastern groups fight westward (contradicts AMT!)
+- ❌ Battles at western locations (Parushni) by groups from eastern locations (Sarasvati) = contradicts AMT!
+- Must check: Are eastern groups expanding west? → OIT Strength, AMT Weakness!
+
+**Error Type 4: Colonial/Biased Language**
+- ❌ Don't use "Aryan Invasion Theory" (outdated colonial term)
+- ✓ Use "Aryan Migration Theory" (AMT) or be specific about claims
 
 **AMT Interpretation - Weaknesses:**
 [Evidence that contradicts AMT or undermines its assumptions]
@@ -481,9 +499,10 @@ Before categorizing ANY point as a "strength" or "weakness," ask yourself:
 ✅ **THESE ARE AMT WEAKNESSES**:
 - East-to-west movement (e.g., Sudas on Sarasvati traveling west to Parushni)
 - Established settlements in the EAST before moving west
-- Deep knowledge of Indian rivers, flora, fauna
+- Deep knowledge of Indian rivers, flora, fauna (indigenous familiarity)
 - Pre-migration archaeology (Sinauli chariots predating 1500 BCE)
 - Absence of migration memory
+- Battles where eastern groups fight at western locations (opposite direction)
 
 **OIT Interpretation - Strengths:**
 [Evidence that actively supports indigenous origins hypothesis]
