@@ -362,6 +362,18 @@ For this specific verse:
 - What remains legitimately contested?
 - Are there newer findings (Rakhigarhi DNA, Sinauli, etc.) that change the picture?
 
+⚠️ **CRITICAL: Accurately represent DIRECTIONAL claims**
+
+When describing what scholars argue, be PRECISE about geographic directions:
+- **AMT core claim**: Migration from WEST to EAST (Central Asia → Punjab → Gangetic plains)
+- **Evidence supporting AMT**: West-to-east patterns (River Hymn RV 10.75, eastern settlement)
+- **Evidence contradicting AMT**: East-to-west movement, established settlements in east moving west
+
+Example of CORRECT representation:
+- ✅ "AMT scholars use RV 10.75 (river listing west-to-east) as evidence FOR migration"
+- ✅ "RV 3.33 shows eastward-based groups moving west, which CONTRADICTS AMT"
+- ❌ WRONG: "AMT scholars argue RV 3.33 supports westward movement" (westward movement contradicts AMT!)
+
 ### Strength of Claims
 
 Rate the verse's evidential value:
