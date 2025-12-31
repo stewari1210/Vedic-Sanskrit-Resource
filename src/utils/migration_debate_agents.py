@@ -463,16 +463,20 @@ composition dates, and authorship - without predetermined conclusions."""
             print(f"{'-'*80}")
             print("AMT SCHOLAR (Response to OIT)\n")
 
-            amt_rebuttal_prompt = f"""The OIT scholar has presented this analysis:
+            amt_rebuttal_prompt = f"""The OIT scholar argues:
 
-{oit_analysis}
+{oit_analysis[:1500]}...
 
-Respond to their arguments. Where are their interpretations weak? What evidence do they overlook?
-Strengthen your AMT case by addressing their specific points."""
+Provide a focused rebuttal (max 300 words):
+1. Which OIT arguments are weak or unsupported?
+2. What evidence contradicts their interpretation?
+3. Strengthen your AMT position with specific points.
+
+Be concise and direct."""
 
             amt_messages = [
-                {"role": "system", "content": self.amt_agent.system_prompt},
-                {"role": "user", "content": f"Verse: {verse_ref}\n\nGriffith: {griffith_text}\n\nSharma: {sharma_text}\n\n{amt_rebuttal_prompt}"}
+                {"role": "system", "content": self.amt_agent.system_prompt[:800]},  # Truncate system prompt
+                {"role": "user", "content": f"Verse: {verse_ref}\n\n{amt_rebuttal_prompt}"}
             ]
             amt_rebuttal = self.amt_agent.llm.invoke(amt_messages).content
             print(amt_rebuttal)
@@ -480,16 +484,20 @@ Strengthen your AMT case by addressing their specific points."""
             print(f"\n{'-'*80}")
             print("OIT SCHOLAR (Response to AMT)\n")
 
-            oit_rebuttal_prompt = f"""The AMT scholar has presented this analysis:
+            oit_rebuttal_prompt = f"""The AMT scholar argues:
 
-{amt_analysis}
+{amt_analysis[:1500]}...
 
-Respond to their arguments. Where do they make unsupported assumptions? What alternative explanations exist?
-Strengthen your OIT case by addressing their specific points."""
+Provide a focused rebuttal (max 300 words):
+1. Which AMT arguments rely on unsupported assumptions?
+2. What alternative explanations exist?
+3. Strengthen your OIT position with specific points.
+
+Be concise and direct."""
 
             oit_messages = [
-                {"role": "system", "content": self.oit_agent.system_prompt},
-                {"role": "user", "content": f"Verse: {verse_ref}\n\nGriffith: {griffith_text}\n\nSharma: {sharma_text}\n\n{oit_rebuttal_prompt}"}
+                {"role": "system", "content": self.oit_agent.system_prompt[:800]},  # Truncate system prompt
+                {"role": "user", "content": f"Verse: {verse_ref}\n\n{oit_rebuttal_prompt}"}
             ]
             oit_rebuttal = self.oit_agent.llm.invoke(oit_messages).content
             print(oit_rebuttal)

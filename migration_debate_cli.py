@@ -39,13 +39,16 @@ def create_llm(use_google: bool = False):
         return ChatGoogleGenerativeAI(
             model=GEMINI_MODEL,
             google_api_key=GEMINI_API_KEY,
-            temperature=0.3
+            temperature=0.3,
+            timeout=180  # 3 minute timeout
         )
     else:
         return ChatOllama(
             base_url=OLLAMA_BASE_URL,
             model=OLLAMA_MODEL,
-            temperature=MODEL_SPECS.get("temperature", 0.7)
+            temperature=MODEL_SPECS.get("temperature", 0.7),
+            timeout=180,  # 3 minute timeout
+            num_ctx=4096  # Limit context window to prevent huge prompts
         )
 
 
