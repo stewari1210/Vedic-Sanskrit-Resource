@@ -82,9 +82,11 @@ NAME HANDLING (IMPORTANT):
 - When in doubt, prefer the user's original spelling
 
 Common Rigveda names (for typo correction reference):
-  Tribes/Groups: Trtsus, Bharatas, Purus, Yadus, Anus, Druhyus, Turvasas, Dasas
+  Tribes/Groups: Trksi, Trtsus, Bharatas, Purus, Yadus, Anus, Druhyus, Turvasas, Dasas
   People: Sudas, Vasishta/Vasistha, Indra, Agni, Varuna, Mitra
   Rivers: Sarasvati, Yamuna, Ganga, Sindhu/Indus, Rasa
+
+NOTE: "Trksi" and "Trtsus" are DIFFERENT tribes - do NOT "correct" one to the other!
 
 Examples:
 ✅ CORRECT:
