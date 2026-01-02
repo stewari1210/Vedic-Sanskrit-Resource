@@ -175,13 +175,37 @@ def process_follow_up_node(state: GraphState):
 
 
 def correct_grammar_node(state: GraphState):
-    """Corrects the grammar of a standalone question using an LLM."""
+    """Corrects the grammar of a standalone question using an LLM.
+
+    Preserves words enclosed in quotes to prevent grammar correction.
+    Example: 'Tell me about "Trksi"' will keep "Trksi" exactly as written.
+    """
     logger.info("---CORRECTING GRAMMAR---")
     question = state["question"]
 
+    # Extract quoted words/phrases to protect from correction
+    import re
+    quoted_pattern = r'"([^"]+)"'
+    quoted_words = re.findall(quoted_pattern, question)
+
+    # Replace quoted words with placeholders
+    protected_question = question
+    placeholders = {}
+    for i, quoted in enumerate(quoted_words):
+        placeholder = f"__PROTECTED_{i}__"
+        placeholders[placeholder] = quoted
+        protected_question = protected_question.replace(f'"{quoted}"', placeholder, 1)
+
+    if quoted_words:
+        logger.info(f"Protected {len(quoted_words)} quoted word(s) from grammar correction: {quoted_words}")
+
     grammar_chain = ChatPromptTemplate.from_template(GRAMMER) | llm | StrOutputParser()
 
-    enhanced_question = grammar_chain.invoke({"question": question})
+    enhanced_question = grammar_chain.invoke({"question": protected_question})
+
+    # Restore protected words
+    for placeholder, original in placeholders.items():
+        enhanced_question = enhanced_question.replace(placeholder, original)
 
     # Strip surrounding quotes that LLM might add
     enhanced_question = enhanced_question.strip().strip("'\"")

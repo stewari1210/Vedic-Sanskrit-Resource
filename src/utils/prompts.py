@@ -73,6 +73,7 @@ CRITICAL RULES - READ CAREFULLY:
 3. If user already has [XX-YYY] format, keep it exactly as is with square brackets
 4. If user writes "Chapter 2 HYMN XXXIII", you MAY convert to "[02-033] HYMN XXXIII"
 5. NEVER add hymn numbers to questions that don't mention specific hymns
+6. PRESERVE any placeholder text like __PROTECTED_N__ exactly as written (these are user-protected words)
 
 NAME HANDLING (IMPORTANT):
 - Fix OBVIOUS typos in proper nouns (e.g., "Trstus" → "Trtsus", "Sudaas" → "Sudas")
