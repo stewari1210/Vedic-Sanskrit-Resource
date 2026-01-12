@@ -20,16 +20,27 @@ Built on top of a sophisticated RAG architecture using Langchain and LangGraph, 
 -   **🔤 Verse Translation** - Practice with authentic Rigveda verses (RV 1.1.1, Gayatri Mantra, etc.)
 -   **🗣️ Pronunciation Guide** - Hear correct pronunciation with Google Text-to-Speech
 -   **🎯 Interactive Quizzes** - Test your knowledge with adaptive difficulty
--   **💬 Free Conversation** - Ask any Sanskrit question and get RAG-powered answers
+-   **💬 Free Conversation** - Ask any Sanskrit question and get intelligent, context-aware answers
+
+### 🤖 Agentic RAG System (NEW!)
+-   **🧠 Multi-Agent Intelligence:** Automatically classifies queries into 3 types:
+    -   **Construction Queries** - "Translate I love you" → Dictionary → Grammar → Corpus → Synthesis
+    -   **Grammar Queries** - "Explain declension" → Grammar Rules → Examples → Explanation
+    -   **Factual Queries** - "Who is Indra?" → Corpus Search → RAG Answer
+-   **📚 19K+ Dictionary:** Monier-Williams Sanskrit-English dictionary with OCR-cleaned entries
+-   **📖 Grammar Integration:** Macdonell's Vedic Grammar rules for accurate constructions
+-   **🔍 Brahmana Context:** Satapatha Brahmana (all 14 books) for ritual and philosophical context
+-   **🔗 Tool Orchestration:** Agent decides which tools to use based on query complexity
+-   **✨ Pedagogical Output:** Word-by-word breakdowns with Devanagari + IAST transliteration
 
 ### 🚀 Technical Features
 -   **Dual Interface:** Beautiful Streamlit web app + command-line tool
 -   **Audio Pronunciation:** Native Devanagari text-to-speech using gTTS
--   **RAG-Powered Answers:** Retrieves relevant context from Rigveda & Yajurveda corpus
 -   **Hybrid Search:** Combines BM25 keyword search with semantic vector search
 -   **Local LLMs:** Supports Ollama (llama3.1:8b, phi3.5:mini, qwen2.5:32b)
 -   **Beautiful Typography:** Proper Devanagari font rendering (Noto Serif/Sans Devanagari)
 -   **Smart Lock Management:** Automatic cleanup of Qdrant database locks
+-   **Shared Vector Store:** Single Qdrant instance for all agentic tools (no more lock errors!)
 -   **Chat History:** Maintains context across conversation turns
 -   **⚡ Multi-GPU Parallelization:** Optimized for 10-core/10-GPU systems (see [PARALLELIZATION.md](PARALLELIZATION.md))
     -   **4 GPUs** for QA model (llama3.1:8b)
@@ -44,32 +55,46 @@ Built on top of a sophisticated RAG architecture using Langchain and LangGraph, 
 RAG-CHATBOT-CLI-Version/
 ├── src/
 │   ├── vedic_sanskrit_tutor.py      # CLI version of the tutor
-│   ├── sanskrit_tutor_frontend.py   # Streamlit web interface
+│   ├── sanskrit_tutor_frontend.py   # Streamlit web interface (Agentic RAG)
 │   ├── cli_run.py                   # Original RAG CLI
 │   ├── helper.py                    # Logging and project paths
 │   ├── config.py                    # Configuration settings
 │   ├── settings.py                  # LLM and embeddings config
 │   └── utils/
+│       ├── agentic_rag.py           # 🆕 Multi-agent RAG system (3 query types)
 │       ├── file_ops.py              # File operations
 │       ├── index_files.py           # Document loading and vector store
 │       ├── process_files.py         # PDF processing
-│       ├── final_block_rag.py       # LangGraph RAG pipeline
+│       ├── final_block_rag.py       # LangGraph RAG pipeline (legacy)
 │       ├── retriever.py             # Hybrid retriever (BM25 + semantic)
 │       ├── vector_store.py          # Qdrant vector store management
 │       └── prompts.py               # LLM prompt templates
 ├── local_store/
-│   └── ancient_history/             # Rigveda & Yajurveda corpus
+│   └── ancient_history/             # Complete Vedic corpus
 │       ├── rigveda-griffith_COMPLETE_english_with_metadata/
-│       ├── rigveda-sharma_COMPLETE_english_with_metadata/
 │       ├── yajurveda-griffith_COMPLETE_english_with_metadata/
-│       └── yajurveda-sharma_COMPLETE_english_with_metadata/
-├── vector_store/                    # Qdrant vector database
+│       ├── macdonell_vedic_grammar/                # 🆕 Vedic grammar rules
+│       ├── satapatha_brahmana_part_01_books_1_2/   # 🆕 Brahmanas (5 parts)
+│       ├── satapatha_brahmana_part_02_books_3_4/
+│       ├── satapatha_brahmana_part_03_books_5_6_7/
+│       ├── satapatha_brahmana_part_04_books_8_9_10/
+│       └── satapatha_brahmana_part_05_books_11_12_13_14/
+├── monier_williams_dictionary.txt   # 🆕 16MB Monier-Williams Sanskrit-English dictionary
+├── sanskrit_dictionary.json         # 🆕 19,008 parsed dictionary entries
+├── sanskrit_dictionary_cleaned.json # 🆕 10,635 cleaned entries (OCR-corrected)
+├── parse_monier_williams_v2.py      # 🆕 Dictionary parser with OCR cleaning
+├── clean_dictionary.py              # 🆕 Dictionary cleaning pipeline
+├── test_agentic_rag.py              # 🆕 Standalone agentic RAG tests
+├── vector_store/                    # Qdrant vector database (19,944 chunks)
 ├── run_sanskrit_tutor.sh            # Launch CLI tutor
 ├── run_sanskrit_tutor_web.sh        # Launch Streamlit app
 ├── test_tts.py                      # Audio pronunciation test
+├── AGENTIC_RAG_QUERY_TYPES.md       # 🆕 Query classification docs
+├── DICTIONARY_CLEANING.md           # 🆕 OCR cleaning process
 ├── SANSKRIT_TUTOR_README.md         # CLI documentation
 ├── SANSKRIT_TUTOR_WEB_README.md     # Web interface guide
 ├── AUDIO_PRONUNCIATION_GUIDE.md     # TTS feature docs
+├── PARALLELIZATION.md               # Multi-GPU optimization guide
 └── FAST_MODELS_GUIDE.md             # Model comparison
 ```
 
@@ -79,9 +104,21 @@ RAG-CHATBOT-CLI-Version/
 
 -   **`vedic_sanskrit_tutor.py`**: Command-line Sanskrit learning tool with interactive REPL. Choose from 6 learning modes (grammar, vocabulary, translation, pronunciation, quiz, conversation) and get RAG-powered answers from the Vedic corpus.
 
--   **`sanskrit_tutor_frontend.py`**: Beautiful Streamlit web interface with proper Devanagari fonts, audio pronunciation, and interactive learning modules. Features automatic Qdrant lock cleanup and session state management.
+-   **`sanskrit_tutor_frontend.py`**: Beautiful Streamlit web interface with **Agentic RAG system**, proper Devanagari fonts, audio pronunciation, and interactive learning modules. Features automatic Qdrant lock cleanup and intelligent query routing.
 
-### RAG Pipeline Components
+### Agentic RAG System (NEW!)
+
+-   **`agentic_rag.py`**: Multi-agent RAG system with intelligent query classification:
+    - **3 Query Types:** Construction (translate sentences), Grammar (explain rules), Factual (answer questions)
+    - **3 Specialized Tools:**
+        - `dictionary_lookup()` - 10.6K+ cleaned Monier-Williams entries
+        - `grammar_rules_search()` - Macdonell Vedic Grammar retrieval
+        - `corpus_examples_search()` - Rigveda/Yajurveda/Brahmana examples
+    - **Multi-Step Reasoning:** Agent plans which tools to use and in what order
+    - **Pedagogical Synthesis:** Generates word-by-word breakdowns with grammar explanations
+    - **Shared Vector Store:** Eliminates Qdrant lock errors across all tools
+
+### RAG Pipeline Components (Legacy)
 
 -   **`final_block_rag.py`**: Orchestrates the LangGraph RAG pipeline with multi-step flow:
     1. Check if query is follow-up question
@@ -97,7 +134,27 @@ RAG-CHATBOT-CLI-Version/
     - Proper noun expansion for Sanskrit names
     - Returns top-k merged results
 
--   **`index_files.py`**: Loads markdown documents with metadata from `local_store/`, creates Qdrant vector store with sentence-transformers embeddings (all-mpnet-base-v2).
+-   **`index_files.py`**: Loads markdown documents with metadata from `local_store/`, creates Qdrant vector store with sentence-transformers embeddings (all-mpnet-base-v2). Now supports:
+    - **Rigveda** - Complete Griffith translation
+    - **Yajurveda** - Complete Griffith translation
+    - **Macdonell Grammar** - Vedic grammar rules and tables
+    - **Satapatha Brahmana** - All 14 books (5 parts)
+    - Total: **19,944 chunks** indexed
+
+### Dictionary System
+
+-   **`parse_monier_williams_v2.py`**: Parses 16MB Monier-Williams dictionary into structured JSON (19,008 entries)
+
+-   **`clean_dictionary.py`**: Cleans OCR errors from dictionary:
+    - Removes entries with special characters and noise
+    - Filters invalid Sanskrit terms
+    - Adds 54 curated common words (love, family, verbs, greetings)
+    - Output: 10,635 high-quality entries
+
+-   **Dictionary Files:**
+    - `monier_williams_dictionary.txt` - Original 16MB text
+    - `sanskrit_dictionary.json` - 19,008 parsed entries
+    - `sanskrit_dictionary_cleaned.json` - 10,635 cleaned entries
 
 ### Utility Components
 
@@ -180,7 +237,42 @@ RATE_LIMIT_EMBEDDINGS=50         # Requests per minute
 python src/vedic_sanskrit_tutor.py
 ```
 
-## 📚 Usage Guide
+## � Corpus Sources
+
+The Vedic Sanskrit Tutor is built on a comprehensive corpus covering:
+
+### 📜 Primary Vedic Texts
+-   **Rigveda** - Complete Griffith translation with metadata
+    - 10 Mandalas (books), 1,028 hymns, ~10,600 verses
+    - Focus: Hymns to deities, cosmology, philosophy
+-   **Yajurveda** - Complete Griffith translation with metadata
+    - 40 chapters (adhyayas) of ritual formulas
+    - Focus: Sacrificial procedures and mantras
+
+### 📚 Grammar & Linguistic Resources
+-   **Macdonell's Vedic Grammar** - Comprehensive grammatical reference
+    - Phonetics, sandhi rules, declension tables
+    - Conjugation patterns, verbal system
+    - Accent rules, syntax, compound formation
+-   **Monier-Williams Dictionary** - 10,635 cleaned entries
+    - English to Sanskrit translations
+    - OCR-corrected with curated common words
+    - Grammatical annotations (gender, roots)
+
+### 🕉️ Brahmana Literature
+-   **Satapatha Brahmana** - Complete 14 books in 5 parts
+    - Ritual explanations and procedures
+    - Philosophical discussions and symbolism
+    - Mythological narratives
+    - Total: ~1,000 pages of prose commentary
+
+### 📊 Corpus Statistics
+-   **Total Documents:** ~20,000 markdown files
+-   **Vector Database:** 19,944 chunks indexed in Qdrant
+-   **Embeddings:** sentence-transformers/all-mpnet-base-v2
+-   **Coverage:** Vedas, Grammar, Dictionary, Brahmanas
+
+## �📚 Usage Guide
 
 ### Web Interface (Streamlit)
 
