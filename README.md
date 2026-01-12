@@ -180,10 +180,11 @@ RAG-CHATBOT-CLI-Version/
 git clone https://github.com/stewari1210/Vedic-Sanskrit-Tutor.git
 cd Vedic-Sanskrit-Tutor
 
-# Using uv (recommended)
-uv sync
+# Create conda environment (recommended)
+conda create -n vedic-tutor python=3.11
+conda activate vedic-tutor
 
-# Or using pip
+# Install dependencies
 pip install -r requirements.txt
 ```
 
