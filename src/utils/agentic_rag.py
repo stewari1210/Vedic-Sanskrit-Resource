@@ -270,10 +270,10 @@ def classify_and_plan_node(state: AgentState):
         # Remove punctuation and split
         words = re.sub(r'[^\w\s]', ' ', text).split()
 
-        # Remove common words
+        # Remove common instruction words (but keep content words like "how", "you", "are")
         stop_words = {
-            "how", "do", "i", "say", "in", "sanskrit", "to", "the", "a", "an",
-            "what", "is", "me", "you", "can", "please", "vedic", "translate"
+            "do", "i", "say", "in", "sanskrit", "to", "the", "a", "an",
+            "me", "can", "please", "vedic", "translate"
         }
         english_words = [w.strip() for w in words if w not in stop_words and len(w) > 2]
         logger.info(f"[AGENT] Extracted words to translate: {english_words}")

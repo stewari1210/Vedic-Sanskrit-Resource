@@ -5555,9 +5555,13 @@
     "Fiauaa"
   ],
   "bad": [
-    "AgfcA",
+    "अशोभनम्",
+    "aśobhanam",
+    "man",
     "FEpin",
-    "man"
+    "पापम्",
+    "AgfcA",
+    "pāpam"
   ],
   "bad contrivance": [
     "ga"
@@ -13832,8 +13836,12 @@
     "mana"
   ],
   "fine": [
+    "साधु",
+    "sādhu",
     "Annka",
-    "ra"
+    "kuśalam",
+    "ra",
+    "कुशलम्"
   ],
   "fine linen": [
     "ma"
@@ -15596,12 +15604,14 @@
     "Vi-panna"
   ],
   "good": [
-    "śubha",
-    "शुभ",
-    "sat",
-    "सत्",
     "sādhu",
-    "साधु"
+    "śubha",
+    "uttamam",
+    "सत्",
+    "साधु",
+    "उत्तमम्",
+    "शुभ",
+    "sat"
   ],
   "good and bad": [
     "bhadra"
@@ -20726,7 +20736,11 @@
     "iaU"
   ],
   "many": [
+    "बहवः",
+    "अनेकानि",
+    "bahavaḥ",
     "Babntitba",
+    "anekāni",
     "an-eka"
   ],
   "many-coloured": [
@@ -20991,10 +21005,12 @@
     "dhyadhlmfttra"
   ],
   "might": [
-    "Mahimdn",
     "Mkhas",
+    "स्यात्",
+    "Vl-bhUman",
+    "syāt",
     "Saurya",
-    "Vl-bhUman"
+    "Mahimdn"
   ],
   "mightier": [
     "Mahlyaa"
@@ -21290,7 +21306,11 @@
     "Billn"
   ],
   "more": [
-    "BAklyafl"
+    "BAklyafl",
+    "भूयः",
+    "bhūyaḥ",
+    "अधिकम्",
+    "adhikam"
   ],
   "more clever": [
     "FafXyao"
@@ -21519,10 +21539,14 @@
     "SphoXaua"
   ],
   "much": [
-    "Babntitba",
+    "prabhūtam",
+    "an-eka",
     "Bahnsaa",
+    "Babntitba",
     "an-alpa",
-    "an-eka"
+    "bahu",
+    "प्रभूतम्",
+    "बहु"
   ],
   "much burnt": [
     "bapa-tSpa"
@@ -22954,7 +22978,11 @@
     "kin"
   ],
   "now": [
-    "Starhi"
+    "adhunā",
+    "idānīm",
+    "अधुना",
+    "Starhi",
+    "इदानीम्"
   ],
   "now-": [
     "Starhi"
@@ -31310,8 +31338,14 @@
     "yam-kara"
   ],
   "that": [
+    "tat",
+    "saḥ",
+    "सा",
+    "तत्",
     "Gamaniya",
-    "abhy-ava-dugdha"
+    "सः",
+    "abhy-ava-dugdha",
+    "sā"
   ],
   "that upon which": [
     "Ava-panna"
@@ -32267,8 +32301,10 @@
     "hga"
   ],
   "there": [
-    "Amutaa",
-    "Anratra"
+    "Anratra",
+    "तत्र",
+    "tatra",
+    "Amutaa"
   ],
   "thick": [
     "Bahala",
@@ -34852,9 +34888,13 @@
     "Blstrika"
   ],
   "very": [
+    "ati",
+    "भृशम्",
+    "bhṛśam",
+    "sv-adara",
     "ativn",
-    "oXra",
-    "sv-adara"
+    "अति",
+    "oXra"
   ],
   "very acid": [
     "amla"
@@ -35575,6 +35615,8 @@
     "Bam-pratlnandtta"
   ],
   "welcome": [
+    "svāgatam",
+    "स्वागतम्",
     "Svlyama"
   ],
   "welcomed": [
@@ -35587,8 +35629,14 @@
     "Saumangalya"
   ],
   "well": [
+    "su",
+    "sādhu",
+    "सु",
     "Sam-alamkfita",
-    "Xnialln"
+    "साधु",
+    "kuśalam",
+    "Xnialln",
+    "कुशलम्"
   ],
   "well applauded": [
     "sv-ubkigurta"
@@ -35698,7 +35746,9 @@
     "Boflkl"
   ],
   "when": [
-    "tarkyo"
+    "tarkyo",
+    "kadā",
+    "कदा"
   ],
   "wherever one pleases": [
     "mam"
@@ -36886,10 +36936,14 @@
     "मन्"
   ],
   "do": [
-    "karomi",
-    "करोमि",
+    "karoti",
+    "kurvanti",
+    "करोति",
     "kṛ",
-    "कृ"
+    "कुर्वन्ति",
+    "karomi",
+    "कृ",
+    "करोमि"
   ],
   "make": [
     "karomi",
@@ -36920,10 +36974,12 @@
     "ओदन"
   ],
   "hello": [
-    "namaste",
-    "नमस्ते",
     "namaskāra",
-    "नमस्कार"
+    "namaste",
+    "नमस्कार",
+    "नमस्ते",
+    "नमस्करोमि",
+    "namaskaromi"
   ],
   "i": [
     "aham",
@@ -36948,5 +37004,223 @@
   "they": [
     "te",
     "ते"
+  ],
+  "how": [
+    "katham",
+    "कथम्",
+    "kena prakāreṇa",
+    "केन प्रकारेण"
+  ],
+  "are": [
+    "asi",
+    "असि",
+    "stha",
+    "स्थ"
+  ],
+  "is": [
+    "asti",
+    "अस्ति",
+    "bhavati",
+    "भवति"
+  ],
+  "am": [
+    "asmi",
+    "अस्मि"
+  ],
+  "what": [
+    "kim",
+    "किम्",
+    "kaḥ",
+    "कः"
+  ],
+  "who": [
+    "kaḥ",
+    "कः",
+    "kā",
+    "का"
+  ],
+  "where": [
+    "kutra",
+    "कुत्र",
+    "kva",
+    "क्व"
+  ],
+  "why": [
+    "kasmāt",
+    "कस्मात्",
+    "kim artham",
+    "किम् अर्थम्"
+  ],
+  "which": [
+    "kaḥ",
+    "कः",
+    "kā",
+    "का",
+    "kim",
+    "किम्"
+  ],
+  "yes": [
+    "ām",
+    "आम्",
+    "āḥ",
+    "आः"
+  ],
+  "no": [
+    "na",
+    "न",
+    "mā",
+    "मा"
+  ],
+  "please": [
+    "kṛpayā",
+    "कृपया",
+    "dayā kṛtvā",
+    "दया कृत्वा"
+  ],
+  "thank": [
+    "dhanyavādaḥ",
+    "धन्यवादः",
+    "anugṛhīto'smi",
+    "अनुगृहीतोऽस्मि"
+  ],
+  "thanks": [
+    "dhanyavādaḥ",
+    "धन्यवादः"
+  ],
+  "goodbye": [
+    "punaḥ milāmaḥ",
+    "पुनः मिलामः",
+    "śubham astu",
+    "शुभम् अस्तु"
+  ],
+  "does": [
+    "karoti",
+    "करोति"
+  ],
+  "did": [
+    "akṛta",
+    "अकृत",
+    "akarot",
+    "अकरोत्"
+  ],
+  "can": [
+    "śaknoti",
+    "शक्नोति",
+    "samarthaḥ",
+    "समर्थः"
+  ],
+  "will": [
+    "kariṣyati",
+    "करिष्यति",
+    "bhaviṣyati",
+    "भविष्यति"
+  ],
+  "would": [
+    "kariṣyat",
+    "करिष्यत्",
+    "abhaviṣyat",
+    "अभविष्यत्"
+  ],
+  "should": [
+    "kartavyam",
+    "कर्तव्यम्",
+    "yuktam",
+    "युक्तम्"
+  ],
+  "may": [
+    "bhavatu",
+    "भवतु",
+    "syāt",
+    "स्यात्"
+  ],
+  "must": [
+    "kartavyam",
+    "कर्तव्यम्",
+    "āvaśyakam",
+    "आवश्यकम्"
+  ],
+  "some": [
+    "kecit",
+    "केचित्",
+    "katicit",
+    "कतिचित्"
+  ],
+  "all": [
+    "sarve",
+    "सर्वे",
+    "viśve",
+    "विश्वे"
+  ],
+  "every": [
+    "sarvaḥ",
+    "सर्वः",
+    "pratiḥ",
+    "प्रतिः"
+  ],
+  "any": [
+    "kaścit",
+    "कश्चित्",
+    "kopi",
+    "कोपि"
+  ],
+  "here": [
+    "atra",
+    "अत्र",
+    "iha",
+    "इह"
+  ],
+  "then": [
+    "tadā",
+    "तदा"
+  ],
+  "today": [
+    "adya",
+    "अद्य"
+  ],
+  "tomorrow": [
+    "śvaḥ",
+    "श्वः"
+  ],
+  "yesterday": [
+    "hyaḥ",
+    "ह्यः"
+  ],
+  "this": [
+    "ayam",
+    "अयम्",
+    "iyam",
+    "इयम्",
+    "idam",
+    "इदम्"
+  ],
+  "these": [
+    "ete",
+    "एते",
+    "etāḥ",
+    "एताः"
+  ],
+  "those": [
+    "te",
+    "ते",
+    "tāḥ",
+    "ताः"
+  ],
+  "less": [
+    "nyūnam",
+    "न्यूनम्",
+    "alpataram",
+    "अल्पतरम्"
+  ],
+  "okay": [
+    "sampūrṇam",
+    "सम्पूर्णम्",
+    "asti",
+    "अस्ति"
+  ],
+  "ok": [
+    "sampūrṇam",
+    "सम्पूर्णम्",
+    "asti",
+    "अस्ति"
   ]
 }
