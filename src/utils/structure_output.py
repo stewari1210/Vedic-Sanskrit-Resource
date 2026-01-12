@@ -32,6 +32,17 @@ class InitialRAGResponse(BaseModel):
     )
 
 
+# Simplified response for Ollama (no citations)
+class SimpleRAGResponse(BaseModel):
+    """
+    A simplified structured response without citations (for Ollama compatibility).
+    """
+
+    answer: str = Field(
+        ..., description="The concise and accurate final answer to the user's question."
+    )
+
+
 # Define the models for the evaluator's output
 class ConfidenceScore(BaseModel):
     """

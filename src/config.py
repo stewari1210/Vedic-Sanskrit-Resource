@@ -46,23 +46,27 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.1:8b")  # Ollama model name
 OLLAMA_EVAL_MODEL = os.getenv("OLLAMA_EVAL_MODEL", "llama3.1:8b")  # Ollama evaluation model
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash-exp")  # Gemini model name (free tier: gemini-2.0-flash-exp, gemini-1.5-flash, gemini-1.5-pro)
 
-CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "1024"))  # Increased from 512 for better context & speed
-CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "128"))  # Scaled proportionally
-RETRIEVAL_K = int(os.getenv("RETRIEVAL_K", "10"))  # Number of chunks to retrieve per query
+CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "768"))  # Reduced from 1024 for Groq token limits (6K max)
+CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "96"))  # Scaled proportionally (was 128)
+RETRIEVAL_K = int(os.getenv("RETRIEVAL_K", "3"))  # Number of chunks to retrieve per query (reduced from 5 for Groq token limit)
 
 # Hybrid retriever weights (must sum to 1.0)
 SEMANTIC_WEIGHT = float(os.getenv("SEMANTIC_WEIGHT", "0.7"))  # Weight for Qdrant semantic search (conceptual)
 KEYWORD_WEIGHT = float(os.getenv("KEYWORD_WEIGHT", "0.3"))     # Weight for BM25 keyword search (exact matches)
 
 # Query expansion via proper noun association
-# Increased from 3 to 5 to capture more variant context (e.g., Bharatas → Trtsus warrior-priest content)
-EXPANSION_DOCS = int(os.getenv("EXPANSION_DOCS", "5"))  # Number of additional docs to retrieve per proper noun for context expansion
+# Reduced from 2 to 1 to stay within Groq token limits (6K max)
+EXPANSION_DOCS = int(os.getenv("EXPANSION_DOCS", "1"))  # Number of additional docs to retrieve per proper noun for context expansion
 
 # Low-confidence answer handling
 USE_REGENERATION = os.getenv("USE_REGENERATION", "true").lower() == "true"  # Enable/disable regeneration with superior model
 REGENERATION_PROVIDER = os.getenv("REGENERATION_PROVIDER", "groq").lower()  # Provider for regeneration: groq, gemini, or ollama
 REGENERATION_MODEL = os.getenv("REGENERATION_MODEL", "llama-3.3-70b-versatile")  # Model for regeneration (provider-specific)
-MAX_REGENERATION_ATTEMPTS = int(os.getenv("MAX_REGENERATION_ATTEMPTS", "2"))  # Maximum regeneration attempts to prevent infinite loops (default: 2)
+MAX_REGENERATION_ATTEMPTS = int(os.getenv("MAX_REGENERATION_ATTEMPTS", "1"))  # Maximum regeneration attempts to prevent infinite loops (REDUCED from 2 to 1 to save API calls)
+
+# Document citations in responses
+# Set to False for Ollama (simpler structured output), True for Groq/Gemini (full citations)
+ENABLE_CITATIONS = os.getenv("ENABLE_CITATIONS", "false").lower() == "true"
 
 CHAT_MEMORY_WINDOW = (
     int(os.getenv("CHAT_MEMORY_WINDOW", "5")) * 2

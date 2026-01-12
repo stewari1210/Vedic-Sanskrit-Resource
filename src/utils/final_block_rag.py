@@ -18,7 +18,13 @@ from utils.prompts import (
     EVALUATION_PROMPT,
     REFINE_PROMPT,
 )
-from utils.structure_output import RAGResponse, ConfidenceScore, InitialRAGResponse
+from utils.structure_output import RAGResponse, ConfidenceScore, InitialRAGResponse, SimpleRAGResponse
+from utils.sanskrit_lexicon import (
+    enrich_query_with_sanskrit,
+    classify_query_type,
+    get_quick_construction,
+    extract_sanskrit_terms
+)
 import json
 from config import (
     CHAT_MEMORY_WINDOW,
@@ -28,7 +34,8 @@ from config import (
     REGENERATION_MODEL,
     GROQ_API_KEY,
     GEMINI_API_KEY,
-    MAX_REGENERATION_ATTEMPTS
+    MAX_REGENERATION_ATTEMPTS,
+    ENABLE_CITATIONS
 )
 
 llm = Settings.llm
@@ -92,14 +99,34 @@ class GraphState(TypedDict):
     is_follow_up: bool
     reset_history: bool
     regeneration_count: int  # Track regeneration attempts to prevent infinite loops
+    error_occurred: bool  # Flag to prevent refinement loops when errors occur
 
 
 def retrieve_and_rerank_node(state: GraphState, reranking_retriever):
     """
     Retrieves and reranks documents based on the enhanced question.
+    Now with Sanskrit lexicon enrichment for better semantic matching.
     """
     logger.info("---RETRIEVING & RERANKING DOCUMENTS---")
     enhanced_question = state.get("enhanced_question", state["question"])
+
+    # Classify query type
+    query_type = classify_query_type(enhanced_question)
+    logger.info(f"Query classified as: {query_type}")
+
+    # For construction queries, check if we have a quick answer
+    if query_type == "construction":
+        quick_answer = get_quick_construction(enhanced_question)
+        if quick_answer:
+            logger.info(f"Found quick construction match: {quick_answer['transliteration']}")
+            # Store in state for later use (could skip LLM entirely)
+            state["quick_construction"] = quick_answer
+
+    # Enrich query with Sanskrit terms to bridge semantic gap
+    enriched_question = enrich_query_with_sanskrit(enhanced_question)
+    if enriched_question != enhanced_question:
+        logger.info(f"Query enriched with Sanskrit terms: {enriched_question}")
+        enhanced_question = enriched_question
 
     # Use the combined retriever with the reranker
     retrieved_docs = reranking_retriever.invoke(enhanced_question)
@@ -316,18 +343,42 @@ def call_llm_node(state: GraphState):
         "chat_history": short_chat_history,
     }
 
-    # Bind to the simplified model
+    # Use simplified response structure if citations are disabled (for Ollama compatibility)
+    response_model = SimpleRAGResponse if not ENABLE_CITATIONS else InitialRAGResponse
+
+    # Modify prompt to remove citation instructions if disabled
+    prompt_text = RAG_PROMPT
+    if not ENABLE_CITATIONS:
+        # Remove citation-related instructions for simpler output
+        prompt_text = RAG_PROMPT.replace(
+            "CITATION RULES (for factual queries):\n"
+            "1. The documents have metadata with document_name and document_number (as integers).\n"
+            "2. Page numbers are marked as \"## Page <number>\" in the content. Extract ONLY the number.\n"
+            "3. If you cannot find a page number, use page_numbers: [1] as a default (never use null or None).\n"
+            "4. Each citation must have different document_number values - do NOT repeat citations.\n"
+            "5. Keep citations minimal - only cite sources you actually used.\n\n",
+            ""
+        ).replace("- Cite sources properly", "")
+        logger.info("Using simplified prompt (citations disabled for Ollama compatibility)")
+
+    # Bind to the appropriate model
     rag_chain = ChatPromptTemplate.from_template(
-        RAG_PROMPT
-    ) | llm.with_structured_output(InitialRAGResponse)
+        prompt_text
+    ) | llm.with_structured_output(response_model)
 
     try:
+        logger.info("Invoking LLM with structured output (this may take 10-30 seconds)...")
         # Invoke the chain
         structured_response = rag_chain.invoke(inputs)
+        logger.info("✅ LLM response received successfully")
 
         # Return the Pydantic object directly
-        # This will be stored in the state as a dictionary
-        return {"answer": structured_response.model_dump()}
+        # Add empty citations list if using simple response
+        response_dict = structured_response.model_dump()
+        if not ENABLE_CITATIONS and "citations" not in response_dict:
+            response_dict["citations"] = []
+
+        return {"answer": response_dict}
 
     except groq.BadRequestError as e:
         logger.error(f"Response does not conform to InitialRagResponse: {e}")
@@ -351,14 +402,39 @@ def call_llm_node(state: GraphState):
                     "citations": [],
                 }
             }
+    except TimeoutError as e:
+        logger.error(f"LLM call timed out after 120 seconds: {e}")
+        return {
+            "answer": {
+                "answer": "The request took too long. Please try a simpler question or restart Ollama.",
+                "citations": [],
+            },
+            "error_occurred": True  # Flag to prevent refinement loop
+        }
     except Exception as e:
-        logger.error(f"An unexpected error occurred: {e}")
+        logger.error(f"An unexpected error occurred during LLM call: {e}")
+        logger.error(f"Error type: {type(e).__name__}")
+        import traceback
+        logger.error(f"Traceback: {traceback.format_exc()}")
+
+        # Check if it's a Groq payload error
+        error_msg = str(e)
+        if "413" in error_msg or "Payload Too Large" in error_msg or "Request too large" in error_msg:
+            return {
+                "answer": {
+                    "answer": "The query retrieved too many documents for Groq's token limit. Please try a more specific question.",
+                    "citations": [],
+                },
+                "error_occurred": True  # Flag to prevent refinement loop
+            }
+
         # General fallback
         return {
             "answer": {
-                "answer": "An unexpected error occurred. Please try again.",
+                "answer": f"An unexpected error occurred: {type(e).__name__}. Please check logs.",
                 "citations": [],
-            }
+            },
+            "error_occurred": True  # Flag to prevent refinement loop
         }
 
 
@@ -610,6 +686,11 @@ def route_to_refiner(state: GraphState) -> Literal["refine", "regenerate", "end"
     SAFEGUARD: Limits regeneration attempts (configurable via MAX_REGENERATION_ATTEMPTS)
     to prevent infinite loops and API exhaustion when documents lack information.
     """
+    # Check if an error occurred during answer generation
+    if state.get("error_occurred", False):
+        logger.warning("Error occurred during answer generation. Skipping refinement to prevent infinite loop.")
+        return "end"
+
     answer_dict = state["answer"].get("confidence", {})
     confidence_score = answer_dict.get("confidence_score", None)
     regeneration_count = state.get("regeneration_count", 0)

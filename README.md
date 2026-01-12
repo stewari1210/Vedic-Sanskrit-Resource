@@ -1,272 +1,398 @@
-# Local RAG Chatbot with PDF Ingestion (CLI Version)
+# 🕉️ Vedic Sanskrit Tutor
 
 ## Overview
 
-This project implements a command-line interface (CLI) for a local Retrieval-Augmented Generation (RAG) chatbot that ingests PDF documents, extracts their content and metadata, and uses Langchain and LangGraph to create a conversational AI. The chatbot allows users to ask questions about the content of the ingested PDFs and receive relevant answers through an interactive terminal-based interface.
+An AI-powered learning platform for studying Vedic Sanskrit with interactive features including grammar lessons, vocabulary building, verse translation, pronunciation guides with audio, and intelligent conversation powered by RAG (Retrieval-Augmented Generation).
 
-**Note:** This is a CLI-specific adaptation of the original Streamlit-based RAG chatbot developed by [Srinivas Laxminarayan](mailto:srini.lax86@gmail.com). This version removes the web frontend and focuses on a streamlined command-line experience.
+Built on top of a sophisticated RAG architecture using Langchain and LangGraph, this tutor provides contextual answers from the Rigveda and Yajurveda corpus, making ancient Sanskrit texts accessible to modern learners.
 
-## Key Features
+**Perfect for:**
+- 📖 Students who studied Sanskrit in school but need a refresher
+- 🇮🇳 Native Hindi speakers wanting to understand Vedic texts
+- 📜 Anyone interested in reading the Rigveda and Yajurveda
+- 🎓 Self-learners exploring ancient Indian literature
 
--   **Command-Line Interface:** Simple CLI-based interaction for processing PDFs and querying documents
--   **PDF Ingestion:** Processes PDF documents to extract text content and metadata
--   **Markdown Conversion:** Converts PDF content to Markdown format for easier processing
--   **Metadata Extraction:** Extracts relevant metadata from PDFs to enhance the retrieval process
--   **Local RAG Implementation:** Utilizes a local RAG setup, ensuring data privacy and control
--   **Langchain Integration:** Leverages Langchain for document loading, text splitting, and vectorstore management
--   **LangGraph Implementation:** Employs LangGraph to orchestrate the RAG pipeline and manage conversation flow
--   **Chat History:** Maintains chat history for contextual conversations
--   **Session Management:** Automatic cleanup of temporary files and session data
+## ✨ Key Features
 
-## File Structure
+### 🎯 Learning Modules
+-   **📚 Grammar Basics** - Master Sandhi rules, Vibhakti (case endings), and Dhatu (verb roots)
+-   **📖 Vocabulary Builder** - Learn themed word lists (Deities, Rituals, Nature, Verbs)
+-   **🔤 Verse Translation** - Practice with authentic Rigveda verses (RV 1.1.1, Gayatri Mantra, etc.)
+-   **🗣️ Pronunciation Guide** - Hear correct pronunciation with Google Text-to-Speech
+-   **🎯 Interactive Quizzes** - Test your knowledge with adaptive difficulty
+-   **💬 Free Conversation** - Ask any Sanskrit question and get RAG-powered answers
 
-The project structure is organized as follows:
+### 🚀 Technical Features
+-   **Dual Interface:** Beautiful Streamlit web app + command-line tool
+-   **Audio Pronunciation:** Native Devanagari text-to-speech using gTTS
+-   **RAG-Powered Answers:** Retrieves relevant context from Rigveda & Yajurveda corpus
+-   **Hybrid Search:** Combines BM25 keyword search with semantic vector search
+-   **Local LLMs:** Supports Ollama (llama3.1:8b, phi3.5:mini, qwen2.5:32b)
+-   **Beautiful Typography:** Proper Devanagari font rendering (Noto Serif/Sans Devanagari)
+-   **Smart Lock Management:** Automatic cleanup of Qdrant database locks
+-   **Chat History:** Maintains context across conversation turns
+-   **⚡ Multi-GPU Parallelization:** Optimized for 10-core/10-GPU systems (see [PARALLELIZATION.md](PARALLELIZATION.md))
+    -   **4 GPUs** for QA model (llama3.1:8b)
+    -   **6 GPUs** for evaluation model (qwen2.5:32b)
+    -   **Parallel retrieval** (semantic + keyword simultaneously)
+    -   **Batch embeddings** (32 documents at once on GPU)
+    -   **~3x faster** than single-GPU setup (~11s → ~3.5s per query)
 
--   `src/`: Contains the source code for the chatbot.
-    -   `cli_run.py`: Main CLI script for processing PDFs and running the interactive question-answering loop
-    -   `helper.py`: Initializes logging and defines project paths
-    -   `config.py`: Configuration settings for local folders, collection names, and vector database
-    -   `settings.py`: Application settings and environment configuration
-    -   `utils/`: Contains utility modules
-        -   `file_ops.py`: Implements file loading and saving operations
-        -   `index_files.py`: Loads documents and their metadata, creates vector stores
-        -   `process_files.py`: Processes uploaded PDFs, extracts text and metadata
-        -   `final_block_rag.py`: Defines data structures for graph state and LangGraph application
-        -   `structure_output.py`: Defines the structure for citation objects
-        -   `retriever.py`: Implements document retrieval logic
-        -   `vector_store.py`: Vector store management
-        -   `prompts.py`: Prompt templates for the LLM
--   `local_store/`: Local storage for processed documents and metadata
--   `vector_store/`: Qdrant vector database storage
--   `README.md`: This file, providing an overview of the project
--   `requirements.txt`: Python package dependencies
--   `pyproject.toml`: Project metadata and dependencies
--   `.gitignore`: Specifies intentionally untracked files that Git should ignore
+## 📁 Project Structure
 
-## Modules Description
-
--   **`cli_run.py`**: Main entry point for the CLI application. Handles PDF processing, vector store creation, and runs an interactive REPL for querying documents. Includes session cleanup functionality for managing temporary files.
-
--   **`helper.py`**: Initializes the logger and defines important project paths, such as the project root directory. Also appends the project root and parent directories to the system path.
-
--   **`config.py`**: Contains configuration constants for local folders, collection names, and vector database settings.
-
--   **`settings.py`**: Manages application settings and environment variables, including API keys and model configurations.
-
--   **`utils/file_ops.py`**: Provides utility functions for loading and saving text files, ensuring UTF-8 encoding.
-
--   **`utils/index_files.py`**: Provides the `load_documents_with_metadata` function, which loads markdown files and their metadata from a specified folder structure, creating Langchain `Document` objects. Also includes `create_qdrant_vector_store` for vector database initialization.
-
--   **`utils/process_files.py`**: Core function `process_uploaded_pdfs` that converts PDF files to markdown, extracts metadata, and saves the results. Uses PDF extraction library to convert PDFs.
-
--   **`utils/final_block_rag.py`**: Defines the `GraphState` TypedDict, which represents the state of the LangGraph graph, including the question, enhanced question, chat history, documents, and answer. Also contains the LangGraph application logic.
-
--   **`utils/structure_output.py`**: Defines the `Citation` Pydantic model for structuring citation information, including document name, number, and page numbers.
-
--   **`utils/retriever.py`**: Implements document retrieval logic using Qdrant vector store and optional BM25 retrieval.
-
--   **`utils/vector_store.py`**: Manages vector store operations and interactions with Qdrant.
-
--   **`utils/prompts.py`**: Contains prompt templates used for LLM interactions.
-
-## Setup and Installation
-
-1.  **Clone the repository:**
-
-    ```bash
-    git clone <repository_url>
-    cd RAG-CHATBOT-CLI-Version-2
-    ```
-
-2.  **Install dependencies:**
-
-    Using `uv` (recommended):
-    ```bash
-    uv sync
-    ```
-    This will automatically set up a virtual environment under `.venv`.
-
-    Alternatively, using `pip`:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-    Or install from `pyproject.toml`:
-    ```bash
-    pip install -e .
-    ```
-
-3.  **Environment Configuration:**
-
-    Create a `.env` file in the project root with your API keys:
-
-    ```properties
-    # Google / Gemini embeddings key
-    GEMINI_API_KEY=your_gemini_api_key_here
-
-    # Groq API key and model (used for generation)
-    GROQ_API_KEY=your_groq_api_key_here
-    MODEL=meta-llama/llama-4-maverick-17b-128e-instruct
-
-    # Embedding model (Gemini embeddings example)
-    EMBED_MODEL=gemini-embedding-001
-
-    # Optional: override evaluator model (defaults to MODEL if unset)
-    # EVAL_MODEL=meta-llama/llama-4-maverick-17b-128e-instruct
-    ```
-
-    You will need to create accounts with:
-    - [Groq](https://groq.com/) for LLM generation
-    - [Google AI Studio](https://makersuite.google.com/) for Gemini embeddings
-
-## Usage
-
-### Running the CLI
-
-**IMPORTANT:** This project uses the `rag-py311` conda environment. You have several options to run it:
-
-#### Option 1: Use the Launcher Script (Recommended)
-
-```bash
-./run_rag.sh --pdf path/to/your_document.pdf
+```
+RAG-CHATBOT-CLI-Version/
+├── src/
+│   ├── vedic_sanskrit_tutor.py      # CLI version of the tutor
+│   ├── sanskrit_tutor_frontend.py   # Streamlit web interface
+│   ├── cli_run.py                   # Original RAG CLI
+│   ├── helper.py                    # Logging and project paths
+│   ├── config.py                    # Configuration settings
+│   ├── settings.py                  # LLM and embeddings config
+│   └── utils/
+│       ├── file_ops.py              # File operations
+│       ├── index_files.py           # Document loading and vector store
+│       ├── process_files.py         # PDF processing
+│       ├── final_block_rag.py       # LangGraph RAG pipeline
+│       ├── retriever.py             # Hybrid retriever (BM25 + semantic)
+│       ├── vector_store.py          # Qdrant vector store management
+│       └── prompts.py               # LLM prompt templates
+├── local_store/
+│   └── ancient_history/             # Rigveda & Yajurveda corpus
+│       ├── rigveda-griffith_COMPLETE_english_with_metadata/
+│       ├── rigveda-sharma_COMPLETE_english_with_metadata/
+│       ├── yajurveda-griffith_COMPLETE_english_with_metadata/
+│       └── yajurveda-sharma_COMPLETE_english_with_metadata/
+├── vector_store/                    # Qdrant vector database
+├── run_sanskrit_tutor.sh            # Launch CLI tutor
+├── run_sanskrit_tutor_web.sh        # Launch Streamlit app
+├── test_tts.py                      # Audio pronunciation test
+├── SANSKRIT_TUTOR_README.md         # CLI documentation
+├── SANSKRIT_TUTOR_WEB_README.md     # Web interface guide
+├── AUDIO_PRONUNCIATION_GUIDE.md     # TTS feature docs
+└── FAST_MODELS_GUIDE.md             # Model comparison
 ```
 
-The `run_rag.sh` script automatically uses the correct Python environment.
+## 🎓 Core Modules
 
-#### Option 2: Activate Environment First
+### Sanskrit Tutor Applications
 
-```bash
-# Activate the environment
-source activate_env.sh
+-   **`vedic_sanskrit_tutor.py`**: Command-line Sanskrit learning tool with interactive REPL. Choose from 6 learning modes (grammar, vocabulary, translation, pronunciation, quiz, conversation) and get RAG-powered answers from the Vedic corpus.
 
-# Then run the chatbot
-python src/cli_run.py --pdf path/to/your_document.pdf
-```
+-   **`sanskrit_tutor_frontend.py`**: Beautiful Streamlit web interface with proper Devanagari fonts, audio pronunciation, and interactive learning modules. Features automatic Qdrant lock cleanup and session state management.
 
-#### Option 3: Use Explicit Python Path
+### RAG Pipeline Components
 
-```bash
-/Users/shivendratewari/miniforge-arm64/envs/rag-py311/bin/python src/cli_run.py --pdf path/to/your_document.pdf
-```
+-   **`final_block_rag.py`**: Orchestrates the LangGraph RAG pipeline with multi-step flow:
+    1. Check if query is follow-up question
+    2. Correct grammar if needed
+    3. Retrieve and rerank documents
+    4. Generate answer with LLM
+    5. Evaluate confidence score
+    6. Iterate or complete based on confidence
 
-### Interactive Session
+-   **`retriever.py`**: Implements hybrid retrieval combining:
+    - BM25 keyword search (30% weight)
+    - Semantic vector search via Qdrant (70% weight)
+    - Proper noun expansion for Sanskrit names
+    - Returns top-k merged results
 
-1.  **Process a PDF and start the interactive session:**
+-   **`index_files.py`**: Loads markdown documents with metadata from `local_store/`, creates Qdrant vector store with sentence-transformers embeddings (all-mpnet-base-v2).
 
-    ```bash
-    ./run_rag.sh --pdf path/to/your_document.pdf
-    ```
+### Utility Components
 
-2.  **Session cleanup prompt:**
+-   **`helper.py`**: Initializes structured logging and defines project paths.
 
-    When you start the CLI, you'll be prompted to clean up existing session data:
-    - Answer `y` to delete `local_store/` and `vector_store/` folders (fresh start)
-    - Answer `n` to keep existing session data
+-   **`config.py`**: Configuration constants for folders, collections, and vector database.
 
-3.  **Ask questions:**
+-   **`settings.py`**: Manages LLM providers (Ollama/Groq/Gemini), embeddings models, and evaluation LLM configuration.
 
-    Once the PDF is processed and indexed, you'll enter an interactive REPL where you can type questions about the document. The chatbot will retrieve relevant context and generate answers.
+-   **`prompts.py`**: Pedagogical prompt templates optimized for Sanskrit teaching with Hindi explanations.
 
-4.  **Exit:**
+## 🚀 Quick Start
 
-    Type `exit` or `quit` to stop the session. Temporary folders will be automatically cleaned up.
+### Prerequisites
 
-### CLI Options
+-   Python 3.11+
+-   Ollama (for local LLMs)
+-   Conda or virtual environment manager
 
-```bash
-./run_rag.sh --pdf /path/to/document.pdf
-# Or:
-python src/cli_run.py --pdf /path/to/document.pdf [OPTIONS]
-```
-
-Available options:
-- `--pdf PATH`: Path to the PDF file to process (required or uses hardcoded default)
-- `--no-cleanup-prompt`: Skip the session cleanup prompt and keep existing data
-- `--force`: Force clean reindex by deleting the vector store before processing
-
-### Examples
+### 1. Clone and Install
 
 ```bash
-# Basic usage with cleanup prompt
-python src/cli_run.py --pdf research_paper.pdf
+git clone https://github.com/stewari1210/Vedic-Sanskrit-Tutor.git
+cd Vedic-Sanskrit-Tutor
 
-# Skip cleanup prompt (keep existing data)
-python src/cli_run.py --pdf research_paper.pdf --no-cleanup-prompt
+# Using uv (recommended)
+uv sync
 
-# Force fresh reindex
-python src/cli_run.py --pdf research_paper.pdf --force
-```
-
-## Advanced Usage
-
-### Using a Specific Python Environment
-
-If you're using conda or another environment manager:
-
-```bash
-# Create environment (optional)
-conda create -n rag-py311 python=3.11 -y
-conda activate rag-py311
-
-# Install dependencies
+# Or using pip
 pip install -r requirements.txt
-
-# Run the CLI
-python src/cli_run.py --pdf path/to/your_doc.pdf
 ```
 
-### Session Management
+### 2. Install Ollama Models
 
-The CLI provides automatic cleanup features:
+```bash
+# Install required models
+ollama pull llama3.1:8b          # Main QA model
+ollama pull qwen2.5:32b          # Evaluation model
+ollama pull phi3.5:mini          # Fast alternative
 
-- **On Startup**: Interactive prompt to delete session-specific folders (`local_store/` and `vector_store/`) before processing a new PDF
-  - Use `--no-cleanup-prompt` flag to skip this prompt
+# Verify installation
+ollama list
+```
 
-- **On Exit**: Automatically deletes all temporary `vector_store_tmp_*` folders created during the session
+### 3. Configure Environment
 
-### Troubleshooting
+Create a `.env` file (or copy from `env.template`):
 
-- **Authentication/Permission errors**: Verify your API keys (GEMINI_API_KEY, GROQ_API_KEY) in the `.env` file
-- **Vector store locked**: If another process has the vector store open, you may see an `AlreadyLocked` error. The CLI will automatically create a temporary store as fallback
-- **PDF processing issues**: Ensure `pymupdf` is installed in your environment
+```bash
+# LLM Configuration
+LLM_PROVIDER=ollama              # Options: ollama, gemini, groq
+OLLAMA_MODEL=llama3.1:8b
+OLLAMA_BASE_URL=http://localhost:11434
 
-### Optional Dependencies
+# Evaluation LLM
+EVAL_LLM_PROVIDER=ollama         # Recommended: unlimited local evaluation
+OLLAMA_EVAL_MODEL=qwen2.5:32b
 
-- **BM25 retriever**: Install `rank_bm25` to enable BM25-based retrieval:
-  ```bash
-  pip install rank_bm25
-  ```
+# Embeddings
+EMBEDDING_PROVIDER=local         # Uses sentence-transformers/all-mpnet-base-v2
+RATE_LIMIT_EMBEDDINGS=50         # Requests per minute
 
-- **Better PDF layout**: Consider installing `pymupdf_layout`:
-  ```bash
-  pip install pymupdf_layout
-  ```
+# Optional: API Keys (if using cloud providers)
+# GEMINI_API_KEY=your_key_here
+# GROQ_API_KEY=your_key_here
+```
 
-## Dependencies
+### 4. Launch the Tutor
 
--   [Langchain](https://www.langchain.com/): Framework for developing applications powered by language models
--   [LangGraph](https://python.langchain.com/docs/langgraph): Library for building LLM-powered graphs
--   [Qdrant](https://qdrant.tech/): Vector database for similarity search
--   [Pymupdf](https://pymupdf.readthedocs.io/en/latest/): Library to programmatically access and manipulate PDF documents
--   [Pydantic](https://docs.pydantic.dev/): Data validation and settings management using Python type annotations
--   [Groq](https://groq.com/): Fast LLM inference API
--   [Google Gemini](https://ai.google.dev/): Embedding models for document vectorization
+**Option A: Streamlit Web Interface (Recommended)**
+```bash
+./run_sanskrit_tutor_web.sh
+# Opens at http://localhost:8502
+```
 
-## Project Notes
+**Option B: Command-Line Interface**
+```bash
+./run_sanskrit_tutor.sh
+# Or directly:
+python src/vedic_sanskrit_tutor.py
+```
 
-- The local Qdrant store is created under `vector_store/`. For concurrent access from multiple processes, consider running a Qdrant server (Docker or cloud) instead of the local on-disk store.
-- Consider pinning and freezing your environment once stable (use `pip freeze > requirements-frozen.txt`)
-- Processed documents are stored in `local_store/` with their metadata
-- Vector embeddings are stored in `vector_store/` for quick retrieval
+## 📚 Usage Guide
 
-## Contributing
+### Web Interface (Streamlit)
 
-Contributions are welcome! Please feel free to submit pull requests or open issues to suggest improvements or report bugs.
+1. **Initialize the Tutor**
+   - Select LLM model from sidebar (llama3.1:8b recommended)
+   - Click "Initialize Tutor" button
+   - Wait for vector store to load
 
-## Credits
+2. **Choose Learning Module**
+   - 📖 Grammar Basics - Select topic (Sandhi/Vibhakti/Dhatu)
+   - 📚 Vocabulary - Choose theme (Deities/Rituals/Nature)
+   - 🔤 Translation - Practice with Rigveda verses
+   - 🗣️ Pronunciation - Type word, hear audio
+   - 🎯 Quiz - Test knowledge with adaptive questions
+   - 💬 Free Chat - Ask any Sanskrit question
 
-This CLI version is adapted from the original Streamlit-based RAG chatbot developed by **Srinivas Laxminarayan** (srini.lax86@gmail.com). The current version has been modified to provide a streamlined command-line interface, removing the web frontend dependencies while maintaining the core RAG functionality.
+3. **Features**
+   - Click 🔊 to hear pronunciations
+   - View chat history in conversation
+   - Switch models anytime from sidebar
+   - Clean database locks with sidebar button
 
-## License
+### Command-Line Interface
 
-[Private License]
+```bash
+python src/vedic_sanskrit_tutor.py
+
+# Choose mode:
+# 1 = Grammar Basics
+# 2 = Vocabulary Building
+# 3 = Verse Translation
+# 4 = Pronunciation Guide
+# 5 = Quiz Mode
+# 6 = Free Conversation
+# 7 = Exit
+
+# Type your questions and get RAG-powered answers
+# Type 'quit' or 'exit' to return to menu
+```
+
+## 🎯 Example Interactions
+
+**Grammar Query:**
+```
+You: Teach me Sandhi rules with examples from Rigveda
+Tutor: [Retrieves relevant verses and explains vowel/consonant Sandhi with Devanagari examples]
+```
+
+**Vocabulary:**
+```
+You: What are the Sanskrit names for major Vedic deities?
+Tutor: [Lists Agni, Indra, Varuna, etc. with meanings from corpus]
+```
+
+**Translation:**
+```
+You: Translate अग्निमीळे पुरोहितं
+Tutor: [Provides word-by-word analysis and full translation from RV 1.1.1]
+```
+
+**Pronunciation:**
+```
+You: How do I pronounce यज्ञ?
+Tutor: [Generates audio via gTTS, provides IAST transliteration: yajña]
+```
+
+## ⚙️ Configuration Options
+
+### LLM Providers
+
+**Ollama (Recommended - Unlimited Local)**
+```bash
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=llama3.1:8b        # Or phi3.5:mini for speed
+OLLAMA_BASE_URL=http://localhost:11434
+```
+
+**Groq (Fast Cloud - Rate Limited)**
+```bash
+LLM_PROVIDER=groq
+GROQ_API_KEY=your_key
+GROQ_MODEL=llama-3.3-70b-versatile
+```
+
+**Gemini (Google - API Key Required)**
+```bash
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_key
+GEMINI_MODEL=gemini-2.0-flash-exp
+```
+
+### Embeddings Models
+
+**Local (Recommended)**
+```bash
+EMBEDDING_PROVIDER=local
+# Uses: sentence-transformers/all-mpnet-base-v2
+```
+
+**Gemini (Cloud)**
+```bash
+EMBEDDING_PROVIDER=gemini
+GEMINI_EMBED_MODEL=text-embedding-004
+```
+
+## 🔧 Troubleshooting
+
+### Qdrant Lock Error
+```
+RuntimeError: Storage folder vector_store is already accessed by another instance
+```
+
+**Solution:** The web interface now auto-cleans locks! Or manually:
+```bash
+find vector_store -name ".qdrant-lock" -delete
+```
+
+### Audio Not Playing
+- Ensure `gTTS` is installed: `pip install gtts`
+- Check internet connection (gTTS uses Google servers)
+- Try refreshing browser page
+
+### LLM Model Not Found
+```bash
+# Pull missing model
+ollama pull llama3.1:8b
+
+# Verify it's available
+ollama list
+```
+
+### Rate Limit Error (Groq)
+```
+Rate limit reached: 100,000 tokens per day
+```
+
+**Solution:** Switch to Ollama in `.env`:
+```bash
+EVAL_LLM_PROVIDER=ollama
+OLLAMA_EVAL_MODEL=qwen2.5:32b
+```
+
+## 📖 Documentation Files
+
+- **`SANSKRIT_TUTOR_WEB_README.md`** - Complete web interface guide
+- **`SANSKRIT_TUTOR_README.md`** - CLI usage instructions
+- **`AUDIO_PRONUNCIATION_GUIDE.md`** - TTS feature documentation
+- **`FAST_MODELS_GUIDE.md`** - Model performance comparison
+
+## 🛣️ Roadmap & Known Limitations
+
+### Current Corpus Limitation
+
+The tutor is trained on **poetic/liturgical texts** (Rigveda & Yajurveda), which are excellent for:
+- ✅ Reading and understanding Vedic hymns
+- ✅ Learning ritual vocabulary
+- ✅ Poetic verse translation
+
+But struggle with:
+- ❌ Conversational Sanskrit ("I want milk")
+- ❌ Everyday sentence construction
+- ❌ Modern Sanskrit prose
+
+### Planned Improvements
+
+**Phase 1: Grammar Foundation (Priority)**
+- [ ] Add Macdonell's Vedic Grammar for Students
+- [ ] Add Macdonell's Vedic Reader (30 analyzed hymns)
+- [ ] Add Whitney's Sanskrit Grammar
+
+**Phase 2: Prose Texts**
+- [ ] Add Shatapatha Brahmana (narrative prose)
+- [ ] Add Aitareya Brahmana (subject-object-verb structures)
+
+**Phase 3: Dictionaries**
+- [ ] Monier-Williams Sanskrit-English Dictionary
+- [ ] Grassmann's Wörterbuch zum Rig-veda
+
+**Phase 4: Features**
+- [ ] Spaced repetition flashcards
+- [ ] Progress tracking across sessions
+- [ ] Export chat history as PDF
+- [ ] Dark mode theme
+- [ ] Devanagari typing practice
+
+## 🤝 Contributing
+
+Contributions welcome! Priority areas:
+1. Adding pedagogical grammar texts to corpus
+2. Improving conversational Sanskrit handling
+3. Adding more interactive quizzes
+4. UI/UX improvements for web interface
+
+## 📜 License
+
+MIT License - See LICENSE file
+
+## 🙏 Acknowledgments
+
+- **RAG Architecture**: Based on Langchain and LangGraph frameworks
+- **Corpus**: Griffith and Sharma translations of Rigveda & Yajurveda
+- **Fonts**: Google Noto Devanagari fonts
+- **TTS**: Google Text-to-Speech (gTTS)
+- **LLMs**: Meta (Llama), Alibaba (Qwen), Microsoft (Phi)
+
+## 📧 Contact
+
+For questions or feedback:
+- GitHub Issues: [Vedic-Sanskrit-Tutor/issues](https://github.com/stewari1210/Vedic-Sanskrit-Tutor/issues)
+- Repository: [github.com/stewari1210/Vedic-Sanskrit-Tutor](https://github.com/stewari1210/Vedic-Sanskrit-Tutor)
+
+---
+
+**स्वाध्यायान्मा प्रमदः** *(Never neglect your study)*
+— Taittiriya Upanishad

@@ -28,18 +28,19 @@ import glob
 from src.helper import project_root, logger
 from src.config import LOCAL_FOLDER, COLLECTION_NAME, VECTORDB_FOLDER
 from src.utils.index_files import create_qdrant_vector_store
-from src.utils.retriever import create_retriever
-from src.utils.final_block_rag import create_langgraph_app, run_rag_with_langgraph
+from src.utils.agentic_rag import run_agentic_rag, set_shared_vector_store
 
 from langchain_community.chat_models import ChatOllama
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 from src.settings import OLLAMA_BASE_URL, OLLAMA_MODEL, GEMINI_MODEL
+from src.config import GROQ_API_KEY
 
 
 # Page configuration with Devanagari font support
 st.set_page_config(
-    page_title="🕉️ Vedic Sanskrit Tutor",
+    page_title="🕉️ Agentic Sanskrit Tutor",
     page_icon="🕉️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -145,8 +146,8 @@ class SanskritTutorApp:
         """Initialize session state variables."""
         if 'initialized' not in st.session_state:
             st.session_state.initialized = False
-            st.session_state.rag_app = None
-            st.session_state.retriever = None
+            st.session_state.vec_db = None
+            st.session_state.docs = None
             st.session_state.llm = None
             st.session_state.chat_history = []
             st.session_state.current_module = None
@@ -327,11 +328,13 @@ class SanskritTutorApp:
 
             with st.spinner("📚 Loading Vedic texts corpus..."):
                 vec_db, docs = create_qdrant_vector_store(force_recreate=False)
-                retriever = create_retriever(vec_db, docs)
-                rag_app = create_langgraph_app(retriever)
+                # Store vector DB for agentic RAG access
+                st.session_state.vec_db = vec_db
+                st.session_state.docs = docs
 
-                st.session_state.retriever = retriever
-                st.session_state.rag_app = rag_app
+                # CRITICAL: Set shared vector store for agentic RAG tools
+                set_shared_vector_store(vec_db, docs)
+                logger.info("[FRONTEND] Shared vector store configured for agentic RAG")
 
             with st.spinner("🤖 Initializing AI tutor..."):
                 if llm_provider == "gemini":
@@ -340,7 +343,17 @@ class SanskritTutorApp:
                         temperature=0.7,
                         timeout=180
                     )
-                else:
+                elif llm_provider == "groq":
+                    if not GROQ_API_KEY:
+                        st.error("❌ GROQ_API_KEY not found in environment variables!")
+                        return False
+                    llm = ChatGroq(
+                        api_key=GROQ_API_KEY,
+                        model=model_name,
+                        temperature=0.7,
+                        timeout=180
+                    )
+                else:  # ollama
                     llm = ChatOllama(
                         base_url=OLLAMA_BASE_URL,
                         model=model_name,
@@ -458,55 +471,62 @@ Have natural conversation about Sanskrit:
         return base + mode_specific.get(mode, mode_specific["conversation"])
 
     def ask_tutor(self, query: str, mode: str = "conversation") -> str:
-        """Query the tutor using RAG."""
+        """Query the tutor using Agentic RAG."""
         system_prompt = self.get_system_prompt(mode)
 
-        # Use RAG to get relevant context
-        graph_state = {
-            "question": query,
-            "chat_history": st.session_state.chat_history[-10:],  # Last 10 messages
-            "documents": [],
-            "answer": "",
-            "enhanced_question": "",
-            "is_follow_up": False,
-            "reset_history": False,
-            "regeneration_count": 0,
-            "debug": False
-        }
-
         try:
-            with st.spinner("🔍 Searching Vedic texts..."):
-                result = run_rag_with_langgraph(graph_state, st.session_state.rag_app)
+            # Use Agentic RAG system
+            with st.spinner("🤖 Agent analyzing your question..."):
+                logger.info(f"[FRONTEND] Processing query with Agentic RAG: {query}")
+                result = run_agentic_rag(query)
+                logger.info(f"[FRONTEND] Agentic RAG returned result type: {type(result)}")
+                logger.info(f"[FRONTEND] Result keys: {result.keys() if isinstance(result, dict) else 'not a dict'}")
 
+            # Extract answer from agentic result
             if isinstance(result, dict):
-                answer = result.get("answer", "")
+                answer = result.get("answer", {})
+                logger.info(f"[FRONTEND] Answer field type: {type(answer)}, value: {answer}")
+
+                if isinstance(answer, dict):
+                    answer_text = answer.get("answer", "No answer generated")
+                    logger.info(f"[FRONTEND] Extracted answer_text: {answer_text[:100] if answer_text else 'EMPTY'}")
+                else:
+                    answer_text = str(answer)
+                    logger.info(f"[FRONTEND] Answer is not dict, converted to str: {answer_text[:100]}")
+
+                # Show agent's thinking process in expander
+                query_type = result.get("query_type", "unknown")
+                english_words = result.get("english_words", [])
+                sanskrit_words = result.get("sanskrit_words", {})
+
+                # Display agent insights
+                if query_type == "construction" and (english_words or sanskrit_words):
+                    with st.expander("🔍 Agent's Thinking Process", expanded=False):
+                        st.markdown(f"**Query Type:** {query_type}")
+                        if english_words:
+                            st.markdown(f"**Words to translate:** {', '.join(english_words)}")
+                        if sanskrit_words:
+                            st.markdown("**Dictionary Lookups:**")
+                            for eng, skts in sanskrit_words.items():
+                                if skts:
+                                    st.markdown(f"  • {eng} → {', '.join(skts[:3])}")
+
+                        grammar_count = len(result.get("grammar_rules", []))
+                        corpus_count = len(result.get("corpus_examples", []))
+                        st.markdown(f"**Retrieved:** {grammar_count} grammar rules, {corpus_count} corpus examples")
             else:
-                answer = str(result)
-
-            # Enhance with teaching LLM
-            with st.spinner("🧑‍🏫 Preparing lesson..."):
-                messages = [
-                    SystemMessage(content=system_prompt),
-                    HumanMessage(content=f"Context from Vedic texts:\n{answer}\n\nStudent's question: {query}\n\nProvide a clear pedagogical explanation with proper Devanagari formatting:")
-                ]
-
-                try:
-                    enhanced_answer = st.session_state.llm.invoke(messages).content
-                except Exception as llm_error:
-                    # If LLM enhancement fails, use the RAG answer directly
-                    logger.error(f"LLM enhancement failed: {llm_error}")
-                    logger.info("Falling back to RAG answer without enhancement")
-                    enhanced_answer = answer
-                    st.warning(f"⚠️ Note: Using direct answer (LLM enhancement unavailable: {type(llm_error).__name__})")
+                answer_text = str(result)
 
             # Update chat history
             st.session_state.chat_history.append({"role": "user", "content": query})
-            st.session_state.chat_history.append({"role": "assistant", "content": enhanced_answer})
+            st.session_state.chat_history.append({"role": "assistant", "content": answer_text})
 
-            return enhanced_answer
+            return answer_text
 
         except Exception as e:
             logger.error(f"Error in tutor: {e}")
+            import traceback
+            traceback.print_exc()
             return f"Sorry, I encountered an error: {e}"
 
     def render_devanagari(self, text: str, large: bool = False):
@@ -526,15 +546,29 @@ Have natural conversation about Sanskrit:
 
             llm_provider = st.selectbox(
                 "LLM Provider",
-                ["ollama", "gemini"],
+                ["ollama", "gemini", "groq"],
                 key="llm_provider_select"
             )
+
+            # Provider info
+            if llm_provider == "groq":
+                st.info("💡 Groq: Fast cloud API, requires GROQ_API_KEY")
+            elif llm_provider == "gemini":
+                st.info("💡 Gemini: Google's model, requires GEMINI_API_KEY")
+            else:
+                st.info("💡 Ollama: Local models, requires Ollama running")
 
             if llm_provider == "ollama":
                 model_name = st.selectbox(
                     "Ollama Model",
                     ["llama3.1:8b", "phi3.5:mini", "phi3:mini", "llama3.2:3b", "llama3.2:1b", "gemma2:2b"],
                     help="Smaller models are faster. phi3.5:mini recommended!"
+                )
+            elif llm_provider == "groq":
+                model_name = st.selectbox(
+                    "Groq Model",
+                    ["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "mixtral-8x7b-32768", "gemma2-9b-it"],
+                    help="Fast cloud-based models. llama-3.1-8b-instant recommended!"
                 )
             else:
                 model_name = GEMINI_MODEL
@@ -621,26 +655,34 @@ Have natural conversation about Sanskrit:
 
             st.markdown("""
             <div class="lesson-container">
-            <h3>Your Personalized Sanskrit Tutor</h3>
-            <p>Learn to read and understand Vedic texts with AI-powered guidance.</p>
+            <h3>Your Agentic Sanskrit Tutor 🤖</h3>
+            <p>Learn to read and understand Vedic texts with AI-powered agentic reasoning.</p>
 
-            <h4>Features:</h4>
+            <h4>🧠 Agentic RAG System:</h4>
             <ul>
-                <li>📚 <b>Grammar Refresher</b> - Sandhi, Vibhakti, Dhatu</li>
-                <li>📖 <b>Vocabulary Building</b> - Themed word lists</li>
-                <li>🔤 <b>Verse Translation</b> - Practice with real Vedic verses</li>
-                <li>🗣️ <b>Pronunciation Guide</b> - Devanagari & IAST</li>
-                <li>🎯 <b>Interactive Quizzes</b> - Test your knowledge</li>
-                <li>💬 <b>Free Conversation</b> - Ask anything!</li>
+                <li>� <b>Multi-Step Reasoning</b> - Agent thinks through problems step-by-step</li>
+                <li>📖 <b>Dictionary Lookup</b> - 19,000+ Sanskrit-English word mappings</li>
+                <li>� <b>Grammar Analysis</b> - Retrieves declension and conjugation rules</li>
+                <li>� <b>Corpus Examples</b> - Finds usage patterns from Rigveda & Yajurveda</li>
+                <li>🎯 <b>Synthesis</b> - Combines all sources for accurate constructions</li>
+            </ul>
+
+            <h4>Perfect For:</h4>
+            <ul>
+                <li>✨ <b>"How do I say X in Sanskrit?"</b> - Construction queries</li>
+                <li>📖 <b>Vocabulary & Grammar</b> - Learn word-by-word</li>
+                <li>� <b>Verse Translation</b> - Understand Vedic texts</li>
+                <li>💬 <b>Free Q&A</b> - Ask anything about Sanskrit!</li>
             </ul>
             </div>
             """, unsafe_allow_html=True)
 
             st.markdown("### 🎓 Designed For:")
             st.info("""
-            - 📖 Students who studied Sanskrit in school but forgot most of it
-            - 🇮🇳 Native Hindi speakers (we use Hindi explanations!)
-            - 📜 Anyone wanting to read Rigveda and Yajurveda
+            - 📖 Students who want to construct Sanskrit sentences
+            - 🔤 Learners needing word-level translation and grammar
+            - 📜 Anyone reading Rigveda and Yajurveda texts
+            - 🧠 Those who want to see the AI's thinking process
             """)
 
         with col2:

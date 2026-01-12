@@ -37,6 +37,39 @@ from config import (
     EMBEDDING_PROVIDER,
 )
 
+# Import parallelization settings
+try:
+    from config_parallel import (
+        OLLAMA_QA_NUM_THREAD,
+        OLLAMA_QA_NUM_GPU,
+        OLLAMA_QA_NUM_CTX,
+        OLLAMA_EVAL_NUM_THREAD,
+        OLLAMA_EVAL_NUM_GPU,
+        OLLAMA_EVAL_NUM_CTX,
+        OLLAMA_NUM_PARALLEL,
+        EMBEDDING_BATCH_SIZE,
+        EMBEDDING_NUM_WORKERS,
+        EMBEDDING_DEVICE,
+        print_resource_allocation,
+    )
+    PARALLEL_ENABLED = True
+    # Print resource allocation on import
+    print_resource_allocation()
+except ImportError:
+    # Fallback to defaults if config_parallel not available
+    PARALLEL_ENABLED = False
+    OLLAMA_QA_NUM_THREAD = 4
+    OLLAMA_QA_NUM_GPU = 1
+    OLLAMA_QA_NUM_CTX = 8192
+    OLLAMA_EVAL_NUM_THREAD = 4
+    OLLAMA_EVAL_NUM_GPU = 1
+    OLLAMA_EVAL_NUM_CTX = 8192
+    OLLAMA_NUM_PARALLEL = 1
+    EMBEDDING_BATCH_SIZE = 16
+    EMBEDDING_NUM_WORKERS = 1
+    EMBEDDING_DEVICE = 'cpu'
+    logger.info("Parallelization config not found - using default settings")
+
 
 class RateLimitedEmbeddings:
     """
@@ -107,19 +140,31 @@ class Settings:
     elif _provider == "local-best":
         # Sentence Transformers: High Quality (MTEB ~64)
         logger.info("Using local embeddings: sentence-transformers/all-mpnet-base-v2 (best quality)")
+        logger.info(f"  • Parallelization: batch_size={EMBEDDING_BATCH_SIZE}, device={EMBEDDING_DEVICE}")
         embed_model = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-mpnet-base-v2",
-            model_kwargs={'device': 'cpu'},  # Use 'cuda' if you have a GPU
-            encode_kwargs={'normalize_embeddings': True}
+            model_kwargs={
+                'device': EMBEDDING_DEVICE,  # Use GPU if available (mps for Mac, cuda for NVIDIA)
+            },
+            encode_kwargs={
+                'normalize_embeddings': True,
+                'batch_size': EMBEDDING_BATCH_SIZE,  # Batch processing for speed
+            }
         )
 
     else:  # default to "local-fast"
         # Sentence Transformers: Fast & High Quality (MTEB ~62)
         logger.info("Using local embeddings: BAAI/bge-small-en-v1.5 (fast & efficient)")
+        logger.info(f"  • Parallelization: batch_size={EMBEDDING_BATCH_SIZE}, device={EMBEDDING_DEVICE}")
         embed_model = HuggingFaceEmbeddings(
             model_name="BAAI/bge-small-en-v1.5",
-            model_kwargs={'device': 'cpu'},  # Use 'cuda' if you have a GPU
-            encode_kwargs={'normalize_embeddings': True}
+            model_kwargs={
+                'device': EMBEDDING_DEVICE,  # Use GPU if available
+            },
+            encode_kwargs={
+                'normalize_embeddings': True,
+                'batch_size': EMBEDDING_BATCH_SIZE,  # Batch processing
+            }
         )
 
     # LLM Provider Selection: Groq or Ollama for main QA
@@ -128,11 +173,15 @@ class Settings:
 
     if llm_provider == "ollama":
         logger.info(f"Using Ollama LLM for QA: {OLLAMA_MODEL} at {OLLAMA_BASE_URL}")
+        logger.info(f"  • Parallelization: {OLLAMA_QA_NUM_THREAD} threads, GPU enabled (Metal), context={OLLAMA_QA_NUM_CTX}")
         llm = ChatOllama(
             base_url=OLLAMA_BASE_URL,
             model=OLLAMA_MODEL,
             temperature=MODEL_SPECS["temperature"],
-            num_ctx=8192,  # Context window size
+            num_ctx=OLLAMA_QA_NUM_CTX,  # Context window size
+            num_thread=OLLAMA_QA_NUM_THREAD,  # CPU threads for parallel processing
+            num_gpu=OLLAMA_QA_NUM_GPU,  # Enable GPU (Mac: 1=enabled)
+            timeout=120,  # 2 minute timeout to prevent hanging
         )
     else:  # Default to Groq
         # Validate Groq model configuration
@@ -154,11 +203,15 @@ class Settings:
     # Evaluator LLM - can use different provider (e.g., Gemini for evaluating Ollama 8B responses)
     if eval_llm_provider == "ollama":
         logger.info(f"Using Ollama LLM for Evaluation: {OLLAMA_EVAL_MODEL} at {OLLAMA_BASE_URL}")
+        logger.info(f"  • Parallelization: {OLLAMA_EVAL_NUM_THREAD} threads, GPU enabled (Metal), context={OLLAMA_EVAL_NUM_CTX}")
         evaluator_llm = ChatOllama(
             base_url=OLLAMA_BASE_URL,
             model=OLLAMA_EVAL_MODEL,
             temperature=MODEL_SPECS["temperature"],
-            num_ctx=8192,
+            num_ctx=OLLAMA_EVAL_NUM_CTX,
+            num_thread=OLLAMA_EVAL_NUM_THREAD,  # CPU threads
+            num_gpu=OLLAMA_EVAL_NUM_GPU,  # Enable GPU (Mac: 1=enabled)
+            timeout=180,  # 3 minute timeout (32B model is larger, takes longer)
         )
     elif eval_llm_provider == "gemini":
         if not GEMINI_API_KEY:

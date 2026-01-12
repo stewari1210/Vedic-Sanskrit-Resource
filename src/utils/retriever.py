@@ -11,6 +11,17 @@ from src.utils.proper_noun_variants import (
     get_confederation_for_tribe,
     get_constituent_tribes
 )
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+
+# Import parallelization settings
+try:
+    from config_parallel import RETRIEVAL_PARALLEL_QUERIES, RETRIEVAL_MAX_WORKERS
+    PARALLEL_ENABLED = True
+except ImportError:
+    RETRIEVAL_PARALLEL_QUERIES = False
+    RETRIEVAL_MAX_WORKERS = 1
+    PARALLEL_ENABLED = False
 
 
 class HybridRetriever(BaseRetriever):
@@ -266,11 +277,27 @@ class HybridRetriever(BaseRetriever):
 
         logger.info(f"HybridRetriever: Keyword query for BM25 = '{keyword_query_normalized}'")
 
-        # Get results from both retrievers
-        # Keyword retriever with extracted keywords (normalized, no diacritics)
-        keyword_docs = self.keyword_retriever.invoke(keyword_query_normalized)
-        # Semantic retriever with full natural language query (original with diacritics)
-        semantic_docs = self.semantic_retriever.invoke(query)
+        # Get results from both retrievers - WITH PARALLELIZATION
+        if PARALLEL_ENABLED and RETRIEVAL_PARALLEL_QUERIES:
+            logger.info(f"🚀 HybridRetriever: Using parallel retrieval with {RETRIEVAL_MAX_WORKERS} workers")
+            start_time = time.time()
+
+            # Execute semantic and keyword retrieval in parallel
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                # Submit both retrieval tasks
+                keyword_future = executor.submit(self.keyword_retriever.invoke, keyword_query_normalized)
+                semantic_future = executor.submit(self.semantic_retriever.invoke, query)
+
+                # Wait for both to complete
+                keyword_docs = keyword_future.result()
+                semantic_docs = semantic_future.result()
+
+            elapsed = time.time() - start_time
+            logger.info(f"⚡ Parallel retrieval completed in {elapsed:.2f}s")
+        else:
+            # Sequential retrieval (original behavior)
+            keyword_docs = self.keyword_retriever.invoke(keyword_query_normalized)
+            semantic_docs = self.semantic_retriever.invoke(query)
 
         logger.info(f"HybridRetriever: BM25 returned {len(keyword_docs)} docs, Qdrant returned {len(semantic_docs)} docs")
         if keyword_docs:
@@ -466,8 +493,10 @@ class HybridRetriever(BaseRetriever):
                     merged_docs = merged_docs[:self.k] + expansion_docs
                     logger.info(f"HybridRetriever: Total docs (primary + expansion) = {len(merged_docs)}")
 
-        # Return top k primary results (expansion docs come after for LLM context)
-        return merged_docs[:self.k + (EXPANSION_DOCS * 3 if EXPANSION_DOCS > 0 else 0)]
+        # Return top k primary results + limited expansion docs
+        # For Groq: Keep total manageable to stay under 6K token limit
+        max_expansion = EXPANSION_DOCS * 2 if EXPANSION_DOCS > 0 else 0
+        return merged_docs[:self.k + max_expansion]
 
 
 def create_retriever(vec_db, documents, top_n=5):
