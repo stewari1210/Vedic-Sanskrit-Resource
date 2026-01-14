@@ -571,9 +571,19 @@ Provide a helpful response:"""
         messages = [SystemMessage(content=synthesis_prompt)]
         response = llm.invoke(messages)
 
+        # Debug LLM response
+        logger.info(f"[AGENT] LLM response type: {type(response)}")
+        logger.info(f"[AGENT] LLM response attributes: {dir(response)[:20]}")
+        
         answer_content = response.content if hasattr(response, 'content') else str(response)
         logger.info(f"[AGENT] Factual response length: {len(answer_content)} chars")
         logger.info(f"[AGENT] Had corpus content: {has_corpus}")
+        
+        # Debug: Show first 200 chars of response
+        if answer_content:
+            logger.info(f"[AGENT] Response preview: {answer_content[:200]}")
+        else:
+            logger.warning(f"[AGENT] Response is empty! Full response object: {response}")
 
         if not answer_content or len(answer_content) < 10:
             answer_content = "I couldn't find relevant information in the corpus to answer this question. Please try rephrasing or ask about topics covered in the Rigveda and Yajurveda."
