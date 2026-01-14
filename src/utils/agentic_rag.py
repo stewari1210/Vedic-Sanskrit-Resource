@@ -174,32 +174,40 @@ def grammar_rules_search(sanskrit_word: str, context: str = "") -> str:
 @tool
 def corpus_examples_search(sanskrit_terms: str, pattern: str = "") -> str:
     """
-    Search Vedic corpus (RV/YV) for usage examples.
+    Search Vedic corpus (RV/YV) for usage examples or factual information.
 
     Args:
-        sanskrit_terms: Sanskrit words to find examples for (comma-separated)
-        pattern: Sentence pattern to match (e.g., "subject verb object")
+        sanskrit_terms: Sanskrit words OR factual question to search for
+        pattern: Sentence pattern to match (e.g., "sentence", "") - empty for factual queries
 
     Returns:
-        Example sentences from corpus
+        Example sentences or relevant corpus passages
     """
-    logger.info(f"[CORPUS] Searching examples for '{sanskrit_terms}' (pattern: {pattern})")
+    logger.info(f"[CORPUS] Searching for '{sanskrit_terms}' (pattern: {pattern})")
 
-    query = f"{sanskrit_terms} {pattern} example sentence usage"
+    # If pattern is empty, treat as factual query - use direct search
+    # Otherwise, treat as example search - append context
+    if pattern:
+        query = f"{sanskrit_terms} {pattern} example sentence usage"
+    else:
+        # For factual queries, use the question directly without modification
+        query = sanskrit_terms
 
     try:
         # Use shared vector store instead of creating new one
         vec_db, docs = get_shared_vector_store()
-        retriever = vec_db.as_retriever(search_kwargs={"k": 3})
+        retriever = vec_db.as_retriever(search_kwargs={"k": 5})  # Get more results for factual queries
 
         examples = retriever.invoke(query)
 
         if examples:
-            result = "\n\n".join([f"Example {i+1}: {doc.page_content[:300]}" for i, doc in enumerate(examples[:2])])
-            logger.info(f"[CORPUS] Found {len(examples)} examples")
+            # For factual queries, return more context (first 500 chars per passage)
+            char_limit = 500 if not pattern else 300
+            result = "\n\n".join([f"Passage {i+1}: {doc.page_content[:char_limit]}" for i, doc in enumerate(examples)])
+            logger.info(f"[CORPUS] Found {len(examples)} passages")
             return result
         else:
-            return "No corpus examples found."
+            return "No relevant passages found in corpus."
 
     except Exception as e:
         logger.error(f"[CORPUS] Error: {e}")
@@ -526,33 +534,53 @@ Provide a clear, educational answer:"""
         if corpus_info:
             corpus_context = "\n\n".join([doc.page_content for doc in corpus_info[:5]])
 
-        synthesis_prompt = f"""You are a Sanskrit scholar answering questions about Vedic texts, history, and culture.
+        # Check if we actually have meaningful corpus content
+        has_corpus = corpus_context and len(corpus_context.strip()) > 50 and "No relevant passages" not in corpus_context
+
+        if has_corpus:
+            synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts, history, and culture.
 
 QUESTION: {question}
 
-RELEVANT CORPUS PASSAGES:
-{corpus_context if corpus_context else "No specific passages found in the corpus."}
+RELEVANT CORPUS PASSAGES FROM RIGVEDA AND YAJURVEDA:
+{corpus_context}
 
 INSTRUCTIONS:
-1. Answer the question based on the corpus passages provided
-2. Be accurate and cite specific text references when possible
-3. If the corpus doesn't contain relevant information, say so clearly
+1. Answer the question based on the corpus passages provided above
+2. Cite specific details from the passages (names, events, descriptions)
+3. Be informative and educational in your response
 4. Use Sanskrit terms with transliteration when appropriate
+5. If the passages mention the topic, explain what they say about it
 
-Provide an informative answer:"""
+Provide a detailed answer based on the corpus passages:"""
+        else:
+            synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts.
+
+QUESTION: {question}
+
+CORPUS STATUS: No relevant passages found in the current corpus (Rigveda, Yajurveda, Grammar texts).
+
+INSTRUCTIONS:
+Please inform the user that this specific topic is not found in the available corpus and suggest:
+1. Rephrasing the question
+2. Asking about topics known to be in the Rigveda or Yajurveda
+3. Or provide very brief general knowledge if you have it (but note it's not from the corpus)
+
+Provide a helpful response:"""
 
         messages = [SystemMessage(content=synthesis_prompt)]
         response = llm.invoke(messages)
 
         answer_content = response.content if hasattr(response, 'content') else str(response)
         logger.info(f"[AGENT] Factual response length: {len(answer_content)} chars")
+        logger.info(f"[AGENT] Had corpus content: {has_corpus}")
 
         if not answer_content or len(answer_content) < 10:
             answer_content = "I couldn't find relevant information in the corpus to answer this question. Please try rephrasing or ask about topics covered in the Rigveda and Yajurveda."
 
         answer = {
             "answer": answer_content,
-            "citations": [f"Corpus passage {i+1}" for i in range(len(corpus_info[:5]))]
+            "citations": [f"Corpus passage {i+1}" for i in range(len(corpus_info[:5]))] if has_corpus else []
         }
 
         logger.info("[AGENT] Factual synthesis complete")
