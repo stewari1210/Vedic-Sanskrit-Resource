@@ -183,6 +183,30 @@ class Settings:
             num_gpu=OLLAMA_QA_NUM_GPU,  # Enable GPU (Mac: 1=enabled)
             timeout=120,  # 2 minute timeout to prevent hanging
         )
+    elif llm_provider == "gemini":
+        # Use Google Gemini as the primary QA model when requested
+        if not GEMINI_API_KEY:
+            logger.warning("GEMINI_API_KEY not found - falling back to Groq or Ollama based on configuration.")
+            # If GEMINI_API_KEY missing, fall through to Groq branch below
+            groq_model = MODEL_SPECS.get("model")
+            logger.info(f"Using Groq LLM for QA: {groq_model}")
+            llm = ChatGroq(
+                api_key=GROQ_API_KEY,
+                model=groq_model,
+                max_tokens=MODEL_SPECS["max_tokens"],
+                timeout=MODEL_SPECS["timeout"],
+                max_retries=MODEL_SPECS["max_retries"],
+            )
+        else:
+            logger.info(f"Using Google Gemini LLM for QA: {GEMINI_MODEL}")
+            llm = ChatGoogleGenerativeAI(
+                model=GEMINI_MODEL,
+                google_api_key=GEMINI_API_KEY,
+                temperature=MODEL_SPECS["temperature"],
+                max_tokens=MODEL_SPECS["max_tokens"],
+                timeout=MODEL_SPECS["timeout"],
+                max_retries=MODEL_SPECS["max_retries"],
+            )
     else:  # Default to Groq
         # Validate Groq model configuration
         groq_model = MODEL_SPECS.get("model")
