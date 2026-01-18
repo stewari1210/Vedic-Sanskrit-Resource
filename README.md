@@ -423,14 +423,9 @@ OLLAMA_EVAL_MODEL=qwen2.5:32b
 - **`AUDIO_PRONUNCIATION_GUIDE.md`** - TTS feature documentation
 - **`FAST_MODELS_GUIDE.md`** - Model performance comparison
 
-## 🛣️ Roadmap & Planned Development
+## 🛣️ Roadmap of Planned Development
 
 ### Planned Improvements
-
-**Phase 1: Grammar Foundation (Priority)**
-- [ ] Add Macdonell's Vedic Grammar for Students
-- [ ] Add Macdonell's Vedic Reader (30 analyzed hymns)
-- [ ] Add Whitney's Sanskrit Grammar
 
 **Phase 1: Grammar Foundation (Priority)** (Completed 2026-01-18)
 - [x] Add Macdonell's Vedic Grammar for Students
