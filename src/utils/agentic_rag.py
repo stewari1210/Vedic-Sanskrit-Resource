@@ -438,7 +438,8 @@ EXAMPLE FORMAT:
 Now provide the translation for "{english_phrase}":"""
 
         messages = [SystemMessage(content=synthesis_prompt)]
-        response = llm.invoke(messages)
+        # Use provider-compatible invocation (Gemini expects a plain string)
+        response = Settings.invoke_llm(llm, messages)
 
         # Debug: Check what we got back
         logger.info(f"[AGENT] LLM response type: {type(response)}")
@@ -511,7 +512,7 @@ INSTRUCTIONS:
 Provide a clear, educational answer:"""
 
         messages = [SystemMessage(content=synthesis_prompt)]
-        response = llm.invoke(messages)
+        response = Settings.invoke_llm(llm, messages)
 
         answer_content = response.content if hasattr(response, 'content') else str(response)
         logger.info(f"[AGENT] Grammar response length: {len(answer_content)} chars")
@@ -569,7 +570,7 @@ Please inform the user that this specific topic is not found in the available co
 Provide a helpful response:"""
 
         messages = [SystemMessage(content=synthesis_prompt)]
-        response = llm.invoke(messages)
+        response = Settings.invoke_llm(llm, messages)
 
         # Debug LLM response
         logger.info(f"[AGENT] LLM response type: {type(response)}")

@@ -267,3 +267,42 @@ class Settings:
 
     chunk_size = CHUNK_SIZE
     chunk_overlap = CHUNK_OVERLAP
+
+    @staticmethod
+    def invoke_llm(llm_obj, messages_or_str):
+        """
+        Unified helper to invoke the configured LLM across providers.
+
+        - For Gemini (ChatGoogleGenerativeAI) the client expects a plain string
+          for 'invoke', so we flatten message lists into a single prompt.
+        - For other providers (Ollama, Groq) we forward the messages list
+          (SystemMessage/HumanMessage) as-is.
+
+        Args:
+            llm_obj: The instantiated LLM client (Settings.llm)
+            messages_or_str: Either a single string prompt or a list of message
+                             objects (SystemMessage/HumanMessage/etc.)
+
+        Returns:
+            The LLM response object from the provider.
+        """
+        from config import LLM_PROVIDER
+
+        provider = (LLM_PROVIDER or "").lower()
+
+        # If user passed a plain string, just forward it
+        if isinstance(messages_or_str, str):
+            return llm_obj.invoke(messages_or_str)
+
+        # If Gemini, flatten messages into a single prompt string
+        if provider == "gemini":
+            parts = []
+            for m in messages_or_str:
+                # Try to extract `.content` or fall back to str(m)
+                content = getattr(m, "content", None) or str(m)
+                parts.append(content)
+            prompt = "\n\n".join(parts)
+            return llm_obj.invoke(prompt)
+
+        # Default: pass the messages list through (Ollama, Groq)
+        return llm_obj.invoke(messages_or_str)

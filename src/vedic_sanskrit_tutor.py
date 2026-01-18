@@ -37,7 +37,7 @@ from src.utils.final_block_rag import create_langgraph_app, run_rag_with_langgra
 from langchain_community.chat_models import ChatOllama
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage, SystemMessage
-from src.settings import OLLAMA_BASE_URL, OLLAMA_MODEL, GEMINI_MODEL
+from src.settings import OLLAMA_BASE_URL, OLLAMA_MODEL, GEMINI_MODEL, Settings
 
 
 # Learning Modules
@@ -287,7 +287,7 @@ Have a natural conversation about Sanskrit:
                     HumanMessage(content=f"Context from Vedic texts:\n{answer}\n\nStudent's question: {query}\n\nProvide a clear, pedagogical explanation:")
                 ]
 
-                enhanced_answer = self.llm.invoke(messages).content
+                enhanced_answer = Settings.invoke_llm(self.llm, messages).content
 
                 # Update chat history
                 self.chat_history.append(HumanMessage(content=query))

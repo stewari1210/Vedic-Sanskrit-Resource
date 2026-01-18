@@ -13,6 +13,7 @@ from typing import Optional
 import json
 from datetime import datetime
 from pathlib import Path
+from settings import Settings
 
 
 class AMTAgent:
@@ -169,8 +170,9 @@ Focus on textual evidence, geographic clues, cultural indicators, and archaeolog
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": prompt}
         ]
-
-        response = self.llm.invoke(messages)
+        # Use unified invocation to support different LLM providers
+        from settings import Settings
+        response = Settings.invoke_llm(self.llm, messages)
         return response.content
 
 
@@ -329,8 +331,9 @@ Focus on Sarasvati evidence, indigenous markers, homeland language, and Harappan
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": prompt}
         ]
-
-        response = self.llm.invoke(messages)
+        # Use unified invocation to support different LLM providers
+        from settings import Settings
+        response = Settings.invoke_llm(self.llm, messages)
         return response.content
 
 
@@ -692,7 +695,7 @@ Be concise and direct."""
                 {"role": "system", "content": self.amt_agent.system_prompt[:800]},  # Truncate system prompt
                 {"role": "user", "content": f"Verse: {verse_ref}\n\n{amt_rebuttal_prompt}"}
             ]
-            amt_rebuttal = self.amt_agent.llm.invoke(amt_messages).content
+            amt_rebuttal = Settings.invoke_llm(self.amt_agent.llm, amt_messages).content
             print(amt_rebuttal)
 
             print(f"\n{'-'*80}")
@@ -713,7 +716,7 @@ Be concise and direct."""
                 {"role": "system", "content": self.oit_agent.system_prompt[:800]},  # Truncate system prompt
                 {"role": "user", "content": f"Verse: {verse_ref}\n\n{oit_rebuttal_prompt}"}
             ]
-            oit_rebuttal = self.oit_agent.llm.invoke(oit_messages).content
+            oit_rebuttal = Settings.invoke_llm(self.oit_agent.llm, oit_messages).content
             print(oit_rebuttal)
             print(f"\n{'='*80}\n")
 
@@ -778,7 +781,7 @@ Apply ALL error-prevention rules from your system prompt, especially:
             {"role": "user", "content": synthesis_prompt}
         ]
 
-        synthesis = self.synthesis_llm.invoke(synthesis_messages).content
+        synthesis = Settings.invoke_llm(self.synthesis_llm, synthesis_messages).content
         print(synthesis)
         print(f"\n{'='*80}\n")
 
