@@ -423,19 +423,7 @@ OLLAMA_EVAL_MODEL=qwen2.5:32b
 - **`AUDIO_PRONUNCIATION_GUIDE.md`** - TTS feature documentation
 - **`FAST_MODELS_GUIDE.md`** - Model performance comparison
 
-## 🛣️ Roadmap & Known Limitations
-
-### Current Corpus Limitation
-
-The tutor is trained on **poetic/liturgical texts** (Rigveda & Yajurveda), which are excellent for:
-- ✅ Reading and understanding Vedic hymns
-- ✅ Learning ritual vocabulary
-- ✅ Poetic verse translation
-
-But struggle with:
-- ❌ Conversational Sanskrit ("I want milk")
-- ❌ Everyday sentence construction
-- ❌ Modern Sanskrit prose
+## 🛣️ Roadmap & Planned Development
 
 ### Planned Improvements
 
@@ -444,13 +432,18 @@ But struggle with:
 - [ ] Add Macdonell's Vedic Reader (30 analyzed hymns)
 - [ ] Add Whitney's Sanskrit Grammar
 
-**Phase 2: Prose Texts**
-- [ ] Add Shatapatha Brahmana (narrative prose)
-- [ ] Add Aitareya Brahmana (subject-object-verb structures)
+**Phase 1: Grammar Foundation (Priority)** (Completed 2026-01-18)
+- [x] Add Macdonell's Vedic Grammar for Students
+- [x] Add Macdonell's Vedic Reader (30 analyzed hymns)
+- [x] Add Whitney's Sanskrit Grammar
 
-**Phase 3: Dictionaries**
-- [ ] Monier-Williams Sanskrit-English Dictionary
-- [ ] Grassmann's Wörterbuch zum Rig-veda
+**Phase 2: Prose Texts** (Completed 2026-01-18)
+- [x] Add Shatapatha Brahmana (narrative prose)
+- [x] Add Aitareya Brahmana (subject-object-verb structures)
+
+**Phase 3: Dictionaries** (Completed 2026-01-18)
+- [x] Monier-Williams Sanskrit-English Dictionary
+- [x] Grassmann's Wörterbuch zum Rig-veda
 
 **Phase 4: Features**
 - [ ] Spaced repetition flashcards
