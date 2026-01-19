@@ -328,6 +328,23 @@
       "total_occurrences": 10,
       "priority": "MEDIUM"
     },
+    "Trksi": {
+      "canonical": "Trksi",
+      "variants": [
+        "Trkṣi",
+        "Trksis",
+        "Ikshvaku",
+        "Ikshvakus"
+      ],
+      "role": "Tribe/Clan (identified with Ikshvaku in later Puranic traditions)",
+      "context": "Mentioned in Rigveda Mandala X; later Puranic traditions identify Trksi with the Ikshvaku line",
+      "sources": {
+        "Griffith-Rigveda": 3
+      },
+      "total_occurrences": 3,
+      "note": "Added mapping: Trksi (Trksis) often associated with Ikshvaku/Ikshvakus in secondary traditions; counts are approximate and should be validated against the corpus indexing",
+      "priority": "MEDIUM"
+    },
     "Magadha": {
       "canonical": "Magadha",
       "variants": [
