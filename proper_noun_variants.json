@@ -204,7 +204,30 @@
       "total_occurrences": 15,
       "note": "Multi-faceted identity: military tribe AND priestly lineage. Not strictly separate from 'Bharata sages'. Trtsus = Bharata priests in Griffith.",
       "priority": "MEDIUM"
-    },
+    }
+  },
+  "rivers_and_geography": {
+    "Ganga": {
+      "canonical": "Ganga",
+      "variants": [
+        "Ganga",
+        "Ganges",
+        "Jahnavi",
+        "Bhagirathi",
+        "Ganga River",
+        "Ganges River"
+      ],
+      "role": "River (sacred, major geographical feature)",
+      "context": "Most sacred river in Vedic tradition; mentioned in Rigveda, Yajurveda, and later texts. Associated with purification, ritual, and migration eastward (Doab region).",
+      "sources": {
+        "Rigveda": "Contextual mentions (migration, geography)",
+        "Yajurveda": "Ritual and migration references",
+        "Shatapatha Brahmana": "Mythic and ritual references"
+      },
+      "priority": "CRITICAL",
+      "note": "Variants include both Sanskrit and Anglicized forms. Jahnavi is a poetic epithet. Bhagirathi is a mythic source name."
+    }
+  },
     "Purus": {
       "canonical": "Purus",
       "variants": [
@@ -466,7 +489,7 @@
       "note": "Ascetic group contributing ritual expertise to Panchala formation",
       "priority": "LOW"
     }
-  },
+  ,
   "plants_and_materials": {
     "Khadira": {
       "canonical": "Khadira",
