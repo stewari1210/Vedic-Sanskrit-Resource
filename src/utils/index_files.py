@@ -77,7 +77,12 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
     Returns:
         Qdrant: An initialized LangChain Qdrant vector store object.
     """
-    from src.config import QDRANT_URL, QDRANT_API_KEY, VECTORDB_FOLDER, COLLECTION_NAME
+    from src.config import QDRANT_URL, QDRANT_API_KEY, VECTORDB_FOLDER, COLLECTION_NAME, LOCAL_FOLDER
+    
+    logger.info(f"QDRANT_URL: {QDRANT_URL}")
+    logger.info(f"QDRANT_API_KEY: {'***' if QDRANT_API_KEY else None}")
+    logger.info(f"VECTORDB_FOLDER: {VECTORDB_FOLDER}")
+    logger.info(f"COLLECTION_NAME: {COLLECTION_NAME}")
     
     if QDRANT_URL and QDRANT_API_KEY:
         # Use Qdrant Cloud
@@ -118,7 +123,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
         logger.info(f"Document Chunks file: {CHUNKS_FILE} does not exist. Re-Indexing")
         # chunk documents
         documents = load_documents_with_metadata(
-            os.path.join(LOCAL_FOLDER, COLLECTION_NAME)
+            os.path.join(str(LOCAL_FOLDER), str(COLLECTION_NAME))
         )
         chunks = chunk_doc(documents)
 
