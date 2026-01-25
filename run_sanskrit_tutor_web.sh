@@ -3,8 +3,8 @@
 # Run the Vedic Sanskrit Tutor Streamlit Frontend
 
 # Activate conda environment
-# source ~/miniconda3/etc/profile.d/conda.sh
-conda activate rag-py311
+source ~/miniforge-arm64/etc/profile.d/conda.sh
+conda activate vedic-tutor
 
 # Set environment variable for tokenizers
 export TOKENIZERS_PARALLELISM=false
