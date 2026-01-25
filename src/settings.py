@@ -150,138 +150,141 @@ class Settings:
     @classmethod
     def _init_embed_model(cls):
         """Initialize embedding model based on current config."""
-        _provider = str(EMBEDDING_PROVIDER).lower() if EMBEDDING_PROVIDER else "local-fast"
-        logger.info(f"EMBEDDING_PROVIDER from config: '{EMBEDDING_PROVIDER}' -> '{_provider}'")
+        from src.config import get_config_value
+        _provider = str(get_config_value("EMBEDDING_PROVIDER", "local-fast")).lower() if get_config_value("EMBEDDING_PROVIDER") else "local-fast"
+        logger.info(f"EMBEDDING_PROVIDER from config: '{get_config_value('EMBEDDING_PROVIDER')}' -> '{_provider}'")
 
         if _provider == "gemini":
             # Google Gemini Embeddings (requires API key, has quotas)
-            logger.info(f"Using Gemini embeddings: {EMBED_MODEL}")
+            logger.info(f"Using Gemini embeddings: {get_config_value('EMBED_MODEL')}")
             embed_kwargs = {}
-            if EMBED_MODEL:
-                embed_kwargs["model"] = EMBED_MODEL
-            if GEMINI_API_KEY:
-                embed_kwargs["google_api_key"] = GEMINI_API_KEY
+            if get_config_value("EMBED_MODEL"):
+                embed_kwargs["model"] = get_config_value("EMBED_MODEL")
+            if get_config_value("GEMINI_API_KEY"):
+                embed_kwargs["google_api_key"] = get_config_value("GEMINI_API_KEY")
             _base_embed_model = GoogleGenerativeAIEmbeddings(**embed_kwargs)
             cls._embed_model = RateLimitedEmbeddings(_base_embed_model, delay=0.65)
 
         elif _provider == "local-best":
             # Sentence Transformers: High Quality (MTEB ~64)
             logger.info("Using local embeddings: sentence-transformers/all-mpnet-base-v2 (best quality)")
-            logger.info(f"  • Parallelization: batch_size={EMBEDDING_BATCH_SIZE}, device={EMBEDDING_DEVICE}")
+            logger.info(f"  • Parallelization: batch_size={get_config_value('EMBEDDING_BATCH_SIZE', 16, int)}, device={get_config_value('EMBEDDING_DEVICE', 'cpu')}")
             cls._embed_model = HuggingFaceEmbeddings(
                 model_name="sentence-transformers/all-mpnet-base-v2",
                 model_kwargs={
-                    'device': EMBEDDING_DEVICE,  # Use GPU if available (mps for Mac, cuda for NVIDIA)
+                    'device': get_config_value("EMBEDDING_DEVICE", "cpu"),  # Use GPU if available (mps for Mac, cuda for NVIDIA)
                 },
                 encode_kwargs={
                     'normalize_embeddings': True,
-                    'batch_size': EMBEDDING_BATCH_SIZE,  # Batch processing for speed
+                    'batch_size': get_config_value("EMBEDDING_BATCH_SIZE", 16, int),  # Batch processing for speed
                 }
             )
 
         else:  # default to "local-fast"
             # Sentence Transformers: Fast & High Quality (MTEB ~62)
             logger.info("Using local embeddings: BAAI/bge-small-en-v1.5 (fast & efficient)")
-            logger.info(f"  • Parallelization: batch_size={EMBEDDING_BATCH_SIZE}, device={EMBEDDING_DEVICE}")
+            logger.info(f"  • Parallelization: batch_size={get_config_value('EMBEDDING_BATCH_SIZE', 16, int)}, device={get_config_value('EMBEDDING_DEVICE', 'cpu')}")
             cls._embed_model = HuggingFaceEmbeddings(
                 model_name="BAAI/bge-small-en-v1.5",
                 model_kwargs={
-                    'device': EMBEDDING_DEVICE,  # Use GPU if available
+                    'device': get_config_value("EMBEDDING_DEVICE", "cpu"),  # Use GPU if available
                 },
                 encode_kwargs={
                     'normalize_embeddings': True,
-                    'batch_size': EMBEDDING_BATCH_SIZE,  # Batch processing
+                    'batch_size': get_config_value("EMBEDDING_BATCH_SIZE", 16, int),  # Batch processing
                 }
             )
     
     @classmethod
     def _init_llm(cls):
         """Initialize main LLM based on current config."""
-        llm_provider = str(LLM_PROVIDER).lower() if LLM_PROVIDER else "groq"
+        from src.config import get_config_value
+        llm_provider = str(get_config_value("LLM_PROVIDER", "groq")).lower() if get_config_value("LLM_PROVIDER") else "groq"
         
         if llm_provider == "ollama":
-            logger.info(f"Using Ollama LLM for QA: {OLLAMA_MODEL} at {OLLAMA_BASE_URL}")
-            logger.info(f"  • Parallelization: {OLLAMA_QA_NUM_THREAD} threads, GPU enabled (Metal), context={OLLAMA_QA_NUM_CTX}")
+            logger.info(f"Using Ollama LLM for QA: {get_config_value('OLLAMA_MODEL', 'llama3.1:8b')} at {get_config_value('OLLAMA_BASE_URL', 'http://localhost:11434')}")
+            logger.info(f"  • Parallelization: {get_config_value('OLLAMA_QA_NUM_THREAD', 4, int)} threads, GPU enabled (Metal), context={get_config_value('OLLAMA_QA_NUM_CTX', 8192, int)}")
             cls._llm = ChatOllama(
-                base_url=OLLAMA_BASE_URL,
-                model=OLLAMA_MODEL,
-                temperature=MODEL_SPECS["temperature"],
-                num_ctx=OLLAMA_QA_NUM_CTX,  # Context window size
-                num_thread=OLLAMA_QA_NUM_THREAD,  # CPU threads for parallel processing
-                num_gpu=OLLAMA_QA_NUM_GPU,  # Enable GPU (Mac: 1=enabled)
+                base_url=get_config_value("OLLAMA_BASE_URL", "http://localhost:11434"),
+                model=get_config_value("OLLAMA_MODEL", "llama3.1:8b"),
+                temperature=get_config_value("TEMPERATURE", 0.0, float),
+                num_ctx=get_config_value("OLLAMA_QA_NUM_CTX", 8192, int),  # Context window size
+                num_thread=get_config_value("OLLAMA_QA_NUM_THREAD", 4, int),  # CPU threads for parallel processing
+                num_gpu=get_config_value("OLLAMA_QA_NUM_GPU", 1, int),  # Enable GPU (Mac: 1=enabled)
             )
         elif llm_provider == "gemini":
             # Use Google Gemini as the primary QA model when requested
-            if not GEMINI_API_KEY:
+            if not get_config_value("GEMINI_API_KEY"):
                 logger.warning("GEMINI_API_KEY not found - falling back to Groq or Ollama based on configuration.")
                 # If GEMINI_API_KEY missing, fall through to Groq branch below
-                groq_model = MODEL_SPECS.get("model")
+                groq_model = get_config_value("MODEL") or get_config_value("GROQ_MODEL")
                 logger.info(f"Using Groq LLM for QA: {groq_model}")
                 cls._llm = ChatGroq(
-                    api_key=GROQ_API_KEY,
+                    api_key=get_config_value("GROQ_API_KEY"),
                     model=groq_model,
-                    max_tokens=MODEL_SPECS["max_tokens"],
-                    timeout=MODEL_SPECS["timeout"],
-                    max_retries=MODEL_SPECS["max_retries"],
+                    max_tokens=get_config_value("MAX_TOKENS", 2048, int),
+                    timeout=get_config_value("TIMEOUT", 600, int),
+                    max_retries=get_config_value("MAX_RETRIES", 2, int),
                 )
             else:
-                logger.info(f"Using Google Gemini LLM for QA: {GEMINI_MODEL}")
+                logger.info(f"Using Google Gemini LLM for QA: {get_config_value('GEMINI_MODEL', 'gemini-2.0-flash-exp')}")
                 cls._llm = ChatGoogleGenerativeAI(
-                    model=GEMINI_MODEL,
-                    google_api_key=GEMINI_API_KEY,
-                    temperature=MODEL_SPECS["temperature"],
-                    max_tokens=MODEL_SPECS["max_tokens"],
-                    timeout=MODEL_SPECS["timeout"],
-                    max_retries=MODEL_SPECS["max_retries"],
+                    model=get_config_value("GEMINI_MODEL", "gemini-2.0-flash-exp"),
+                    google_api_key=get_config_value("GEMINI_API_KEY"),
+                    temperature=get_config_value("TEMPERATURE", 0.0, float),
+                    max_tokens=get_config_value("MAX_TOKENS", 2048, int),
+                    timeout=get_config_value("TIMEOUT", 600, int),
+                    max_retries=get_config_value("MAX_RETRIES", 2, int),
                 )
         else:  # Default to Groq
             # Validate Groq model configuration
-            groq_model = MODEL_SPECS.get("model")
-            if GROQ_API_KEY and not groq_model:
+            groq_model = get_config_value("MODEL") or get_config_value("GROQ_MODEL")
+            if get_config_value("GROQ_API_KEY") and not groq_model:
                 raise RuntimeError(
                     "GROQ_API_KEY is set but no model is configured. Please set the MODEL or GROQ_MODEL environment variable to a valid Groq model name."
                 )
 
             logger.info(f"Using Groq LLM for QA: {groq_model}")
             cls._llm = ChatGroq(
-                api_key=GROQ_API_KEY,
+                api_key=get_config_value("GROQ_API_KEY"),
                 model=groq_model,
-                max_tokens=MODEL_SPECS["max_tokens"],
-                timeout=MODEL_SPECS["timeout"],
-                max_retries=MODEL_SPECS["max_retries"],
+                max_tokens=get_config_value("MAX_TOKENS", 2048, int),
+                timeout=get_config_value("TIMEOUT", 600, int),
+                max_retries=get_config_value("MAX_RETRIES", 2, int),
             )
     
     @classmethod
     def _init_eval_llm(cls):
         """Initialize evaluation LLM based on current config."""
-        eval_llm_provider = str(EVAL_LLM_PROVIDER).lower() if EVAL_LLM_PROVIDER else str(LLM_PROVIDER).lower()
+        from src.config import get_config_value
+        eval_llm_provider = str(get_config_value("EVAL_LLM_PROVIDER") or get_config_value("LLM_PROVIDER", "groq")).lower()
         
         if eval_llm_provider == "ollama":
-            logger.info(f"Using Ollama LLM for Evaluation: {OLLAMA_EVAL_MODEL} at {OLLAMA_BASE_URL}")
-            logger.info(f"  • Parallelization: {OLLAMA_EVAL_NUM_THREAD} threads, GPU enabled (Metal), context={OLLAMA_EVAL_NUM_CTX}")
+            logger.info(f"Using Ollama LLM for Evaluation: {get_config_value('OLLAMA_EVAL_MODEL', 'llama3.1:8b')} at {get_config_value('OLLAMA_BASE_URL', 'http://localhost:11434')}")
+            logger.info(f"  • Parallelization: {get_config_value('OLLAMA_EVAL_NUM_THREAD', 4, int)} threads, GPU enabled (Metal), context={get_config_value('OLLAMA_EVAL_NUM_CTX', 8192, int)}")
             cls._eval_llm = ChatOllama(
-                base_url=OLLAMA_BASE_URL,
-                model=OLLAMA_EVAL_MODEL,
+                base_url=get_config_value("OLLAMA_BASE_URL", "http://localhost:11434"),
+                model=get_config_value("OLLAMA_EVAL_MODEL", "llama3.1:8b"),
                 temperature=0.3,  # Lower temperature for evaluation
-                num_ctx=OLLAMA_EVAL_NUM_CTX,
-                num_thread=OLLAMA_EVAL_NUM_THREAD,
-                num_gpu=OLLAMA_EVAL_NUM_GPU,
+                num_ctx=get_config_value("OLLAMA_EVAL_NUM_CTX", 8192, int),
+                num_thread=get_config_value("OLLAMA_EVAL_NUM_THREAD", 4, int),
+                num_gpu=get_config_value("OLLAMA_EVAL_NUM_GPU", 1, int),
             )
         elif eval_llm_provider == "gemini":
-            logger.info(f"Using Google Gemini LLM for Evaluation: {GEMINI_MODEL}")
+            logger.info(f"Using Google Gemini LLM for Evaluation: {get_config_value('GEMINI_MODEL', 'gemini-2.0-flash-exp')}")
             cls._eval_llm = ChatGoogleGenerativeAI(
-                model=GEMINI_MODEL,
-                google_api_key=GEMINI_API_KEY,
+                model=get_config_value("GEMINI_MODEL", "gemini-2.0-flash-exp"),
+                google_api_key=get_config_value("GEMINI_API_KEY"),
                 temperature=0.3,
                 max_tokens=1024,
                 timeout=120,
                 max_retries=2,
             )
         else:  # Default to Groq
-            logger.info(f"Using Groq LLM for Evaluation: {EVAL_MODEL}")
+            logger.info(f"Using Groq LLM for Evaluation: {get_config_value('EVAL_MODEL') or get_config_value('MODEL') or get_config_value('GROQ_MODEL')}")
             cls._eval_llm = ChatGroq(
-                api_key=GROQ_API_KEY,
-                model=EVAL_MODEL,
+                api_key=get_config_value("GROQ_API_KEY"),
+                model=get_config_value("EVAL_MODEL") or get_config_value("MODEL") or get_config_value("GROQ_MODEL"),
                 temperature=0.3,
                 max_tokens=1024,
                 timeout=120,
@@ -306,9 +309,9 @@ class Settings:
         Returns:
             The LLM response object from the provider.
         """
-        from config import LLM_PROVIDER
+        from src.config import get_config_value
 
-        provider = str(LLM_PROVIDER or "").lower()
+        provider = str(get_config_value("LLM_PROVIDER", "groq")).lower()
 
         # If user passed a plain string, just forward it
         if isinstance(messages_or_str, str):
