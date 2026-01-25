@@ -1,10 +1,10 @@
 {
   "_comment": "Proper noun variant mappings for Griffith translations - LITERAL TRANSLATION FOCUS",
   "_usage": "When a proper noun is detected, search for all its variants to improve retrieval",
-  "_sources": "Griffith's Rigveda + Griffith's Yajurveda (literal translations)",
+  "_sources": "Griffith's Rigveda + Griffith's Yajurveda (literal translations) + Satapatha-Brahmana",
   "_total_translations": 2,
   "_philosophy": "Griffith provides literal, scholarly translations preserving original Sanskrit terminology and historical context",
-  "_last_updated": "2025-12-27",
+  "_last_updated": "2025-01-25",
   "sages": {
     "Kashyapa": {
       "variants": [
@@ -69,9 +69,10 @@
       "yajurveda_presence": "Only in commentary/footnotes listing seven sages, not in primary verses",
       "sources": {
         "Griffith-Rigveda": 22,
-        "Griffith-Yajurveda": 2
+        "Griffith-Yajurveda": 2,
+        "Satapatha-Brahmana": 18
       },
-      "total_occurrences": 24,
+      "total_occurrences": 42,
       "priority": "HIGH",
       "note": "Often confused as Yajurveda content - actually from Rigveda. Yajurveda only mentions in editorial notes."
     },
@@ -112,9 +113,10 @@
       "group": "Saptarishi (Seven Sages)",
       "sources": {
         "Griffith-Rigveda": 107,
-        "Griffith-Yajurveda": 6
+        "Griffith-Yajurveda": 6,
+        "Satapatha-Brahmana": 7
       },
-      "total_occurrences": 113,
+      "total_occurrences": 120,
       "priority": "CRITICAL",
       "pattern": "Consistent spelling across translations"
     },
@@ -126,9 +128,10 @@
       "role": "Sage (Rshi)",
       "sources": {
         "Griffith-Rigveda": 93,
-        "Griffith-Yajurveda": 5
+        "Griffith-Yajurveda": 5,
+        "Satapatha-Brahmana": 17
       },
-      "total_occurrences": 98,
+      "total_occurrences": 115,
       "priority": "CRITICAL",
       "pattern": "Mostly consistent spelling"
     },
@@ -173,6 +176,39 @@
       },
       "total_occurrences": 0,
       "priority": "LOW"
+    },
+    "Kasyapa": {
+      "variants": [
+        "Kasyapa"
+      ],
+      "role": "Sage (Rshi)",
+      "sources": {
+        "Satapatha-Brahmana": 3
+      },
+      "total_occurrences": 3,
+      "priority": "LOW"
+    },
+    "Angiras": {
+      "variants": [
+        "Angiras"
+      ],
+      "role": "Sage (Rshi)",
+      "sources": {
+        "Satapatha-Brahmana": 26
+      },
+      "total_occurrences": 26,
+      "priority": "MEDIUM"
+    },
+    "Gotama": {
+      "variants": [
+        "Gotama"
+      ],
+      "role": "Sage (Rshi)",
+      "sources": {
+        "Satapatha-Brahmana": 10
+      },
+      "total_occurrences": 10,
+      "priority": "LOW"
     }
   },
   "tribes_and_kingdoms": {
@@ -204,6 +240,54 @@
       "total_occurrences": 15,
       "note": "Multi-faceted identity: military tribe AND priestly lineage. Not strictly separate from 'Bharata sages'. Trtsus = Bharata priests in Griffith.",
       "priority": "MEDIUM"
+    },
+    "Bharata": {
+      "canonical": "Bharata",
+      "variants": [
+        "Bharata"
+      ],
+      "role": "Tribe/Kingdom",
+      "sources": {
+        "Satapatha-Brahmana": 15
+      },
+      "total_occurrences": 15,
+      "priority": "MEDIUM"
+    },
+    "Kurus": {
+      "canonical": "Kurus",
+      "variants": [
+        "Kurus"
+      ],
+      "role": "Tribe/Kingdom",
+      "sources": {
+        "Satapatha-Brahmana": 12
+      },
+      "total_occurrences": 12,
+      "priority": "MEDIUM"
+    },
+    "Krivis": {
+      "canonical": "Krivis",
+      "variants": [
+        "Krivis"
+      ],
+      "role": "Tribe/Kingdom",
+      "sources": {
+        "Satapatha-Brahmana": 2
+      },
+      "total_occurrences": 2,
+      "priority": "LOW"
+    },
+    "Anu": {
+      "canonical": "Anu",
+      "variants": [
+        "Anu"
+      ],
+      "role": "Tribe/Kingdom",
+      "sources": {
+        "Satapatha-Brahmana": 32
+      },
+      "total_occurrences": 32,
+      "priority": "MEDIUM"
     }
   },
   "rivers_and_geography": {
@@ -226,270 +310,293 @@
       },
       "priority": "CRITICAL",
       "note": "Variants include both Sanskrit and Anglicized forms. Jahnavi is a poetic epithet. Bhagirathi is a mythic source name."
-    }
-  },
-    "Purus": {
-      "canonical": "Purus",
-      "variants": [
-        "Puru",
-        "Pūrus"
-      ],
-      "role": "Tribe",
-      "context": "Rivals of Bharatas, later merged to form Kurus",
-      "sources": {
-        "Griffith-Rigveda": 23,
-        "Griffith-Yajurveda": 1
-      },
-      "total_occurrences": 24,
-      "note": "DIFFERENT from Purusha (cosmic being) - see homonyms",
-      "priority": "HIGH"
     },
-    "Kurus": {
-      "canonical": "Kurus",
+    "Yamuna": {
+      "canonical": "Yamuna",
       "variants": [
-        "Kuru",
-        "Kurukshetra",
-        "Kaurayan",
-        "Kauravya"
+        "Yamuna"
       ],
-      "role": "Kingdom/Tribe",
-      "context": "Formed from merger of Bharatas and Purus after Rigvedic period",
-      "era": "Yajurvedic period (major presence)",
-      "rigveda_lineage": {
-        "early_references": [
-          "Trasadasyu (famous ancestor)",
-          "Kurusravana (king, grandson of Trasadasyu, RV 10.33.4)",
-          "Pakasthaman Kaurayan (patron/chieftain, RV 8.3.21-24)"
-        ],
-        "kuru_identity": "The 'Kuru-ness' (Kauravya) is the common thread connecting these figures",
-        "historical_interpretation": "Griffith and historians see these as pieces of the same puzzle—the rise of the Kuru dynasty"
-      },
-      "historical_evolution": "Rigveda: Individual Kuru-affiliated leaders (Kaurayan, Kurusravana) → Yajurveda: Full Kuru kingdom",
-      "yajurveda_prominence": "Major tribal/royal entity in Yajurveda ritual contexts",
-      "region": "Kurukshetra (sacred plain in modern Haryana)",
+      "role": "River/Geographical Feature",
       "sources": {
-        "Griffith-Rigveda": 5,
-        "Griffith-Yajurveda": 4
-      },
-      "total_occurrences": 9,
-      "note": "Dynasty traces from Trasadasyu → Kurusravana → Kaurayan lineage in RV, emerges as unified kingdom in YV",
-      "priority": "HIGH"
-    },
-    "Panchalas": {
-      "canonical": "Panchalas",
-      "variants": [
-        "Panchala",
-        "Pañcālas",
-        "Pañcāla",
-        "Pancala"
-      ],
-      "role": "Kingdom/Confederacy",
-      "context": "Allied with Kurus (Kuru-Panchala confederation)",
-      "formation": {
-        "constituent_tribes": [
-          "Krivis (dominant core)",
-          "Turvashas (from Five Tribes/Pancha-janah)",
-          "Keshins (ritual specialists)",
-          "Srinjayas (Bharata allies)",
-          "Somakas (royal lineage)"
-        ],
-        "historical_process": "Multiple Rigvedic tribes merged to form Panchala identity by Yajurveda period"
-      },
-      "tribal_details": {
-        "Krivis": {
-          "rigveda_location": "Indus and Chenab region (RV 8.20, 8.22)",
-          "migration": "Moved east to Doab (Ganges-Yamuna region) by Yajurveda period",
-          "role": "Dominant core of Panchala confederation"
-        },
-        "Turvashas": {
-          "origin": "One of the Five Tribes (Pancha-janah) in Rigveda",
-          "history": "Enemies of Sudas in Battle of Ten Kings, later merged into Panchala",
-          "significance": "Former enemies became confederates"
-        },
-        "Keshins": {
-          "specialization": "Ritual knowledge specialists"
-        },
-        "Srinjayas": {
-          "alliance": "Closely allied with Bharatas in Rigveda"
-        },
-        "Somakas": {
-          "role": "Royal lineage providing Panchala kings in later literature"
-        }
-      },
-      "region": "Doab region (between Ganges and Yamuna)",
-      "historical_sources": "Satapatha Brahmana, Witzel's Vedic studies",
-      "era": "Formed by Yajurveda period from Rigvedic tribes",
-      "sources": {
-        "Griffith-Rigveda": 0,
-        "Griffith-Yajurveda": 4
-      },
-      "total_occurrences": 4,
-      "note": "Complex confederation formed from former rivals and allies; appears in YV ritual contexts as established kingdom",
-      "priority": "MEDIUM"
-    },
-    "Trtsus": {
-      "canonical": "Trtsus",
-      "variants": [
-        "Tritsu",
-        "Tṛtsus",
-        "Bharatas"
-      ],
-      "role": "Warrior-Priest sub-clan of Bharatas",
-      "context": "Led by Sudas in Battle of Ten Kings; white-robed singers with braided hair",
-      "identity": "Both military AND priestly - sang hymns AND fought battles",
-      "relationship": "Trtsu-Bharatas (interchangeable in Griffith)",
-      "priest": "Vasishtha",
-      "key_verses": {
-        "military": "These Trtsus under Indra's careful guidance came speeding like loosed waters (RV 7.18.15)",
-        "priestly": "white-robed Trtsus with their braided hair, skilled in song (RV 7.83.8)",
-        "identity": "the Bharatas were found defenceless: then widely were the Trtsus' clans extended (RV 7.33.6)"
-      },
-      "sources": {
-        "Griffith-Rigveda": 10,
-        "Griffith-Yajurveda": 0
-      },
-      "total_occurrences": 10,
-      "priority": "MEDIUM"
-    },
-    "Trksi": {
-      "canonical": "Trksi",
-      "variants": [
-        "Trkṣi",
-        "Trksis",
-        "Ikshvaku",
-        "Ikshvakus"
-      ],
-      "role": "Tribe/Clan (identified with Ikshvaku in later Puranic traditions)",
-      "context": "Mentioned in Rigveda Mandala X; later Puranic traditions identify Trksi with the Ikshvaku line",
-      "sources": {
-        "Griffith-Rigveda": 3
-      },
-      "total_occurrences": 3,
-      "note": "Added mapping: Trksi (Trksis) often associated with Ikshvaku/Ikshvakus in secondary traditions; counts are approximate and should be validated against the corpus indexing",
-      "priority": "MEDIUM"
-    },
-    "Magadha": {
-      "canonical": "Magadha",
-      "variants": [
-        "Magadha",
-        "Māgadha"
-      ],
-      "role": "Region/Kingdom",
-      "context": "Eastern frontier, possibly descended from Kikatas",
-      "status": "Considered outsiders in early Vedic period",
-      "sources": [
-        "Yajurveda-Sharma",
-        "Griffith-Yajurveda"
-      ]
-    },
-    "Krivis": {
-      "canonical": "Krivis",
-      "variants": [
-        "Krivi",
-        "Kṛvi"
-      ],
-      "role": "Tribe (constituent of Panchalas)",
-      "rigveda_context": "Located in Indus and Chenab region",
-      "key_references": [
-        "RV 1.101.1: 'laid Krivi on the earth' (Indra's conquest)",
-        "RV 1.103.2: 'overcame Krivi by might'"
-      ],
-      "migration": "Moved east to Doab (Ganges-Yamuna) by Yajurveda period",
-      "historical_role": "Dominant core tribe that formed Panchala confederation",
-      "becomes": "Core of Panchalas (see Panchalas entry)",
-      "sources": {
-        "Griffith-Rigveda": 2,
-        "Griffith-Yajurveda": 0
+        "Satapatha-Brahmana": 2
       },
       "total_occurrences": 2,
-      "note": "Early Rigvedic enemy of Indra → migrated east → became Panchala core",
-      "priority": "MEDIUM"
-    },
-    "Turvashas": {
-      "canonical": "Turvashas",
-      "variants": [
-        "Turvasha",
-        "Turvasa",
-        "Turvaśa"
-      ],
-      "role": "Tribe (one of Five Tribes/Pancha-janah, constituent of Panchalas)",
-      "rigveda_context": "One of the famous 'Five Tribes' (Pancha-janah); enemies of Sudas in Battle of Ten Kings",
-      "key_characteristic": "Former enemies of Bharatas who later merged into Panchala confederation",
-      "historical_significance": "Demonstrates how rival tribes could unify into larger confederacies",
-      "becomes": "Constituent tribe of Panchalas (see Panchalas entry)",
-      "sources": {
-        "Griffith-Rigveda": 26,
-        "Griffith-Yajurveda": 0
-      },
-      "total_occurrences": 26,
-      "note": "Frequently mentioned in Rigveda; transformation from enemy to confederate is historically significant",
-      "priority": "HIGH"
-    },
-    "Srinjayas": {
-      "canonical": "Srinjayas",
-      "variants": [
-        "Srinjaya",
-        "Sṛñjaya",
-        "Srnjaya"
-      ],
-      "role": "Clan/Dynasty (constituent of Panchalas)",
-      "rigveda_context": "Closely allied with Bharatas",
-      "key_references": [
-        "RV 10.60.4: 'Srnjaya, Devavata's son'",
-        "Associated with prince Sahadeva Somaka"
-      ],
-      "historical_role": "Allied clan that merged into Panchala confederation",
-      "becomes": "Constituent clan of Panchalas (see Panchalas entry)",
-      "sources": {
-        "Griffith-Rigveda": 3,
-        "Griffith-Yajurveda": 0
-      },
-      "total_occurrences": 3,
-      "note": "Bharata allies who became part of Panchala formation",
       "priority": "LOW"
     },
-    "Somakas": {
-      "canonical": "Somakas",
+    "Sindhu": {
+      "canonical": "Sindhu",
       "variants": [
-        "Somaka"
+        "Sindhu"
       ],
-      "role": "Royal lineage (constituent of Panchalas)",
-      "rigveda_context": "Prince Sahadeva Somaka mentioned in RV 10.60",
-      "key_references": [
-        "RV 10.60.9: 'the princely son of Sahadeva, Somaka'"
-      ],
-      "historical_role": "Royal lineage that provided Panchala kings in later literature",
-      "becomes": "Royal lineage of Panchalas (see Panchalas entry)",
+      "role": "River/Geographical Feature",
       "sources": {
-        "Griffith-Rigveda": 1,
-        "Griffith-Yajurveda": 0
+        "Satapatha-Brahmana": 2
       },
-      "total_occurrences": 1,
-      "note": "Single mention but historically important as source of Panchala royal line",
-      "priority": "LOW"
-    },
-    "Keshins": {
-      "canonical": "Keshins",
-      "variants": [
-        "Keshin",
-        "Keśin"
-      ],
-      "role": "Ascetic group/Ritual specialists (constituent of Panchalas)",
-      "rigveda_context": "Long-haired ascetics (Munis) with specialized ritual knowledge",
-      "key_references": [
-        "RV 10.136: Hymn to Kesins (long-haired ones)"
-      ],
-      "historical_role": "Ritual knowledge specialists who merged into Panchala confederation",
-      "becomes": "Ritual specialists of Panchalas (see Panchalas entry)",
-      "sources": {
-        "Griffith-Rigveda": 1,
-        "Griffith-Yajurveda": 0
-      },
-      "total_occurrences": 1,
-      "note": "Ascetic group contributing ritual expertise to Panchala formation",
+      "total_occurrences": 2,
       "priority": "LOW"
     }
-  ,
+  },
+  "Purus": {
+    "canonical": "Purus",
+    "variants": [
+      "Puru",
+      "Pūrus"
+    ],
+    "role": "Tribe",
+    "context": "Rivals of Bharatas, later merged to form Kurus",
+    "sources": {
+      "Griffith-Rigveda": 23,
+      "Griffith-Yajurveda": 1
+    },
+    "total_occurrences": 24,
+    "note": "DIFFERENT from Purusha (cosmic being) - see homonyms",
+    "priority": "HIGH"
+  },
+  "Kurus": {
+    "canonical": "Kurus",
+    "variants": [
+      "Kuru",
+      "Kurukshetra",
+      "Kaurayan",
+      "Kauravya"
+    ],
+    "role": "Kingdom/Tribe",
+    "context": "Formed from merger of Bharatas and Purus after Rigvedic period",
+    "era": "Yajurvedic period (major presence)",
+    "rigveda_lineage": {
+      "early_references": [
+        "Trasadasyu (famous ancestor)",
+        "Kurusravana (king, grandson of Trasadasyu, RV 10.33.4)",
+        "Pakasthaman Kaurayan (patron/chieftain, RV 8.3.21-24)"
+      ],
+      "kuru_identity": "The 'Kuru-ness' (Kauravya) is the common thread connecting these figures",
+      "historical_interpretation": "Griffith and historians see these as pieces of the same puzzle—the rise of the Kuru dynasty"
+    },
+    "historical_evolution": "Rigveda: Individual Kuru-affiliated leaders (Kaurayan, Kurusravana) → Yajurveda: Full Kuru kingdom",
+    "yajurveda_prominence": "Major tribal/royal entity in Yajurveda ritual contexts",
+    "region": "Kurukshetra (sacred plain in modern Haryana)",
+    "sources": {
+      "Griffith-Rigveda": 5,
+      "Griffith-Yajurveda": 4
+    },
+    "total_occurrences": 9,
+    "note": "Dynasty traces from Trasadasyu → Kurusravana → Kaurayan lineage in RV, emerges as unified kingdom in YV",
+    "priority": "HIGH"
+  },
+  "Panchalas": {
+    "canonical": "Panchalas",
+    "variants": [
+      "Panchala",
+      "Pañcālas",
+      "Pañcāla",
+      "Pancala"
+    ],
+    "role": "Kingdom/Confederacy",
+    "context": "Allied with Kurus (Kuru-Panchala confederation)",
+    "formation": {
+      "constituent_tribes": [
+        "Krivis (dominant core)",
+        "Turvashas (from Five Tribes/Pancha-janah)",
+        "Keshins (ritual specialists)",
+        "Srinjayas (Bharata allies)",
+        "Somakas (royal lineage)"
+      ],
+      "historical_process": "Multiple Rigvedic tribes merged to form Panchala identity by Yajurveda period"
+    },
+    "tribal_details": {
+      "Krivis": {
+        "rigveda_location": "Indus and Chenab region (RV 8.20, 8.22)",
+        "migration": "Moved east to Doab (Ganges-Yamuna region) by Yajurveda period",
+        "role": "Dominant core of Panchala confederation"
+      },
+      "Turvashas": {
+        "origin": "One of the Five Tribes (Pancha-janah) in Rigveda",
+        "history": "Enemies of Sudas in Battle of Ten Kings, later merged into Panchala",
+        "significance": "Former enemies became confederates"
+      },
+      "Keshins": {
+        "specialization": "Ritual knowledge specialists"
+      },
+      "Srinjayas": {
+        "alliance": "Closely allied with Bharatas in Rigveda"
+      },
+      "Somakas": {
+        "role": "Royal lineage providing Panchala kings in later literature"
+      }
+    },
+    "region": "Doab region (between Ganges and Yamuna)",
+    "historical_sources": "Satapatha Brahmana, Witzel's Vedic studies",
+    "era": "Formed by Yajurveda period from Rigvedic tribes",
+    "sources": {
+      "Griffith-Rigveda": 0,
+      "Griffith-Yajurveda": 4
+    },
+    "total_occurrences": 4,
+    "note": "Complex confederation formed from former rivals and allies; appears in YV ritual contexts as established kingdom",
+    "priority": "MEDIUM"
+  },
+  "Trtsus": {
+    "canonical": "Trtsus",
+    "variants": [
+      "Tritsu",
+      "Tṛtsus",
+      "Bharatas"
+    ],
+    "role": "Warrior-Priest sub-clan of Bharatas",
+    "context": "Led by Sudas in Battle of Ten Kings; white-robed singers with braided hair",
+    "identity": "Both military AND priestly - sang hymns AND fought battles",
+    "relationship": "Trtsu-Bharatas (interchangeable in Griffith)",
+    "priest": "Vasishtha",
+    "key_verses": {
+      "military": "These Trtsus under Indra's careful guidance came speeding like loosed waters (RV 7.18.15)",
+      "priestly": "white-robed Trtsus with their braided hair, skilled in song (RV 7.83.8)",
+      "identity": "the Bharatas were found defenceless: then widely were the Trtsus' clans extended (RV 7.33.6)"
+    },
+    "sources": {
+      "Griffith-Rigveda": 10,
+      "Griffith-Yajurveda": 0
+    },
+    "total_occurrences": 10,
+    "priority": "MEDIUM"
+  },
+  "Trksi": {
+    "canonical": "Trksi",
+    "variants": [
+      "Trkṣi",
+      "Trksis",
+      "Ikshvaku",
+      "Ikshvakus"
+    ],
+    "role": "Tribe/Clan (identified with Ikshvaku in later Puranic traditions)",
+    "context": "Mentioned in Rigveda Mandala X; later Puranic traditions identify Trksi with the Ikshvaku line",
+    "sources": {
+      "Griffith-Rigveda": 3
+    },
+    "total_occurrences": 3,
+    "note": "Added mapping: Trksi (Trksis) often associated with Ikshvaku/Ikshvakus in secondary traditions; counts are approximate and should be validated against the corpus indexing",
+    "priority": "MEDIUM"
+  },
+  "Magadha": {
+    "canonical": "Magadha",
+    "variants": [
+      "Magadha",
+      "Māgadha"
+    ],
+    "role": "Region/Kingdom",
+    "context": "Eastern frontier, possibly descended from Kikatas",
+    "status": "Considered outsiders in early Vedic period",
+    "sources": [
+      "Yajurveda-Sharma",
+      "Griffith-Yajurveda"
+    ]
+  },
+  "Krivis": {
+    "canonical": "Krivis",
+    "variants": [
+      "Krivi",
+      "Kṛvi"
+    ],
+    "role": "Tribe (constituent of Panchalas)",
+    "rigveda_context": "Located in Indus and Chenab region",
+    "key_references": [
+      "RV 1.101.1: 'laid Krivi on the earth' (Indra's conquest)",
+      "RV 1.103.2: 'overcame Krivi by might'"
+    ],
+    "migration": "Moved east to Doab (Ganges-Yamuna) by Yajurveda period",
+    "historical_role": "Dominant core tribe that formed Panchala confederation",
+    "becomes": "Core of Panchalas (see Panchalas entry)",
+    "sources": {
+      "Griffith-Rigveda": 2,
+      "Griffith-Yajurveda": 0
+    },
+    "total_occurrences": 2,
+    "note": "Early Rigvedic enemy of Indra → migrated east → became Panchala core",
+    "priority": "MEDIUM"
+  },
+  "Turvashas": {
+    "canonical": "Turvashas",
+    "variants": [
+      "Turvasha",
+      "Turvasa",
+      "Turvaśa"
+    ],
+    "role": "Tribe (one of Five Tribes/Pancha-janah, constituent of Panchalas)",
+    "rigveda_context": "One of the famous 'Five Tribes' (Pancha-janah); enemies of Sudas in Battle of Ten Kings",
+    "key_characteristic": "Former enemies of Bharatas who later merged into Panchala confederation",
+    "historical_significance": "Demonstrates how rival tribes could unify into larger confederacies",
+    "becomes": "Constituent tribe of Panchalas (see Panchalas entry)",
+    "sources": {
+      "Griffith-Rigveda": 26,
+      "Griffith-Yajurveda": 0
+    },
+    "total_occurrences": 26,
+    "note": "Frequently mentioned in Rigveda; transformation from enemy to confederate is historically significant",
+    "priority": "HIGH"
+  },
+  "Srinjayas": {
+    "canonical": "Srinjayas",
+    "variants": [
+      "Srinjaya",
+      "Sṛñjaya",
+      "Srnjaya"
+    ],
+    "role": "Clan/Dynasty (constituent of Panchalas)",
+    "rigveda_context": "Closely allied with Bharatas",
+    "key_references": [
+      "RV 10.60.4: 'Srnjaya, Devavata's son'",
+      "Associated with prince Sahadeva Somaka"
+    ],
+    "historical_role": "Allied clan that merged into Panchala confederation",
+    "becomes": "Constituent clan of Panchalas (see Panchalas entry)",
+    "sources": {
+      "Griffith-Rigveda": 3,
+      "Griffith-Yajurveda": 0
+    },
+    "total_occurrences": 3,
+    "note": "Bharata allies who became part of Panchala formation",
+    "priority": "LOW"
+  },
+  "Somakas": {
+    "canonical": "Somakas",
+    "variants": [
+      "Somaka"
+    ],
+    "role": "Royal lineage (constituent of Panchalas)",
+    "rigveda_context": "Prince Sahadeva Somaka mentioned in RV 10.60",
+    "key_references": [
+      "RV 10.60.9: 'the princely son of Sahadeva, Somaka'"
+    ],
+    "historical_role": "Royal lineage that provided Panchala kings in later literature",
+    "becomes": "Royal lineage of Panchalas (see Panchalas entry)",
+    "sources": {
+      "Griffith-Rigveda": 1,
+      "Griffith-Yajurveda": 0
+    },
+    "total_occurrences": 1,
+    "note": "Single mention but historically important as source of Panchala royal line",
+    "priority": "LOW"
+  },
+  "Keshins": {
+    "canonical": "Keshins",
+    "variants": [
+      "Keshin",
+      "Keśin"
+    ],
+    "role": "Ascetic group/Ritual specialists (constituent of Panchalas)",
+    "rigveda_context": "Long-haired ascetics (Munis) with specialized ritual knowledge",
+    "key_references": [
+      "RV 10.136: Hymn to Kesins (long-haired ones)"
+    ],
+    "historical_role": "Ritual knowledge specialists who merged into Panchala confederation",
+    "becomes": "Ritual specialists of Panchalas (see Panchalas entry)",
+    "sources": {
+      "Griffith-Rigveda": 1,
+      "Griffith-Yajurveda": 0
+    },
+    "total_occurrences": 1,
+    "note": "Ascetic group contributing ritual expertise to Panchala formation",
+    "priority": "LOW"
+  },
   "plants_and_materials": {
     "Khadira": {
       "canonical": "Khadira",
@@ -500,7 +607,11 @@
         "Khadir"
       ],
       "botanical_name": "Acacia catechu",
-      "common_names": ["Cutch tree", "Black Catechu", "Catechu"],
+      "common_names": [
+        "Cutch tree",
+        "Black Catechu",
+        "Catechu"
+      ],
       "role": "Sacred wood / Construction material",
       "uses": [
         "Chariot construction (axle, frame)",
@@ -530,7 +641,11 @@
         "Shisham"
       ],
       "botanical_name": "Dalbergia sissoo",
-      "common_names": ["Indian Rosewood", "Sissoo", "Sheesham"],
+      "common_names": [
+        "Indian Rosewood",
+        "Sissoo",
+        "Sheesham"
+      ],
       "role": "Premium wood / Construction material",
       "uses": [
         "Chariot construction (body, frame)",
@@ -558,7 +673,11 @@
         "Gular"
       ],
       "botanical_name": "Ficus racemosa (syn. Ficus glomerata)",
-      "common_names": ["Cluster fig", "Indian fig tree", "Gular"],
+      "common_names": [
+        "Cluster fig",
+        "Indian fig tree",
+        "Gular"
+      ],
       "role": "Sacred tree / Construction material",
       "uses": [
         "Chariot frames",
@@ -849,8 +968,10 @@
       "context": "Associated with Urvasi legend",
       "sources": [
         "Yajurveda-Sharma",
-        "Griffith-Yajurveda"
-      ]
+        "Griffith-Yajurveda",
+        "Satapatha-Brahmana"
+      ],
+      "total_occurrences": 7
     }
   },
   "deities": {
@@ -866,8 +987,10 @@
         "Rigveda-Sharma",
         "Yajurveda-Sharma",
         "Griffith-Rigveda",
-        "Griffith-Yajurveda"
-      ]
+        "Griffith-Yajurveda",
+        "Satapatha-Brahmana"
+      ],
+      "total_occurrences": 1023
     },
     "Agni": {
       "variants": [
@@ -880,8 +1003,10 @@
         "Rigveda-Sharma",
         "Yajurveda-Sharma",
         "Griffith-Rigveda",
-        "Griffith-Yajurveda"
-      ]
+        "Griffith-Yajurveda",
+        "Satapatha-Brahmana"
+      ],
+      "total_occurrences": 3143
     },
     "Soma": {
       "variants": [
@@ -894,8 +1019,10 @@
         "Rigveda-Sharma",
         "Yajurveda-Sharma",
         "Griffith-Rigveda",
-        "Griffith-Yajurveda"
-      ]
+        "Griffith-Yajurveda",
+        "Satapatha-Brahmana"
+      ],
+      "total_occurrences": 1717
     },
     "Varuna": {
       "variants": [
@@ -908,8 +1035,98 @@
         "Rigveda-Sharma",
         "Yajurveda-Sharma",
         "Griffith-Rigveda",
-        "Griffith-Yajurveda"
-      ]
+        "Griffith-Yajurveda",
+        "Satapatha-Brahmana"
+      ],
+      "total_occurrences": 13
+    },
+    "Rudra": {
+      "variants": [
+        "Rudra"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 147
+      },
+      "total_occurrences": 147,
+      "priority": "HIGH"
+    },
+    "Vishnu": {
+      "variants": [
+        "Vishnu"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 6
+      },
+      "total_occurrences": 6,
+      "priority": "MEDIUM"
+    },
+    "Brahma": {
+      "variants": [
+        "Brahma"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 233
+      },
+      "total_occurrences": 233,
+      "priority": "HIGH"
+    },
+    "Savitr": {
+      "variants": [
+        "Savitr"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 7
+      },
+      "total_occurrences": 7,
+      "priority": "MEDIUM"
+    },
+    "Mitra": {
+      "variants": [
+        "Mitra"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 6
+      },
+      "total_occurrences": 6,
+      "priority": "MEDIUM"
+    },
+    "Vayu": {
+      "variants": [
+        "Vayu"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 5
+      },
+      "total_occurrences": 5,
+      "priority": "MEDIUM"
+    },
+    "Pushan": {
+      "variants": [
+        "Pushan"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 7
+      },
+      "total_occurrences": 7,
+      "priority": "MEDIUM"
+    },
+    "Bhaga": {
+      "variants": [
+        "Bhaga"
+      ],
+      "role": "Deity",
+      "sources": {
+        "Satapatha-Brahmana": 2
+      },
+      "total_occurrences": 2,
+      "priority": "MEDIUM"
     }
   },
   "translation_patterns": {
@@ -979,6 +1196,56 @@
         "priestly": "White-robed Trtsus with braided hair, skilled in song (RV 7.83.8)",
         "unity": "The Bharatas were found defenceless; then widely were the Trtsus' clans extended (RV 7.33.6)"
       }
+    }
+  },
+  "schools_traditions": {
+    "Madhyandina": {
+      "canonical": "Madhyandina",
+      "variants": [
+        "Madhyandina"
+      ],
+      "role": "Vedic School/Tradition",
+      "sources": {
+        "Satapatha-Brahmana": 52
+      },
+      "total_occurrences": 52,
+      "priority": "MEDIUM"
+    },
+    "Taittiriya": {
+      "canonical": "Taittiriya",
+      "variants": [
+        "Taittiriya"
+      ],
+      "role": "Vedic School/Tradition",
+      "sources": {
+        "Satapatha-Brahmana": 21
+      },
+      "total_occurrences": 21,
+      "priority": "MEDIUM"
+    },
+    "Apastamba": {
+      "canonical": "Apastamba",
+      "variants": [
+        "Apastamba"
+      ],
+      "role": "Vedic School/Tradition",
+      "sources": {
+        "Satapatha-Brahmana": 45
+      },
+      "total_occurrences": 45,
+      "priority": "MEDIUM"
+    },
+    "Baudhayana": {
+      "canonical": "Baudhayana",
+      "variants": [
+        "Baudhayana"
+      ],
+      "role": "Vedic School/Tradition",
+      "sources": {
+        "Satapatha-Brahmana": 11
+      },
+      "total_occurrences": 11,
+      "priority": "MEDIUM"
     }
   }
 }
