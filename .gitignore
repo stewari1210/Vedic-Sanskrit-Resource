@@ -17,4 +17,4 @@ CONVERSATION_CONTEXT.md
 local_store/
 vector_store/
 .env
-.env
+upload_vector_to_Qdrant.py

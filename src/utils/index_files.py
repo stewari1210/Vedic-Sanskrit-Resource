@@ -4,6 +4,7 @@ import pickle
 import tempfile
 from uuid import uuid4
 from pathlib import Path
+from dotenv import load_dotenv
 from langchain_qdrant import QdrantVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
@@ -66,9 +67,9 @@ def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 6
     return chunks
 
 
-def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore:
+def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVectorStore, list]:
     """
-    Creates and populates a local Qdrant vector store.
+    Creates and populates a Qdrant vector store (cloud or local).
 
     Args:
         force_recreate (bool): If True, forces recreation of the collection.
@@ -76,10 +77,27 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore
     Returns:
         Qdrant: An initialized LangChain Qdrant vector store object.
     """
-    # Initialize Qdrant client to a local path
-    vec_store = os.path.join(VECTORDB_FOLDER, COLLECTION_NAME)
-    os.makedirs(vec_store, exist_ok=True)
-    CHUNKS_FILE = os.path.join(vec_store, "docs_chunks.pkl")
+    load_dotenv()  # Load environment variables from .env
+    import os
+    qdrant_url = os.getenv("QDRANT_URL")
+    qdrant_api_key = os.getenv("QDRANT_API_KEY")
+    
+    if qdrant_url and qdrant_api_key:
+        # Use Qdrant Cloud
+        from qdrant_client import QdrantClient
+        client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
+        logger.info("Using Qdrant Cloud")
+        use_cloud = True
+    else:
+        # Fallback to local
+        logger.info("Using local Qdrant")
+        use_cloud = False
+    
+    # Initialize Qdrant client to a local path or cloud
+    if not use_cloud:
+        vec_store = os.path.join(VECTORDB_FOLDER, COLLECTION_NAME)
+        os.makedirs(vec_store, exist_ok=True)
+    CHUNKS_FILE = os.path.join(VECTORDB_FOLDER, COLLECTION_NAME, "docs_chunks.pkl") if not use_cloud else os.path.join("vector_store", COLLECTION_NAME, "docs_chunks.pkl")
 
     # If the caller asked to force recreation, remove any existing chunks file
     # so we always re-index. Previously the function only re-indexed when the
@@ -111,23 +129,32 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore
         with open(CHUNKS_FILE, "wb") as f:
             pickle.dump(chunks, f)
         # Create the Qdrant vector store from the documents
-        try:
-            vector_store = QdrantVectorStore.from_documents(
-                documents=chunks,
-                embedding=Settings.embed_model,
-                path=VECTORDB_FOLDER,
+        if use_cloud:
+            # For cloud, assume collection exists, just connect
+            vector_store = QdrantVectorStore(
+                client=client,
                 collection_name=COLLECTION_NAME,
-                force_recreate=force_recreate,
+                embedding=Settings.embed_model,
+                vector_name="embedding",  # Specify the vector name for cloud collection
             )
-        except AssertionError as e:
-            # Fallback for qdrant-client / langchain mismatch where
-            # qdrant_client.recreate_collection rejects unexpected kwargs
-            # (e.g. 'init_from'). Create the collection manually and
-            # populate it using the lower-level API.
-            logger.warning(
-                "QdrantVectorStore.from_documents failed with AssertionError (%s). Falling back to manual collection creation.",
-                e,
-            )
+        else:
+            try:
+                vector_store = QdrantVectorStore.from_documents(
+                    documents=chunks,
+                    embedding=Settings.embed_model,
+                    path=VECTORDB_FOLDER,
+                    collection_name=COLLECTION_NAME,
+                    force_recreate=force_recreate,
+                )
+            except AssertionError as e:
+                # Fallback for qdrant-client / langchain mismatch where
+                # qdrant_client.recreate_collection rejects unexpected kwargs
+                # (e.g. 'init_from'). Create the collection manually and
+                # populate it using the lower-level API.
+                logger.warning(
+                    "QdrantVectorStore.from_documents failed with AssertionError (%s). Falling back to manual collection creation.",
+                    e,
+                )
             try:
                 from qdrant_client import QdrantClient
                 from qdrant_client.http.models import VectorParams, Distance
@@ -254,26 +281,12 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore
         # Connect to existing Qdrant vector store WITHOUT re-embedding
         # This is much faster since embeddings already exist in the collection
         try:
-            from qdrant_client import QdrantClient
-
-            try:
-                client = QdrantClient(path=VECTORDB_FOLDER)
-                logger.info(f"Connected to existing Qdrant at {VECTORDB_FOLDER}")
-            except RuntimeError as rte:
-                logger.warning(
-                    "Could not open local Qdrant at %s: %s. Creating temporary storage.",
-                    VECTORDB_FOLDER,
-                    rte,
-                )
-                tmp_folder = VECTORDB_FOLDER + f"_tmp_{uuid4().hex}"
-                os.makedirs(tmp_folder, exist_ok=True)
-                client = QdrantClient(path=tmp_folder)
-
             # Create vector store by connecting to existing collection (no re-embedding)
             vector_store = QdrantVectorStore(
                 client=client,
                 collection_name=COLLECTION_NAME,
                 embedding=Settings.embed_model,
+                vector_name="embedding" if use_cloud else "",  # Specify vector name for cloud
             )
             logger.info(f"Loaded existing collection '{COLLECTION_NAME}' with {len(chunks)} chunks")
 
@@ -282,13 +295,17 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> QdrantVectorStore
                 f"Failed to connect to existing Qdrant collection: {e}. Falling back to re-indexing."
             )
             # Fallback: re-create from documents if connection fails
-            vector_store = QdrantVectorStore.from_documents(
-                documents=chunks,
-                embedding=Settings.embed_model,
-                path=VECTORDB_FOLDER,
-                collection_name=COLLECTION_NAME,
-                force_recreate=False,
-            )
+            if use_cloud:
+                # For cloud, can't recreate easily, raise error
+                raise
+            else:
+                vector_store = QdrantVectorStore.from_documents(
+                    documents=chunks,
+                    embedding=Settings.embed_model,
+                    path=VECTORDB_FOLDER,
+                    collection_name=COLLECTION_NAME,
+                    force_recreate=False,
+                )
 
         logger.info(f"Returning existing vector store at {VECTORDB_FOLDER}")
     return vector_store, chunks
