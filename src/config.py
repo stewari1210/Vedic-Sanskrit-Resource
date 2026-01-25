@@ -13,12 +13,9 @@ def get_config_value(key, default=None, cast_type=None):
     if value is None:
         try:
             import streamlit as st
-            # Try direct access first
+            # Try direct access to Streamlit secrets (top-level keys)
             if key in st.secrets:
                 value = st.secrets[key]
-            # Try in general section if direct access fails
-            elif "general" in st.secrets and key in st.secrets["general"]:
-                value = st.secrets["general"][key]
         except (ImportError, AttributeError, KeyError):
             pass
     
