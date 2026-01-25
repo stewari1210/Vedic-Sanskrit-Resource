@@ -126,7 +126,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             vector_store = QdrantVectorStore(
                 client=client,
                 collection_name=str(COLLECTION_NAME),
-                embedding=Settings.embed_model,
+                embedding=Settings.get_embed_model(),
                 vector_name="embedding",  # Specify the vector name for cloud collection
             )
             # We need to return some chunks for the agentic RAG to work
@@ -147,7 +147,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             try:
                 vector_store = QdrantVectorStore.from_documents(
                     documents=chunks,
-                    embedding=Settings.embed_model,
+                    embedding=Settings.get_embed_model(),
                     path=str(VECTORDB_FOLDER),
                     collection_name=str(COLLECTION_NAME),
                     force_recreate=force_recreate,
@@ -233,7 +233,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
                 # Determine vector size by embedding one chunk (may duplicate work)
                 if len(chunks) == 0:
                     raise ValueError("No document chunks available to determine embedding size")
-                sample_vec = Settings.embed_model.embed_documents([chunks[0].page_content])[0]
+                sample_vec = Settings.get_embed_model().embed_documents([chunks[0].page_content])[0]
                 dim = len(sample_vec)
 
                 vectors_config = VectorParams(size=dim, distance=Distance.COSINE)
@@ -246,7 +246,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
                     logger.debug("create_collection raised; continuing and attempting to upsert")
 
                 # Construct the LangChain Qdrant wrapper and add documents
-                qdrant_store = QdrantVectorStore(client=client, collection_name=str(COLLECTION_NAME), embedding=Settings.embed_model)
+                qdrant_store = QdrantVectorStore(client=client, collection_name=str(COLLECTION_NAME), embedding=Settings.get_embed_model())
                 try:
                     qdrant_store.add_documents(chunks)
                     vector_store = qdrant_store
@@ -291,7 +291,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             vector_store = QdrantVectorStore(
                 client=client,
                 collection_name=str(COLLECTION_NAME),
-                embedding=Settings.embed_model,
+                embedding=Settings.get_embed_model(),
                 vector_name="embedding" if use_cloud else "",  # Specify vector name for cloud
             )
             logger.info(f"Loaded existing collection '{COLLECTION_NAME}' with {len(chunks)} chunks")
@@ -307,7 +307,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             else:
                 vector_store = QdrantVectorStore.from_documents(
                     documents=chunks,
-                    embedding=Settings.embed_model,
+                    embedding=Settings.get_embed_model(),
                     path=str(VECTORDB_FOLDER),
                     collection_name=str(COLLECTION_NAME),
                     force_recreate=False,

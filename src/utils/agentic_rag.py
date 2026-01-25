@@ -27,7 +27,7 @@ from src.helper import logger
 from src.settings import Settings
 import re
 
-llm = Settings.llm
+llm = Settings.get_llm()
 
 # Global shared vector store to avoid Qdrant lock issues
 _SHARED_VECTOR_STORE = None

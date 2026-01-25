@@ -160,7 +160,7 @@ def get_metadata(file_path: str, markdown: str):
 def run_llm(prompt):
     messages = [("system", prompt)]
     # Use Settings.invoke_llm for provider compatibility (Gemini expects plain string)
-    response = Settings.invoke_llm(Settings.llm, messages)
+    response = Settings.invoke_llm(Settings.get_llm(), messages)
 
     return response.content
 

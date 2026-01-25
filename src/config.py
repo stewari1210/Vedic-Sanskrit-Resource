@@ -13,10 +13,10 @@ def get_config_value(key, default=None, cast_type=None):
     if value is None:
         try:
             import streamlit as st
-            # Try direct access to Streamlit secrets (top-level keys)
-            if key in st.secrets:
-                value = st.secrets[key]
-        except (ImportError, AttributeError, KeyError):
+            # Try to access st.secrets, but don't fail if it's not available
+            value = st.secrets.get(key)
+        except Exception:
+            # st.secrets not available or any other error
             pass
     
     # If we found a value, cast it if needed

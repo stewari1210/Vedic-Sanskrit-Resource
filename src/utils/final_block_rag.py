@@ -38,8 +38,8 @@ from config import (
     ENABLE_CITATIONS
 )
 
-llm = Settings.llm
-evaluator_llm = Settings.evaluator_llm
+llm = Settings.get_llm()
+evaluator_llm = Settings.get_eval_llm()
 
 # Initialize regeneration LLM based on provider
 regeneration_llm = None
