@@ -154,7 +154,7 @@ class SanskritTutorApp:
             st.session_state.learned_words = []
             st.session_state.quiz_score = {"correct": 0, "total": 0}
             st.session_state.model_name = "llama3.1:8b"
-            st.session_state.llm_provider = "ollama"
+            st.session_state.llm_provider = "gemini"
             st.session_state.audio_cache = {}  # Cache audio files
 
     def text_to_speech(self, text: str, lang: str = 'hi') -> Optional[bytes]:
@@ -546,7 +546,7 @@ Have natural conversation about Sanskrit:
 
             llm_provider = st.selectbox(
                 "LLM Provider",
-                ["ollama", "gemini", "groq"],
+                ["gemini", "ollama", "groq"],
                 key="llm_provider_select"
             )
 

@@ -29,3 +29,4 @@ streamlit>=1.30.0
 watchdog>=3.0.0
 transformers>=4.36.0
 sentence-transformers>=2.2.2
+gtts>=2.5.0  # For text-to-speech pronunciation functionality
