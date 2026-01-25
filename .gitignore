@@ -16,5 +16,5 @@ tests/
 CONVERSATION_CONTEXT.md
 local_store/
 vector_store/
-.env
 upload_vector_to_Qdrant.py
+secrets.toml
