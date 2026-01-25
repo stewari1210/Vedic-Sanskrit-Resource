@@ -1,7 +1,6 @@
 import os
 import src.helper as helper
 
-from keyvault import keyvault  # type: ignore
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -75,16 +74,14 @@ TOPIC_CHANGE_WINDOW = (
     int(os.getenv("TOPIC_CHANGE_WINDOW", "3")) * 2
 )  # to account for human and ai messages
 
-GEMINI_API_KEY = getattr(keyvault, "GEMINI_API_KEY", None) or os.getenv(
-    "GEMINI_API_KEY"
-)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 if GEMINI_API_KEY:
     logger.info("GEMINI API Key loaded successfully.")
 else:
     logger.warning("GEMINI API Key not found. Please check your keyvault or .env setup.")
 
-GROQ_API_KEY = getattr(keyvault, "GROQ_API_KEY", None) or os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if GROQ_API_KEY:
     logger.info("GROQ API Key loaded successfully.")
 else:
