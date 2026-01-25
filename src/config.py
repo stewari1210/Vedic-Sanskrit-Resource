@@ -69,7 +69,7 @@ LOCAL_FOLDER = get_config_value("LOCAL_FOLDER", "local_store")
 VECTORDB_FOLDER = get_config_value("VECTORDB_FOLDER", "vector_store")
 
 # Embedding configuration
-EMBEDDING_PROVIDER = get_config_value("EMBEDDING_PROVIDER", "local-fast")  # local-fast, local-best, or gemini
+EMBEDDING_PROVIDER = get_config_value("EMBEDDING_PROVIDER", "local-best")  # local-fast, local-best, or gemini
 EMBED_MODEL = get_config_value("EMBED_MODEL")
 
 # LLM Provider configuration

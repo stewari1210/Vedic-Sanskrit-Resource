@@ -151,7 +151,7 @@ class Settings:
     def _init_embed_model(cls):
         """Initialize embedding model based on current config."""
         from src.config import get_config_value
-        _provider = str(get_config_value("EMBEDDING_PROVIDER", "local-fast")).lower() if get_config_value("EMBEDDING_PROVIDER") else "local-fast"
+        _provider = str(get_config_value("EMBEDDING_PROVIDER", "local-best")).lower() if get_config_value("EMBEDDING_PROVIDER") else "local-best"
         logger.info(f"EMBEDDING_PROVIDER from config: '{get_config_value('EMBEDDING_PROVIDER')}' -> '{_provider}'")
 
         if _provider == "gemini":
