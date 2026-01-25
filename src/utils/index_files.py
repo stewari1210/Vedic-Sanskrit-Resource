@@ -120,26 +120,30 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             )
 
     if not Path(CHUNKS_FILE).is_file():
-        logger.info(f"Document Chunks file: {CHUNKS_FILE} does not exist. Re-Indexing")
-        # chunk documents
-        documents = load_documents_with_metadata(
-            os.path.join(str(LOCAL_FOLDER), str(COLLECTION_NAME))
-        )
-        chunks = chunk_doc(documents)
-
-        # save chunks for retrieval
-        with open(CHUNKS_FILE, "wb") as f:
-            pickle.dump(chunks, f)
-        # Create the Qdrant vector store from the documents
         if use_cloud:
-            # For cloud, assume collection exists, just connect
+            logger.info(f"Using Qdrant Cloud - assuming collection '{COLLECTION_NAME}' already exists")
+            # For cloud deployment, assume collection exists and just connect
             vector_store = QdrantVectorStore(
                 client=client,
                 collection_name=str(COLLECTION_NAME),
                 embedding=Settings.embed_model,
                 vector_name="embedding",  # Specify the vector name for cloud collection
             )
+            # We need to return some chunks for the agentic RAG to work
+            # For now, return empty list - the agentic RAG should handle this
+            chunks = []
         else:
+            logger.info(f"Document Chunks file: {CHUNKS_FILE} does not exist. Re-Indexing")
+            # chunk documents
+            documents = load_documents_with_metadata(
+                os.path.join(str(LOCAL_FOLDER), str(COLLECTION_NAME))
+            )
+            chunks = chunk_doc(documents)
+
+            # save chunks for retrieval
+            with open(CHUNKS_FILE, "wb") as f:
+                pickle.dump(chunks, f)
+            # Create the Qdrant vector store from the documents
             try:
                 vector_store = QdrantVectorStore.from_documents(
                     documents=chunks,
