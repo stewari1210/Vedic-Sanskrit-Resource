@@ -40,14 +40,23 @@ def set_shared_vector_store(vec_db, docs):
     _SHARED_DOCS = docs
     logger.info("[AGENTIC] Shared vector store configured")
 
-def get_shared_vector_store():
-    """Get the shared vector store, or create if not set."""
-    global _SHARED_VECTOR_STORE, _SHARED_DOCS
-    if _SHARED_VECTOR_STORE is None:
-        logger.warning("[AGENTIC] No shared vector store set, creating new instance")
-        from src.utils.index_files import create_qdrant_vector_store
-        _SHARED_VECTOR_STORE, _SHARED_DOCS = create_qdrant_vector_store(force_recreate=False)
-    return _SHARED_VECTOR_STORE, _SHARED_DOCS
+# Shared retriever with proper noun variants
+_SHARED_RETRIEVER = None
+
+def get_shared_retriever():
+    """Get the shared retriever with proper noun variants, or create if not set."""
+    global _SHARED_RETRIEVER, _SHARED_VECTOR_STORE, _SHARED_DOCS
+    if _SHARED_RETRIEVER is None:
+        logger.info("[AGENTIC] Creating shared retriever with proper noun variants")
+        if _SHARED_VECTOR_STORE is None:
+            from src.utils.index_files import create_qdrant_vector_store
+            _SHARED_VECTOR_STORE, _SHARED_DOCS = create_qdrant_vector_store(force_recreate=False)
+
+        # Use the full HybridRetriever with proper noun variants
+        from src.utils.retriever import create_retriever
+        _SHARED_RETRIEVER = create_retriever(_SHARED_VECTOR_STORE, _SHARED_DOCS, top_n=5)
+
+    return _SHARED_RETRIEVER
 
 
 class AgentState(TypedDict):
@@ -149,9 +158,8 @@ def grammar_rules_search(sanskrit_word: str, context: str = "") -> str:
     query = f"{sanskrit_word} {context} declension conjugation grammar"
 
     try:
-        # Use shared vector store instead of creating new one
-        vec_db, docs = get_shared_vector_store()
-        retriever = vec_db.as_retriever(search_kwargs={"k": 3})
+        # Use shared retriever with proper noun variants
+        retriever = get_shared_retriever()
 
         grammar_docs = retriever.invoke(query)
 
@@ -194,9 +202,8 @@ def corpus_examples_search(sanskrit_terms: str, pattern: str = "") -> str:
         query = sanskrit_terms
 
     try:
-        # Use shared vector store instead of creating new one
-        vec_db, docs = get_shared_vector_store()
-        retriever = vec_db.as_retriever(search_kwargs={"k": 5})  # Get more results for factual queries
+        # Use shared retriever with proper noun variants
+        retriever = get_shared_retriever()
 
         examples = retriever.invoke(query)
 
