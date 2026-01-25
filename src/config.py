@@ -13,8 +13,13 @@ def get_config_value(key, default=None, cast_type=None):
     if value is None:
         try:
             import streamlit as st
-            value = st.secrets.get(key)
-        except (ImportError, AttributeError):
+            # Try direct access first
+            if key in st.secrets:
+                value = st.secrets[key]
+            # Try in general section if direct access fails
+            elif "general" in st.secrets and key in st.secrets["general"]:
+                value = st.secrets["general"][key]
+        except (ImportError, AttributeError, KeyError):
             pass
     
     # If we found a value, cast it if needed
@@ -107,30 +112,20 @@ TOPIC_CHANGE_WINDOW = (
     get_config_value("TOPIC_CHANGE_WINDOW", 3, int) * 2
 )  # to account for human and ai messages
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-# If not found in environment, try Streamlit secrets
-if not GEMINI_API_KEY:
-    try:
-        import streamlit as st
-        GEMINI_API_KEY = st.secrets.get("GEMINI_API_KEY")
-    except (ImportError, AttributeError):
-        pass
+# API Keys
+GEMINI_API_KEY = get_config_value("GEMINI_API_KEY")
+GROQ_API_KEY = get_config_value("GROQ_API_KEY")
 
 if GEMINI_API_KEY:
     logger.info("GEMINI API Key loaded successfully.")
 else:
     logger.warning("GEMINI API Key not found. Please check your keyvault or .env setup.")
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-# If not found in environment, try Streamlit secrets
-if not GROQ_API_KEY:
-    try:
-        import streamlit as st
-        GROQ_API_KEY = st.secrets.get("GROQ_API_KEY")
-    except (ImportError, AttributeError):
-        pass
-
 if GROQ_API_KEY:
     logger.info("GROQ API Key loaded successfully.")
 else:
     logger.warning("GROQ API Key not found. Please check your keyvault or .env setup.")
+
+# Qdrant configuration
+QDRANT_URL = get_config_value("QDRANT_URL")
+QDRANT_API_KEY = get_config_value("QDRANT_API_KEY")

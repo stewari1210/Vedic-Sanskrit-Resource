@@ -77,15 +77,12 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
     Returns:
         Qdrant: An initialized LangChain Qdrant vector store object.
     """
-    load_dotenv()  # Load environment variables from .env
-    import os
-    qdrant_url = os.getenv("QDRANT_URL")
-    qdrant_api_key = os.getenv("QDRANT_API_KEY")
+    from src.config import QDRANT_URL, QDRANT_API_KEY, VECTORDB_FOLDER, COLLECTION_NAME
     
-    if qdrant_url and qdrant_api_key:
+    if QDRANT_URL and QDRANT_API_KEY:
         # Use Qdrant Cloud
         from qdrant_client import QdrantClient
-        client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
+        client = QdrantClient(url=str(QDRANT_URL), api_key=str(QDRANT_API_KEY))
         logger.info("Using Qdrant Cloud")
         use_cloud = True
     else:
@@ -95,9 +92,9 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
     
     # Initialize Qdrant client to a local path or cloud
     if not use_cloud:
-        vec_store = os.path.join(VECTORDB_FOLDER, COLLECTION_NAME)
+        vec_store = os.path.join(str(VECTORDB_FOLDER), str(COLLECTION_NAME))
         os.makedirs(vec_store, exist_ok=True)
-    CHUNKS_FILE = os.path.join(VECTORDB_FOLDER, COLLECTION_NAME, "docs_chunks.pkl") if not use_cloud else os.path.join("vector_store", COLLECTION_NAME, "docs_chunks.pkl")
+    CHUNKS_FILE = os.path.join(str(VECTORDB_FOLDER), str(COLLECTION_NAME), "docs_chunks.pkl") if not use_cloud else os.path.join("vector_store", str(COLLECTION_NAME), "docs_chunks.pkl")
 
     # If the caller asked to force recreation, remove any existing chunks file
     # so we always re-index. Previously the function only re-indexed when the
@@ -133,7 +130,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             # For cloud, assume collection exists, just connect
             vector_store = QdrantVectorStore(
                 client=client,
-                collection_name=COLLECTION_NAME,
+                collection_name=str(COLLECTION_NAME),
                 embedding=Settings.embed_model,
                 vector_name="embedding",  # Specify the vector name for cloud collection
             )
@@ -142,8 +139,8 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
                 vector_store = QdrantVectorStore.from_documents(
                     documents=chunks,
                     embedding=Settings.embed_model,
-                    path=VECTORDB_FOLDER,
-                    collection_name=COLLECTION_NAME,
+                    path=str(VECTORDB_FOLDER),
+                    collection_name=str(COLLECTION_NAME),
                     force_recreate=force_recreate,
                 )
             except AssertionError as e:
@@ -161,7 +158,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
 
                 # Ensure the directory exists for local Qdrant
                 try:
-                    client = QdrantClient(path=VECTORDB_FOLDER)
+                    client = QdrantClient(path=str(VECTORDB_FOLDER))
                 except RuntimeError as rte:
                     # Local Qdrant storage may be locked by another process. Fall
                     # back to creating a temporary local storage to avoid the lock.
@@ -170,7 +167,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
                         VECTORDB_FOLDER,
                         rte,
                     )
-                    tmp_folder = VECTORDB_FOLDER + f"_tmp_{uuid4().hex}"
+                    tmp_folder = str(VECTORDB_FOLDER) + f"_tmp_{uuid4().hex}"
                     os.makedirs(tmp_folder, exist_ok=True)
                     client = QdrantClient(path=tmp_folder)
                 # Ensure the client has a `search` method expected by
@@ -234,13 +231,13 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
 
                 # Create collection if it doesn't exist
                 try:
-                    client.create_collection(collection_name=COLLECTION_NAME, vectors_config=vectors_config)
+                    client.create_collection(collection_name=str(COLLECTION_NAME), vectors_config=vectors_config)
                 except Exception:
                     # If creation fails because collection exists, ignore
                     logger.debug("create_collection raised; continuing and attempting to upsert")
 
                 # Construct the LangChain Qdrant wrapper and add documents
-                qdrant_store = QdrantVectorStore(client=client, collection_name=COLLECTION_NAME, embedding=Settings.embed_model)
+                qdrant_store = QdrantVectorStore(client=client, collection_name=str(COLLECTION_NAME), embedding=Settings.embed_model)
                 try:
                     qdrant_store.add_documents(chunks)
                     vector_store = qdrant_store
@@ -252,7 +249,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
                     logger.exception("Failed while adding documents to Qdrant: %s", e)
                     try:
                         # Try to delete the collection if it exists
-                        client.delete_collection(collection_name=COLLECTION_NAME)
+                        client.delete_collection(collection_name=str(COLLECTION_NAME))
                         logger.info("Deleted partial collection %s due to failure", COLLECTION_NAME)
                     except Exception:
                         logger.debug("Could not delete partial collection (it may not exist)")
@@ -284,7 +281,7 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             # Create vector store by connecting to existing collection (no re-embedding)
             vector_store = QdrantVectorStore(
                 client=client,
-                collection_name=COLLECTION_NAME,
+                collection_name=str(COLLECTION_NAME),
                 embedding=Settings.embed_model,
                 vector_name="embedding" if use_cloud else "",  # Specify vector name for cloud
             )
@@ -302,8 +299,8 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
                 vector_store = QdrantVectorStore.from_documents(
                     documents=chunks,
                     embedding=Settings.embed_model,
-                    path=VECTORDB_FOLDER,
-                    collection_name=COLLECTION_NAME,
+                    path=str(VECTORDB_FOLDER),
+                    collection_name=str(COLLECTION_NAME),
                     force_recreate=False,
                 )
 
