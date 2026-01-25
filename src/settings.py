@@ -19,8 +19,8 @@ from langchain_ollama import ChatOllama
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 
-from helper import logger
-from config import (
+from src.helper import logger
+from src.config import (
     GROQ_API_KEY,
     GEMINI_API_KEY,
     EMBED_MODEL,

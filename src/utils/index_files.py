@@ -11,9 +11,9 @@ from langchain_core.documents import Document
 
 from typing import List
 
-from helper import logger
-from config import LOCAL_FOLDER, COLLECTION_NAME, VECTORDB_FOLDER
-from settings import Settings
+from src.helper import logger
+from src.config import LOCAL_FOLDER, COLLECTION_NAME, VECTORDB_FOLDER
+from src.settings import Settings
 
 
 # load all processed markdown files

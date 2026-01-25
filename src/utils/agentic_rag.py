@@ -23,8 +23,8 @@ from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_core.tools import tool
 import operator
-from helper import logger
-from settings import Settings
+from src.helper import logger
+from src.settings import Settings
 import re
 
 llm = Settings.llm
@@ -45,7 +45,7 @@ def get_shared_vector_store():
     global _SHARED_VECTOR_STORE, _SHARED_DOCS
     if _SHARED_VECTOR_STORE is None:
         logger.warning("[AGENTIC] No shared vector store set, creating new instance")
-        from utils.index_files import create_qdrant_vector_store
+        from src.utils.index_files import create_qdrant_vector_store
         _SHARED_VECTOR_STORE, _SHARED_DOCS = create_qdrant_vector_store(force_recreate=False)
     return _SHARED_VECTOR_STORE, _SHARED_DOCS
 

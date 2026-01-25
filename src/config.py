@@ -1,5 +1,5 @@
 import os
-import helper
+import src.helper as helper
 
 from keyvault import keyvault  # type: ignore
 from dotenv import load_dotenv
