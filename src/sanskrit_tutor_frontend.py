@@ -40,7 +40,7 @@ from src.config import GROQ_API_KEY
 
 # Page configuration with Devanagari font support
 st.set_page_config(
-    page_title="🕉️ Agentic Sanskrit Tutor",
+    page_title="🕉️ Vedic Sanskrit Resource",
     page_icon="🕉️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -137,7 +137,7 @@ st.markdown("""
 
 
 class SanskritTutorApp:
-    """Streamlit-based Sanskrit tutor application."""
+    """Streamlit-based Vedic Sanskrit resource application."""
 
     def __init__(self):
         self.initialize_session_state()
@@ -317,7 +317,7 @@ class SanskritTutorApp:
                     with col1:
                         if st.button("🔧 Try manual cleanup", key="manual_cleanup"):
                             if self.cleanup_qdrant_locks():
-                                st.success("✓ Locks cleaned! Click 'Initialize Tutor' again.")
+                                st.success("✓ Locks cleaned! Click 'Initialize Resource' again.")
                                 st.rerun()
                             else:
                                 st.error("Failed to clean locks. Try restarting your system.")
@@ -336,7 +336,7 @@ class SanskritTutorApp:
                 set_shared_vector_store(vec_db, docs)
                 logger.info("[FRONTEND] Shared vector store configured for agentic RAG")
 
-            with st.spinner("🤖 Initializing AI tutor..."):
+            with st.spinner("🤖 Initializing AI resource..."):
                 if llm_provider == "gemini":
                     llm = ChatGoogleGenerativeAI(
                         model=GEMINI_MODEL,
@@ -387,24 +387,24 @@ class SanskritTutorApp:
                        "3. Click the cleanup button above\n" +
                        "4. Refresh this page (Ctrl+R or Cmd+R)")
             else:
-                st.error(f"❌ Error initializing tutor: {e}")
+                st.error(f"❌ Error initializing resource: {e}")
 
-            logger.exception("Failed to initialize tutor")
+            logger.exception("Failed to initialize resource")
             return False
 
         except Exception as e:
-            st.error(f"❌ Error initializing tutor: {e}")
-            logger.exception("Failed to initialize tutor")
+            st.error(f"❌ Error initializing resource: {e}")
+            logger.exception("Failed to initialize resource")
             return False
 
     def get_system_prompt(self, mode: str) -> str:
         """Get system prompt based on learning mode."""
-        base = """You are a patient and knowledgeable Vedic Sanskrit tutor. Your student:
+        base = """You are a knowledgeable Vedic Sanskrit resource. Your user:
 - Has studied Sanskrit in school but forgotten most of it
 - Is a native Hindi speaker (use Hindi when helpful)
 - Wants to read and understand Vedic texts (Rigveda, Yajurveda)
 
-Teaching principles:
+Resource principles:
 - Start simple, build gradually
 - Use both Devanagari (देवनागरी) and IAST transliteration
 - Use Hindi for explanations when it helps
@@ -471,7 +471,7 @@ Have natural conversation about Sanskrit:
         return base + mode_specific.get(mode, mode_specific["conversation"])
 
     def ask_tutor(self, query: str, mode: str = "conversation") -> str:
-        """Query the tutor using Agentic RAG."""
+        """Query the resource using Agentic RAG."""
         system_prompt = self.get_system_prompt(mode)
 
         try:
@@ -524,7 +524,7 @@ Have natural conversation about Sanskrit:
             return answer_text
 
         except Exception as e:
-            logger.error(f"Error in tutor: {e}")
+            logger.error(f"Error in resource: {e}")
             import traceback
             traceback.print_exc()
             return f"Sorry, I encountered an error: {e}"
@@ -537,7 +537,7 @@ Have natural conversation about Sanskrit:
     def render_sidebar(self):
         """Render the sidebar with settings and navigation."""
         with st.sidebar:
-            st.title("🕉️ Sanskrit Tutor")
+            st.title("🕉️ Vedic Sanskrit Resource")
             st.markdown("### नमस्ते! Welcome")
 
             # Model selection
@@ -573,9 +573,9 @@ Have natural conversation about Sanskrit:
             else:
                 model_name = GEMINI_MODEL
 
-            if st.button("🚀 Initialize Tutor", key="init_button"):
+            if st.button("🚀 Initialize Resource", key="init_button"):
                 if self.setup_tutor(llm_provider, model_name):
-                    st.success("✓ Tutor ready!")
+                    st.success("✓ Resource ready!")
                     st.rerun()
 
             if st.session_state.initialized:
@@ -589,7 +589,7 @@ Have natural conversation about Sanskrit:
                     with st.spinner("Cleaning locks..."):
                         if self.cleanup_qdrant_locks():
                             st.success("✓ Locks cleaned!")
-                            st.info("Now click 'Initialize Tutor' above")
+                            st.info("Now click 'Initialize Resource' above")
                         else:
                             st.error("Could not clean locks")
 
@@ -646,7 +646,7 @@ Have natural conversation about Sanskrit:
 
     def render_home(self):
         """Render home page."""
-        st.title("🕉️ Vedic Sanskrit Learning Agent")
+        st.title("🕉️ Vedic Sanskrit Resource")
 
         col1, col2 = st.columns([2, 1])
 
@@ -655,8 +655,8 @@ Have natural conversation about Sanskrit:
 
             st.markdown("""
             <div class="lesson-container">
-            <h3>Your Agentic Sanskrit Tutor 🤖</h3>
-            <p>Learn to read and understand Vedic texts with AI-powered agentic reasoning.</p>
+            <h3>Your Vedic Sanskrit Resource 🤖</h3>
+            <p>Access and understand Vedic texts with AI-powered agentic reasoning.</p>
 
             <h4>🧠 Agentic RAG System:</h4>
             <ul>
@@ -694,7 +694,7 @@ Have natural conversation about Sanskrit:
             st.markdown("---")
             st.markdown("### 🚀 Get Started")
             st.markdown("""
-            1. Click **Initialize Tutor** in sidebar
+            1. Click **Initialize Resource** in sidebar
             2. Choose a learning module
             3. Start learning!
             """)
@@ -911,7 +911,7 @@ Have natural conversation about Sanskrit:
             if msg["role"] == "user":
                 st.markdown(f'<div class="student-message">👤 <b>You:</b> {msg["content"]}</div>', unsafe_allow_html=True)
             else:
-                st.markdown(f'<div class="tutor-message">🧑‍🏫 <b>Tutor:</b> {msg["content"]}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="tutor-message">🧑‍🏫 <b>Resource:</b> {msg["content"]}</div>', unsafe_allow_html=True)
 
         # Chat input
         user_input = st.text_area(
@@ -934,7 +934,7 @@ Have natural conversation about Sanskrit:
 
         if not st.session_state.initialized:
             self.render_home()
-            st.warning("👆 Please initialize the tutor using the sidebar to start learning!")
+            st.warning("👆 Please initialize the resource using the sidebar to start learning!")
             return
 
         # Route to appropriate module
