@@ -902,9 +902,9 @@ Have natural conversation about Sanskrit:
 
     def render_chat_module(self):
         """Render free conversation module."""
-        st.title("💬 Free Chat (बातचीत)")
+        st.title("💬 Chat Mode (बातचीत)")
 
-        st.markdown("Ask me anything about Vedic Sanskrit!")
+        st.markdown("Ask me anything about Vedic Sanskrit, Vedas, and Ramayana!")
 
         # Display chat history
         for msg in st.session_state.chat_history[-10:]:
