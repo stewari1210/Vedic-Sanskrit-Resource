@@ -194,7 +194,7 @@ def corpus_examples_search(sanskrit_terms: str, pattern: str = "") -> str:
         pattern: Sentence pattern to match (e.g., "sentence", "") - empty for factual queries
 
     Returns:
-        Example sentences or relevant corpus passages
+        Example sentences or relevant corpus passages (raw, without formatting)
     """
     logger.info(f"[CORPUS] Searching for '{sanskrit_terms}' (pattern: {pattern})")
 
@@ -213,9 +213,10 @@ def corpus_examples_search(sanskrit_terms: str, pattern: str = "") -> str:
         examples = retriever.invoke(query)
 
         if examples:
-            # Use enhanced citation system with proper verse references
-            result = enhance_corpus_results_with_citations(examples)
-            logger.info(f"[CORPUS] Found {len(examples)} passages with enhanced citations")
+            # Return raw document content (NO citation formatting here)
+            # Citation formatting happens later in synthesize_answer_node
+            result = "\n\n".join([doc.page_content for doc in examples[:5]])
+            logger.info(f"[CORPUS] Found {len(examples)} passages (raw content)")
             return result
         else:
             return "No relevant passages found in corpus."
@@ -360,7 +361,7 @@ def execute_tools_node(state: AgentState):
         }
 
     elif next_action == "corpus":
-        # Get corpus examples
+        # Get corpus examples - retrieve raw documents directly
         query_type = state.get("query_type", "")
 
         if query_type == "construction":
@@ -369,18 +370,20 @@ def execute_tools_node(state: AgentState):
                 term for terms in state.get("sanskrit_words", {}).values()
                 for term in (terms if isinstance(terms, list) else [terms])
             ])
-            result = corpus_examples_search.invoke({"sanskrit_terms": sanskrit_terms, "pattern": "sentence"})
+            query = f"{sanskrit_terms} example sentence usage"
         else:
             # For factual/grammar queries: search using the original question
             question = state.get("question", "")
-            result = corpus_examples_search.invoke({"sanskrit_terms": question, "pattern": ""})
+            query = question
 
-        corpus_examples = [Document(page_content=result)]
-
-        logger.info(f"[AGENT] Found corpus examples")
+        # Retrieve raw documents directly from retriever (preserves metadata)
+        retriever = get_shared_retriever()
+        corpus_examples = retriever.invoke(query)
+        
+        logger.info(f"[AGENT] Retrieved {len(corpus_examples)} corpus documents with metadata")
         return {
             "corpus_examples": corpus_examples,
-            "messages": [AIMessage(content="Retrieved corpus examples")],
+            "messages": [AIMessage(content=f"Retrieved {len(corpus_examples)} corpus examples")],
             "next_action": "synthesize"  # Next: construct answer
         }
 
