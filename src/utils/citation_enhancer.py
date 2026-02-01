@@ -27,6 +27,7 @@ class VedicCitationExtractor:
         'rigveda_hymn': r'(?:Hymn|RV|Rigveda)\s+(\d+)\.(\d+)(?:\.(\d+))?',  # RV 1.1 or RV 1.1.1
         'yajurveda_griffith': r'VS[A-Z]*\s+(\d+)\.(\d+)',  # VSKSE 13.3 or VSK 13.3 format (Yajurveda Griffith)
         'yajurveda_verse': r'(?:YV|Yajurveda|Verse)\s+(\d+)\.(\d+)',  # YV 1.1
+        'pancavamsa_reference': r'PBr\.\s+([0-9]+|[IVX]+)\s*\.\s*(\d+)(?:\s*\.\s*(\d+))?',  # PBr. X.Y.Z format (Pancavamsa Brahmana)
         'brahmana_reference': r'(?:Satapatha|SB|Brahmana)\s+(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?',  # SB 1.1.1 or SB 1.1.1.1
         'mantra_number': r'(?:Mantra|Sukta|Adhyaya)\s+(\d+)',  # Generic mantra reference
         'heading_pattern': r'^#+\s*(?:Hymn|Verse|Sutra|Section|Book|Mandala)\s+(\d+)(?:[:\-]\s*(.+))?',  # # Hymn 1: Title
@@ -74,6 +75,14 @@ class VedicCitationExtractor:
         elif pattern_name == 'yajurveda_verse':
             adhyaya, verse = match.groups()
             return f"YV {adhyaya}.{verse}"
+
+        elif pattern_name == 'pancavamsa_reference':
+            book, section, verse = match.groups()
+            # Convert Roman numerals to Arabic if needed
+            if book and book.isupper() and all(c in 'IVX' for c in book):
+                book = str(VedicCitationExtractor._roman_to_int(book))
+            verse_part = f".{verse}" if verse else ""
+            return f"PB {book}.{section}{verse_part}"
 
         elif pattern_name == 'brahmana_reference':
             parts = match.groups()
@@ -145,6 +154,21 @@ class VedicCitationExtractor:
             return title_match.group(1).strip()
 
         return None
+
+    @staticmethod
+    def _roman_to_int(roman: str) -> int:
+        """Convert Roman numerals to integers (IV -> 4, XXI -> 21)."""
+        values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        total = 0
+        i = 0
+        while i < len(roman):
+            if i + 1 < len(roman) and values[roman[i]] < values[roman[i + 1]]:
+                total += values[roman[i + 1]] - values[roman[i]]
+                i += 2
+            else:
+                total += values[roman[i]]
+                i += 1
+        return total
 
 
 class CitationFormatter:

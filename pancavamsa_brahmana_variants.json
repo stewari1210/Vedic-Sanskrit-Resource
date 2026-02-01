@@ -1,0 +1,7177 @@
+{
+  "Agni": {
+    "variants": [
+      "Agni"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Varuna": {
+    "variants": [
+      "Varuna"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asvins": {
+    "variants": [
+      "Asvins"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Maruts": {
+    "variants": [
+      "Maruts"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Soma": {
+    "variants": [
+      "Soma"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vayu": {
+    "variants": [
+      "Vayu"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prajapati": {
+    "variants": [
+      "Prajapati"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bhaga": {
+    "variants": [
+      "Bhaga"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dyaus": {
+    "variants": [
+      "Dyaus"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vivasvat": {
+    "variants": [
+      "Vivasvat"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Indra": {
+    "variants": [
+      "Indra"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rudra": {
+    "variants": [
+      "Rudra"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visnu": {
+    "variants": [
+      "Visnu"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mitra": {
+    "variants": [
+      "Mitra"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aditi": {
+    "variants": [
+      "Aditi"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Surya": {
+    "variants": [
+      "Surya"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahma": {
+    "variants": [
+      "Brahma"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aryaman": {
+    "variants": [
+      "Aryaman"
+    ],
+    "category": "deities",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jamadagni": {
+    "variants": [
+      "Jamadagni"
+    ],
+    "category": "sages",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Angiras": {
+    "variants": [
+      "Angiras"
+    ],
+    "category": "sages",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kanva": {
+    "variants": [
+      "Kanva"
+    ],
+    "category": "sages",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vamadeva": {
+    "variants": [
+      "Vamadeva"
+    ],
+    "category": "sages",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Atri": {
+    "variants": [
+      "Atri"
+    ],
+    "category": "sages",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gautama": {
+    "variants": [
+      "Gautama"
+    ],
+    "category": "sages",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dasa": {
+    "variants": [
+      "Dasa"
+    ],
+    "category": "kings_and_tribes",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sudas": {
+    "variants": [
+      "Sudas"
+    ],
+    "category": "kings_and_tribes",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Puru": {
+    "variants": [
+      "Puru"
+    ],
+    "category": "kings_and_tribes",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Anu": {
+    "variants": [
+      "Anu"
+    ],
+    "category": "kings_and_tribes",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Divodasa": {
+    "variants": [
+      "Divodasa"
+    ],
+    "category": "kings_and_tribes",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kuru": {
+    "variants": [
+      "Kuru"
+    ],
+    "category": "kings_and_tribes",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaim": {
+    "variants": [
+      "Jaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arseyakalpa": {
+    "variants": [
+      "Arseyakalpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sayana": {
+    "variants": [
+      "Sayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahman": {
+    "variants": [
+      "Brahman"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacrificer": {
+    "variants": [
+      "Sacrificer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Laty": {
+    "variants": [
+      "Laty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Calcutta": {
+    "variants": [
+      "Calcutta"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udgatr": {
+    "variants": [
+      "Udgatr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gram": {
+    "variants": [
+      "Gram"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chanters": {
+    "variants": [
+      "Chanters"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hotr": {
+    "variants": [
+      "Hotr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmana": {
+    "variants": [
+      "Brahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drahy": {
+    "variants": [
+      "Drahy"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Baudh": {
+    "variants": [
+      "Baudh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asuras": {
+    "variants": [
+      "Asuras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kath": {
+    "variants": [
+      "Kath"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nidanasutra": {
+    "variants": [
+      "Nidanasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Adhvaryu": {
+    "variants": [
+      "Adhvaryu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chandoma": {
+    "variants": [
+      "Chandoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Gods": {
+    "variants": [
+      "The Gods"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Katy": {
+    "variants": [
+      "Katy"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thereupon": {
+    "variants": [
+      "Thereupon"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "From": {
+    "variants": [
+      "From"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pane": {
+    "variants": [
+      "Pane"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Probably": {
+    "variants": [
+      "Probably"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Jaim": {
+    "variants": [
+      "The Jaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Auswahl": {
+    "variants": [
+      "Auswahl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Maitr": {
+    "variants": [
+      "Maitr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thereby": {
+    "variants": [
+      "Thereby"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Through": {
+    "variants": [
+      "Through"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brhaspati": {
+    "variants": [
+      "Brhaspati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "About": {
+    "variants": [
+      "About"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Leyden": {
+    "variants": [
+      "Leyden"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Here": {
+    "variants": [
+      "Here"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ksudrasutra": {
+    "variants": [
+      "Ksudrasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Just": {
+    "variants": [
+      "Just"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vrtra": {
+    "variants": [
+      "Vrtra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Savitr": {
+    "variants": [
+      "Savitr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visvajit": {
+    "variants": [
+      "Visvajit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Introduction": {
+    "variants": [
+      "Introduction"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Perhaps": {
+    "variants": [
+      "Perhaps"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Medhatithi": {
+    "variants": [
+      "Medhatithi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Introd": {
+    "variants": [
+      "Introd"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Adityas": {
+    "variants": [
+      "Adityas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "During": {
+    "variants": [
+      "During"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Acchavaka": {
+    "variants": [
+      "Acchavaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Angirases": {
+    "variants": [
+      "Angirases"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Three": {
+    "variants": [
+      "Three"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Abhijit": {
+    "variants": [
+      "Abhijit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sahkh": {
+    "variants": [
+      "Sahkh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "After": {
+    "variants": [
+      "After"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Maitravaruna": {
+    "variants": [
+      "Maitravaruna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fathers": {
+    "variants": [
+      "Fathers"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Apastamba": {
+    "variants": [
+      "Apastamba"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samaveda": {
+    "variants": [
+      "Samaveda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vasistha": {
+    "variants": [
+      "Vasistha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Journal": {
+    "variants": [
+      "Journal"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Word": {
+    "variants": [
+      "Word"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kaus": {
+    "variants": [
+      "Kaus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chandomas": {
+    "variants": [
+      "Chandomas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmin": {
+    "variants": [
+      "Brahmin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Those": {
+    "variants": [
+      "Those"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Calc": {
+    "variants": [
+      "Calc"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samh": {
+    "variants": [
+      "Samh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thou": {
+    "variants": [
+      "Thou"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Oertel": {
+    "variants": [
+      "Oertel"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Unto": {
+    "variants": [
+      "Unto"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Regarding": {
+    "variants": [
+      "Regarding"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rksamhita": {
+    "variants": [
+      "Rksamhita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Each": {
+    "variants": [
+      "Each"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Instead": {
+    "variants": [
+      "Instead"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pafic": {
+    "variants": [
+      "Pafic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Schema": {
+    "variants": [
+      "Schema"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Both": {
+    "variants": [
+      "Both"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiminiyas": {
+    "variants": [
+      "Jaiminiyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Twenty": {
+    "variants": [
+      "Twenty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Being": {
+    "variants": [
+      "Being"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Come": {
+    "variants": [
+      "Come"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Grhapati": {
+    "variants": [
+      "Grhapati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Which": {
+    "variants": [
+      "Which"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Light": {
+    "variants": [
+      "Light"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Auswahl No": {
+    "variants": [
+      "Auswahl No"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tvastr": {
+    "variants": [
+      "Tvastr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kauthumas": {
+    "variants": [
+      "Kauthumas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sutrakaras": {
+    "variants": [
+      "Sutrakaras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Four": {
+    "variants": [
+      "Four"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prastotr": {
+    "variants": [
+      "Prastotr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kutsa": {
+    "variants": [
+      "Kutsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arka": {
+    "variants": [
+      "Arka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Note": {
+    "variants": [
+      "Note"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pratihartr": {
+    "variants": [
+      "Pratihartr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiminlyas": {
+    "variants": [
+      "Jaiminlyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacrificers": {
+    "variants": [
+      "Sacrificers"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Simon": {
+    "variants": [
+      "Simon"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Further": {
+    "variants": [
+      "Further"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Theologians": {
+    "variants": [
+      "Theologians"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vratyas": {
+    "variants": [
+      "Vratyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmanas": {
+    "variants": [
+      "Brahmanas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Besides": {
+    "variants": [
+      "Besides"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Second": {
+    "variants": [
+      "Second"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lord": {
+    "variants": [
+      "Lord"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "German": {
+    "variants": [
+      "German"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sutrakara": {
+    "variants": [
+      "Sutrakara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chapters": {
+    "variants": [
+      "Chapters"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thirty": {
+    "variants": [
+      "Thirty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stoma": {
+    "variants": [
+      "Stoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmanacchamsin": {
+    "variants": [
+      "Brahmanacchamsin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gramegeya": {
+    "variants": [
+      "Gramegeya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Weber": {
+    "variants": [
+      "Weber"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Latyayana": {
+    "variants": [
+      "Latyayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Moreover": {
+    "variants": [
+      "Moreover"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dhanvin": {
+    "variants": [
+      "Dhanvin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "More": {
+    "variants": [
+      "More"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "General": {
+    "variants": [
+      "General"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Let Varuna": {
+    "variants": [
+      "Let Varuna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Daksina": {
+    "variants": [
+      "Daksina"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "India": {
+    "variants": [
+      "India"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sankh": {
+    "variants": [
+      "Sankh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarasvati": {
+    "variants": [
+      "Sarasvati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Seers": {
+    "variants": [
+      "Seers"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pour": {
+    "variants": [
+      "Pour"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Baudhayana": {
+    "variants": [
+      "Baudhayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Burnell": {
+    "variants": [
+      "Burnell"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drahyayana": {
+    "variants": [
+      "Drahyayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Although": {
+    "variants": [
+      "Although"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yama": {
+    "variants": [
+      "Yama"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Waters": {
+    "variants": [
+      "Waters"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Praja": {
+    "variants": [
+      "Praja"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Chandoma": {
+    "variants": [
+      "The Chandoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Amer": {
+    "variants": [
+      "Amer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aranyegeyagana": {
+    "variants": [
+      "Aranyegeyagana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kaksivat": {
+    "variants": [
+      "Kaksivat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vratya": {
+    "variants": [
+      "Vratya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Masaka": {
+    "variants": [
+      "Masaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whilst": {
+    "variants": [
+      "Whilst"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samavedic": {
+    "variants": [
+      "Samavedic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Puspasutra": {
+    "variants": [
+      "Puspasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Some": {
+    "variants": [
+      "Some"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ajya": {
+    "variants": [
+      "Ajya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visvamitra": {
+    "variants": [
+      "Visvamitra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yajamana": {
+    "variants": [
+      "Yajamana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Adhvaryus": {
+    "variants": [
+      "Adhvaryus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tndra": {
+    "variants": [
+      "Tndra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Similarly": {
+    "variants": [
+      "Similarly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sumitra": {
+    "variants": [
+      "Sumitra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Upagu": {
+    "variants": [
+      "Upagu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Parjanya": {
+    "variants": [
+      "Parjanya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sutra": {
+    "variants": [
+      "Sutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arseya": {
+    "variants": [
+      "Arseya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chanter": {
+    "variants": [
+      "Chanter"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Midday": {
+    "variants": [
+      "Midday"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prstha": {
+    "variants": [
+      "Prstha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vajapeya": {
+    "variants": [
+      "Vajapeya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Viraj": {
+    "variants": [
+      "Viraj"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udbhid": {
+    "variants": [
+      "Udbhid"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jagati": {
+    "variants": [
+      "Jagati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiin": {
+    "variants": [
+      "Jaiin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Provided": {
+    "variants": [
+      "Provided"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Eggeling": {
+    "variants": [
+      "Eggeling"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hence": {
+    "variants": [
+      "Hence"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bharadvaja": {
+    "variants": [
+      "Bharadvaja"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmins": {
+    "variants": [
+      "Brahmins"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ayasya": {
+    "variants": [
+      "Ayasya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Identical": {
+    "variants": [
+      "Identical"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiminlya": {
+    "variants": [
+      "Jaiminlya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "East": {
+    "variants": [
+      "East"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Veda": {
+    "variants": [
+      "Veda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arbhavapavamana": {
+    "variants": [
+      "Arbhavapavamana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Uktha": {
+    "variants": [
+      "Uktha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Third": {
+    "variants": [
+      "Third"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Seven": {
+    "variants": [
+      "Seven"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Muttering": {
+    "variants": [
+      "Muttering"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaira": {
+    "variants": [
+      "Jaira"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Wind": {
+    "variants": [
+      "Wind"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fire": {
+    "variants": [
+      "Fire"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Properly": {
+    "variants": [
+      "Properly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Differently": {
+    "variants": [
+      "Differently"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vlll": {
+    "variants": [
+      "Vlll"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Araeyakalpa": {
+    "variants": [
+      "Araeyakalpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Seer": {
+    "variants": [
+      "Seer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Where": {
+    "variants": [
+      "Where"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gotama": {
+    "variants": [
+      "Gotama"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Atharvans": {
+    "variants": [
+      "Atharvans"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bharatas": {
+    "variants": [
+      "Bharatas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ogre": {
+    "variants": [
+      "Ogre"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nearly": {
+    "variants": [
+      "Nearly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Grantha": {
+    "variants": [
+      "Grantha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samhita": {
+    "variants": [
+      "Samhita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gramegeyagana": {
+    "variants": [
+      "Gramegeyagana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiminiyabrahmana": {
+    "variants": [
+      "Jaiminiyabrahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Another": {
+    "variants": [
+      "Another"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thus": {
+    "variants": [
+      "Thus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Diet": {
+    "variants": [
+      "Diet"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jyotistoma": {
+    "variants": [
+      "Jyotistoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Valabhid": {
+    "variants": [
+      "Valabhid"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Twelve": {
+    "variants": [
+      "Twelve"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Heaven": {
+    "variants": [
+      "Heaven"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Potr": {
+    "variants": [
+      "Potr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Desire": {
+    "variants": [
+      "Desire"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Brahman": {
+    "variants": [
+      "The Brahman"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Taitt": {
+    "variants": [
+      "Taitt"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Noble": {
+    "variants": [
+      "Noble"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Cattle": {
+    "variants": [
+      "Cattle"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vanina": {
+    "variants": [
+      "Vanina"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vatsa": {
+    "variants": [
+      "Vatsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Susravas": {
+    "variants": [
+      "Susravas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tanunapat": {
+    "variants": [
+      "Tanunapat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Adityas": {
+    "variants": [
+      "The Adityas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hauer": {
+    "variants": [
+      "Hauer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kauthuma": {
+    "variants": [
+      "Kauthuma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Calcutta Vol": {
+    "variants": [
+      "Calcutta Vol"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Subrahmanya": {
+    "variants": [
+      "Subrahmanya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Usually": {
+    "variants": [
+      "Usually"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sandilya": {
+    "variants": [
+      "Sandilya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Even": {
+    "variants": [
+      "Even"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiminiya": {
+    "variants": [
+      "Jaiminiya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Xlll": {
+    "variants": [
+      "Xlll"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Commentary": {
+    "variants": [
+      "Commentary"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Food": {
+    "variants": [
+      "Food"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aditya": {
+    "variants": [
+      "Aditya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kavya": {
+    "variants": [
+      "Kavya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Well": {
+    "variants": [
+      "Well"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pusan": {
+    "variants": [
+      "Pusan"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Their": {
+    "variants": [
+      "Their"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Journ": {
+    "variants": [
+      "Journ"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arsoyakalpa": {
+    "variants": [
+      "Arsoyakalpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Einleitung": {
+    "variants": [
+      "Einleitung"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Hotr": {
+    "variants": [
+      "The Hotr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Five": {
+    "variants": [
+      "Five"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kaudrasutra": {
+    "variants": [
+      "Kaudrasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Usas": {
+    "variants": [
+      "Usas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ogres": {
+    "variants": [
+      "Ogres"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nrmedha": {
+    "variants": [
+      "Nrmedha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yamuna": {
+    "variants": [
+      "Yamuna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bhrgu": {
+    "variants": [
+      "Bhrgu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drti": {
+    "variants": [
+      "Drti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visvamanas": {
+    "variants": [
+      "Visvamanas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Life": {
+    "variants": [
+      "Life"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarasvat": {
+    "variants": [
+      "Sarasvat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vighana": {
+    "variants": [
+      "Vighana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jyotis": {
+    "variants": [
+      "Jyotis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "London": {
+    "variants": [
+      "London"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Akad": {
+    "variants": [
+      "Akad"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Satyavrata Samasrami": {
+    "variants": [
+      "Satyavrata Samasrami"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bloomfield": {
+    "variants": [
+      "Bloomfield"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Oldenberg": {
+    "variants": [
+      "Oldenberg"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacred Books": {
+    "variants": [
+      "Sacred Books"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaiminlyabrahmana": {
+    "variants": [
+      "Jaiminlyabrahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tandya": {
+    "variants": [
+      "Tandya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "However": {
+    "variants": [
+      "However"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Brahmana": {
+    "variants": [
+      "The Brahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Among": {
+    "variants": [
+      "Among"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rathantara": {
+    "variants": [
+      "Rathantara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rajasuya": {
+    "variants": [
+      "Rajasuya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Garga": {
+    "variants": [
+      "Garga"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vatavat": {
+    "variants": [
+      "Vatavat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visvasrjs": {
+    "variants": [
+      "Visvasrjs"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vasus": {
+    "variants": [
+      "Vasus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rudras": {
+    "variants": [
+      "Rudras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmanaspati": {
+    "variants": [
+      "Brahmanaspati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Obeisance": {
+    "variants": [
+      "Obeisance"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gaya": {
+    "variants": [
+      "Gaya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Neither": {
+    "variants": [
+      "Neither"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacrifice": {
+    "variants": [
+      "Sacrifice"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fixed": {
+    "variants": [
+      "Fixed"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Comm": {
+    "variants": [
+      "Comm"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Firmly": {
+    "variants": [
+      "Firmly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brah": {
+    "variants": [
+      "Brah"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Svarbhanu": {
+    "variants": [
+      "Svarbhanu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hotrakas": {
+    "variants": [
+      "Hotrakas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Saorificer": {
+    "variants": [
+      "Saorificer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Keith": {
+    "variants": [
+      "Keith"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Upagranthasutra": {
+    "variants": [
+      "Upagranthasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Petersburgh": {
+    "variants": [
+      "Petersburgh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Head": {
+    "variants": [
+      "Head"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Deities": {
+    "variants": [
+      "Deities"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Into": {
+    "variants": [
+      "Into"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Verily": {
+    "variants": [
+      "Verily"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Asuras": {
+    "variants": [
+      "The Asuras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prayogas": {
+    "variants": [
+      "Prayogas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Anhang": {
+    "variants": [
+      "Anhang"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Together": {
+    "variants": [
+      "Together"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Suvrata": {
+    "variants": [
+      "Suvrata"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Must": {
+    "variants": [
+      "Must"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Iaud": {
+    "variants": [
+      "Iaud"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Index": {
+    "variants": [
+      "Index"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Apparently": {
+    "variants": [
+      "Apparently"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Containing": {
+    "variants": [
+      "Containing"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Forth": {
+    "variants": [
+      "Forth"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Havismat": {
+    "variants": [
+      "Havismat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Haviskrt": {
+    "variants": [
+      "Haviskrt"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pavamana": {
+    "variants": [
+      "Pavamana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dhananjayya": {
+    "variants": [
+      "Dhananjayya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nidanasiitra": {
+    "variants": [
+      "Nidanasiitra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sindhu": {
+    "variants": [
+      "Sindhu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kauth": {
+    "variants": [
+      "Kauth"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Theologians": {
+    "variants": [
+      "The Theologians"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gaurivlti": {
+    "variants": [
+      "Gaurivlti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asita": {
+    "variants": [
+      "Asita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Householder": {
+    "variants": [
+      "Householder"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarasvatl": {
+    "variants": [
+      "Sarasvatl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sanskrit": {
+    "variants": [
+      "Sanskrit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bibliotheca Indica": {
+    "variants": [
+      "Bibliotheca Indica"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mangalore": {
+    "variants": [
+      "Mangalore"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Caland": {
+    "variants": [
+      "Caland"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sutras": {
+    "variants": [
+      "Sutras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nidana": {
+    "variants": [
+      "Nidana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Society": {
+    "variants": [
+      "Society"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samans": {
+    "variants": [
+      "Samans"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Over": {
+    "variants": [
+      "Over"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Delbriick": {
+    "variants": [
+      "Delbriick"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Altind": {
+    "variants": [
+      "Altind"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Syntax": {
+    "variants": [
+      "Syntax"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Uvara": {
+    "variants": [
+      "Uvara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fourth": {
+    "variants": [
+      "Fourth"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarvajit": {
+    "variants": [
+      "Sarvajit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Upahavya": {
+    "variants": [
+      "Upahavya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Saball": {
+    "variants": [
+      "Saball"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Eight": {
+    "variants": [
+      "Eight"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nine": {
+    "variants": [
+      "Nine"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sing": {
+    "variants": [
+      "Sing"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Chanters": {
+    "variants": [
+      "The Chanters"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Reading": {
+    "variants": [
+      "Reading"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vaisvanara": {
+    "variants": [
+      "Vaisvanara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fivefold": {
+    "variants": [
+      "Fivefold"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Between": {
+    "variants": [
+      "Between"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Simply": {
+    "variants": [
+      "Simply"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Black Yajurveda": {
+    "variants": [
+      "Black Yajurveda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Literally": {
+    "variants": [
+      "Literally"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "King": {
+    "variants": [
+      "King"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sudra": {
+    "variants": [
+      "Sudra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarah": {
+    "variants": [
+      "Sarah"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Litt": {
+    "variants": [
+      "Litt"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Transactions": {
+    "variants": [
+      "Transactions"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Baron": {
+    "variants": [
+      "Baron"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arts": {
+    "variants": [
+      "Arts"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sciences": {
+    "variants": [
+      "Sciences"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rgveda": {
+    "variants": [
+      "Rgveda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gayatri": {
+    "variants": [
+      "Gayatri"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The \nJaim": {
+    "variants": [
+      "The \nJaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jairn": {
+    "variants": [
+      "Jairn"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Therefrom": {
+    "variants": [
+      "Therefrom"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yatis": {
+    "variants": [
+      "Yatis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aranyegeya": {
+    "variants": [
+      "Aranyegeya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whatever": {
+    "variants": [
+      "Whatever"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Expiation": {
+    "variants": [
+      "Expiation"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nidanasiltra": {
+    "variants": [
+      "Nidanasiltra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Manu": {
+    "variants": [
+      "Manu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Suparna": {
+    "variants": [
+      "Suparna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Journey": {
+    "variants": [
+      "Journey"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Angirases": {
+    "variants": [
+      "The Angirases"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jagatis": {
+    "variants": [
+      "Jagatis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Oram": {
+    "variants": [
+      "Oram"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asura": {
+    "variants": [
+      "Asura"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Only": {
+    "variants": [
+      "Only"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Earth": {
+    "variants": [
+      "Earth"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rahasyu": {
+    "variants": [
+      "Rahasyu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dirghasravas": {
+    "variants": [
+      "Dirghasravas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Visvajit": {
+    "variants": [
+      "The Visvajit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnistut": {
+    "variants": [
+      "Agnistut"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pratiprasthatr": {
+    "variants": [
+      "Pratiprasthatr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nestr": {
+    "variants": [
+      "Nestr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sabali": {
+    "variants": [
+      "Sabali"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asvamedha": {
+    "variants": [
+      "Asvamedha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Plaksa": {
+    "variants": [
+      "Plaksa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Katyayana": {
+    "variants": [
+      "Katyayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Halle": {
+    "variants": [
+      "Halle"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bohtlingk": {
+    "variants": [
+      "Bohtlingk"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vedic": {
+    "variants": [
+      "Vedic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "German Or": {
+    "variants": [
+      "German Or"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Varadaraja": {
+    "variants": [
+      "Varadaraja"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Reuter": {
+    "variants": [
+      "Reuter"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnistoma": {
+    "variants": [
+      "Agnistoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Sutrakara": {
+    "variants": [
+      "The Sutrakara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Saman": {
+    "variants": [
+      "Saman"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dutch": {
+    "variants": [
+      "Dutch"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gosava": {
+    "variants": [
+      "Gosava"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pancavimsabrahmana": {
+    "variants": [
+      "Pancavimsabrahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kathaka": {
+    "variants": [
+      "Kathaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sometimes": {
+    "variants": [
+      "Sometimes"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rgvedic": {
+    "variants": [
+      "Rgvedic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thrice": {
+    "variants": [
+      "Thrice"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Continuation": {
+    "variants": [
+      "Continuation"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "First": {
+    "variants": [
+      "First"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fifth": {
+    "variants": [
+      "Fifth"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ekatrika": {
+    "variants": [
+      "Ekatrika"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Caturmasyas": {
+    "variants": [
+      "Caturmasyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Marutstoma": {
+    "variants": [
+      "Marutstoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Indrastoma": {
+    "variants": [
+      "Indrastoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aptoryama": {
+    "variants": [
+      "Aptoryama"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kapivana": {
+    "variants": [
+      "Kapivana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rsis": {
+    "variants": [
+      "Rsis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Seventeen": {
+    "variants": [
+      "Seventeen"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hundred": {
+    "variants": [
+      "Hundred"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thousand": {
+    "variants": [
+      "Thousand"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hero": {
+    "variants": [
+      "Hero"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Marut": {
+    "variants": [
+      "Marut"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gayatrl": {
+    "variants": [
+      "Gayatrl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tristubh": {
+    "variants": [
+      "Tristubh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jagatl": {
+    "variants": [
+      "Jagatl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Sutrakaras": {
+    "variants": [
+      "The Sutrakaras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Joined": {
+    "variants": [
+      "Joined"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Narasamsa": {
+    "variants": [
+      "Narasamsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "King Soma": {
+    "variants": [
+      "King Soma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Incited": {
+    "variants": [
+      "Incited"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ksatriya": {
+    "variants": [
+      "Ksatriya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Laly": {
+    "variants": [
+      "Laly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Einl": {
+    "variants": [
+      "Einl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hotf": {
+    "variants": [
+      "Hotf"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Milked": {
+    "variants": [
+      "Milked"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Jaiminiyas": {
+    "variants": [
+      "The Jaiminiyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Adhvaryu": {
+    "variants": [
+      "The Adhvaryu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arya": {
+    "variants": [
+      "Arya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarnh": {
+    "variants": [
+      "Sarnh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Strictly": {
+    "variants": [
+      "Strictly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Udgatr": {
+    "variants": [
+      "The Udgatr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Meaning": {
+    "variants": [
+      "Meaning"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Voice": {
+    "variants": [
+      "The Voice"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dhanamjayya": {
+    "variants": [
+      "Dhanamjayya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hopkins": {
+    "variants": [
+      "Hopkins"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Sacrificer": {
+    "variants": [
+      "The Sacrificer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thitherward": {
+    "variants": [
+      "Thitherward"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Devoid": {
+    "variants": [
+      "Devoid"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Usanas": {
+    "variants": [
+      "Usanas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Syaita": {
+    "variants": [
+      "Syaita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Since": {
+    "variants": [
+      "Since"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nodhas": {
+    "variants": [
+      "Nodhas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rayovaja": {
+    "variants": [
+      "Rayovaja"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brhadgiri": {
+    "variants": [
+      "Brhadgiri"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gandharvas": {
+    "variants": [
+      "Gandharvas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sadhya": {
+    "variants": [
+      "Sadhya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bring": {
+    "variants": [
+      "Bring"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Jairn": {
+    "variants": [
+      "The Jairn"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sakti": {
+    "variants": [
+      "Sakti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Almost": {
+    "variants": [
+      "Almost"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Translation": {
+    "variants": [
+      "Translation"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whom": {
+    "variants": [
+      "Whom"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Combined": {
+    "variants": [
+      "Combined"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Scheftelowitz": {
+    "variants": [
+      "Scheftelowitz"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yuktasva": {
+    "variants": [
+      "Yuktasva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Iksvakus": {
+    "variants": [
+      "Iksvakus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dhanafijayya": {
+    "variants": [
+      "Dhanafijayya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kalyana": {
+    "variants": [
+      "Kalyana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Apsarases": {
+    "variants": [
+      "Apsarases"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Disjunct": {
+    "variants": [
+      "Disjunct"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Alamma": {
+    "variants": [
+      "Alamma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vedic Index": {
+    "variants": [
+      "Vedic Index"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Death": {
+    "variants": [
+      "Death"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarkara": {
+    "variants": [
+      "Sarkara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Devala": {
+    "variants": [
+      "Devala"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnidhra": {
+    "variants": [
+      "Agnidhra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ksatra": {
+    "variants": [
+      "Ksatra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asvasukti": {
+    "variants": [
+      "Asvasukti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nara": {
+    "variants": [
+      "Nara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vasisthas": {
+    "variants": [
+      "Vasisthas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vibhinduka": {
+    "variants": [
+      "Vibhinduka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Amongst": {
+    "variants": [
+      "Amongst"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sahasra": {
+    "variants": [
+      "Sahasra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kusitaka": {
+    "variants": [
+      "Kusitaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gravastut": {
+    "variants": [
+      "Gravastut"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agrees": {
+    "variants": [
+      "Agrees"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Citraratha": {
+    "variants": [
+      "Citraratha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnidh": {
+    "variants": [
+      "Agnidh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samasrami": {
+    "variants": [
+      "Samasrami"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Leipsic": {
+    "variants": [
+      "Leipsic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sama": {
+    "variants": [
+      "Sama"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Wiss": {
+    "variants": [
+      "Wiss"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Under": {
+    "variants": [
+      "Under"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Zauberei": {
+    "variants": [
+      "Zauberei"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ksudra": {
+    "variants": [
+      "Ksudra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Siitra": {
+    "variants": [
+      "Siitra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tlie": {
+    "variants": [
+      "Tlie"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Catalogue": {
+    "variants": [
+      "Catalogue"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gobhila": {
+    "variants": [
+      "Gobhila"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Sutra": {
+    "variants": [
+      "The Sutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aranyaka": {
+    "variants": [
+      "Aranyaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samavidhanabrahmana": {
+    "variants": [
+      "Samavidhanabrahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Paficavimsa": {
+    "variants": [
+      "Paficavimsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Elsewhere": {
+    "variants": [
+      "Elsewhere"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Based": {
+    "variants": [
+      "Based"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Versl": {
+    "variants": [
+      "Versl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Meded": {
+    "variants": [
+      "Meded"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pancavimsa": {
+    "variants": [
+      "Pancavimsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aitareyins": {
+    "variants": [
+      "Aitareyins"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arcika": {
+    "variants": [
+      "Arcika"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Nidanasutra": {
+    "variants": [
+      "The Nidanasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Against": {
+    "variants": [
+      "Against"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Petersb": {
+    "variants": [
+      "Petersb"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fassung": {
+    "variants": [
+      "Fassung"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Equally": {
+    "variants": [
+      "Equally"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Finally": {
+    "variants": [
+      "Finally"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Studien": {
+    "variants": [
+      "Studien"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prsthya": {
+    "variants": [
+      "Prsthya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sixth": {
+    "variants": [
+      "Sixth"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "First Agnistut": {
+    "variants": [
+      "First Agnistut"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Paraka": {
+    "variants": [
+      "Paraka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sixteen": {
+    "variants": [
+      "Sixteen"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sixty": {
+    "variants": [
+      "Sixty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lftty": {
+    "variants": [
+      "Lftty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bekura": {
+    "variants": [
+      "Bekura"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Immediately": {
+    "variants": [
+      "Immediately"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gandharva": {
+    "variants": [
+      "Gandharva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Protect": {
+    "variants": [
+      "Protect"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Standing": {
+    "variants": [
+      "Standing"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vaitanasutra": {
+    "variants": [
+      "Vaitanasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacri": {
+    "variants": [
+      "Sacri"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Anustubh": {
+    "variants": [
+      "Anustubh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vigour": {
+    "variants": [
+      "Vigour"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stomabhaga": {
+    "variants": [
+      "Stomabhaga"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brhas": {
+    "variants": [
+      "Brhas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Commentator": {
+    "variants": [
+      "Commentator"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Firm": {
+    "variants": [
+      "Firm"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Karadvis": {
+    "variants": [
+      "Karadvis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rich": {
+    "variants": [
+      "Rich"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Either": {
+    "variants": [
+      "Either"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Accha": {
+    "variants": [
+      "Accha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Possibly": {
+    "variants": [
+      "Possibly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Abhijit": {
+    "variants": [
+      "The Abhijit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sahkhayana": {
+    "variants": [
+      "Sahkhayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mighty": {
+    "variants": [
+      "Mighty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thence": {
+    "variants": [
+      "Thence"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kanviya": {
+    "variants": [
+      "Kanviya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Grameg": {
+    "variants": [
+      "Grameg"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dictionary": {
+    "variants": [
+      "Dictionary"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Abhigara": {
+    "variants": [
+      "Abhigara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vaisya": {
+    "variants": [
+      "Vaisya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Behind": {
+    "variants": [
+      "Behind"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "See Arseyakalpa": {
+    "variants": [
+      "See Arseyakalpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Strong": {
+    "variants": [
+      "Strong"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Separation": {
+    "variants": [
+      "Separation"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Strength": {
+    "variants": [
+      "Strength"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sitting": {
+    "variants": [
+      "Sitting"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Should": {
+    "variants": [
+      "Should"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Acad": {
+    "variants": [
+      "Acad"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gone": {
+    "variants": [
+      "Gone"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Wunschopfer": {
+    "variants": [
+      "Wunschopfer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Become": {
+    "variants": [
+      "Become"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sayapa": {
+    "variants": [
+      "Sayapa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Makha": {
+    "variants": [
+      "Makha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kathas": {
+    "variants": [
+      "Kathas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "American Or": {
+    "variants": [
+      "American Or"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udgfttr": {
+    "variants": [
+      "Udgfttr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmapa": {
+    "variants": [
+      "Brahmapa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prayoga": {
+    "variants": [
+      "Prayoga"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prthurasmi": {
+    "variants": [
+      "Prthurasmi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kalindas": {
+    "variants": [
+      "Kalindas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kalis": {
+    "variants": [
+      "Kalis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Harivarna": {
+    "variants": [
+      "Harivarna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Conn": {
+    "variants": [
+      "Conn"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmai": {
+    "variants": [
+      "Brahmai"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Unto Indra": {
+    "variants": [
+      "Unto Indra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nidanaautra": {
+    "variants": [
+      "Nidanaautra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Accord": {
+    "variants": [
+      "Accord"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Free": {
+    "variants": [
+      "Free"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Turasravas": {
+    "variants": [
+      "Turasravas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agastya": {
+    "variants": [
+      "Agastya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Upagranthasutra": {
+    "variants": [
+      "The Upagranthasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dyutana": {
+    "variants": [
+      "Dyutana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Solely": {
+    "variants": [
+      "Solely"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vedas": {
+    "variants": [
+      "Vedas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hither": {
+    "variants": [
+      "Hither"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fortune": {
+    "variants": [
+      "Fortune"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Appendix": {
+    "variants": [
+      "Appendix"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Xlil": {
+    "variants": [
+      "Xlil"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gauriviti": {
+    "variants": [
+      "Gauriviti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thee": {
+    "variants": [
+      "Thee"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Intoxicating": {
+    "variants": [
+      "Intoxicating"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Acohavaka": {
+    "variants": [
+      "Acohavaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Saints": {
+    "variants": [
+      "Saints"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Return": {
+    "variants": [
+      "Return"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sindhuksit": {
+    "variants": [
+      "Sindhuksit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Upoditi": {
+    "variants": [
+      "Upoditi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Oriental Society": {
+    "variants": [
+      "Oriental Society"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vrsa": {
+    "variants": [
+      "Vrsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tryaruna": {
+    "variants": [
+      "Tryaruna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Anupadasutra": {
+    "variants": [
+      "Anupadasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rajana": {
+    "variants": [
+      "Rajana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Cyavana": {
+    "variants": [
+      "Cyavana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "American Oriental \nSociety": {
+    "variants": [
+      "American Oriental \nSociety"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Friends": {
+    "variants": [
+      "Friends"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "King Varuna": {
+    "variants": [
+      "King Varuna"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kesin": {
+    "variants": [
+      "Kesin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vidanvat": {
+    "variants": [
+      "Vidanvat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Praise": {
+    "variants": [
+      "Praise"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vaikhanasa": {
+    "variants": [
+      "Vaikhanasa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Suhavis": {
+    "variants": [
+      "Suhavis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dvigat": {
+    "variants": [
+      "Dvigat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lustrous": {
+    "variants": [
+      "Lustrous"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vyasva": {
+    "variants": [
+      "Vyasva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Seers": {
+    "variants": [
+      "The Seers"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udala": {
+    "variants": [
+      "Udala"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Babhru": {
+    "variants": [
+      "Babhru"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kulmalabarhis": {
+    "variants": [
+      "Kulmalabarhis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Taim": {
+    "variants": [
+      "Taim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sanaka": {
+    "variants": [
+      "Sanaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Navaka": {
+    "variants": [
+      "Navaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "House": {
+    "variants": [
+      "House"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gargatriratra": {
+    "variants": [
+      "Gargatriratra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sadyaskras": {
+    "variants": [
+      "Sadyaskras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sthapati": {
+    "variants": [
+      "Sthapati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Clad": {
+    "variants": [
+      "Clad"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Other": {
+    "variants": [
+      "Other"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Vajapeya": {
+    "variants": [
+      "The Vajapeya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Unnetr": {
+    "variants": [
+      "Unnetr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Apaciti": {
+    "variants": [
+      "Apaciti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Chandomas": {
+    "variants": [
+      "The Chandomas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sadasya": {
+    "variants": [
+      "Sadasya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dhatr": {
+    "variants": [
+      "Dhatr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kusurubinda": {
+    "variants": [
+      "Kusurubinda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Leyden Ms": {
+    "variants": [
+      "Leyden Ms"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Budha": {
+    "variants": [
+      "Budha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drsadvati": {
+    "variants": [
+      "Drsadvati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kuruksetra": {
+    "variants": [
+      "Kuruksetra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tura": {
+    "variants": [
+      "Tura"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dirghatamas": {
+    "variants": [
+      "Dirghatamas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Printed": {
+    "variants": [
+      "Printed"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asiatic Society": {
+    "variants": [
+      "Asiatic Society"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bengal": {
+    "variants": [
+      "Bengal"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ranayaniyas": {
+    "variants": [
+      "Ranayaniyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Benfey": {
+    "variants": [
+      "Benfey"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stevenson": {
+    "variants": [
+      "Stevenson"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Berlin": {
+    "variants": [
+      "Berlin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jibananda Vidyasagara": {
+    "variants": [
+      "Jibananda Vidyasagara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Portenta": {
+    "variants": [
+      "Portenta"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Abhandl": {
+    "variants": [
+      "Abhandl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Upanisad": {
+    "variants": [
+      "Upanisad"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stonner": {
+    "variants": [
+      "Stonner"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Indische Studien": {
+    "variants": [
+      "Indische Studien"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Arseyakalpa": {
+    "variants": [
+      "The Arseyakalpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Ksudrasutra": {
+    "variants": [
+      "The Ksudrasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chandoga": {
+    "variants": [
+      "Chandoga"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Srautasutra": {
+    "variants": [
+      "The Srautasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnisvamin": {
+    "variants": [
+      "Agnisvamin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Patanjali": {
+    "variants": [
+      "Patanjali"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Could": {
+    "variants": [
+      "Could"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Pancavidhasutra": {
+    "variants": [
+      "The Pancavidhasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Indische Forschungen": {
+    "variants": [
+      "Indische Forschungen"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Breslau": {
+    "variants": [
+      "Breslau"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Veyagana": {
+    "variants": [
+      "Veyagana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Band": {
+    "variants": [
+      "Band"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ranayanlyas": {
+    "variants": [
+      "Ranayanlyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ranayaniya": {
+    "variants": [
+      "Ranayaniya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Srautasutra": {
+    "variants": [
+      "Srautasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mysore": {
+    "variants": [
+      "Mysore"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whether": {
+    "variants": [
+      "Whether"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sainavedic": {
+    "variants": [
+      "Sainavedic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tlic": {
+    "variants": [
+      "Tlic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nachrichten": {
+    "variants": [
+      "Nachrichten"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rgvedistic": {
+    "variants": [
+      "Rgvedistic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Wetensch": {
+    "variants": [
+      "Wetensch"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Deel": {
+    "variants": [
+      "Deel"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Satyayanaka": {
+    "variants": [
+      "Satyayanaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tandyamahabrahmana": {
+    "variants": [
+      "Tandyamahabrahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pancavim": {
+    "variants": [
+      "Pancavim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Acta Orientalia Vol": {
+    "variants": [
+      "Acta Orientalia Vol"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pahcavimsa": {
+    "variants": [
+      "Pahcavimsa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Satapathabrahmana": {
+    "variants": [
+      "Satapathabrahmana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kausltakins": {
+    "variants": [
+      "Kausltakins"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whenever": {
+    "variants": [
+      "Whenever"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hillebrandt": {
+    "variants": [
+      "Hillebrandt"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Zeitschrift": {
+    "variants": [
+      "Zeitschrift"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rksarphita": {
+    "variants": [
+      "Rksarphita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pafica": {
+    "variants": [
+      "Pafica"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sandhi": {
+    "variants": [
+      "Sandhi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bdhtlingk": {
+    "variants": [
+      "Bdhtlingk"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Uvard": {
+    "variants": [
+      "Uvard"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Uvaro": {
+    "variants": [
+      "Uvaro"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Origin": {
+    "variants": [
+      "Origin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Variations": {
+    "variants": [
+      "Variations"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Afternoon": {
+    "variants": [
+      "Afternoon"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gostoma": {
+    "variants": [
+      "Gostoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mahavrata": {
+    "variants": [
+      "Mahavrata"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "First Sahasra": {
+    "variants": [
+      "First Sahasra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fourth Sahasra": {
+    "variants": [
+      "Fourth Sahasra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "First Sadyaskra": {
+    "variants": [
+      "First Sadyaskra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Second Sadyaskra": {
+    "variants": [
+      "Second Sadyaskra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Third Sadyaskra": {
+    "variants": [
+      "Third Sadyaskra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visvajicchilpa": {
+    "variants": [
+      "Visvajicchilpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fourth Agnistut": {
+    "variants": [
+      "Fourth Agnistut"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aupasada": {
+    "variants": [
+      "Aupasada"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visuvat": {
+    "variants": [
+      "Visuvat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Antarvasu": {
+    "variants": [
+      "Antarvasu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Abhyasanga": {
+    "variants": [
+      "Abhyasanga"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Janaka": {
+    "variants": [
+      "Janaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kundapayins": {
+    "variants": [
+      "Kundapayins"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tapascits": {
+    "variants": [
+      "Tapascits"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Serpents": {
+    "variants": [
+      "Serpents"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Henry": {
+    "variants": [
+      "Henry"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udgatf": {
+    "variants": [
+      "Udgatf"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Siitrakaras": {
+    "variants": [
+      "Siitrakaras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Schwab": {
+    "variants": [
+      "Schwab"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yoked": {
+    "variants": [
+      "Yoked"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Introduction Chapter": {
+    "variants": [
+      "Introduction Chapter"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Goddess Prayer": {
+    "variants": [
+      "Goddess Prayer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udgati": {
+    "variants": [
+      "Udgati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Goddess Voice": {
+    "variants": [
+      "Goddess Voice"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "With Agni": {
+    "variants": [
+      "With Agni"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vata": {
+    "variants": [
+      "Vata"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Krsanu": {
+    "variants": [
+      "Krsanu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tutha": {
+    "variants": [
+      "Tutha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Priests": {
+    "variants": [
+      "Priests"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Urva": {
+    "variants": [
+      "Urva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pitaras": {
+    "variants": [
+      "Pitaras"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Long": {
+    "variants": [
+      "Long"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Breath": {
+    "variants": [
+      "Breath"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "God Savitr": {
+    "variants": [
+      "God Savitr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Uncertain": {
+    "variants": [
+      "Uncertain"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stotra": {
+    "variants": [
+      "Stotra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vasuka": {
+    "variants": [
+      "Vasuka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Utkrama": {
+    "variants": [
+      "Utkrama"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Utkranti": {
+    "variants": [
+      "Utkranti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Third Chapter": {
+    "variants": [
+      "Third Chapter"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Introductory": {
+    "variants": [
+      "Introductory"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Such": {
+    "variants": [
+      "Such"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stomas": {
+    "variants": [
+      "Stomas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Abhipratarina": {
+    "variants": [
+      "Abhipratarina"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pravahani": {
+    "variants": [
+      "Pravahani"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmanaccharasin": {
+    "variants": [
+      "Brahmanaccharasin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yajamanas": {
+    "variants": [
+      "Yajamanas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Again": {
+    "variants": [
+      "Again"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Achavaka": {
+    "variants": [
+      "Achavaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yonder": {
+    "variants": [
+      "Yonder"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaini": {
+    "variants": [
+      "Jaini"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Stobha": {
+    "variants": [
+      "Stobha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Serpent Arbuda": {
+    "variants": [
+      "Serpent Arbuda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mentally": {
+    "variants": [
+      "Mentally"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ordinarily": {
+    "variants": [
+      "Ordinarily"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Without": {
+    "variants": [
+      "Without"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Because Prajapati": {
+    "variants": [
+      "Because Prajapati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rsya": {
+    "variants": [
+      "Rsya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Karikh": {
+    "variants": [
+      "Karikh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sshkh": {
+    "variants": [
+      "Sshkh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Apagara": {
+    "variants": [
+      "Apagara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sudrdryau": {
+    "variants": [
+      "Sudrdryau"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hath": {
+    "variants": [
+      "Hath"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaimimyas": {
+    "variants": [
+      "Jaimimyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whitney": {
+    "variants": [
+      "Whitney"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Karmantasutra": {
+    "variants": [
+      "Karmantasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yajurveda": {
+    "variants": [
+      "Yajurveda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Chand": {
+    "variants": [
+      "Chand"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kaua": {
+    "variants": [
+      "Kaua"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Compare": {
+    "variants": [
+      "Compare"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Malta": {
+    "variants": [
+      "Malta"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Along": {
+    "variants": [
+      "Along"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Let Dyutana": {
+    "variants": [
+      "Let Dyutana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Salutation": {
+    "variants": [
+      "Salutation"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mind": {
+    "variants": [
+      "Mind"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yunarvan": {
+    "variants": [
+      "Yunarvan"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rudradatta": {
+    "variants": [
+      "Rudradatta"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "To Prajapati": {
+    "variants": [
+      "To Prajapati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gotra": {
+    "variants": [
+      "Gotra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Paftc": {
+    "variants": [
+      "Paftc"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nirrti": {
+    "variants": [
+      "Nirrti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahraana": {
+    "variants": [
+      "Brahraana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Clods": {
+    "variants": [
+      "Clods"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Atreya": {
+    "variants": [
+      "Atreya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Jaimimyas": {
+    "variants": [
+      "The Jaimimyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Otherwise": {
+    "variants": [
+      "Otherwise"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacnficer": {
+    "variants": [
+      "Sacnficer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Homage": {
+    "variants": [
+      "Homage"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Within": {
+    "variants": [
+      "Within"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mentioned": {
+    "variants": [
+      "Mentioned"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Great God": {
+    "variants": [
+      "Great God"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "These Soma": {
+    "variants": [
+      "These Soma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Altindische Zauberei": {
+    "variants": [
+      "Altindische Zauberei"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lords": {
+    "variants": [
+      "Lords"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Originally": {
+    "variants": [
+      "Originally"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Twice": {
+    "variants": [
+      "Twice"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Glory": {
+    "variants": [
+      "Glory"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whichever": {
+    "variants": [
+      "Whichever"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Were": {
+    "variants": [
+      "Were"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Puapasutra": {
+    "variants": [
+      "Puapasutra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Taking": {
+    "variants": [
+      "Taking"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Usanas Kavya": {
+    "variants": [
+      "Usanas Kavya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rathas": {
+    "variants": [
+      "Rathas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ayaita": {
+    "variants": [
+      "Ayaita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Frajapati": {
+    "variants": [
+      "Frajapati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sacred \nBooks": {
+    "variants": [
+      "Sacred \nBooks"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Syetl": {
+    "variants": [
+      "Syetl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Qramegeya": {
+    "variants": [
+      "Qramegeya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "In Jaim": {
+    "variants": [
+      "In Jaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Atharvans": {
+    "variants": [
+      "The Atharvans"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The \nGods": {
+    "variants": [
+      "The \nGods"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dawn": {
+    "variants": [
+      "Dawn"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kali": {
+    "variants": [
+      "Kali"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Grant": {
+    "variants": [
+      "Grant"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vitadanya": {
+    "variants": [
+      "Vitadanya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Syavasva": {
+    "variants": [
+      "Syavasva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arcananas": {
+    "variants": [
+      "Arcananas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Andhigu": {
+    "variants": [
+      "Andhigu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Beginning": {
+    "variants": [
+      "Beginning"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Formerly": {
+    "variants": [
+      "Formerly"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jatavedas": {
+    "variants": [
+      "Jatavedas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kusamba": {
+    "variants": [
+      "Kusamba"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udgltha": {
+    "variants": [
+      "Udgltha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ending": {
+    "variants": [
+      "Ending"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Siitrakara": {
+    "variants": [
+      "Siitrakara"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rather": {
+    "variants": [
+      "Rather"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Adhvaryus": {
+    "variants": [
+      "The Adhvaryus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brahmanaccharnsin": {
+    "variants": [
+      "Brahmanaccharnsin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hotraka": {
+    "variants": [
+      "Hotraka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Antakadhrti": {
+    "variants": [
+      "Antakadhrti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nakira": {
+    "variants": [
+      "Nakira"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sayaiia": {
+    "variants": [
+      "Sayaiia"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Acchav": {
+    "variants": [
+      "Acchav"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aochavaka": {
+    "variants": [
+      "Aochavaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vitahavya": {
+    "variants": [
+      "Vitahavya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Qods": {
+    "variants": [
+      "Qods"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Alvins": {
+    "variants": [
+      "Alvins"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Before": {
+    "variants": [
+      "Before"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "American \nOriental Soc": {
+    "variants": [
+      "American \nOriental Soc"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Good": {
+    "variants": [
+      "Good"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Syava": {
+    "variants": [
+      "Syava"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lusa": {
+    "variants": [
+      "Lusa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Saya": {
+    "variants": [
+      "Saya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Kathaka": {
+    "variants": [
+      "The Kathaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Taittiriyas": {
+    "variants": [
+      "Taittiriyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Cp Jaim": {
+    "variants": [
+      "Cp Jaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Whose": {
+    "variants": [
+      "Whose"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drop": {
+    "variants": [
+      "Drop"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Thinking": {
+    "variants": [
+      "Thinking"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Giriksit": {
+    "variants": [
+      "Giriksit"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Abhipratarin": {
+    "variants": [
+      "Abhipratarin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kaksasena": {
+    "variants": [
+      "Kaksasena"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Multiform": {
+    "variants": [
+      "Multiform"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sriyo": {
+    "variants": [
+      "Sriyo"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Khila": {
+    "variants": [
+      "Khila"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Seen": {
+    "variants": [
+      "Seen"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "God Soma": {
+    "variants": [
+      "God Soma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Last": {
+    "variants": [
+      "Last"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarnhita": {
+    "variants": [
+      "Sarnhita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Das Jaim": {
+    "variants": [
+      "Das Jaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sktyas": {
+    "variants": [
+      "Sktyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tarksya": {
+    "variants": [
+      "Tarksya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rahugana": {
+    "variants": [
+      "Rahugana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lfity": {
+    "variants": [
+      "Lfity"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mayest": {
+    "variants": [
+      "Mayest"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Worlds": {
+    "variants": [
+      "Worlds"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Towards": {
+    "variants": [
+      "Towards"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Fifteen": {
+    "variants": [
+      "Fifteen"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jagatls": {
+    "variants": [
+      "Jagatls"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Possessed": {
+    "variants": [
+      "Possessed"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pasthavah": {
+    "variants": [
+      "Pasthavah"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Grfim": {
+    "variants": [
+      "Grfim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Wish": {
+    "variants": [
+      "Wish"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hear": {
+    "variants": [
+      "Hear"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tirascin": {
+    "variants": [
+      "Tirascin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dadhyafic": {
+    "variants": [
+      "Dadhyafic"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Many": {
+    "variants": [
+      "Many"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Atharvaveda": {
+    "variants": [
+      "Atharvaveda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drink": {
+    "variants": [
+      "Drink"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nabhaka": {
+    "variants": [
+      "Nabhaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Take": {
+    "variants": [
+      "Take"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Urnayu": {
+    "variants": [
+      "Urnayu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prajftpati": {
+    "variants": [
+      "Prajftpati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bhalandana": {
+    "variants": [
+      "Bhalandana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Hobr": {
+    "variants": [
+      "Hobr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Higher": {
+    "variants": [
+      "Higher"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Iksvaku": {
+    "variants": [
+      "Iksvaku"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vadhryasva": {
+    "variants": [
+      "Vadhryasva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vikhanas": {
+    "variants": [
+      "Vikhanas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Priyamedha": {
+    "variants": [
+      "Priyamedha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Throw": {
+    "variants": [
+      "Throw"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sisu": {
+    "variants": [
+      "Sisu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Father": {
+    "variants": [
+      "Father"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dayana": {
+    "variants": [
+      "Dayana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Taken": {
+    "variants": [
+      "Taken"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Anupadasiitra": {
+    "variants": [
+      "Anupadasiitra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Teachers": {
+    "variants": [
+      "Teachers"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Might": {
+    "variants": [
+      "Might"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arbhava": {
+    "variants": [
+      "Arbhava"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prana": {
+    "variants": [
+      "Prana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bhayada": {
+    "variants": [
+      "Bhayada"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asamati": {
+    "variants": [
+      "Asamati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prthi": {
+    "variants": [
+      "Prthi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "For Indra": {
+    "variants": [
+      "For Indra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Actes": {
+    "variants": [
+      "Actes"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Taranta": {
+    "variants": [
+      "Taranta"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vienna Oriental Journal": {
+    "variants": [
+      "Vienna Oriental Journal"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Uksnorandhra": {
+    "variants": [
+      "Uksnorandhra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kavi": {
+    "variants": [
+      "Kavi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Verse": {
+    "variants": [
+      "Verse"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Karnasravas": {
+    "variants": [
+      "Karnasravas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Krunc": {
+    "variants": [
+      "Krunc"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Snusti": {
+    "variants": [
+      "Snusti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gaupayanas": {
+    "variants": [
+      "Gaupayanas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kirata": {
+    "variants": [
+      "Kirata"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Akuli": {
+    "variants": [
+      "Akuli"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Jaira": {
+    "variants": [
+      "The Jaira"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Seventh": {
+    "variants": [
+      "Seventh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Indrota": {
+    "variants": [
+      "Indrota"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rbhus": {
+    "variants": [
+      "Rbhus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rohitakula": {
+    "variants": [
+      "Rohitakula"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Said": {
+    "variants": [
+      "Said"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Mahavrsas": {
+    "variants": [
+      "Mahavrsas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ugradeva": {
+    "variants": [
+      "Ugradeva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "These Seers": {
+    "variants": [
+      "These Seers"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Prajfipati": {
+    "variants": [
+      "Prajfipati"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Dolphin": {
+    "variants": [
+      "Dolphin"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Asita Dhamnya": {
+    "variants": [
+      "Asita Dhamnya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sarnkrti": {
+    "variants": [
+      "Sarnkrti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Medha": {
+    "variants": [
+      "Medha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rathaspa": {
+    "variants": [
+      "Rathaspa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "From Jaim": {
+    "variants": [
+      "From Jaim"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kutsa Aurava": {
+    "variants": [
+      "Kutsa Aurava"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnis": {
+    "variants": [
+      "Agnis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Puruhanman": {
+    "variants": [
+      "Puruhanman"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brhaduktha": {
+    "variants": [
+      "Brhaduktha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nepatithi": {
+    "variants": [
+      "Nepatithi"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "These Chandoma": {
+    "variants": [
+      "These Chandoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Usij": {
+    "variants": [
+      "Usij"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Falcon": {
+    "variants": [
+      "Falcon"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Somahita": {
+    "variants": [
+      "Somahita"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Udvanta": {
+    "variants": [
+      "Udvanta"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kavyas": {
+    "variants": [
+      "Kavyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Speyer": {
+    "variants": [
+      "Speyer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sanskrit Syntax": {
+    "variants": [
+      "Sanskrit Syntax"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Pratardana": {
+    "variants": [
+      "Pratardana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Manusa": {
+    "variants": [
+      "Manusa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "To Agni": {
+    "variants": [
+      "To Agni"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sukra": {
+    "variants": [
+      "Sukra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Davasu": {
+    "variants": [
+      "Davasu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visva": {
+    "variants": [
+      "Visva"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Seer": {
+    "variants": [
+      "The Seer"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Maghavan": {
+    "variants": [
+      "Maghavan"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Acta Orientaha": {
+    "variants": [
+      "Acta Orientaha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Akilpara Kasyapa": {
+    "variants": [
+      "Akilpara Kasyapa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Revealing": {
+    "variants": [
+      "Revealing"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vadhrya": {
+    "variants": [
+      "Vadhrya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Kanvas": {
+    "variants": [
+      "Kanvas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Samkrtis": {
+    "variants": [
+      "Samkrtis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ilotr": {
+    "variants": [
+      "Ilotr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nymphs": {
+    "variants": [
+      "Nymphs"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Acchavaka": {
+    "variants": [
+      "The Acchavaka"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Light": {
+    "variants": [
+      "The Light"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tahc": {
+    "variants": [
+      "Tahc"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Areeyakalpa": {
+    "variants": [
+      "Areeyakalpa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Kauthumas": {
+    "variants": [
+      "The Kauthumas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Amsterdam": {
+    "variants": [
+      "Amsterdam"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Anukrl": {
+    "variants": [
+      "Anukrl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The God": {
+    "variants": [
+      "The God"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agnistuts": {
+    "variants": [
+      "Agnistuts"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Nidanasntra": {
+    "variants": [
+      "Nidanasntra"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Agaistut": {
+    "variants": [
+      "Agaistut"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Bead": {
+    "variants": [
+      "Bead"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Lsty": {
+    "variants": [
+      "Lsty"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Caturmasyas": {
+    "variants": [
+      "The Caturmasyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Maruts": {
+    "variants": [
+      "The Maruts"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Jaimimya": {
+    "variants": [
+      "Jaimimya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Rajasilya": {
+    "variants": [
+      "The Rajasilya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Though": {
+    "variants": [
+      "Though"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Rajasuya": {
+    "variants": [
+      "The Rajasuya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sainh": {
+    "variants": [
+      "Sainh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Paucavirn": {
+    "variants": [
+      "Paucavirn"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Satnh": {
+    "variants": [
+      "Satnh"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sadasyas": {
+    "variants": [
+      "Sadasyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Full": {
+    "variants": [
+      "Full"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Rajasilya": {
+    "variants": [
+      "Rajasilya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tliis": {
+    "variants": [
+      "Tliis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Apacitis": {
+    "variants": [
+      "Apacitis"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Svaraj": {
+    "variants": [
+      "Svaraj"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Gausukti": {
+    "variants": [
+      "Gausukti"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Catustoma": {
+    "variants": [
+      "Catustoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Valakhilya": {
+    "variants": [
+      "Valakhilya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Yajus": {
+    "variants": [
+      "Yajus"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sftyana": {
+    "variants": [
+      "Sftyana"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Leydon": {
+    "variants": [
+      "Leydon"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Swear": {
+    "variants": [
+      "Swear"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Chandoina": {
+    "variants": [
+      "The Chandoina"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Send": {
+    "variants": [
+      "Send"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vrclvats": {
+    "variants": [
+      "Vrclvats"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Vetasvat": {
+    "variants": [
+      "Vetasvat"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Equal": {
+    "variants": [
+      "Equal"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Ksemadhrtvan": {
+    "variants": [
+      "Ksemadhrtvan"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sudaman": {
+    "variants": [
+      "Sudaman"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Aruni": {
+    "variants": [
+      "Aruni"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Endless": {
+    "variants": [
+      "Endless"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "The Vratyas": {
+    "variants": [
+      "The Vratyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Brhaspatistoma": {
+    "variants": [
+      "Brhaspatistoma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Khandava": {
+    "variants": [
+      "Khandava"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Naimisa": {
+    "variants": [
+      "Naimisa"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sadhyas": {
+    "variants": [
+      "Sadhyas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Videha": {
+    "variants": [
+      "Videha"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Sthularma": {
+    "variants": [
+      "Sthularma"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Drsadvatl": {
+    "variants": [
+      "Drsadvatl"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Tapas": {
+    "variants": [
+      "Tapas"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Janamejaya": {
+    "variants": [
+      "Janamejaya"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Arbuda": {
+    "variants": [
+      "Arbuda"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Para": {
+    "variants": [
+      "Para"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Trasadasyu": {
+    "variants": [
+      "Trasadasyu"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Visvasrj": {
+    "variants": [
+      "Visvasrj"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Names": {
+    "variants": [
+      "Names"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Intr": {
+    "variants": [
+      "Intr"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Barhata": {
+    "variants": [
+      "Barhata"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  },
+  "Unexpressed": {
+    "variants": [
+      "Unexpressed"
+    ],
+    "category": "other_vedic_terms",
+    "source": "Pancavamsa Brahmana"
+  }
+}

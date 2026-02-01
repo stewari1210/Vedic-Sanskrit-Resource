@@ -1249,5 +1249,104 @@
       "total_occurrences": 11,
       "priority": "MEDIUM"
     }
+  },
+  "prose_vedas": {
+    "pancavamsa_brahmana": {
+      "source": "Pancavamsa Brahmana",
+      "translator": "W. Caland",
+      "publication_date": 1931,
+      "text_type": "prose_veda",
+      "vedic_school": "Samaveda",
+      "extracted_nouns": {
+        "deities": [
+          "Aditya",
+          "Adityas",
+          "Agni",
+          "Aryaman",
+          "BRAHMA",
+          "Bhaga",
+          "Brahma",
+          "Brahmanaspati",
+          "Indra",
+          "Marut",
+          "Maruts",
+          "Mitra",
+          "Parjanya",
+          "PrajApati",
+          "Prajapati",
+          "Rudra",
+          "Soma",
+          "Surya",
+          "Varuna",
+          "Vata",
+          "Yama",
+          "aditya",
+          "agni",
+          "brahma",
+          "chandra",
+          "dyaus",
+          "indra",
+          "soma",
+          "surya",
+          "varuna",
+          "vata",
+          "yama"
+        ],
+        "sages": [
+          "Angiras",
+          "Apastamba",
+          "Baudhayana",
+          "Gobhila",
+          "Kanva",
+          "Katyayana",
+          "Latyayana",
+          "Manava",
+          "Paijavana",
+          "Vamadeva",
+          "Visvamitra",
+          "kanva",
+          "manava"
+        ],
+        "schools": [
+          "Jaiminiya",
+          "Jaiminlya",
+          "Kauthuma",
+          "Maitrayani",
+          "Ranayaniya",
+          "Ranayaniyas",
+          "Taittiriya"
+        ],
+        "rituals": [
+          "Aptoryama",
+          "Ekaha",
+          "Sattra",
+          "Soma",
+          "agnihotra",
+          "ahina",
+          "atiratra",
+          "caturmasya",
+          "ekaha",
+          "pravargya",
+          "samvatsara",
+          "sattra",
+          "soma",
+          "ukthya",
+          "upasad"
+        ],
+        "locations": [
+          "Gaya",
+          "Yamuna",
+          "gaya"
+        ],
+        "other_proper_nouns": []
+      },
+      "statistics": {
+        "deities": 32,
+        "sages": 13,
+        "schools": 7,
+        "rituals": 15,
+        "locations": 3
+      }
+    }
   }
 }
