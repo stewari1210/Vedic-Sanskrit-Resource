@@ -606,7 +606,7 @@ Have natural conversation about Sanskrit:
                     "🔤 Verse Translation",
                     "🗣️ Pronunciation",
                     "🎯 Quiz Mode",
-                    "💬 Free Chat"
+                    "💬 Chat Mode"
                 ],
                 key="module_selector"
             )
