@@ -518,12 +518,13 @@ GRAMMAR RULES FROM CORPUS:
 {grammar_context if grammar_context else "No specific grammar rules found. Use your knowledge."}
 
 INSTRUCTIONS:
-1. Answer the grammar question clearly
-2. Provide examples if relevant
-3. Explain the rules step by step
+1. Answer the grammar question clearly and with authority
+2. Provide concrete examples from the Vedic corpus if available
+3. Explain the rules step by step with Sanskrit examples
 4. Use Devanagari and IAST transliteration where appropriate
+5. Reference specific hymns or verses when applicable (e.g., "In RV 1.1.1...")
 
-Provide a clear, educational answer:"""
+Provide a clear, educational answer with proper citations:"""
 
         messages = [SystemMessage(content=synthesis_prompt)]
         response = Settings.invoke_llm(llm, messages)
@@ -563,12 +564,13 @@ RELEVANT CORPUS PASSAGES FROM RIGVEDA AND YAJURVEDA:
 
 INSTRUCTIONS:
 1. Answer the question based on the corpus passages provided above
-2. Cite specific details from the passages (names, events, descriptions)
-3. Be informative and educational in your response
-4. Use Sanskrit terms with transliteration when appropriate
-5. If the passages mention the topic, explain what they say about it
+2. **IMPORTANT**: When citing passages, use the verse references shown in the headers (e.g., "RV 1.33 - Sudas" or "RV 7.18 - Sudas") instead of generic "Passage N" labels
+3. Cite specific details and verse references from the passages (names, events, descriptions)
+4. Be informative and educational in your response
+5. Use Sanskrit terms with transliteration when appropriate
+6. If the passages mention the topic, explain what they say about it and reference which verse(s)
 
-Provide a detailed answer based on the corpus passages:"""
+Provide a detailed answer based on the corpus passages, using proper verse references:"""
         else:
             synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts.
 
