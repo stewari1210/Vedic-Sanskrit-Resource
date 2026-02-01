@@ -25,6 +25,7 @@ class VedicCitationExtractor:
     PATTERNS = {
         'bracket_reference': r'\[(\d{2})-(\d{3})\]\s+(?:HYMN|BOOK|CANTO)',  # [01-001] HYMN I format
         'rigveda_hymn': r'(?:Hymn|RV|Rigveda)\s+(\d+)\.(\d+)(?:\.(\d+))?',  # RV 1.1 or RV 1.1.1
+        'yajurveda_griffith': r'VS[A-Z]*\s+(\d+)\.(\d+)',  # VSKSE 13.3 or VSK 13.3 format (Yajurveda Griffith)
         'yajurveda_verse': r'(?:YV|Yajurveda|Verse)\s+(\d+)\.(\d+)',  # YV 1.1
         'brahmana_reference': r'(?:Satapatha|SB|Brahmana)\s+(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?',  # SB 1.1.1 or SB 1.1.1.1
         'mantra_number': r'(?:Mantra|Sukta|Adhyaya)\s+(\d+)',  # Generic mantra reference
@@ -65,6 +66,10 @@ class VedicCitationExtractor:
             mandala, sukta, verse = match.groups()
             verse_part = f".{verse}" if verse else ""
             return f"RV {mandala}.{sukta}{verse_part}"
+
+        elif pattern_name == 'yajurveda_griffith':
+            adhyaya, verse = match.groups()
+            return f"YV {adhyaya}.{verse}"
 
         elif pattern_name == 'yajurveda_verse':
             adhyaya, verse = match.groups()
