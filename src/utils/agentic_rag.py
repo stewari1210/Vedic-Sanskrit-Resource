@@ -544,7 +544,8 @@ Provide a clear, educational answer:"""
 
         corpus_context = ""
         if corpus_info:
-            corpus_context = "\n\n".join([doc.page_content for doc in corpus_info[:5]])
+            # Use enhanced citations instead of raw page_content
+            corpus_context = enhance_corpus_results_with_citations(corpus_info[:5])
 
         # Check if we actually have meaningful corpus content
         has_corpus = corpus_context and len(corpus_context.strip()) > 50 and "No relevant passages" not in corpus_context

@@ -23,6 +23,7 @@ class VedicCitationExtractor:
 
     # Regex patterns for different Vedic text formats
     PATTERNS = {
+        'bracket_reference': r'\[(\d{2})-(\d{3})\]\s+(?:HYMN|BOOK|CANTO)',  # [01-001] HYMN I format
         'rigveda_hymn': r'(?:Hymn|RV|Rigveda)\s+(\d+)\.(\d+)(?:\.(\d+))?',  # RV 1.1 or RV 1.1.1
         'yajurveda_verse': r'(?:YV|Yajurveda|Verse)\s+(\d+)\.(\d+)',  # YV 1.1
         'brahmana_reference': r'(?:Satapatha|SB|Brahmana)\s+(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?',  # SB 1.1.1 or SB 1.1.1.1
@@ -53,7 +54,14 @@ class VedicCitationExtractor:
     @staticmethod
     def _format_citation(pattern_name: str, match) -> str:
         """Format matched groups into proper citation format."""
-        if pattern_name == 'rigveda_hymn':
+        if pattern_name == 'bracket_reference':
+            # [01-001] format: mandala is first part (01), sukta is second part (001)
+            mandala, sukta = match.groups()
+            mandala_int = str(int(mandala))  # Remove leading zero
+            sukta_int = str(int(sukta))      # Remove leading zero
+            return f"RV {mandala_int}.{sukta_int}"
+
+        elif pattern_name == 'rigveda_hymn':
             mandala, sukta, verse = match.groups()
             verse_part = f".{verse}" if verse else ""
             return f"RV {mandala}.{sukta}{verse_part}"
@@ -114,7 +122,18 @@ class VedicCitationExtractor:
         Examples:
             "# Hymn 1: Invocation to Agni" → "Invocation to Agni"
             "## The Battle of Ten Kings" → "The Battle of Ten Kings"
+            "[Names (Griffith-Rigveda): Agni]" → "Agni"
         """
+        # Try to extract names from [Names (...): Name] format (Griffith texts)
+        names_match = re.search(r'\[Names\s*\([^)]*\):\s*([^\]]+)\]',
+                               text, re.IGNORECASE)
+        if names_match:
+            names = names_match.group(1).strip()
+            # Return the first name if multiple
+            first_name = names.split(',')[0].strip()
+            return first_name
+        
+        # Try markdown header format
         title_match = re.search(r'^#+\s*(?:Hymn|Verse|Sutra|Section)?\s*[\d:]*\s*(.+?)$',
                                text, re.MULTILINE | re.IGNORECASE)
         if title_match:
