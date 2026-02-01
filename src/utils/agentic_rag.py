@@ -25,6 +25,11 @@ from langchain_core.tools import tool
 import operator
 from src.helper import logger
 from src.settings import Settings
+from src.utils.citation_enhancer import (
+    enhance_corpus_results_with_citations,
+    create_enhanced_citations_list,
+    CitationFormatter
+)
 import re
 
 llm = Settings.get_llm()
@@ -208,10 +213,9 @@ def corpus_examples_search(sanskrit_terms: str, pattern: str = "") -> str:
         examples = retriever.invoke(query)
 
         if examples:
-            # For factual queries, return more context (first 500 chars per passage)
-            char_limit = 500 if not pattern else 300
-            result = "\n\n".join([f"Passage {i+1}: {doc.page_content[:char_limit]}" for i, doc in enumerate(examples)])
-            logger.info(f"[CORPUS] Found {len(examples)} passages")
+            # Use enhanced citation system with proper verse references
+            result = enhance_corpus_results_with_citations(examples)
+            logger.info(f"[CORPUS] Found {len(examples)} passages with enhanced citations")
             return result
         else:
             return "No relevant passages found in corpus."
@@ -598,7 +602,7 @@ Provide a helpful response:"""
 
         answer = {
             "answer": answer_content,
-            "citations": [f"Corpus passage {i+1}" for i in range(len(corpus_info[:5]))] if has_corpus else []
+            "citations": create_enhanced_citations_list(corpus_info[:5]) if has_corpus else []
         }
 
         logger.info("[AGENT] Factual synthesis complete")

@@ -952,7 +952,7 @@ Have natural conversation about Sanskrit:
             self.render_pronunciation_module()
         elif module == "🎯 Quiz Mode":
             self.render_quiz_module()
-        elif module == "💬 Free Chat":
+        elif module == "💬 Chat Mode":
             self.render_chat_module()
 
 
