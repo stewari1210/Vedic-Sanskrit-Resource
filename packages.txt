@@ -1,6 +1,1 @@
-# System packages for Streamlit Cloud
-# These are installed at the OS level before Python dependencies
-
-# Git LFS for handling large files tracked with Git LFS
-# Required to properly clone monier_williams_concept_store.json (108MB)
 git-lfs
