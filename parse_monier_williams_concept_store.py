@@ -32,7 +32,7 @@ from indic_transliteration import sanscript
 from tqdm import tqdm
 
 # Input/output paths
-MW_DICT_PATH = Path("local_store/grammar_texts/monier_williams_dictionary/mw.txt")
+MW_DICT_PATH = Path("library/grammar/mw.txt")
 OUTPUT_JSON = Path("monier_williams_concept_store.json")
 
 # Regex patterns for MW format
