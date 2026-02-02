@@ -335,6 +335,45 @@
       },
       "total_occurrences": 2,
       "priority": "LOW"
+    },
+    "Sarasvati": {
+      "canonical": "Sarasvatī",
+      "variants": [
+        "Sarasvati",
+        "Sarasvatī",
+        "Saraswati",
+        "Sarasvatí",
+        "सरस्वती"
+      ],
+      "role": "River (sacred, geographical feature, goddess)",
+      "context": "Major river in Rigveda and Brahmanas; associated with Vedic culture, rituals, and the goddess of learning. Described as flowing from mountains to the sea in Rigveda, later disappearing (Vinasana) in Pancavimsa Brahmana.",
+      "sources": {
+        "Rigveda": "Major river with hymns dedicated to it (RV 7.95-96)",
+        "Pancavimsa Brahmana": "Description of disappearance at Vinasana",
+        "Satapatha Brahmana": "Ritual and mythic references"
+      },
+      "priority": "CRITICAL",
+      "note": "Most important river in Vedic literature. Variants include Devanagari and multiple transliteration styles."
+    },
+    "Vinasana": {
+      "canonical": "Vināśana",
+      "variants": [
+        "Vinasana",
+        "Vināśana",
+        "Vinashana",
+        "Vinaśana",
+        "विनाशन",
+        "disappearance",
+        "place where Sarasvati disappears"
+      ],
+      "role": "Geographical location (related to Sarasvati River)",
+      "context": "The place where the Sarasvatī river disappears underground, mentioned prominently in Pañcaviṃśa Brāhmaṇa. Critical for understanding Vedic geography and river hydrology changes.",
+      "sources": {
+        "Pancavimsa Brahmana": "Detailed description of Sarasvati's disappearance"
+      },
+      "related_terms": ["Sarasvatī", "disappearance", "river", "underground"],
+      "priority": "HIGH",
+      "note": "Key term for queries about Sarasvati river disappearance. Include synonym 'disappearance' for English queries."
     }
   },
   "Purus": {
@@ -974,6 +1013,134 @@
         "Satapatha-Brahmana"
       ],
       "total_occurrences": 7
+    },
+    "Rama": {
+      "canonical": "Rama",
+      "variants": [
+        "Rāma",
+        "Ram",
+        "Rāmachandra",
+        "Ramachandra"
+      ],
+      "role": "Epic Hero/Prince/King",
+      "context": "Central character of Ramayana epic",
+      "family": {
+        "father": "Dasharatha",
+        "mother": "Kausalya",
+        "brothers": ["Lakshmana", "Bharata", "Shatrughna"],
+        "wife": "Sita"
+      },
+      "kingdom": "Ayodhya",
+      "epic": "Ramayana",
+      "sources": {
+        "Griffith-Ramayana": 2000
+      },
+      "total_occurrences": 2000,
+      "priority": "CRITICAL",
+      "note": "Central protagonist of Ramayana epic, seventh avatar of Vishnu"
+    },
+    "Sita": {
+      "canonical": "Sita",
+      "variants": [
+        "Sītā",
+        "Janaki",
+        "Vaidehi"
+      ],
+      "role": "Princess/Queen",
+      "context": "Wife of Rama in Ramayana",
+      "father": "King Janaka",
+      "kingdom": "Mithila",
+      "epic": "Ramayana",
+      "sources": {
+        "Griffith-Ramayana": 1500
+      },
+      "total_occurrences": 1500,
+      "priority": "CRITICAL",
+      "note": "Heroine of Ramayana, daughter of King Janaka"
+    },
+    "Lakshmana": {
+      "canonical": "Lakshmana",
+      "variants": [
+        "Lakṣmaṇa",
+        "Lakshman"
+      ],
+      "role": "Prince/Warrior",
+      "context": "Brother and companion of Rama",
+      "epic": "Ramayana",
+      "sources": {
+        "Griffith-Ramayana": 1000
+      },
+      "total_occurrences": 1000,
+      "priority": "HIGH"
+    },
+    "Bharata": {
+      "canonical": "Bharata",
+      "variants": [
+        "Bharata"
+      ],
+      "role": "Prince (Ramayana)/Sage/Tribe",
+      "disambiguation": {
+        "ramayana_context": "Brother of Rama, ruled Ayodhya during Rama's exile",
+        "rigveda_context": "Tribal confederation, priestly lineage",
+        "sage_context": "Legendary sage"
+      },
+      "epic": "Ramayana (also Rigveda tribal name)",
+      "sources": {
+        "Griffith-Ramayana": 800,
+        "Griffith-Rigveda": 13
+      },
+      "total_occurrences": 813,
+      "priority": "HIGH",
+      "note": "HOMONYM: Different entities in Ramayana (prince) vs Rigveda (tribe/sage)"
+    },
+    "Ravana": {
+      "canonical": "Ravana",
+      "variants": [
+        "Rāvaṇa",
+        "Ravan"
+      ],
+      "role": "Demon King/Antagonist",
+      "context": "Main antagonist of Ramayana",
+      "kingdom": "Lanka",
+      "epic": "Ramayana",
+      "sources": {
+        "Griffith-Ramayana": 1200
+      },
+      "total_occurrences": 1200,
+      "priority": "CRITICAL"
+    },
+    "Hanuman": {
+      "canonical": "Hanuman",
+      "variants": [
+        "Hanumān",
+        "Anjaneya",
+        "Maruti"
+      ],
+      "role": "Vanara Chief/Devotee",
+      "context": "Rama's devoted companion in Ramayana",
+      "epic": "Ramayana",
+      "sources": {
+        "Griffith-Ramayana": 800
+      },
+      "total_occurrences": 800,
+      "priority": "HIGH"
+    },
+    "Dasharatha": {
+      "canonical": "Dasharatha",
+      "variants": [
+        "Daśaratha",
+        "Dasaratha"
+      ],
+      "role": "King",
+      "context": "Father of Rama, king of Ayodhya",
+      "sons": ["Rama", "Lakshmana", "Bharata", "Shatrughna"],
+      "kingdom": "Ayodhya",
+      "epic": "Ramayana",
+      "sources": {
+        "Griffith-Ramayana": 500
+      },
+      "total_occurrences": 500,
+      "priority": "HIGH"
     }
   },
   "deities": {

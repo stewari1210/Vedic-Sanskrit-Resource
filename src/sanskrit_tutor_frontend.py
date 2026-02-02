@@ -494,10 +494,53 @@ Have natural conversation about Sanskrit:
                     answer_text = str(answer)
                     logger.info(f"[FRONTEND] Answer is not dict, converted to str: {answer_text[:100]}")
 
-                # Show agent's thinking process in expander
+                # CHECK FOR MW CONTEXT from retriever
+                # Retrieved documents may have MW dictionary context attached
+                retrieved_docs = result.get("retrieved_documents", [])
+                mw_context_found = None
+                
+                if retrieved_docs and len(retrieved_docs) > 0:
+                    # Check if first document has MW context
+                    first_doc = retrieved_docs[0]
+                    if hasattr(first_doc, 'metadata') and 'mw_context' in first_doc.metadata:
+                        mw_context_found = first_doc.metadata['mw_context']
+                        logger.info(f"[FRONTEND] Found MW context in documents: {len(mw_context_found)} entries")
+
+                # Display MW Dictionary Context (if available)
+                if mw_context_found and len(mw_context_found) > 0:
+                    with st.expander("📖 Sanskrit Dictionary (Monier-Williams)", expanded=False):
+                        st.markdown("**Found Sanskrit terms in your query:**")
+                        
+                        for mw_entry in mw_context_found[:3]:  # Show top 3 entries
+                            primary_key = mw_entry.get('primary_key', 'unknown')
+                            devanagari = mw_entry.get('devanagari', '')
+                            definitions = mw_entry.get('definitions', [])
+                            vedic_refs = mw_entry.get('vedic_refs', [])
+                            
+                            # Display term
+                            st.markdown(f"**{primary_key}** ({devanagari})")
+                            
+                            # Display first definition
+                            if definitions and len(definitions) > 0:
+                                first_def = definitions[0]
+                                # Clean up definition (remove metadata)
+                                if len(first_def) > 200:
+                                    first_def = first_def[:200] + "..."
+                                st.markdown(f"  {first_def}")
+                            
+                            # Display Vedic references
+                            if vedic_refs and len(vedic_refs) > 0:
+                                refs_str = ', '.join(vedic_refs[:5])
+                                st.caption(f"  📚 References: {refs_str}")
+                            
+                            st.markdown("---")
+
+                # Display agent insights
                 query_type = result.get("query_type", "unknown")
                 english_words = result.get("english_words", [])
                 sanskrit_words = result.get("sanskrit_words", {})
+
+                # Display agent insights (existing code)
 
                 # Display agent insights
                 if query_type == "construction" and (english_words or sanskrit_words):

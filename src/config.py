@@ -82,7 +82,7 @@ GEMINI_MODEL = get_config_value("GEMINI_MODEL", "gemini-2.0-flash-exp")  # Gemin
 
 CHUNK_SIZE = get_config_value("CHUNK_SIZE", 768, int)  # Reduced from 1024 for Groq token limits (6K max)
 CHUNK_OVERLAP = get_config_value("CHUNK_OVERLAP", 96, int)  # Scaled proportionally (was 128)
-RETRIEVAL_K = get_config_value("RETRIEVAL_K", 3, int)  # Number of chunks to retrieve per query (reduced from 5 for Groq token limit)
+RETRIEVAL_K = get_config_value("RETRIEVAL_K", 15, int)  # Number of chunks to retrieve per query (increased from 3 to get more sources for boosting)
 
 # Hybrid retriever weights (must sum to 1.0)
 SEMANTIC_WEIGHT = get_config_value("SEMANTIC_WEIGHT", 0.7, float)  # Weight for Qdrant semantic search (conceptual)

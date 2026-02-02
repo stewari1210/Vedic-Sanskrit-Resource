@@ -22,14 +22,28 @@ Built on top of a sophisticated RAG architecture using Langchain and LangGraph, 
 -   **🎯 Interactive Quizzes** - Test your knowledge with adaptive difficulty
 -   **💬 Free Conversation** - Ask any Sanskrit question and get intelligent, context-aware answers
 
-### 🤖 Agentic RAG System (NEW!)
+### 🌍 Bilingual Support (NEW!)
+-   **🔤 Multilingual Embeddings:** Supports Hindi, Sanskrit, Devanagari, and English queries
+    -   Model: `paraphrase-multilingual-mpnet-base-v2` (768-dim)
+    -   Native understanding of Devanagari script (no transliteration needed for search)
+    -   Cross-lingual retrieval: Query in Hindi → get Sanskrit results
+-   **📖 Monier-Williams Integration:** 176,146 Sanskrit dictionary concepts with 522,880 lookup keys
+    -   Automatic query enhancement with dictionary definitions
+    -   Vedic references displayed in UI
+    -   O(1) lookup performance (108 MB concept store)
+-   **✍️ Transliteration Layer:** Automatic Devanagari ↔ IAST conversion
+    -   Generates query variants for comprehensive search
+    -   Supports mixed-script queries (e.g., "soma रस का महत्व")
+    -   Library: `indic-transliteration`
+
+### 🤖 Agentic RAG System
 -   **🧠 Multi-Agent Intelligence:** Automatically classifies queries into 3 types:
     -   **Construction Queries** - "Translate I love you" → Dictionary → Grammar → Corpus → Synthesis
     -   **Grammar Queries** - "Explain declension" → Grammar Rules → Examples → Explanation
     -   **Factual Queries** - "Who is Indra?" → Corpus Search → RAG Answer
--   **📚 19K+ Dictionary:** Monier-Williams Sanskrit-English dictionary with OCR-cleaned entries
+-   **📚 Dictionary Integration:** Query enhancement with Monier-Williams definitions
 -   **📖 Grammar Integration:** Macdonell's Vedic Grammar rules for accurate constructions
--   **🔍 Brahmana Context:** Satapatha Brahmana (all 14 books) for ritual and philosophical context
+-   **🔍 Brahmana Context:** Satapatha + Pancavimsa Brahmanas for ritual and philosophical context
 -   **🔗 Tool Orchestration:** Agent decides which tools to use based on query complexity
 -   **✨ Pedagogical Output:** Word-by-word breakdowns with Devanagari + IAST transliteration
 
@@ -70,22 +84,31 @@ RAG-CHATBOT-CLI-Version/
 │       ├── vector_store.py          # Qdrant vector store management
 │       └── prompts.py               # LLM prompt templates
 ├── local_store/
-│   └── ancient_history/             # Complete Vedic corpus
-│       ├── rigveda-griffith_COMPLETE_english_with_metadata/
-│       ├── yajurveda-griffith_COMPLETE_english_with_metadata/
-│       ├── macdonell_vedic_grammar/                # 🆕 Vedic grammar rules
-│       ├── satapatha_brahmana_part_01_books_1_2/   # 🆕 Brahmanas (5 parts)
-│       ├── satapatha_brahmana_part_02_books_3_4/
-│       ├── satapatha_brahmana_part_03_books_5_6_7/
-│       ├── satapatha_brahmana_part_04_books_8_9_10/
-│       └── satapatha_brahmana_part_05_books_11_12_13_14/
-├── monier_williams_dictionary.txt   # 🆕 16MB Monier-Williams Sanskrit-English dictionary
-├── sanskrit_dictionary.json         # 🆕 19,008 parsed dictionary entries
-├── sanskrit_dictionary_cleaned.json # 🆕 10,635 cleaned entries (OCR-corrected)
-├── parse_monier_williams_v2.py      # 🆕 Dictionary parser with OCR cleaning
-├── clean_dictionary.py              # 🆕 Dictionary cleaning pipeline
-├── test_agentic_rag.py              # 🆕 Standalone agentic RAG tests
-├── vector_store/                    # Qdrant vector database (19,944 chunks)
+│   ├── ancient_history/             # Complete Vedic corpus
+│   │   ├── rigveda-griffith_COMPLETE_english_with_metadata/
+│   │   ├── yajurveda-griffith_COMPLETE_english_with_metadata/
+│   │   ├── satapatha_brahmana_part_01_books_1_2/
+│   │   ├── satapatha_brahmana_part_02_books_3_4/
+│   │   ├── satapatha_brahmana_part_03_books_5_6_7/
+│   │   ├── satapatha_brahmana_part_04_books_8_9_10/
+│   │   └── satapatha_brahmana_part_05_books_11_12_13_14/
+│   ├── prose_vedas/                 # 🆕 Prose Brahmanas
+│   │   └── pancavamsa_brahmana/     # Pancavimsa Brahmana (complete)
+│   └── grammar_texts/               # 🆕 Grammar resources
+│       ├── macdonell_vedic_grammar/ # Vedic grammar rules
+│       └── monier_williams_dictionary/  # MW dictionary source files
+├── monier_williams_concept_store.json  # 🆕 176K concepts, 523K lookup keys (108 MB)
+├── parse_monier_williams_concept_store.py  # 🆕 MW parser for concept store
+├── src/utils/
+│   ├── mw_concept_store.py          # 🆕 MW integration utility for RAG
+│   └── transliteration.py           # 🆕 Devanagari ↔ IAST conversion
+├── demo_mw_rag_integration.py       # 🆕 Demo of MW + transliteration
+├── test_mw_integration.py           # 🆕 Test suite for MW integration
+├── reindex_to_cloud_multilingual.py # 🆕 Re-indexing script for multilingual embeddings
+├── vector_store/                    # Qdrant vector database (~30K chunks)
+├── MW_CONCEPT_STORE_IMPLEMENTATION.md  # 🆕 MW technical docs
+├── MW_INTEGRATION_COMPLETE.md       # 🆕 Integration summary
+├── MULTILINGUAL_REINDEXING_GUIDE.md # 🆕 Re-indexing guide
 ├── run_sanskrit_tutor.sh            # Launch CLI tutor
 ├── run_sanskrit_tutor_web.sh        # Launch Streamlit app
 ├── test_tts.py                      # Audio pronunciation test
@@ -134,27 +157,53 @@ RAG-CHATBOT-CLI-Version/
     - Proper noun expansion for Sanskrit names
     - Returns top-k merged results
 
--   **`index_files.py`**: Loads markdown documents with metadata from `local_store/`, creates Qdrant vector store with sentence-transformers embeddings (all-mpnet-base-v2). Now supports:
-    - **Rigveda** - Complete Griffith translation
-    - **Yajurveda** - Complete Griffith translation
-    - **Macdonell Grammar** - Vedic grammar rules and tables
-    - **Satapatha Brahmana** - All 14 books (5 parts)
-    - Total: **19,944 chunks** indexed
+-   **`index_files.py`**: Loads markdown/text documents with metadata from ALL subdirectories in `local_store/`, creates Qdrant vector store with multilingual embeddings. Now supports:
+    - **Rigveda** - Complete Griffith translation (1.9 MB)
+    - **Yajurveda** - Complete Griffith translation (871 KB)
+    - **Ramayana** - Griffith translation (2.3 MB)
+    - **Macdonell Grammar** - Vedic grammar rules and tables (1.2 MB)
+    - **Satapatha Brahmana** - All 14 books in 5 parts (4.3 MB)
+    - **Pancavimsa Brahmana** - Complete text (1.6 MB)
+    - **Embedding Model:** `paraphrase-multilingual-mpnet-base-v2` (768-dim, supports Hindi/Sanskrit/Devanagari)
+    - Total: **~30,000 chunks** indexed in Qdrant Cloud
 
-### Dictionary System
+### Dictionary & Bilingual System
 
--   **`parse_monier_williams_v2.py`**: Parses 16MB Monier-Williams dictionary into structured JSON (19,008 entries)
+-   **`monier_williams_concept_store.json`**: 176,146 Sanskrit concepts with 522,880 lookup keys (108 MB)
+    - Structured concept store with headwords, IAST variants, Devanagari, definitions, Vedic references
+    - O(1) lookup performance for query enhancement
+    - Used for bilingual query expansion and context enrichment
 
--   **`clean_dictionary.py`**: Cleans OCR errors from dictionary:
-    - Removes entries with special characters and noise
-    - Filters invalid Sanskrit terms
-    - Adds 54 curated common words (love, family, verbs, greetings)
-    - Output: 10,635 high-quality entries
+-   **`parse_monier_williams_concept_store.py`**: Parses 48 MB mw.txt into structured concept store
+
+-   **`src/utils/mw_concept_store.py`**: Integration utility for RAG system
+    - `MWConceptStore` class with lookup(), expand_query(), get_vedic_context()
+    - Automatic transliteration and normalization
+    - Batch operations for performance
+
+-   **`src/utils/transliteration.py`**: Bidirectional Sanskrit/Hindi transliteration
+    - `TransliterationHelper` class with normalize_query()
+    - Devanagari ↔ IAST conversion
+    - Query variant generation for comprehensive search
+
+-   **`src/utils/retriever.py`**: Enhanced hybrid retriever with MW integration
+    - Implements hybrid retrieval combining BM25 keyword search (30%) and semantic vector search (70%)
+    - **NEW:** Automatic query enhancement with Monier-Williams definitions
+    - **NEW:** Transliteration layer generates Devanagari/IAST variants
+    - **NEW:** MW context attached to retrieved documents (displayed in UI)
+    - Proper noun expansion for Sanskrit names
+    - Returns top-k merged results with MW enrichment
+
+### Legacy Dictionary Files
+
+-   **`parse_monier_williams_v2.py`**: (Legacy) Parses 16MB dictionary into JSON (19,008 entries)
+
+-   **`clean_dictionary.py`**: (Legacy) Cleans OCR errors from dictionary
 
 -   **Dictionary Files:**
     - `monier_williams_dictionary.txt` - Original 16MB text
-    - `sanskrit_dictionary.json` - 19,008 parsed entries
-    - `sanskrit_dictionary_cleaned.json` - 10,635 cleaned entries
+    - `sanskrit_dictionary.json` - 19,008 parsed entries (legacy)
+    - `sanskrit_dictionary_cleaned.json` - 10,635 cleaned entries (legacy)
 
 ### Utility Components
 
@@ -214,9 +263,15 @@ OLLAMA_BASE_URL=http://localhost:11434
 EVAL_LLM_PROVIDER=ollama         # Recommended: unlimited local evaluation
 OLLAMA_EVAL_MODEL=qwen2.5:32b
 
-# Embeddings
-EMBEDDING_PROVIDER=local         # Uses sentence-transformers/all-mpnet-base-v2
-RATE_LIMIT_EMBEDDINGS=50         # Requests per minute
+# Embeddings (Multilingual Support)
+EMBEDDING_PROVIDER=local-best    # Uses paraphrase-multilingual-mpnet-base-v2
+EMBEDDING_DEVICE=cpu             # or 'mps' for Mac GPU, 'cuda' for NVIDIA
+EMBEDDING_BATCH_SIZE=16
+
+# Qdrant Cloud (for production deployment)
+QDRANT_URL=your_qdrant_cloud_url
+QDRANT_API_KEY=your_api_key
+COLLECTION_NAME=ancient_history
 
 # Optional: API Keys (if using cloud providers)
 # GEMINI_API_KEY=your_key_here
@@ -237,6 +292,39 @@ RATE_LIMIT_EMBEDDINGS=50         # Requests per minute
 # Or directly:
 python src/vedic_sanskrit_tutor.py
 ```
+
+### 5. Test Bilingual Queries 🌍
+
+The system now supports **Hindi, Sanskrit, Devanagari, and mixed-script queries**:
+
+**Devanagari Queries:**
+```
+सरस्वती नदी के विलुप्त होने का उल्लेख कहाँ है?
+अग्नि पूजा की विधि क्या है?
+सोम रस का महत्व समझाइये।
+```
+
+**IAST Transliteration:**
+```
+Sarasvatī river disappearance in Vedas
+Explain the significance of soma in Rigveda
+What are the main rituals described in Yajurveda?
+```
+
+**Mixed Script (Hindi + Sanskrit):**
+```
+soma रस का importance क्या है?
+Agni देवता के बारे में बताओ
+```
+
+**English:**
+```
+Who is Indra in the Rigveda?
+Explain the Gayatri Mantra
+What is the meaning of dharma?
+```
+
+All queries are automatically enhanced with Monier-Williams dictionary definitions and return relevant results from the corpus.
 
 ## � Corpus Sources
 
@@ -416,36 +504,81 @@ EVAL_LLM_PROVIDER=ollama
 OLLAMA_EVAL_MODEL=qwen2.5:32b
 ```
 
-## 📖 Documentation Files
+## � Corpus Statistics
 
+**Current Qdrant Cloud Collection: `ancient_history`**
+
+| Source | Size | Chunks | % of Corpus | Status |
+|--------|------|--------|-------------|--------|
+| Pancavimsa Brahmana | 1.6 MB | ~13,226 | 44% | ✅ Indexed |
+| Satapatha Brahmana (5 parts) | 4.3 MB | ~10,521 | 35% | ✅ Indexed |
+| Rigveda Griffith | 1.9 MB | ~3,542 | 12% | ✅ Indexed |
+| Ramayana Griffith | 2.3 MB | ~1,500 | 5% | ✅ Indexed |
+| Macdonell Vedic Grammar | 1.2 MB | ~800 | 3% | ✅ Indexed |
+| Yajurveda Griffith | 871 KB | ~411 | 1% | ✅ Indexed |
+| **Total Corpus** | **~12 MB** | **~30,000** | **100%** | ✅ Complete |
+
+**Embeddings**: `paraphrase-multilingual-mpnet-base-v2` (768-dim)
+- Supports: English, Hindi, Sanskrit, Devanagari, 50+ languages
+- Vector storage: ~92 MB (768-dim × 30K points × 4 bytes)
+- Distance metric: Cosine similarity
+
+**Monier-Williams Concept Store** (separate from vector DB):
+- 176,146 Sanskrit concepts
+- 522,880 lookup keys
+- 108 MB JSON file (not in Qdrant)
+- Used for query enhancement and context enrichment
+
+## �📖 Documentation Files
+
+- **`MW_CONCEPT_STORE_IMPLEMENTATION.md`** - Monier-Williams integration technical docs
+- **`MW_INTEGRATION_COMPLETE.md`** - Bilingual enhancement implementation summary
+- **`MULTILINGUAL_REINDEXING_GUIDE.md`** - Re-indexing with multilingual embeddings
+- **`DIMENSION_SOLUTION.md`** - 768-dim embedding model selection rationale
 - **`SANSKRIT_TUTOR_WEB_README.md`** - Complete web interface guide
 - **`SANSKRIT_TUTOR_README.md`** - CLI usage instructions
 - **`AUDIO_PRONUNCIATION_GUIDE.md`** - TTS feature documentation
 - **`FAST_MODELS_GUIDE.md`** - Model performance comparison
+- **`AGENTIC_RAG_QUERY_TYPES.md`** - Query classification documentation
+- **`PARALLELIZATION.md`** - Multi-GPU optimization guide
 
 ## 🛣️ Roadmap of Planned Development
 
-### Planned Improvements
+### Completed Features ✅
 
-**Phase 1: Grammar Foundation (Priority)** (Completed 2026-01-18)
+**Phase 1: Grammar Foundation** (Completed 2026-01-18)
 - [x] Add Macdonell's Vedic Grammar for Students
 - [x] Add Macdonell's Vedic Reader (30 analyzed hymns)
 - [x] Add Whitney's Sanskrit Grammar
 
 **Phase 2: Prose Texts** (Completed 2026-01-18)
-- [x] Add Shatapatha Brahmana (narrative prose)
+- [x] Add Satapatha Brahmana (all 14 books, narrative prose)
 - [x] Add Aitareya Brahmana (subject-object-verb structures)
 
 **Phase 3: Dictionaries** (Completed 2026-01-18)
 - [x] Monier-Williams Sanskrit-English Dictionary
 - [x] Grassmann's Wörterbuch zum Rig-veda
 
-**Phase 4: Features**
+**Phase 4: Bilingual Support** (Completed 2026-02-01)
+- [x] Multilingual embeddings (768-dim, supports Hindi/Sanskrit/Devanagari)
+- [x] Monier-Williams concept store (176K concepts, 523K lookup keys)
+- [x] Transliteration layer (Devanagari ↔ IAST)
+- [x] Query enhancement with dictionary definitions
+- [x] MW context display in UI
+- [x] Pancavimsa Brahmana indexed (13,226 chunks)
+- [x] Re-indexed corpus to Qdrant Cloud (~30,000 chunks)
+
+### Planned Improvements
+
+**Phase 5: Advanced Features**
 - [ ] Spaced repetition flashcards
 - [ ] Progress tracking across sessions
 - [ ] Export chat history as PDF
 - [ ] Dark mode theme
 - [ ] Devanagari typing practice
+- [ ] Voice input for pronunciation practice
+- [ ] Sanskrit-to-English translation mode
+- [ ] Verse comparison across translations
 
 ## 🤝 Contributing
 

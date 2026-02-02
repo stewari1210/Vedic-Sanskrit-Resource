@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import pickle
 import tempfile
@@ -11,6 +12,11 @@ from langchain_core.documents import Document
 
 from typing import List
 
+# Add project root to Python path
+project_root = Path(__file__).resolve().parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from src.helper import logger
 from src.config import LOCAL_FOLDER, COLLECTION_NAME, VECTORDB_FOLDER
 from src.settings import Settings
@@ -19,40 +25,115 @@ from src.settings import Settings
 # load all processed markdown files
 def load_documents_with_metadata(main_folder: str):
     """
-    Loads markdown files and their metadata from the specified folder structure.
+    Loads markdown files and their metadata from ALL subdirectories in local_store.
+    Supports both .md and .txt files paired with _metadata.json.
     """
-    logger.info(f"Loading documents from {main_folder}")
+    logger.info(f"Scanning for documents in: {main_folder}")
     all_documents = []
-    # Loop through each subdirectory, which corresponds to a document
-    for filename in os.listdir(main_folder):
-        file_path = os.path.join(main_folder, filename)
-        logger.info(f"File path {file_path}")
-        if os.path.isdir(file_path):
-            md_file = os.path.join(file_path, f"{filename}.md")
-            json_file = os.path.join(file_path, f"{filename}_metadata.json")
+    
+    # Recursively walk through all subdirectories
+    for root, dirs, files in os.walk(main_folder):
+        # Look for metadata files
+        metadata_files = [f for f in files if f.endswith('_metadata.json')]
+        
+        for metadata_filename in metadata_files:
+            # Extract base name (e.g., "pancavamsa_brahmana" from "pancavamsa_brahmana_metadata.json")
+            base_name = metadata_filename.replace('_metadata.json', '')
+            
+            # Look for corresponding .md or .txt file
+            md_file = os.path.join(root, f"{base_name}.md")
+            txt_file = os.path.join(root, f"{base_name}.txt")
+            json_file = os.path.join(root, metadata_filename)
+            
+            content_file = None
+            if os.path.exists(md_file):
+                content_file = md_file
+            elif os.path.exists(txt_file):
+                content_file = txt_file
+            
+            if content_file and os.path.exists(json_file):
+                try:
+                    # Load the content (markdown or text)
+                    with open(content_file, "r", encoding="utf-8") as f:
+                        content = f.read()
 
-            if os.path.exists(md_file) and os.path.exists(json_file):
-                # Load the markdown content
-                with open(md_file, "r", encoding="utf-8") as f:
-                    md_content = f.read()
+                    # Load the metadata
+                    with open(json_file, "r", encoding="utf-8") as f:
+                        metadata = json.load(f)
 
-                # Load the metadata
-                with open(json_file, "r", encoding="utf-8") as f:
-                    metadata = json.load(f)
-
-                # Create a LangChain Document object
-                doc = Document(page_content=md_content, metadata=metadata)
-                all_documents.append(doc)
+                    # Create a LangChain Document object
+                    doc = Document(page_content=content, metadata=metadata)
+                    all_documents.append(doc)
+                    logger.info(f"✅ Loaded: {metadata.get('title', base_name)} from {os.path.relpath(root, main_folder)}")
+                except Exception as e:
+                    logger.error(f"❌ Failed to load {content_file}: {e}")
             else:
-                logger.error(f"File does not exists {md_file} and {json_file}")
+                if not content_file:
+                    logger.warning(f"⚠️  Metadata found but no content file (.md or .txt) for: {base_name} in {root}")
 
-    logger.info(f"Loaded {len(all_documents)} documents stored in {LOCAL_FOLDER}")
+    logger.info(f"📊 Total documents loaded: {len(all_documents)}")
     return all_documents
+
+
+def _extract_headers_for_ramayana(content: str) -> tuple[str, str]:
+    """
+    Extract current Book and Canto headers from Ramayana content.
+    Returns (book, canto) tuple.
+    """
+    import re
+    book = canto = ""
+    
+    # Look for # Book pattern
+    book_match = re.search(r'#\s+Book\s+([IVX]+|[CLXVI]+)\.', content)
+    if book_match:
+        book = book_match.group(1)
+    
+    # Look for ## Canto pattern  
+    canto_match = re.search(r'##\s+Canto\s+([IVX]+|[CLXVI]+)\.', content)
+    if canto_match:
+        canto = canto_match.group(1)
+    
+    return book, canto
+
+
+def _extract_headers_for_pancavimsa(content: str) -> tuple[str, str]:
+    """
+    Extract chapter and section numbers from Pancavimsa Brahmana content.
+    Returns (chapter, section) tuple where:
+    - chapter: Prapathaka/Chapter number (1-25)
+    - section: Section number within chapter (from "NN." pattern)
+    
+    Note: Pancavimsa text uses numbered sections like "11. By means of..."
+    but doesn't have explicit chapter markers in most chunks.
+    We attempt to infer chapter from surrounding context or metadata.
+    """
+    import re
+    chapter = section = ""
+    
+    # Pattern: numbered section like "11.", "12.", etc.
+    # This gives us the section number
+    section_match = re.search(r'^\s*(\d+)\.\s+', content, re.MULTILINE)
+    if section_match:
+        section = section_match.group(1)
+    
+    # For chapter info, we'd need more context from the document
+    # For now, we mark it as "unknown" - can be enhanced later with metadata
+    # Example: chunks could have "prapathaka: 25" in metadata from indexing
+    
+    return chapter, section
 
 
 def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 64):
     """
-    Chunk the markdown documents
+    Chunk the markdown documents, preserving header context in metadata.
+    
+    For structured texts like Ramayana and Pancavimsa Brahmana:
+    1. Extracts header information (Book, Canto, Chapter, Section)
+    2. Adds it to chunk metadata for better filtering and citations
+    3. Prepends header info to content for semantic search enhancement
+    
+    This ensures searches for specific topics can better match their
+    source references and enabling proper verse citations.
     """
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
@@ -63,6 +144,60 @@ def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 6
     # Use the text splitter to create nodes from the single original document.
     # LlamaIndex ensures metadata propagates to the generated nodes.
     chunks = text_splitter.split_documents(doc)
+    
+    # Post-process chunks to add header context to metadata
+    for chunk in chunks:
+        source = chunk.metadata.get('source', '').lower()
+        title = chunk.metadata.get('title', '').lower()
+        
+        # For Ramayana: extract and add Book/Canto info
+        if 'ramayana' in source or 'ramayana' in title:
+            book, canto = _extract_headers_for_ramayana(chunk.page_content)
+            
+            # If headers found, add them to metadata and prepend to content for semantic search
+            if book or canto:
+                # Add to metadata
+                if book and 'book' not in chunk.metadata:
+                    chunk.metadata['book'] = book
+                if canto and 'canto' not in chunk.metadata:
+                    chunk.metadata['canto'] = canto
+                
+                # Prepend header info to content so embeddings include it
+                header_prefix = ""
+                if book:
+                    header_prefix += f"Book {book}. "
+                if canto:
+                    header_prefix += f"Canto {canto}. "
+                
+                # Only prepend if not already there
+                if header_prefix and not chunk.page_content.startswith(header_prefix):
+                    chunk.page_content = header_prefix + chunk.page_content
+        
+        # For Pancavimsa Brahmana: extract and add Chapter/Section info
+        elif 'pancavimsa' in source or 'pancavamsa' in source or 'pancavimsa' in title or 'pancavamsa' in title:
+            chapter, section = _extract_headers_for_pancavimsa(chunk.page_content)
+            
+            # Add to metadata for citation extraction and filtering
+            if section:
+                chunk.metadata['pb_section'] = section
+            
+            # If chapter info available (from metadata), add it
+            if 'prapathaka' in chunk.metadata or 'chapter' in chunk.metadata:
+                chapter = chunk.metadata.get('prapathaka', chunk.metadata.get('chapter', ''))
+                if chapter and 'pb_chapter' not in chunk.metadata:
+                    chunk.metadata['pb_chapter'] = chapter
+            
+            # Prepend section context to content for better semantic search
+            # This helps queries about specific topics match "Section NN" references
+            header_prefix = ""
+            if chapter:
+                header_prefix += f"Prapathaka {chapter}. "
+            if section:
+                header_prefix += f"Section {section}. "
+            
+            # Only prepend if not already there and we have something to prepend
+            if header_prefix and not chunk.page_content.startswith(header_prefix.strip()):
+                chunk.page_content = header_prefix + chunk.page_content
 
     return chunks
 
@@ -123,21 +258,28 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
         if use_cloud:
             logger.info(f"Using Qdrant Cloud - assuming collection '{COLLECTION_NAME}' already exists")
             # For cloud deployment, assume collection exists and just connect
+            # Use empty string for vector_name since collection has unnamed vectors
             vector_store = QdrantVectorStore(
                 client=client,
                 collection_name=str(COLLECTION_NAME),
                 embedding=Settings.get_embed_model(),
-                vector_name="embedding",  # Specify the vector name for cloud collection
+                vector_name="",  # Empty string for unnamed vectors in cloud
             )
-            # We need to return some chunks for the agentic RAG to work
-            # For now, return empty list - the agentic RAG should handle this
-            chunks = []
+            # Load documents for BM25 keyword retriever (needed even for cloud)
+            logger.info("Loading documents from local_store for BM25 keyword retriever...")
+            documents = load_documents_with_metadata(str(LOCAL_FOLDER))
+            chunks = chunk_doc(documents)
+            # Cache the chunks locally
+            try:
+                with open(CHUNKS_FILE, "wb") as f:
+                    pickle.dump(chunks, f)
+                logger.info(f"Cached {len(chunks)} chunks to {CHUNKS_FILE}")
+            except Exception as e:
+                logger.warning(f"Could not cache chunks: {e}")
         else:
             logger.info(f"Document Chunks file: {CHUNKS_FILE} does not exist. Re-Indexing")
-            # chunk documents
-            documents = load_documents_with_metadata(
-                os.path.join(str(LOCAL_FOLDER), str(COLLECTION_NAME))
-            )
+            # chunk documents from ALL subdirectories in local_store
+            documents = load_documents_with_metadata(str(LOCAL_FOLDER))
             chunks = chunk_doc(documents)
 
             # save chunks for retrieval
@@ -288,11 +430,12 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
         # This is much faster since embeddings already exist in the collection
         try:
             # Create vector store by connecting to existing collection (no re-embedding)
+            # Use empty string for vector_name since cloud collection has unnamed vectors
             vector_store = QdrantVectorStore(
                 client=client,
                 collection_name=str(COLLECTION_NAME),
                 embedding=Settings.get_embed_model(),
-                vector_name="embedding" if use_cloud else "",  # Specify vector name for cloud
+                vector_name="",  # Empty string for unnamed vectors (both local and cloud)
             )
             logger.info(f"Loaded existing collection '{COLLECTION_NAME}' with {len(chunks)} chunks")
 

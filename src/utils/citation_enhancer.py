@@ -28,6 +28,10 @@ class VedicCitationExtractor:
         'yajurveda_griffith': r'VS[A-Z]*\s+(\d+)\.(\d+)',  # VSKSE 13.3 or VSK 13.3 format (Yajurveda Griffith)
         'yajurveda_verse': r'(?:YV|Yajurveda|Verse)\s+(\d+)\.(\d+)',  # YV 1.1
         'pancavamsa_reference': r'PBr\.\s+([0-9]+|[IVX]+)\s*\.\s*(\d+)(?:\s*\.\s*(\d+))?',  # PBr. X.Y.Z format (Pancavamsa Brahmana)
+        'pancavamsa_section': r'^\s*(\d+)\.\s+By means of|^\s*(\d+)\.\s+They|^\s*(\d+)\.\s+The|^\s*(\d+)\.\s+At|^\s*(\d+)\.\s+This',  # Numbered sections in Pancavimsa (e.g., "11. By means of...")
+        'ramayana_canto': r'##\s+Canto\s+([IVX]+|[CLXVI]+)\.\s+(.+?)(?:\.|$)',  # ## Canto I. Title or ## Canto CXXX. Title
+        'ramayana_verse': r'\[(\d{3})\]',  # [007] verse number format in Ramayana
+        'ramayana_book': r'#\s+Book\s+([IVX]+)\.',  # # Book I. format
         'brahmana_reference': r'(?:Satapatha|SB|Brahmana)\s+(\d+)\.(\d+)\.(\d+)(?:\.(\d+))?',  # SB 1.1.1 or SB 1.1.1.1
         'mantra_number': r'(?:Mantra|Sukta|Adhyaya)\s+(\d+)',  # Generic mantra reference
         'heading_pattern': r'^#+\s*(?:Hymn|Verse|Sutra|Section|Book|Mandala)\s+(\d+)(?:[:\-]\s*(.+))?',  # # Hymn 1: Title
@@ -45,8 +49,40 @@ class VedicCitationExtractor:
         Returns:
             Citation string like "RV 1.1.1" or None if not found
         """
-        # Try each pattern
+        # Special handling for Ramayana: combine Book + Canto + Verse if available
+        book_match = re.search(VedicCitationExtractor.PATTERNS['ramayana_book'], text, re.MULTILINE)
+        canto_match = re.search(VedicCitationExtractor.PATTERNS['ramayana_canto'], text, re.MULTILINE)
+        verse_match = re.search(VedicCitationExtractor.PATTERNS['ramayana_verse'], text, re.MULTILINE)
+        
+        if book_match or canto_match or verse_match:
+            parts = []
+            
+            if book_match:
+                book_num = book_match.group(1)
+                if book_num and all(c in 'IVXLCDM' for c in book_num):
+                    book_arabic = VedicCitationExtractor._roman_to_int(book_num)
+                    parts.append(f"Book {book_arabic}")
+            
+            if canto_match:
+                canto_num, title = canto_match.groups()
+                if canto_num and all(c in 'IVXLCDM' for c in canto_num):
+                    canto_arabic = VedicCitationExtractor._roman_to_int(canto_num)
+                    parts.append(f"Canto {canto_arabic}")
+            
+            if verse_match:
+                verse_num = verse_match.group(1)
+                verse_int = str(int(verse_num))
+                parts.append(f"Verse {verse_int}")
+            
+            if parts:
+                return "Ramayana " + ", ".join(parts)
+        
+        # Try each pattern for other texts
         for pattern_name, pattern in VedicCitationExtractor.PATTERNS.items():
+            # Skip Ramayana patterns as we already handled them above
+            if pattern_name.startswith('ramayana_'):
+                continue
+                
             match = re.search(pattern, text, re.IGNORECASE | re.MULTILINE)
             if match:
                 return VedicCitationExtractor._format_citation(pattern_name, match)
@@ -83,6 +119,36 @@ class VedicCitationExtractor:
                 book = str(VedicCitationExtractor._roman_to_int(book))
             verse_part = f".{verse}" if verse else ""
             return f"PB {book}.{section}{verse_part}"
+
+        elif pattern_name == 'pancavamsa_section':
+            # Extract section number from any of the capture groups
+            section = next((g for g in match.groups() if g), None)
+            if section:
+                return f"PB Section {section}"
+            return "PB (Pancavimsa Brahmana)"
+
+        elif pattern_name == 'ramayana_canto':
+            # Extract canto number (Roman numeral) and title
+            canto_num, title = match.groups()
+            # Convert Roman to Arabic for easier reading
+            if canto_num and all(c in 'IVXLCDM' for c in canto_num):
+                arabic_num = VedicCitationExtractor._roman_to_int(canto_num)
+                return f"Ramayana Canto {arabic_num} ({title.strip()})"
+            return f"Ramayana Canto {canto_num}"
+
+        elif pattern_name == 'ramayana_verse':
+            # Extract verse number from [007] format
+            verse_num = match.group(1)
+            verse_int = str(int(verse_num))  # Remove leading zeros
+            return f"Ramayana Verse {verse_int}"
+
+        elif pattern_name == 'ramayana_book':
+            # Extract book number (Roman numeral)
+            book_num = match.group(1)
+            if book_num and all(c in 'IVXLCDM' for c in book_num):
+                arabic_num = VedicCitationExtractor._roman_to_int(book_num)
+                return f"Ramayana Book {arabic_num}"
+            return f"Ramayana Book {book_num}"
 
         elif pattern_name == 'brahmana_reference':
             parts = match.groups()

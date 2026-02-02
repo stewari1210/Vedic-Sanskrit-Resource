@@ -38,6 +38,45 @@ llm = Settings.get_llm()
 _SHARED_VECTOR_STORE = None
 _SHARED_DOCS = None
 
+
+def extract_source_texts(corpus_docs: List[Document]) -> str:
+    """
+    Extract unique source texts from corpus documents.
+    Returns a formatted string like 'Rigveda, Pancavimsa Brahmana, and Satapatha Brahmana'
+    """
+    sources = set()
+    for doc in corpus_docs:
+        source = doc.metadata.get("source", "")
+        if source:
+            # Normalize source names
+            if "rigveda" in source.lower():
+                sources.add("Rigveda")
+            elif "yajurveda" in source.lower():
+                sources.add("Yajurveda")
+            elif "pancavimsa" in source.lower() or "pancavamsa" in source.lower():
+                sources.add("Pañcaviṃśa Brāhmaṇa")
+            elif "satapatha" in source.lower():
+                sources.add("Śatapatha Brāhmaṇa")
+            elif "macdonell" in source.lower():
+                sources.add("Macdonell's Vedic Grammar")
+            elif "ramayana" in source.lower():
+                sources.add("Ramayana")
+            else:
+                # Clean up generic source names
+                clean = source.replace("_", " ").title()
+                sources.add(clean)
+    
+    if not sources:
+        return "the Vedic corpus"
+    
+    sources_list = sorted(list(sources))
+    if len(sources_list) == 1:
+        return sources_list[0]
+    elif len(sources_list) == 2:
+        return f"{sources_list[0]} and {sources_list[1]}"
+    else:
+        return ", ".join(sources_list[:-1]) + f", and {sources_list[-1]}"
+
 def set_shared_vector_store(vec_db, docs):
     """Set the shared vector store instance from the frontend."""
     global _SHARED_VECTOR_STORE, _SHARED_DOCS
@@ -547,9 +586,12 @@ Provide a clear, educational answer with proper citations:"""
         corpus_info = state.get("corpus_examples", [])
 
         corpus_context = ""
+        source_texts = "the Vedic corpus"
         if corpus_info:
             # Use enhanced citations instead of raw page_content
             corpus_context = enhance_corpus_results_with_citations(corpus_info[:5])
+            # Extract actual source texts from corpus documents
+            source_texts = extract_source_texts(corpus_info[:5])
 
         # Check if we actually have meaningful corpus content
         has_corpus = corpus_context and len(corpus_context.strip()) > 50 and "No relevant passages" not in corpus_context
@@ -559,7 +601,7 @@ Provide a clear, educational answer with proper citations:"""
 
 QUESTION: {question}
 
-RELEVANT CORPUS PASSAGES FROM RIGVEDA AND YAJURVEDA:
+RELEVANT CORPUS PASSAGES FROM {source_texts.upper()}:
 {corpus_context}
 
 INSTRUCTIONS:
@@ -576,7 +618,7 @@ Provide a detailed answer based on the corpus passages, using proper verse refer
 
 QUESTION: {question}
 
-CORPUS STATUS: No relevant passages found in the current corpus (Rigveda, Yajurveda, Grammar texts).
+CORPUS STATUS: No relevant passages found in the current corpus ({source_texts}).
 
 INSTRUCTIONS:
 Please inform the user that this specific topic is not found in the available corpus and suggest:
@@ -604,7 +646,7 @@ Provide a helpful response:"""
             logger.warning(f"[AGENT] Response is empty! Full response object: {response}")
 
         if not answer_content or len(answer_content) < 10:
-            answer_content = "I couldn't find relevant information in the corpus to answer this question. Please try rephrasing or ask about topics covered in the Rigveda and Yajurveda."
+            answer_content = f"I couldn't find relevant information in the corpus to answer this question. Please try rephrasing or ask about topics covered in {source_texts}."
 
         answer = {
             "answer": answer_content,

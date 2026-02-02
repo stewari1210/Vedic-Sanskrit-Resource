@@ -166,11 +166,26 @@ class Settings:
             cls._embed_model = RateLimitedEmbeddings(_base_embed_model, delay=0.65)
 
         elif _provider == "local-best":
-            # Sentence Transformers: High Quality (MTEB ~64)
-            logger.info("Using local embeddings: sentence-transformers/all-mpnet-base-v2 (best quality)")
+            # Sentence Transformers: High Quality English (MTEB ~69, 768-dim)
+            logger.info("Using all-mpnet-base-v2 embeddings (768-dim, best for English, MTEB 69)")
             logger.info(f"  • Parallelization: batch_size={get_config_value('EMBEDDING_BATCH_SIZE', 16, int)}, device={get_config_value('EMBEDDING_DEVICE', 'cpu')}")
             cls._embed_model = HuggingFaceEmbeddings(
                 model_name="sentence-transformers/all-mpnet-base-v2",
+                model_kwargs={
+                    'device': get_config_value("EMBEDDING_DEVICE", "cpu"),  # Use GPU if available (mps for Mac, cuda for NVIDIA)
+                },
+                encode_kwargs={
+                    'normalize_embeddings': True,
+                    'batch_size': get_config_value("EMBEDDING_BATCH_SIZE", 16, int),  # Batch processing for speed
+                }
+            )
+
+        elif _provider == "local-multilingual":
+            # Sentence Transformers: High Quality Multilingual (MTEB ~64, 768-dim, 50+ languages)
+            logger.info("Using paraphrase-multilingual-mpnet-base-v2 embeddings (768-dim, supports Sanskrit/Hindi/Devanagari, MTEB 64)")
+            logger.info(f"  • Parallelization: batch_size={get_config_value('EMBEDDING_BATCH_SIZE', 16, int)}, device={get_config_value('EMBEDDING_DEVICE', 'cpu')}")
+            cls._embed_model = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
                 model_kwargs={
                     'device': get_config_value("EMBEDDING_DEVICE", "cpu"),  # Use GPU if available (mps for Mac, cuda for NVIDIA)
                 },
