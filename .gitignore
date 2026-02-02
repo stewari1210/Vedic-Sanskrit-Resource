@@ -17,7 +17,9 @@ CONVERSATION_CONTEXT.md
 local_store/
 vector_store/
 library/
+scripts/
 upload_vector_to_Qdrant.py
 secrets.toml
 *.txt
 *.pdf
+monier_williams_concept_store.json
