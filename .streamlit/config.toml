@@ -1,0 +1,17 @@
+[client]
+showErrorDetails = true
+
+[theme]
+primaryColor = "#FF6B35"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor = "#262730"
+font = "sans serif"
+
+[logger]
+level = "info"
+
+# Git LFS Configuration Note:
+# Streamlit Cloud automatically initializes Git LFS when packages.txt contains 'git-lfs'
+# This ensures monier_williams_concept_store.json (108MB) is properly retrieved
+# See packages.txt for deployment dependencies

@@ -21,4 +21,7 @@ scripts/
 upload_vector_to_Qdrant.py
 secrets.toml
 *.txt
+!packages.txt
+!requirements.txt
+!requirements-frozen.txt
 *.pdf
