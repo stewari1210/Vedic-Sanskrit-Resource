@@ -10,8 +10,3 @@ font = "sans serif"
 
 [logger]
 level = "info"
-
-# Git LFS Configuration Note:
-# Streamlit Cloud automatically initializes Git LFS when packages.txt contains 'git-lfs'
-# This ensures monier_williams_concept_store.json (108MB) is properly retrieved
-# See packages.txt for deployment dependencies
