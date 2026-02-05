@@ -106,6 +106,7 @@ def get_shared_retriever():
 class AgentState(TypedDict):
     """State for the agentic RAG system"""
     question: str
+    input_language: str  # ✅ NEW: "English" or "Devanagari"
     query_type: str  # "construction" | "grammar" | "factual"
 
     # Extracted information
@@ -721,22 +722,24 @@ def create_agentic_rag_graph():
     return workflow.compile()
 
 
-def run_agentic_rag(question: str):
+def run_agentic_rag(question: str, input_language: str = "English"):
     """
     Run the agentic RAG system on a question.
 
     Args:
         question: User's question
+        input_language: Language of input ("English" or "Devanagari")
 
     Returns:
         Final answer with construction details
     """
-    logger.info(f"=== AGENTIC RAG START: {question} ===")
+    logger.info(f"=== AGENTIC RAG START: {question} (Language: {input_language}) ===")
 
     graph = create_agentic_rag_graph()
 
     initial_state = {
         "question": question,
+        "input_language": input_language,  # ✅ Pass language preference
         "query_type": "",
         "english_words": [],
         "sanskrit_words": {},

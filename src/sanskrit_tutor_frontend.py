@@ -36,6 +36,7 @@ from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, SystemMessage
 from src.settings import OLLAMA_BASE_URL, OLLAMA_MODEL, GEMINI_MODEL
 from src.config import GROQ_API_KEY
+from src.utils.sanskrit_translator import get_translator
 
 
 # Page configuration with Devanagari font support
@@ -156,6 +157,8 @@ class SanskritTutorApp:
             st.session_state.model_name = "llama3.1:8b"
             st.session_state.llm_provider = "gemini"
             st.session_state.audio_cache = {}  # Cache audio files
+            st.session_state.input_language = "English"  # ✅ NEW: Language preference
+            st.session_state.last_translations = {}  # ✅ NEW: Store translations
 
     def text_to_speech(self, text: str, lang: str = 'hi') -> Optional[bytes]:
         """
@@ -471,14 +474,18 @@ Have natural conversation about Sanskrit:
         return base + mode_specific.get(mode, mode_specific["conversation"])
 
     def ask_tutor(self, query: str, mode: str = "conversation") -> str:
-        """Query the resource using Agentic RAG."""
+        """Query the resource using Agentic RAG with language preference."""
         system_prompt = self.get_system_prompt(mode)
 
         try:
-            # Use Agentic RAG system
+            # Use Agentic RAG system with language preference
             with st.spinner("🤖 Agent analyzing your question..."):
                 logger.info(f"[FRONTEND] Processing query with Agentic RAG: {query}")
-                result = run_agentic_rag(query)
+                logger.info(f"[FRONTEND] Input language: {st.session_state.input_language}")
+                
+                # ✅ Pass language preference to RAG
+                result = run_agentic_rag(query, input_language=st.session_state.input_language)
+                
                 logger.info(f"[FRONTEND] Agentic RAG returned result type: {type(result)}")
                 logger.info(f"[FRONTEND] Result keys: {result.keys() if isinstance(result, dict) else 'not a dict'}")
 
@@ -944,32 +951,102 @@ Have natural conversation about Sanskrit:
                         st.rerun()
 
     def render_chat_module(self):
-        """Render free conversation module."""
+        """Render free conversation module with language selector & proper noun lookup."""
         st.title("💬 Chat Mode (बातचीत)")
 
-        st.markdown("Ask me anything about Vedic Sanskrit, Vedas, and Ramayana!")
+        # ✅ FEATURE 1: Language Input Selector
+        st.markdown("### 🌐 Input Language")
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            input_language = st.radio(
+                "Choose your input language:",
+                ["English", "Devanagari"],
+                horizontal=True,
+                key="input_lang_radio"
+            )
+            st.session_state.input_language = input_language
+        
+        with col2:
+            st.info(f"📝 Currently typing in: **{input_language}**")
+        
+        # ✅ FEATURE 2: Proper Noun Memory Lookup (Optional, before querying)
+        with st.expander("👤 Proper Noun Memory (Quick lookup)"):
+            st.markdown("""
+            **Look up Vedic proper nouns quickly**
+            
+            Search for information about:
+            - **People**: Sudas, Divodasa, Indra, Agni, Varuna
+            - **Places**: Kurukshetra, Saraswati, Sutudri
+            - **Tribes**: Yadavas, Pancalas, Anus
+            
+            *Tip: Type "Translate [word]" in chat for Sanskrit translations*
+            """)
+            
+            proper_noun = st.text_input(
+                "Search for a proper noun:",
+                placeholder="e.g., 'Sudas', 'Divodasa', 'Rigveda'",
+                key="proper_noun_input"
+            )
+            
+            if proper_noun:
+                translator = get_translator()
+                info = translator.get_proper_noun_info(proper_noun)
+                
+                if info:
+                    st.success(f"✅ Found: **{proper_noun}**")
+                    st.json(info)
+                else:
+                    st.info(f"ℹ️ No detailed info for '{proper_noun}'. This may appear in your query results.")
+
+        st.markdown("---")
+        st.markdown("### 💬 Ask Your Question")
+        st.markdown(f"**Input Language: {st.session_state.input_language}**")
 
         # Display chat history
+        st.markdown("#### 📜 Conversation History:")
         for msg in st.session_state.chat_history[-10:]:
             if msg["role"] == "user":
                 st.markdown(f'<div class="student-message">👤 <b>You:</b> {msg["content"]}</div>', unsafe_allow_html=True)
             else:
                 st.markdown(f'<div class="tutor-message">🧑‍🏫 <b>Resource:</b> {msg["content"]}</div>', unsafe_allow_html=True)
 
-        # Chat input
+        # Chat input with language-aware placeholder
+        placeholder_text = "Type in English..." if st.session_state.input_language == "English" else "देवनागरी में टाइप करें..."
+        
         user_input = st.text_area(
             "Your question:",
-            placeholder="Type in English, Hindi, or Devanagari...",
-            key="chat_input"
+            placeholder=placeholder_text,
+            key="chat_input",
+            height=100
         )
 
-        if st.button("📨 Send", key="send_chat") and user_input:
-            # Get response from tutor
-            response = self.ask_tutor(user_input, mode="conversation")
+        # ✅ FEATURE 2b: Proper Noun Detection in Query
+        if user_input:
+            translator = get_translator()
+            query_analysis = translator.translate_query(user_input)
+            
+            if query_analysis["proper_nouns_found"]:
+                st.info(f"🎯 **Proper nouns detected:** {', '.join([noun[0] for noun in query_analysis['proper_nouns_found']])}")
 
-            # Chat history is already updated in ask_tutor()
-            # Just rerun to display it in the history above
-            st.rerun()
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            if st.button("📨 Send", key="send_chat"):
+                if user_input:
+                    # Get response from tutor
+                    response = self.ask_tutor(user_input, mode="conversation")
+
+                    # Chat history is already updated in ask_tutor()
+                    # Just rerun to display it in the history above
+                    st.rerun()
+                else:
+                    st.warning("⚠️ Please type a question first!")
+        
+        with col2:
+            if st.button("🗑️ Clear", key="clear_chat"):
+                st.session_state.chat_history = []
+                st.rerun()
 
     def run(self):
         """Main application loop."""

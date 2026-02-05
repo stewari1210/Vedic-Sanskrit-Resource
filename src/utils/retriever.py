@@ -648,6 +648,54 @@ class HybridRetriever(BaseRetriever):
         sorted_hashes = sorted(doc_scores.keys(), key=lambda h: doc_scores[h], reverse=True)
         merged_docs = [seen_content[h] for h in sorted_hashes]
 
+        # PRIORITIZE SANSKRIT ORIGINAL SOURCES over English translations
+        # Sanskrit Sharma texts contain original Vedic verses with more explicit relationships
+        # English Griffith translations may omit or generalize genealogical details
+        logger.info("🔍 Checking for Sanskrit vs English sources to apply prioritization")
+        
+        for content_hash in doc_scores:
+            doc = seen_content[content_hash]
+            filename = doc.metadata.get('filename', '').lower()
+            source = doc.metadata.get('source', '').lower()
+            title = doc.metadata.get('title', '').lower()
+            creator = doc.metadata.get('creator', '').lower()
+            preprocessing = doc.metadata.get('preprocessing', '').lower()
+            keywords = str(doc.metadata.get('keywords', '')).lower()
+            
+            # Detect Sanskrit/original sources (Sharma, original text markers, preprocessing field)
+            is_sanskrit_source = (
+                preprocessing == 'sanskrit' or  # Direct marker from indexing
+                any(indicator in filename or indicator in source or indicator in title or indicator in creator
+                    for indicator in ['sharma', 'sanskrit', 'original', 'devanagari', 'sanskritdocuments']) or
+                'sanskrit' in keywords  # Check keywords array for Sanskrit marker
+            )
+            
+            # Detect English translation sources (Griffith, translation markers)
+            is_english_translation = any(indicator in filename or indicator in source or indicator in title
+                                         for indicator in ['griffith', 'translation', 'english'])
+            
+            # BOOST Sanskrit sources significantly (2.5x multiplier)
+            if is_sanskrit_source and not is_english_translation:
+                old_score = doc_scores[content_hash]
+                doc_scores[content_hash] *= 2.5
+                logger.info(f"✨ SANSKRIT SOURCE BOOST: {title[:60] if title else filename[:60]} "
+                           f"(preprocessing={preprocessing}, score {old_score:.1f} → {doc_scores[content_hash]:.1f})")
+            
+            # DOWNRANK English translations when Sanskrit available (0.6x multiplier)
+            elif is_english_translation and not is_sanskrit_source:
+                old_score = doc_scores[content_hash]
+                doc_scores[content_hash] *= 0.6
+                logger.info(f"⬇️  English translation downranked: {title[:60] if title else filename[:60]} "
+                           f"(score {old_score:.1f} → {doc_scores[content_hash]:.1f})")
+        
+        # Re-sort after Sanskrit prioritization
+        sorted_hashes = sorted(doc_scores.keys(), key=lambda h: doc_scores[h], reverse=True)
+        merged_docs = [seen_content[h] for h in sorted_hashes]
+        
+        top_title = merged_docs[0].metadata.get('title', 'unknown') if merged_docs else 'none'
+        top_preprocessing = merged_docs[0].metadata.get('preprocessing', 'unknown') if merged_docs else 'none'
+        logger.info(f"📊 After Sanskrit prioritization: Top source = {top_title} (preprocessing={top_preprocessing})")
+
         # BOOST PRIMARY SOURCES based on proper noun database
         # Extract proper nouns to determine primary source
         proper_nouns = self._extract_proper_nouns(query)
