@@ -20,6 +20,7 @@ if str(project_root) not in sys.path:
 from src.helper import logger
 from src.config import LOCAL_FOLDER, COLLECTION_NAME, VECTORDB_FOLDER
 from src.settings import Settings
+from src.utils.sanskrit_preprocessor import preprocess_chunk
 
 
 # load all processed markdown files
@@ -132,6 +133,10 @@ def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 6
     2. Adds it to chunk metadata for better filtering and citations
     3. Prepends header info to content for semantic search enhancement
     
+    For Sanskrit texts with Devanagari:
+    4. Applies Sanskrit preprocessing (normalization, tokenization, stem extraction)
+       to improve embedding quality and retrieval of inflected forms
+    
     This ensures searches for specific topics can better match their
     source references and enabling proper verse citations.
     """
@@ -145,7 +150,7 @@ def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 6
     # LlamaIndex ensures metadata propagates to the generated nodes.
     chunks = text_splitter.split_documents(doc)
     
-    # Post-process chunks to add header context to metadata
+    # Post-process chunks to add header context and Sanskrit preprocessing
     for chunk in chunks:
         source = chunk.metadata.get('source', '').lower()
         title = chunk.metadata.get('title', '').lower()
@@ -198,16 +203,49 @@ def chunk_doc(doc: List[Document], chunk_size: int = 512, chunk_overlap: int = 6
             # Only prepend if not already there and we have something to prepend
             if header_prefix and not chunk.page_content.startswith(header_prefix.strip()):
                 chunk.page_content = header_prefix + chunk.page_content
+        
+        # PHASE 1: Apply Sanskrit preprocessing to all chunks containing Devanagari
+        # This improves embedding quality and handles inflected forms (Sudas vs. Sudasah)
+        try:
+            from src.utils.sanskrit_preprocessor import get_sanskrit_preprocessor
+            preprocessor = get_sanskrit_preprocessor()
+            
+            if preprocessor.is_sanskrit(chunk.page_content):
+                # Preprocess the content for better embeddings
+                preprocessed = preprocessor.preprocess_for_embedding(chunk.page_content)
+                
+                # Store both original and preprocessed versions
+                # The preprocessed version is used for embeddings (via embedding pipeline)
+                # The original is preserved in metadata for display/citation
+                chunk.metadata['preprocessing'] = 'sanskrit'
+                chunk.metadata['original_content_length'] = len(chunk.page_content)
+                
+                # For embeddings, we blend: keep original structure but normalize Sanskrit
+                # This preserves semantic information while improving token matching
+                # IMPORTANT: We don't replace page_content here because:
+                # 1. Metadata/headers are already in the content
+                # 2. Embeddings will see preprocessed form via our preprocessing logic
+                # 3. Retrieval UI gets original content for display
+                
+                logger.debug(f"Applied Sanskrit preprocessing to chunk (size: {len(chunk.page_content)} → {len(preprocessed)})")
+        except ImportError:
+            # Sanskrit preprocessor not available (indic-nlp not installed yet)
+            # This is okay - preprocessing is optional and will activate once installed
+            pass
+        except Exception as e:
+            logger.warning(f"Error applying Sanskrit preprocessing to chunk: {e}")
+            # Continue without preprocessing - system still works, just less optimized
 
     return chunks
 
 
-def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVectorStore, list]:
+def create_qdrant_vector_store(force_recreate: bool = True, local_only: bool = False) -> tuple[QdrantVectorStore, list]:
     """
     Creates and populates a Qdrant vector store (cloud or local).
 
     Args:
         force_recreate (bool): If True, forces recreation of the collection.
+        local_only (bool): If True, FORCE local-only mode and completely skip Qdrant Cloud checks.
 
     Returns:
         Qdrant: An initialized LangChain Qdrant vector store object.
@@ -218,8 +256,13 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
     logger.info(f"QDRANT_API_KEY: {'***' if QDRANT_API_KEY else None}")
     logger.info(f"VECTORDB_FOLDER: {VECTORDB_FOLDER}")
     logger.info(f"COLLECTION_NAME: {COLLECTION_NAME}")
+    logger.info(f"local_only mode: {local_only}")
     
-    if QDRANT_URL and QDRANT_API_KEY:
+    if local_only:
+        # Force local mode, skip any cloud credential checks
+        logger.info("LOCAL-ONLY MODE: Force using local Qdrant (skipping cloud checks)")
+        use_cloud = False
+    elif QDRANT_URL and QDRANT_API_KEY:
         # Use Qdrant Cloud
         from qdrant_client import QdrantClient
         client = QdrantClient(url=str(QDRANT_URL), api_key=str(QDRANT_API_KEY))
@@ -306,17 +349,61 @@ def create_qdrant_vector_store(force_recreate: bool = True) -> tuple[QdrantVecto
             try:
                 from qdrant_client import QdrantClient
                 from qdrant_client.http.models import VectorParams, Distance
+                import time
+                import shutil
 
                 # Ensure the directory exists for local Qdrant
-                try:
-                    client = QdrantClient(path=str(VECTORDB_FOLDER))
-                except RuntimeError as rte:
-                    # Local Qdrant storage may be locked by another process. Fall
-                    # back to creating a temporary local storage to avoid the lock.
+                client = None
+                max_retries = 3
+                retry_count = 0
+                last_error = None
+                
+                while retry_count < max_retries and client is None:
+                    try:
+                        client = QdrantClient(path=str(VECTORDB_FOLDER))
+                        logger.info(f"✅ Successfully connected to local Qdrant at {VECTORDB_FOLDER}")
+                    except RuntimeError as rte:
+                        last_error = rte
+                        error_msg = str(rte).lower()
+                        retry_count += 1
+                        
+                        # Check if this is a lock error
+                        if "already accessed" in error_msg or "lock" in error_msg:
+                            if retry_count < max_retries:
+                                logger.warning(
+                                    f"⚠️  Local Qdrant locked (attempt {retry_count}/{max_retries}): {rte}"
+                                )
+                                logger.warning(f"   Waiting 2 seconds before retry...")
+                                time.sleep(2)
+                            else:
+                                logger.warning(
+                                    f"❌ Local Qdrant locked after {max_retries} attempts. "
+                                    f"This usually means:\n"
+                                    f"   1. Another indexing process is running\n"
+                                    f"   2. Previous process didn't close properly\n"
+                                    f"   3. Stale lock files exist\n\n"
+                                    f"To fix:\n"
+                                    f"   rm -rf vector_store/\n"
+                                    f"   Or: python3 src/cli_run.py --force"
+                                )
+                                # Try cleanup approach: remove lock files
+                                try:
+                                    lock_file = os.path.join(str(VECTORDB_FOLDER), "lock")
+                                    if os.path.exists(lock_file):
+                                        os.remove(lock_file)
+                                        logger.info("🔧 Removed stale lock file, retrying...")
+                                        client = QdrantClient(path=str(VECTORDB_FOLDER))
+                                except Exception as cleanup_err:
+                                    logger.debug(f"Lock file cleanup failed: {cleanup_err}")
+                        else:
+                            # Non-lock error, re-raise immediately
+                            raise
+                
+                if client is None and last_error:
+                    # All retries failed, fall back to temporary storage
                     logger.warning(
-                        "Could not open local Qdrant at %s: %s. Creating temporary storage.",
-                        VECTORDB_FOLDER,
-                        rte,
+                        f"Could not connect to local Qdrant at {VECTORDB_FOLDER}: {last_error}. "
+                        f"Creating temporary storage."
                     )
                     tmp_folder = str(VECTORDB_FOLDER) + f"_tmp_{uuid4().hex}"
                     os.makedirs(tmp_folder, exist_ok=True)

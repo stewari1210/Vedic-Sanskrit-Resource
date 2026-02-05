@@ -26,11 +26,39 @@ class Metadata(BaseModel):
     summary: str = Field(default="")
 
 
-# Use OCR mode for scanned PDFs (like Yajurveda)
-# Change to TABLE_IMAGE_LINKS for text-based PDFs if needed
-extractor = PDFTextExtractor(
-    ExtractionMode.OCR_UNSTRUCTURED, print_page_number=True, remove_header_footer=False
-)
+def _create_pdf_extractor():
+    """
+    Create PDF extractor with appropriate extraction mode.
+    Falls back to simpler modes if OCR dependencies are not available.
+    """
+    try:
+        # Try OCR mode for scanned PDFs first
+        logger.info("Initializing PDF extractor with OCR_UNSTRUCTURED mode")
+        return PDFTextExtractor(
+            ExtractionMode.OCR_UNSTRUCTURED, 
+            print_page_number=True, 
+            remove_header_footer=False
+        )
+    except ImportError as e:
+        if "ocr_unstructured" in str(e):
+            logger.warning("OCR dependencies not available, falling back to TABLE_IMAGE_LINKS mode")
+            try:
+                return PDFTextExtractor(
+                    ExtractionMode.TABLE_IMAGE_LINKS,
+                    print_page_number=True,
+                    remove_header_footer=False
+                )
+            except ImportError:
+                logger.warning("TABLE_IMAGE_LINKS mode also failed, falling back to BASIC mode")
+                return PDFTextExtractor(
+                    ExtractionMode.BASIC,
+                    print_page_number=True,
+                    remove_header_footer=False
+                )
+        raise
+
+# Initialize extractor with fallback handling
+extractor = _create_pdf_extractor()
 
 
 def process_uploaded_pdfs(
@@ -38,7 +66,7 @@ def process_uploaded_pdfs(
 ):  # -> List[Document]:
     """
     Process uploaded PDFs and TXT files.
-    - PDFs: Extracts text/markdown using PDF extractor
+    - PDFs: Extracts text/markdown using PDF extractor (with fallback to PyMuPDF)
     - TXT files: Converts to markdown format directly
     Saves as markdown along with metadata.
     """
@@ -73,9 +101,19 @@ def process_uploaded_pdfs(
 
         elif file_ext == '.pdf':
             logger.info(f"Processing PDF file: {filename}")
-            # os.makedirs(image_folder, exist_ok=True)
-            markdown = extractor.extract(file_path, image_folder=image_folder)
-            logger.info(f"PDF extracted to markdown: {len(markdown)} chars")
+            try:
+                # Try primary extractor (with OCR fallback)
+                markdown = extractor.extract(file_path, image_folder=image_folder)
+                logger.info(f"PDF extracted to markdown using pdf_text_extractor: {len(markdown)} chars")
+            except Exception as e:
+                logger.warning(f"pdf_text_extractor failed: {e}. Falling back to PyMuPDF...")
+                try:
+                    # Fallback to PyMuPDF for simple text extraction
+                    markdown = _extract_pdf_with_pymupdf(file_path)
+                    logger.info(f"PDF extracted to markdown using PyMuPDF: {len(markdown)} chars")
+                except Exception as e2:
+                    logger.error(f"Both extraction methods failed: {e2}")
+                    continue
         else:
             logger.warning(f"Unsupported file type: {file_ext} for {filename}")
             continue
@@ -92,6 +130,25 @@ def process_uploaded_pdfs(
 
     logger.info(f"Successfully processed {len(file_paths)} input file(s)")
     return all_docs
+
+
+def _extract_pdf_with_pymupdf(file_path: str) -> str:
+    """
+    Fallback PDF extraction using PyMuPDF (fitz).
+    Simple text extraction without OCR.
+    """
+    markdown_parts = []
+    try:
+        with fitz.open(file_path) as doc:
+            for page_num in range(len(doc)):
+                page = doc[page_num]
+                text = page.get_text("text")  # Explicitly get text format
+                if isinstance(text, str) and text.strip():
+                    markdown_parts.append(f"## Page {page_num + 1}\n\n{text}")
+        return "\n\n".join(markdown_parts) if markdown_parts else ""
+    except Exception as e:
+        logger.error(f"PyMuPDF extraction failed: {e}")
+        raise
 
 
 def get_metadata(file_path: str, markdown: str):

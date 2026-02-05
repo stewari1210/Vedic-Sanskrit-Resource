@@ -1,9 +1,35 @@
 import os
+import sys
+from pathlib import Path
+
+# Load .env BEFORE any other imports
+# Read the .env file directly and set environment variables
+# This ensures .env values are loaded before any module imports streamlit or other code
+try:
+    config_dir = Path(__file__).parent
+    project_root = config_dir.parent
+    env_path = project_root / '.env'
+    
+    if env_path.exists():
+        with open(env_path, 'r') as f:
+            for line in f:
+                line = line.strip()
+                # Skip comments and empty lines
+                if not line or line.startswith('#'):
+                    continue
+                # Parse KEY=VALUE
+                if '=' in line:
+                    key, value = line.split('=', 1)
+                    key = key.strip()
+                    value = value.strip()
+                    # Set in environment (override any existing values)
+                    os.environ[key] = value
+except Exception:
+    pass  # Silently ignore errors
+
 import src.helper as helper
 
 from dotenv import load_dotenv
-
-load_dotenv()
 
 logger = helper.logger
 
@@ -69,7 +95,7 @@ LOCAL_FOLDER = get_config_value("LOCAL_FOLDER", "local_store")
 VECTORDB_FOLDER = get_config_value("VECTORDB_FOLDER", "vector_store")
 
 # Embedding configuration
-EMBEDDING_PROVIDER = get_config_value("EMBEDDING_PROVIDER", "local-best")  # local-fast, local-best, or gemini
+EMBEDDING_PROVIDER = get_config_value("EMBEDDING_PROVIDER", "local-best")  # local-fast, local-best, local-multilingual, or gemini
 EMBED_MODEL = get_config_value("EMBED_MODEL")
 
 # LLM Provider configuration

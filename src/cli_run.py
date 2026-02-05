@@ -4,6 +4,8 @@ Usage:
   - Edit HARDCODED_FILES below to point to your file(s), OR
   - Run with --file /path/to/file1.pdf --file /path/to/file2.txt to override
   - Run with --files /path/to/file1.pdf /path/to/file2.txt (space-separated)
+  - Run with --local flag to use LOCAL vector store instead of Qdrant Cloud
+  - Run with --local-only to SKIP cloud sync entirely
 
 Supported formats: PDF, TXT
 
@@ -12,7 +14,10 @@ This script will:
   2. Call `process_uploaded_pdfs` to convert them to markdown and extract metadata.
      - PDFs: Extract text using PDF extractor
      - TXT: Convert directly to markdown format
-  3. Create a unified Qdrant vector store and retriever (all documents in one collection).
+  3. Create a unified vector store (local Qdrant or Cloud based on flags):
+     - Default: Qdrant Cloud (if QDRANT_URL and API_KEY configured)
+     - --local: Local Qdrant at vector_store/COLLECTION_NAME
+     - --local-only: Force local ONLY, skip any cloud checks
   4. Start a simple REPL to ask questions against the indexed documents.
 
 Each document maintains its source metadata (filename) so you can identify which
@@ -21,6 +26,15 @@ file each answer came from.
 Note: the processing function deletes the copied files after processing (same behavior
 as the Streamlit frontend). If you want to keep the originals, point to different
 source locations when overriding with --file.
+
+TESTING SANSKRIT EMBEDDINGS:
+  For local testing with Sanskrit Vedic texts:
+    python3 src/cli_run.py --file library/vedic_texts/Rigveda_Mandala_1.txt --local --force
+  
+  This will:
+    - Load Mandala 1 locally (indic-nlp-library used in preprocessing)
+    - Create local vector store (no cloud sync)
+    - Allow you to query Sanskrit text with English semantics
 """
 import os
 # CRITICAL: Set this BEFORE any HuggingFace/transformers imports (including transitive imports via helper/settings)
@@ -142,11 +156,13 @@ def prepare_and_process(file_paths: list):
     logger.info(f"Processing {len(dest_paths)} file(s)...")
     process_uploaded_pdfs(dest_paths, extract_metadata=True)
     logger.info(f"Successfully processed {len(dest_paths)} file(s)")
-def build_index_and_retriever(force: bool = False):
+def build_index_and_retriever(force: bool = False, local_only: bool = False):
     """Create Qdrant vector store and retriever from processed docs.
 
     If `force` is True, remove any existing vector store directory and
     the chunks file so indexing starts from a clean state.
+    
+    If `local_only` is True, FORCE local vector store and skip all Qdrant Cloud checks.
     """
     # Remove previous vector store and chunks file if forcing a clean index
     if force:
@@ -167,7 +183,7 @@ def build_index_and_retriever(force: bool = False):
         except Exception:
             logger.exception("Failed to remove chunks file %s", chunks_file)
 
-    vec_db, docs = create_qdrant_vector_store(force_recreate=force)
+    vec_db, docs = create_qdrant_vector_store(force_recreate=force, local_only=local_only)
     retriever = create_retriever(vec_db, docs)
     return vec_db, docs, retriever
 
@@ -329,6 +345,16 @@ Examples:
         help="Skip the session cleanup prompt and keep existing data",
     )
     parser.add_argument(
+        "--local",
+        action="store_true",
+        help="Use local Qdrant instead of cloud (vector_store/COLLECTION_NAME folder)",
+    )
+    parser.add_argument(
+        "--local-only",
+        action="store_true",
+        help="FORCE local-only mode: completely skip Qdrant Cloud checks and use local vector store",
+    )
+    parser.add_argument(
         "--debug",
         action="store_true",
         help="Show detailed retrieval info: query processing, document previews, confidence scores, and evaluation reasoning",
@@ -424,7 +450,9 @@ Examples:
             return
 
     try:
-        vec_db, docs, retriever = build_index_and_retriever(force=args.force)
+        # Determine use_local_only from args
+        use_local_only = args.local_only or args.local
+        vec_db, docs, retriever = build_index_and_retriever(force=args.force, local_only=use_local_only)
     except Exception as e:
         # Re-enable INFO logging on error for troubleshooting
         if args.quiet:

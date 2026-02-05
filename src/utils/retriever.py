@@ -425,6 +425,29 @@ class HybridRetriever(BaseRetriever):
 
         logger.info(f"HybridRetriever: Query = '{query}'")
         
+        # PHASE 1: SANSKRIT PREPROCESSING (NEW)
+        # Apply Sanskrit-specific preprocessing to improve matching of inflected forms
+        # This handles cases like "Sudas" matching "Sudasah", "Sudasam", "Sudasya"
+        try:
+            from src.utils.sanskrit_preprocessor import get_sanskrit_preprocessor
+            preprocessor = get_sanskrit_preprocessor()
+            
+            if preprocessor.is_sanskrit(query):
+                # For Sanskrit queries, apply stem extraction to match inflected forms
+                preprocessed_query = preprocessor.preprocess_query(query)
+                logger.info(f"🔤 Sanskrit detected: Preprocessing query '{query}' → '{preprocessed_query}'")
+                # Don't replace query yet - use it as variant for retrieval
+                # Will be added to variant search below
+            else:
+                preprocessed_query = None
+                logger.debug(f"🔤 Non-Sanskrit query detected, skipping Sanskrit preprocessing")
+        except ImportError:
+            preprocessed_query = None
+            logger.debug("Sanskrit preprocessor not available")
+        except Exception as e:
+            preprocessed_query = None
+            logger.warning(f"Error applying Sanskrit preprocessing: {e}")
+        
         # STEP 0: MW CONCEPT STORE ENHANCEMENT (if available)
         enhanced_query = query
         transliteration_variants = []
@@ -486,19 +509,23 @@ class HybridRetriever(BaseRetriever):
             logger.info(f"🚀 HybridRetriever: Using parallel retrieval with {RETRIEVAL_MAX_WORKERS} workers")
             start_time = time.time()
 
-            # If we have transliteration variants, search them too
-            if transliteration_variants and len(transliteration_variants) > 1:
-                logger.info(f"🌐 MW: Searching {len(transliteration_variants)} transliteration variants in parallel")
+            # If we have transliteration variants or preprocessed Sanskrit query, search them too
+            all_variants = transliteration_variants[:3] if transliteration_variants else []
+            if preprocessed_query and preprocessed_query not in all_variants:
+                all_variants.insert(0, preprocessed_query)  # Add preprocessed form at the start
+            
+            if all_variants and len(all_variants) > 0:
+                logger.info(f"🌐 Searching {len(all_variants)} query variants in parallel (MW variants + Sanskrit preprocessing)")
                 
-                # Execute semantic retrieval for ALL transliteration variants in parallel
-                with ThreadPoolExecutor(max_workers=min(len(transliteration_variants) + 1, 5)) as executor:
+                # Execute semantic retrieval for ALL variants in parallel
+                with ThreadPoolExecutor(max_workers=min(len(all_variants) + 1, 5)) as executor:
                     # Submit keyword retrieval
                     keyword_future = executor.submit(self.keyword_retriever.invoke, keyword_query_normalized)
                     
                     # Submit semantic retrieval for all variants
                     variant_futures = [
                         executor.submit(self.semantic_retriever.invoke, variant)
-                        for variant in transliteration_variants[:3]  # Limit to top 3 variants to avoid overload
+                        for variant in all_variants
                     ]
                     
                     # Also search enhanced query (with MW definitions)
@@ -520,7 +547,7 @@ class HybridRetriever(BaseRetriever):
                             semantic_docs.append(doc)
                             seen_content.add(content_hash)
                     
-                    # Then add variant results
+                    # Then add variant results (including preprocessed Sanskrit form)
                     for variant_docs in variant_results:
                         for doc in variant_docs:
                             content_hash = hash(doc.page_content[:200])
@@ -530,7 +557,7 @@ class HybridRetriever(BaseRetriever):
                                 if len(semantic_docs) >= self.k * 2:  # Limit total results
                                     break
                 
-                logger.info(f"🌐 MW: Merged results from {len(transliteration_variants)} variants → {len(semantic_docs)} unique docs")
+                logger.info(f"🌐 Merged results from {len(all_variants)} variants → {len(semantic_docs)} unique docs")
             else:
                 # Standard parallel retrieval without variants
                 with ThreadPoolExecutor(max_workers=2) as executor:
@@ -544,8 +571,12 @@ class HybridRetriever(BaseRetriever):
             logger.info(f"⚡ Parallel retrieval completed in {elapsed:.2f}s")
         else:
             # Sequential retrieval
-            if transliteration_variants and len(transliteration_variants) > 1:
-                logger.info(f"🌐 MW: Searching {len(transliteration_variants)} transliteration variants sequentially")
+            all_variants = transliteration_variants[:3] if transliteration_variants else []
+            if preprocessed_query and preprocessed_query not in all_variants:
+                all_variants.insert(0, preprocessed_query)  # Add preprocessed form at the start
+            
+            if all_variants and len(all_variants) > 0:
+                logger.info(f"🌐 Searching {len(all_variants)} query variants sequentially (MW variants + Sanskrit preprocessing)")
                 
                 # Search all variants
                 all_semantic_docs = []
@@ -559,8 +590,8 @@ class HybridRetriever(BaseRetriever):
                         all_semantic_docs.append(doc)
                         seen_content.add(content_hash)
                 
-                # Then search variants
-                for variant in transliteration_variants[:3]:
+                # Then search variants (including preprocessed Sanskrit form)
+                for variant in all_variants:
                     variant_docs = self.semantic_retriever.invoke(variant)
                     for doc in variant_docs:
                         content_hash = hash(doc.page_content[:200])
@@ -571,7 +602,7 @@ class HybridRetriever(BaseRetriever):
                                 break
                 
                 semantic_docs = all_semantic_docs
-                logger.info(f"🌐 MW: Merged results from {len(transliteration_variants)} variants → {len(semantic_docs)} unique docs")
+                logger.info(f"🌐 Merged results from {len(all_variants)} variants → {len(semantic_docs)} unique docs")
             else:
                 semantic_docs = self.semantic_retriever.invoke(enhanced_query)
             
@@ -629,19 +660,18 @@ class HybridRetriever(BaseRetriever):
             for noun in proper_nouns:
                 metadata = get_proper_noun_context(noun)
                 if metadata and 'sources' in metadata:
-                    sources_dict = metadata['sources']
-                    # Find source with highest occurrence count
-                    if sources_dict:
-                        max_count = max(sources_dict.values())
-                        for source_name, count in sources_dict.items():
-                            if count == max_count and count > 0:
-                                # Map to filename patterns
-                                if 'Rigveda' in source_name:
-                                    primary_sources.add('rigveda')
-                                elif 'Yajurveda' in source_name:
-                                    primary_sources.add('yajurveda')
-                                elif 'Ramayana' in source_name:
-                                    primary_sources.add('ramayana')
+                    sources = metadata['sources']
+                    # sources is a list of source names
+                    if sources:
+                        # Extract primary source names from the list
+                        for source_name in sources:
+                            # Map to filename patterns
+                            if 'Rigveda' in source_name:
+                                primary_sources.add('rigveda')
+                            elif 'Yajurveda' in source_name:
+                                primary_sources.add('yajurveda')
+                            elif 'Ramayana' in source_name:
+                                primary_sources.add('ramayana')
             
             if primary_sources:
                 logger.info(f"🎯 Detected proper nouns {proper_nouns} - boosting primary sources: {primary_sources}")

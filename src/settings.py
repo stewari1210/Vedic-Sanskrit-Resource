@@ -151,8 +151,10 @@ class Settings:
     def _init_embed_model(cls):
         """Initialize embedding model based on current config."""
         from src.config import get_config_value
-        _provider = str(get_config_value("EMBEDDING_PROVIDER", "local-best")).lower() if get_config_value("EMBEDDING_PROVIDER") else "local-best"
-        logger.info(f"EMBEDDING_PROVIDER from config: '{get_config_value('EMBEDDING_PROVIDER')}' -> '{_provider}'")
+        # Get the embedding provider from config, default to local-best
+        embedding_provider_raw = get_config_value("EMBEDDING_PROVIDER", "local-best")
+        _provider = str(embedding_provider_raw).lower().strip() if embedding_provider_raw else "local-best"
+        logger.info(f"EMBEDDING_PROVIDER from config: '{embedding_provider_raw}' -> '{_provider}'")
 
         if _provider == "gemini":
             # Google Gemini Embeddings (requires API key, has quotas)
