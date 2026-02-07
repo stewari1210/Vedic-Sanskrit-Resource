@@ -33,6 +33,27 @@ except ImportError:
     PARALLEL_ENABLED = False
 
 
+def _contains_devanagari(text: str) -> bool:
+    """
+    Detect if text contains Devanagari script (used in Sanskrit).
+    
+    Devanagari Unicode range: U+0900 to U+097F
+    This is a reliable indicator of Sanskrit text content.
+    """
+    if not text:
+        return False
+    
+    # Check for Devanagari characters in the text
+    devanagari_count = sum(1 for c in text[:1000] if '\u0900' <= c <= '\u097F')
+    
+    # If more than 5% of first 1000 chars are Devanagari, it's likely Sanskrit
+    if len(text) > 0:
+        devanagari_ratio = devanagari_count / min(len(text), 1000)
+        return devanagari_ratio > 0.05
+    
+    return False
+
+
 class HybridRetriever(BaseRetriever):
     """Custom hybrid retriever that combines semantic and keyword search.
 
@@ -661,13 +682,15 @@ class HybridRetriever(BaseRetriever):
             creator = doc.metadata.get('creator', '').lower()
             preprocessing = doc.metadata.get('preprocessing', '').lower()
             keywords = str(doc.metadata.get('keywords', '')).lower()
+            page_content = doc.page_content[:500].lower()  # Check first 500 chars for Devanagari
             
             # Detect Sanskrit/original sources (Sharma, original text markers, preprocessing field)
             is_sanskrit_source = (
-                preprocessing == 'sanskrit' or  # Direct marker from indexing
+                preprocessing == 'sanskrit' or  # Direct marker from indexing (local store)
                 any(indicator in filename or indicator in source or indicator in title or indicator in creator
                     for indicator in ['sharma', 'sanskrit', 'original', 'devanagari', 'sanskritdocuments']) or
-                'sanskrit' in keywords  # Check keywords array for Sanskrit marker
+                'sanskrit' in keywords or  # Check keywords array for Sanskrit marker
+                _contains_devanagari(doc.page_content)  # Content-based detection for Qdrant Cloud
             )
             
             # Detect English translation sources (Griffith, translation markers)
