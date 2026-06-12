@@ -623,6 +623,15 @@ Have natural conversation about Sanskrit:
             else:
                 model_name = GEMINI_MODEL
 
+            # AUTO-INITIALIZE on first page load (one attempt; the button
+            # below remains as a manual retry if it fails)
+            if (not st.session_state.initialized
+                    and not st.session_state.get("auto_init_attempted")):
+                st.session_state.auto_init_attempted = True
+                if self.setup_tutor(llm_provider, model_name):
+                    st.success("✓ Resource ready!")
+                    st.rerun()
+
             if st.button("🚀 Initialize Resource", key="init_button"):
                 if self.setup_tutor(llm_provider, model_name):
                     st.success("✓ Resource ready!")
@@ -658,6 +667,7 @@ Have natural conversation about Sanskrit:
                     "🎯 Quiz Mode",
                     "💬 Chat Mode"
                 ],
+                index=6,  # default to Chat Mode on first load
                 key="module_selector"
             )
 
