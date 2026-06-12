@@ -439,6 +439,55 @@ class HybridRetriever(BaseRetriever):
             logger.info(f"HybridRetriever: Balanced filter - {len(matching_docs)} docs from {source_filters} prioritized, {len(non_matching_docs)} others included")
             return matching_docs + non_matching_docs
 
+    _VERSE_ID = re.compile(r"॥ (\d+)\.(\d+)\.(\d+) ॥")
+    _VERSE_LINE = re.compile(r"^(.+?॥ \d+\.\d+\.\d+ ॥)\s*$", re.M)
+
+    def _expand_hymn_context(self, docs: List[Document], corpus_docs: list,
+                             max_expand: int = 3, max_chars: int = 6000) -> List[Document]:
+        """SMALL-TO-BIG: verse-level chunks lose their neighbors.
+        (RV 10.60.4 names Ikshvaku; 10.60.2 names king Asamati — different
+        chunk, so the LLM never saw the connection.) For the top hits,
+        stitch every verse of the same hymn into one document."""
+        if not corpus_docs:
+            return docs
+        out = list(docs)
+        for idx in range(min(max_expand, len(out))):
+            doc = out[idx]
+            # a chunk can straddle a hymn boundary — expand EVERY hymn it touches
+            hymns = list(dict.fromkeys(
+                (m.group(1), m.group(2))
+                for m in self._VERSE_ID.finditer(doc.page_content)))
+            if not hymns:
+                continue
+            sections, total_verses = [], 0
+            for mand, hymn in hymns:
+                marker = f"॥ {mand}.{hymn}."
+                verses = {}
+                for d in corpus_docs:
+                    if marker not in d.page_content:
+                        continue
+                    for line in self._VERSE_LINE.findall(d.page_content):
+                        vm = self._VERSE_ID.search(line)
+                        if vm and vm.group(1) == mand and vm.group(2) == hymn:
+                            verses[int(vm.group(3))] = line.strip()
+                if verses:
+                    sections.append(f"## RV {mand}.{hymn} (full hymn)\n" + "\n".join(
+                        verses[k] for k in sorted(verses)))
+                    total_verses += len(verses)
+            if not sections:
+                continue
+            full = "\n\n".join(sections)
+            if len(full) > max_chars:
+                full = full[:max_chars]
+            if len(full) > len(doc.page_content):
+                meta = dict(doc.metadata)
+                meta["hymn_context"] = (f"full hymn(s) "
+                                        f"{', '.join(f'RV {m}.{h}' for m, h in hymns)}"
+                                        f" — {total_verses} verses")
+                out[idx] = Document(page_content=full, metadata=meta)
+                logger.info(f"📜 Hymn expansion: hit → {meta['hymn_context']}")
+        return out
+
     def _get_relevant_documents(
         self, query: str, *, run_manager: CallbackManagerForRetrieverRun = None
     ) -> List[Document]:
@@ -804,6 +853,60 @@ class HybridRetriever(BaseRetriever):
             top_score = doc_scores[sorted_hashes[0]]
             top_source = merged_docs[0].metadata.get('source', 'unknown')
             logger.info(f"HybridRetriever: Top doc score={top_score:.2f} source={top_source} (semantic {SEMANTIC_WEIGHT:.0%}, keyword {KEYWORD_WEIGHT:.0%})")
+
+        # DEVANAGARI LEXICAL RESCUE: proper nouns in Latin queries can never
+        # token-match the Devanagari corpus, and inflected/sandhi forms
+        # (सुदासे, सुदाससः, सुदाः) defeat whole-token BM25 even in Devanagari.
+        # Substring-scan the full chunk corpus with gazetteer variants and
+        # force hits to the top.
+        try:
+            try:
+                from src.utils.devanagari_lexical import devanagari_lexical_hits
+            except ImportError:
+                from utils.devanagari_lexical import devanagari_lexical_hits  # app-style import
+            corpus_docs = getattr(self.keyword_retriever, 'docs', None) or []
+            logger.info(f"🪷 RESCUE ENTRY: query='{query[:60]}', corpus_docs={len(corpus_docs)}")
+            rescue_hits, rescue_terms = devanagari_lexical_hits(
+                query, corpus_docs, top_k=max(3, self.k // 3))
+            logger.info(f"🪷 RESCUE RESULT: terms={rescue_terms}, hits={len(rescue_hits)}")
+            if rescue_hits:
+                rescue_hashes = {hash(d.page_content) for d in rescue_hits}
+                merged_docs = rescue_hits + [
+                    d for d in merged_docs if hash(d.page_content) not in rescue_hashes]
+        except Exception:
+            logger.exception("🪷 RESCUE FAILED (non-fatal) — full traceback:")
+
+        # HYMN CONTEXT EXPANSION (small-to-big): top verse hits become full hymns
+        try:
+            merged_docs = self._expand_hymn_context(
+                merged_docs, getattr(self.keyword_retriever, 'docs', None) or [])
+        except Exception:
+            logger.exception("📜 Hymn expansion failed (non-fatal):")
+
+        # CONCORDANCE MODE: enumeration questions ("which verses mention X")
+        # need an exhaustive corpus scan, not top-k ranking. Prepend the
+        # complete verse list so the LLM can enumerate with confidence.
+        try:
+            if (re.search(r"\b(which|what|where|list|all|every|how many)\b", query, re.I)
+                    and re.search(r"\b(verse|verses|hymn|hymns|mention|mentions|mentioned"
+                                  r"|contain|contains|occur|occurs|appear|appears)\b",
+                                  query, re.I)):
+                try:
+                    from src.utils.devanagari_lexical import concordance
+                except ImportError:
+                    from utils.devanagari_lexical import concordance
+                ctext, cterms = concordance(
+                    query, getattr(self.keyword_retriever, 'docs', None) or [])
+                if ctext:
+                    cdoc = Document(page_content=ctext, metadata={
+                        "title": "Concordance (exhaustive corpus scan)",
+                        "filename": "concordance",
+                        "preprocessing": "sanskrit",
+                        "source_type": "concordance"})
+                    merged_docs = [cdoc] + merged_docs
+                    logger.info(f"📇 Concordance prepended (terms={cterms})")
+        except Exception:
+            logger.exception("📇 Concordance failed (non-fatal):")
 
         # APPLY SOURCE TEXT FILTERING (if specific texts mentioned in query)
         if source_filters:

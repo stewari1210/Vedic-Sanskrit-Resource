@@ -1,0 +1,15 @@
+{
+  "title": "Rigveda Mandala 1",
+  "author": [
+    "Vedic Tradition",
+    "Aufrecht/van Nooten/Holland (Samhita), transliterated by Detlef Eichler"
+  ],
+  "subject": "Hymns from the Rigveda, Mandala 1. Clean Devanagari from ITX source.",
+  "year": "2013",
+  "summary": "Mandala 1 of the Rigveda in clean Devanagari, converted from the ITRANS master (r01.itx, sanskritdocuments.org), verse-per-line with hymn headers and verse IDs.",
+  "creator": "sanskritdocuments.org",
+  "source_format": "itx",
+  "filename": "r01",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text"
+}

@@ -19,8 +19,8 @@ logger = logging.getLogger(__name__)
 
 # Try to import indic-nlp-library components
 try:
-    from indic_nlp.tokenize import word_tokenize
-    from indic_nlp.normalize import IndicNormalize
+    from indicnlp.tokenize import indic_tokenize
+    from indicnlp.normalize.indic_normalize import IndicNormalizerFactory
     INDIC_NLP_AVAILABLE = True
     logger.info("✓ indic-nlp-library components available")
 except ImportError as e:
@@ -55,9 +55,10 @@ class SanskritPreprocessor:
         
         if self.has_indic_nlp:
             try:
-                self.normalizer = IndicNormalize(lang='san')  # Sanskrit normalization
+                factory = IndicNormalizerFactory()
+                self.normalizer = factory.get_normalizer('hi')  # Devanagari normalization
             except Exception as e:
-                logger.warning(f"Could not initialize IndicNormalize: {e}")
+                logger.warning(f"Could not initialize IndicNormalizerFactory: {e}")
                 self.normalizer = None
         else:
             self.normalizer = None
@@ -149,7 +150,7 @@ class SanskritPreprocessor:
         
         if self.has_indic_nlp:
             try:
-                tokens = word_tokenize(text, lang=language)
+                tokens = indic_tokenize.trivial_tokenize(text, lang=language)
                 # Filter empty tokens
                 return [t for t in tokens if t.strip()]
             except Exception as e:

@@ -94,6 +94,15 @@ COLLECTION_NAME = get_config_value("COLLECTION_NAME", "ancient_history")
 LOCAL_FOLDER = get_config_value("LOCAL_FOLDER", "local_store")
 VECTORDB_FOLDER = get_config_value("VECTORDB_FOLDER", "vector_store")
 
+# Anchor relative store paths to the project root so behavior does not
+# depend on the process's current working directory (Streamlit, CLI, scripts
+# can all be launched from different folders).
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if not os.path.isabs(str(LOCAL_FOLDER)):
+    LOCAL_FOLDER = str(_PROJECT_ROOT / str(LOCAL_FOLDER))
+if not os.path.isabs(str(VECTORDB_FOLDER)):
+    VECTORDB_FOLDER = str(_PROJECT_ROOT / str(VECTORDB_FOLDER))
+
 # Embedding configuration
 EMBEDDING_PROVIDER = get_config_value("EMBEDDING_PROVIDER", "local-best")  # local-fast, local-best, local-multilingual, or gemini
 EMBED_MODEL = get_config_value("EMBED_MODEL")

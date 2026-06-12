@@ -1,0 +1,15 @@
+{
+  "title": "Rigveda Mandala 7",
+  "author": [
+    "Vedic Tradition",
+    "Aufrecht/van Nooten/Holland (Samhita), transliterated by Detlef Eichler"
+  ],
+  "subject": "Hymns from the Rigveda, Mandala 7. Clean Devanagari from ITX source.",
+  "year": "2013",
+  "summary": "Mandala 7 of the Rigveda in clean Devanagari, converted from the ITRANS master (r07.itx, sanskritdocuments.org), verse-per-line with hymn headers and verse IDs.",
+  "creator": "sanskritdocuments.org",
+  "source_format": "itx",
+  "filename": "r07",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text"
+}
