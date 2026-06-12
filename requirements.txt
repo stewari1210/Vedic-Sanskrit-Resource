@@ -9,7 +9,11 @@ langchain-text-splitters>=0.1.0
 langchain-groq>=0.0.1
 langchain-google-genai>=0.0.1  # Optional: only needed if using Gemini embeddings
 langchain-huggingface>=0.0.1  # For Sentence Transformers local embeddings
-langgraph>=0.0.1
+# langgraph pinned: 1.0.10/checkpoint 4.x calls Reviver(allowed_objects=...)
+# which langchain-core 1.2.3 doesn't accept -> TypeError on Streamlit Cloud
+langgraph==1.0.5
+langgraph-checkpoint==3.0.1
+langgraph-prebuilt==1.0.5
 
 # Utilities
 python-dotenv>=0.21.0

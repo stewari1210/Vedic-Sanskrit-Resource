@@ -1,0 +1,18 @@
+{
+  "title": "Rigveda Mandala 4",
+  "author": [
+    "Vedic Tradition",
+    "Aufrecht/van Nooten/Holland (Samhita), transliterated by Detlef Eichler"
+  ],
+  "subject": "Hymns from the Rigveda, Mandala 4. Clean Devanagari from ITX source.",
+  "summary": "Mandala 4 of the Rigveda in clean Devanagari, converted from the ITRANS master (r04.itx, sanskritdocuments.org), verse-per-line with hymn headers and verse IDs.",
+  "creator": "sanskritdocuments.org",
+  "source_format": "itx",
+  "filename": "r04",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "rigveda",
+  "mandala": 4,
+  "chronology_layer": 1,
+  "chronology_name": "early_rigveda"
+}

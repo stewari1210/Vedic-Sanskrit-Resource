@@ -14,8 +14,15 @@ output.log
 # tests folder
 tests/
 CONVERSATION_CONTEXT.md
-local_store/
-vector_store/
+# corpus text + retrieval indexes ARE needed by the Streamlit Cloud deploy
+# (BM25 pickle, corpus lexicon, and local_store markdown as self-heal source)
+vector_store/*
+!vector_store/ancient_history/
+vector_store/ancient_history/*
+!vector_store/ancient_history/docs_chunks.pkl
+!vector_store/ancient_history/corpus_lexicon.pkl
+# legacy corrupt PDF extracts — do not track
+legacy_local_store_pdf_extracts/
 library/
 scripts/
 upload_vector_to_Qdrant.py

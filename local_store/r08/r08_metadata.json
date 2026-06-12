@@ -1,0 +1,18 @@
+{
+  "title": "Rigveda Mandala 8",
+  "author": [
+    "Vedic Tradition",
+    "Aufrecht/van Nooten/Holland (Samhita), transliterated by Detlef Eichler"
+  ],
+  "subject": "Hymns from the Rigveda, Mandala 8. Clean Devanagari from ITX source.",
+  "summary": "Mandala 8 of the Rigveda in clean Devanagari, converted from the ITRANS master (r08.itx, sanskritdocuments.org), verse-per-line with hymn headers and verse IDs.",
+  "creator": "sanskritdocuments.org",
+  "source_format": "itx",
+  "filename": "r08",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "rigveda",
+  "mandala": 8,
+  "chronology_layer": 2,
+  "chronology_name": "late_rigveda"
+}
