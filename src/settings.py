@@ -123,21 +123,31 @@ class Settings:
     # ============================================================
     
     _embed_model = None
-    _llm = None  
+    _llm = None
     _eval_llm = None
-    
+    # Locks: Streamlit runs each session/rerun in its own thread, so two
+    # threads can race the lazy init. Concurrent SentenceTransformer loads
+    # crash with "Cannot copy out of meta tensor" — single-flight the load.
+    import threading as _threading
+    _embed_lock = _threading.Lock()
+    _llm_lock = _threading.Lock()
+
     @classmethod
     def get_embed_model(cls):
-        """Get embedding model with lazy initialization."""
+        """Get embedding model with lazy initialization (thread-safe)."""
         if cls._embed_model is None:
-            cls._init_embed_model()
+            with cls._embed_lock:
+                if cls._embed_model is None:  # double-checked locking
+                    cls._init_embed_model()
         return cls._embed_model
         
     @classmethod
     def get_llm(cls):
-        """Get main LLM with lazy initialization."""
+        """Get main LLM with lazy initialization (thread-safe)."""
         if cls._llm is None:
-            cls._init_llm()
+            with cls._llm_lock:
+                if cls._llm is None:
+                    cls._init_llm()
         return cls._llm
         
     @classmethod
