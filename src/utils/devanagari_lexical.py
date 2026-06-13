@@ -128,6 +128,104 @@ GAZETTEER = {
 _DEV_WORD = re.compile(r"[ऀ-ॿ]{2,}")
 _LAT_WORD = re.compile(r"[A-Za-z][A-Za-z\-]{2,}")
 
+# ── Auto-transliteration ─────────────────────────────────────────────────────
+# English words that must NOT be passed to the Sanskrit transliterator.
+# (These don't look Sanskrit but share letter patterns that produce garbage.)
+_ENGLISH_STOP = {
+    "what", "who", "when", "where", "why", "how", "which", "is", "are",
+    "was", "were", "be", "been", "being", "have", "has", "had", "do",
+    "does", "did", "will", "would", "could", "should", "can", "may",
+    "might", "must", "shall", "the", "and", "or", "but", "not",
+    "in", "on", "at", "of", "for", "to", "from", "with", "by", "about",
+    "into", "through", "after", "before", "between", "also", "then",
+    "name", "tell", "give", "find", "list", "show", "explain", "describe",
+    "king", "queen", "father", "mother", "son", "daughter", "wife",
+    "brother", "sister", "ancestor", "descendant", "lord", "sage",
+    "this", "that", "these", "those", "they", "their", "his", "her",
+    "vedic", "text", "corpus", "passage", "verse", "hymn", "book",
+    "chapter", "section", "story", "account", "meaning", "context",
+    "known", "called", "said", "mentioned", "described", "found",
+}
+
+
+def _popular_to_iast_variants(token: str) -> List[str]:
+    """
+    Popular Sanskrit romanization → candidate IAST forms.
+
+    People commonly write:
+      sh  → ś  (harishchandra → hariścandra)
+      ksh → kṣ (Lakshmi → Lakṣmī)
+      ch  → c  (chandra → candra, as a *palatal* unaspirated)
+      ri  → ṛ  (Krishna → Kṛṣṇa)
+
+    We return *multiple* candidates because the mapping is ambiguous
+    (sh can be ś or ṣ) — the corpus will validate which ones appear.
+    """
+    t = token.lower().strip()
+    if len(t) < 4:
+        return [t]
+
+    variants = {t}   # always include the verbatim form
+
+    # Strategy A: sh → ś,  ksh → kṣ  (most common popular convention)
+    va = t
+    va = va.replace('ksh', 'kṣ')
+    va = re.sub(r'sh', 'ś', va)
+    variants.add(va)
+
+    # Strategy B: also replace ch → c (palatal stop, not aspirate छ)
+    # e.g. "harishchandra" → va="hariśchandra" → vb="hariścandra"  ← correct IAST
+    vb = va.replace('ch', 'c')
+    variants.add(vb)
+
+    # Strategy C: ri → ṛ (vocalic r, very common in popular spellings)
+    vc = vb.replace('ri', 'ṛ')
+    variants.add(vc)
+
+    # Strategy D: sh → ṣ (retroflex sibilant — alternate for ṣ in names like
+    # Viṣṇu written "Vishnu")
+    vd = t.replace('sh', 'ṣ')
+    variants.add(vd)
+
+    return list(variants)
+
+
+def _auto_transliterate_token(token: str) -> List[str]:
+    """
+    Convert a Latin token to candidate Devanagari forms without any
+    manual lookup table.
+
+    Algorithm:
+      1. Skip obvious English words.
+      2. Generate candidate IAST normalizations (popular romanization rules).
+      3. Run indic_transliteration IAST → Devanagari on each candidate.
+      4. Return unique, non-trivial Devanagari strings.
+
+    Caller is responsible for corpus validation (checking which forms
+    actually occur as substrings in the indexed text).
+    """
+    t_lower = token.lower().strip()
+    if t_lower in _ENGLISH_STOP or len(t_lower) < 4:
+        return []
+
+    try:
+        from indic_transliteration import sanscript
+    except ImportError:
+        return []
+
+    candidates: set = set()
+    for iast_form in _popular_to_iast_variants(t_lower):
+        try:
+            dev = sanscript.transliterate(iast_form, sanscript.IAST,
+                                          sanscript.DEVANAGARI)
+            # Must be non-trivial Devanagari (at least 2 chars, ≥1 Devanagari code point)
+            if dev and len(dev) >= 2 and any('ऀ' <= c <= 'ॿ' for c in dev):
+                candidates.add(dev)
+        except Exception:
+            pass
+
+    return list(candidates)
+
 # Topical concept map: English research themes -> Devanagari corpus terms.
 # Counts verified against the indexed RV corpus (2026-06-12). These rescue
 # THEMATIC queries the same way the gazetteer rescues proper nouns: dense
@@ -281,28 +379,65 @@ def lexicon_lookup(word: str, lexicon=None, max_tokens: int = 12,
 
 def query_terms(query: str, deep: bool = False) -> List[str]:
     """Devanagari search terms implied by the query (both scripts).
-    deep=True widens the lexicon expansion (for exhaustive concordance)."""
+    deep=True widens the lexicon expansion (for exhaustive concordance).
+
+    Pipeline per Latin token (short-circuits when a stage returns results):
+      1. THEME_GAZETTEER  — English concept → Devanagari terms (war, river…)
+      2. Manual GAZETTEER — curated proper-noun lookup
+      3. Corpus lexicon   — data-derived from indexed Devanagari text
+      4. Auto-transliteration — normalize popular romanization → IAST →
+         Devanagari; works for any Sanskrit name not in any manual list
+    """
     kw = dict(max_tokens=48, max_keys=20, per_key=8) if deep else {}
     terms: List[str] = []
-    # Devanagari words in the query are used directly
-    terms.extend(_DEV_WORD.findall(query))
-    # Latin words: theme map first (beats _SKIP — "battle" etc. are themes),
-    # then proper-noun gazetteer, then corpus lexicon
+    seen: set = set()
+
+    def _add(new_terms):
+        for t in new_terms:
+            if t not in seen:
+                seen.add(t)
+                terms.append(t)
+
+    # Pass Devanagari words in the query through directly
+    _add(_DEV_WORD.findall(query))
+
     for w in _LAT_WORD.findall(query):
         norm = _normalize_latin(w)
+
+        # Stage 1: theme concepts
         theme = THEME_GAZETTEER.get(norm, [])
         if theme:
-            terms.extend(theme)
+            _add(theme)
             continue
+
+        # Stage 2: skip list
         if norm in _SKIP:
             continue
+
+        # Stage 3a: manual GAZETTEER (curated proper nouns)
         gaz = GAZETTEER.get(norm, [])
-        terms.extend(gaz)
+        _add(gaz)
+
+        # Stage 3b: corpus lexicon (built from indexed text — catches
+        # inflected/sandhi forms the GAZETTEER doesn't enumerate)
+        lex_hits: List[str] = []
         if len(norm) >= 4:
-            terms.extend(lexicon_lookup(w, **kw))
-    # dedupe, keep order
-    seen = set()
-    return [t for t in terms if not (t in seen or seen.add(t))]
+            lex_hits = lexicon_lookup(w, **kw)
+            _add(lex_hits)
+
+        # Stage 4: auto-transliteration fallback
+        # Runs when GAZETTEER and lexicon both returned nothing, AND the
+        # token doesn't look like a common English word.
+        # e.g. "harishchandra" → hariścandra → हरिश्चन्द्र (verified in corpus)
+        #      "ajigarta"      → ajīgarta   → अजीगर्त
+        #      "parikshit"     → pārikṣita → पारिक्षित
+        if not gaz and not lex_hits and norm not in _ENGLISH_STOP and len(norm) >= 4:
+            auto = _auto_transliterate_token(w)
+            if auto:
+                logger.info(f"🔤 Auto-transliterate '{w}' → {auto}")
+            _add(auto)
+
+    return terms
 
 
 def _normalize_latin(word: str) -> str:

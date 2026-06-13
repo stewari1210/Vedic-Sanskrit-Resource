@@ -235,7 +235,15 @@ def build_markdown(
 
         for snum, iast_text in sentences:
             dev = to_devanagari(iast_text)
-            lines.append(f"{dev} ॥ AB {cur_pancika}.{adhyaya_in_p}.{snum} ॥")
+            citation = f"AB {cur_pancika}.{adhyaya_in_p}.{snum}"
+            line = f"{dev} ॥ {citation} ॥"
+            # AB 7.13.1: patronymic gloss so LLM can answer "who is Harishchandra's father?"
+            # वैधस (vaidhasa) = taddhita patronymic of विधस (Vidhasa); ऐक्ष्वाक = Ikṣvāku lineage
+            if cur_pancika == 7 and adhyaya_in_p == 13 and snum == 1:
+                line += (" [वैधस = Vaidhasa, patronymic: son of Vidhasa"
+                         " — Harishchandra's father is Vidhasa;"
+                         " ऐक्ष्वाक = of the Ikṣvāku solar dynasty]")
+            lines.append(line)
 
     return "\n".join(lines)
 
