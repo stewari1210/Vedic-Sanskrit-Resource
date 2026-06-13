@@ -30,7 +30,16 @@ from src.utils.citation_enhancer import (
     create_enhanced_citations_list,
     CitationFormatter
 )
+from src.utils.devanagari_lexical import query_terms
 import re
+
+# Knowledge Graph — lazy import so KG failures never break RAG
+try:
+    from src.utils.vedic_kg import get_entity_context, extract_and_store_facts
+    KG_ENABLED = True
+except Exception as _kg_err:
+    KG_ENABLED = False
+    logger.warning(f"🕸️  KG disabled: {_kg_err}")
 
 llm = Settings.get_llm()
 
@@ -602,6 +611,26 @@ Provide a clear, educational answer with proper citations:"""
         # Check if we actually have meaningful corpus content
         has_corpus = corpus_context and len(corpus_context.strip()) > 50 and "No relevant passages" not in corpus_context
 
+        # ── Knowledge Graph injection ─────────────────────────────────────
+        # Extract named entities from query using the GAZETTEER's Latin-word
+        # scanner, look up 2-hop neighborhood in the KG, and prepend as
+        # explicit relationship context so the LLM can reason across texts.
+        kg_context = ""
+        if KG_ENABLED:
+            try:
+                # Re-use the same entity detection path as lexical rescue
+                from src.utils.devanagari_lexical import _LAT_WORD, _normalize_latin, GAZETTEER
+                entity_names = [
+                    w for w in _LAT_WORD.findall(question)
+                    if _normalize_latin(w) in GAZETTEER
+                ]
+                if entity_names:
+                    kg_context = get_entity_context(entity_names, hops=2)
+                    if kg_context:
+                        logger.info(f"🕸️  KG injecting {len(entity_names)} entities: {entity_names}")
+            except Exception as _kg_e:
+                logger.warning(f"🕸️  KG lookup failed (non-fatal): {_kg_e}")
+
         # Detect comparison-over-time questions (must match retriever's
         # diachronic mode, which layer-balances and [SOURCE:]-tags passages)
         is_diachronic = bool(re.search(
@@ -628,7 +657,7 @@ Provide a clear, educational answer with proper citations:"""
             synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts, history, and culture.
 
 QUESTION: {question}
-
+{(chr(10) + kg_context) if kg_context else ""}
 RELEVANT CORPUS PASSAGES FROM {source_texts.upper()}:
 {corpus_context}
 
@@ -638,7 +667,8 @@ INSTRUCTIONS:
 3. Cite specific details and verse references from the passages (names, events, descriptions)
 4. Be informative and educational in your response
 5. Use Sanskrit terms with transliteration when appropriate
-6. If the passages mention the topic, explain what they say about it and reference which verse(s){diachronic_block}
+6. If the passages mention the topic, explain what they say about it and reference which verse(s)
+7. If the KNOWLEDGE GRAPH section above contains relevant facts, USE them to make connections the corpus passages alone may not make explicit (e.g. inherited dynasty membership, kinship chains){diachronic_block}
 
 Provide a detailed answer based on the corpus passages, using proper verse references:"""
         else:
@@ -680,6 +710,18 @@ Provide a helpful response:"""
             "answer": answer_content,
             "citations": create_enhanced_citations_list(corpus_info[:SYNTHESIS_DOC_BUDGET]) if has_corpus else []
         }
+
+        # ── Knowledge Graph extraction ────────────────────────────────────
+        # Extract relationship triples from the LLM's answer and store them.
+        # This builds the KG organically — every query that reveals a fact
+        # saves it for future queries to use as pre-synthesis context.
+        if KG_ENABLED and has_corpus and answer_content:
+            try:
+                n_new = extract_and_store_facts(answer_content, question, llm)
+                if n_new:
+                    logger.info(f"🕸️  KG grew by {n_new} facts this query")
+            except Exception as _kg_e:
+                logger.warning(f"🕸️  KG extraction failed (non-fatal): {_kg_e}")
 
         logger.info("[AGENT] Factual synthesis complete")
 
