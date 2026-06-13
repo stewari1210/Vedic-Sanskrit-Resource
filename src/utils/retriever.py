@@ -908,6 +908,47 @@ class HybridRetriever(BaseRetriever):
         except Exception:
             logger.exception("📇 Concordance failed (non-fatal):")
 
+        # DIACHRONIC MODE: comparison-over-time questions need layer-balanced
+        # evidence. One flat top-k list usually over-represents whichever
+        # layer dominates semantically; balance layers and tag each passage
+        # with its chronology so the synthesizer can compare.
+        try:
+            if re.search(r"(earlier|early|later|late|older|newer)[^.?]*\b(vedic|veda|"
+                         r"period|layer|mandala|time)|evolv|over time|diachronic|"
+                         r"through time|chronolog", query, re.I):
+                by_layer = {}
+                for d in merged_docs:
+                    layer = d.metadata.get("chronology_layer")
+                    by_layer.setdefault(layer, []).append(d)
+                known = sorted(k for k in by_layer if k is not None)
+                if len(known) >= 2:
+                    balanced, used = [], set()
+                    for rank in range(4):  # up to 4 docs per layer, interleaved
+                        for k in known:
+                            if rank < len(by_layer[k]):
+                                balanced.append(by_layer[k][rank])
+                                used.add(id(by_layer[k][rank]))
+                    merged_docs = balanced + [d for d in merged_docs
+                                              if id(d) not in used]
+                    tagged = []
+                    for d in merged_docs[:8]:
+                        name = d.metadata.get("chronology_name", "unknown")
+                        layer = d.metadata.get("chronology_layer", "?")
+                        title = d.metadata.get("title", "")
+                        if d.page_content.startswith("[SOURCE:"):
+                            tagged.append(d)
+                        else:
+                            tagged.append(Document(
+                                page_content=(f"[SOURCE: {title} — chronology: "
+                                              f"{name}, layer {layer}]\n"
+                                              f"{d.page_content}"),
+                                metadata=d.metadata))
+                    merged_docs = tagged + merged_docs[8:]
+                    logger.info(f"⏳ Diachronic mode: layer-balanced {known}, "
+                                f"tagged top {len(tagged)} docs")
+        except Exception:
+            logger.exception("⏳ Diachronic mode failed (non-fatal):")
+
         # APPLY SOURCE TEXT FILTERING (if specific texts mentioned in query)
         if source_filters:
             merged_docs = self._filter_docs_by_source(merged_docs, source_filters, strict_filter)

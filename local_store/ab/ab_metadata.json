@@ -1,0 +1,19 @@
+{
+  "title": "Aitareya Brahmana",
+  "author": [
+    "Vedic Tradition",
+    "Ed. Th. Aufrecht, Bonn 1879",
+    "TITUS encoding by Fco. Javier Martínez García / Jost Gippert"
+  ],
+  "subject": "Aitareya Brahmana of the Rigveda. 8 pañcikās. Key passages: Shunahshepa legend (AB 7.27-34, Harishchandra / Ikshvaku lineage / royal consecration origin); AB 8.21 king register (Janamejaya, Bharata Dauḥṣanti).",
+  "summary": "Aitareya Brahmana in Devanagari, converted from TITUS transliteration (Aufrecht 1879 ed.). Brahmana prose, layer 4. Contains the earliest extant king register and the Shunahshepa narrative central to Indian kingship ideology.",
+  "creator": "TITUS Project, Frankfurt / Th. Aufrecht",
+  "source_url": "https://titus.uni-frankfurt.de/texte/etcs/ind/aind/ved/rv/ab/ab001.htm",
+  "source_format": "titus_html",
+  "filename": "ab",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "aitareya_brahmana",
+  "chronology_layer": 4,
+  "chronology_name": "brahmana_prose"
+}

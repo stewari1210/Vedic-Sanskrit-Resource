@@ -1,0 +1,18 @@
+{
+  "title": "Shatapatha Brahmana (Madhyandina)",
+  "author": [
+    "Vedic Tradition",
+    "Input by H.S. Ananthanarayana and W.P. Lehman (GRETIL)"
+  ],
+  "subject": "Shatapatha Brahmana, Madhyandina recension. 14 books. Key passages: Videgha Mathava eastward migration (SB 1.4.1), Pravahana Jaivali eastern doctrine (SB 3.1.2), Ashvamedha geography, vamsha lists.",
+  "summary": "Shatapatha Brahmana in Devanagari, converted from GRETIL IAST (Madhyandina recension). Brahmana prose, layer 4. Eastern orientation (Videha/Kosala). Contains the Videgha Mathava legend tracing fire's movement from Sarasvati/Sindhu east of the Sadanira.",
+  "creator": "GRETIL (Göttingen Register of Electronic Texts in Indian Languages)",
+  "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/satapath/sb_NN_u.htm",
+  "source_format": "iast_html",
+  "filename": "sb",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "shatapatha_brahmana",
+  "chronology_layer": 4,
+  "chronology_name": "brahmana_prose"
+}

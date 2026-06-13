@@ -26,7 +26,10 @@ legacy_local_store_pdf_extracts/
 library/
 scripts/
 upload_vector_to_Qdrant.py
-secrets.toml
+# never commit secrets in ANY form (incl. backups)
+secrets.toml*
+*.toml.bak
+.streamlit/secrets*
 *.txt
 !packages.txt
 !requirements.txt

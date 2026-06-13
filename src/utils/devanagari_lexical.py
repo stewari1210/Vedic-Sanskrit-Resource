@@ -77,17 +77,98 @@ GAZETTEER = {
     "visvamitra":   ["विश्वामित्र"],
     "vritra":       ["वृत्र"],
     "vrtra":        ["वृत्र"],
+    # --- Brahmana prose proper nouns (layer 4) ---
+    "sarasvati":    ["सरस्वती", "सरस्वत"],   # also in rivers above — dedup safe
+    "vinashana":    ["विनशन", "विनश"],
+    "vinasana":     ["विनशन", "विनश"],
+    "drishadvati":  ["दृषद्वती", "दृषद्वत्"],
+    "drshadvati":   ["दृषद्वती", "दृषद्वत्"],
+    "sattra":       ["सत्त्र", "सत्र"],
+    "panchavimsa":  ["पञ्चविंश"],
+    "pancavimsa":   ["पञ्चविंश"],
+    "tandya":       ["ताण्ड्य"],
+    "videha":       ["विदेह"],
+    "mathava":      ["माथव"],
+    "harishchandra":["हरिश्चन्द्र"],
+    "haricandra":   ["हरिश्चन्द्र"],
+    "shunahshepa":  ["शुनःशेप"],
+    "sunahsepa":    ["शुनःशेप"],
+    # --- SB (Shatapatha Brahmana) key proper nouns ---
+    "videgha":      ["विदेघ"],              # Videgha Mathava — personal name in SB 1.4.1
+    "sadanira":     ["सदानीर", "सदनीर"],    # river (Gandak) = eastern limit of Aryan culture in SB
+    "sadaniri":     ["सदानीर", "सदनीर"],
+    "janaka":       ["जनक"],                # king of Videha (SB)
+    "yajnavalkya":  ["याज्ञवल्क्य"],
+    "yajnavalky":   ["याज्ञवल्क्य"],
+    "pravahana":    ["प्रवाहण"],            # Pravahana Jaivali — eastern king (SB 3.1.2)
+    "jaivali":      ["जैवलि"],
+    "shatapatha":   ["शतपथ"],
+    "madhyandina":  ["माध्यन्दिन"],
+    "kosala":       ["कोसल"],               # eastern region (SB)
+    "kuru":         ["कुरु"],               # NW region (contrasts with Kosala/Videha)
+    "pancala":      ["पञ्चाल"],
+    "panchala":     ["पञ्चाल"],
+    "gandhara":     ["गन्धार"],
+    "magadha":      ["मगध"],
+    # --- AB (Aitareya Brahmana) key proper nouns (ready for when AB is added) ---
+    "janamejaya":   ["जनमेजय"],
+    "ambarisha":    ["अम्बरीष"],
 }
 
 _DEV_WORD = re.compile(r"[ऀ-ॿ]{2,}")
 _LAT_WORD = re.compile(r"[A-Za-z][A-Za-z\-]{2,}")
 
+# Topical concept map: English research themes -> Devanagari corpus terms.
+# Counts verified against the indexed RV corpus (2026-06-12). These rescue
+# THEMATIC queries the same way the gazetteer rescues proper nouns: dense
+# embeddings of English abstractions match devotional verse poorly.
+THEME_GAZETTEER = {
+    "warfare":  ["वज्र", "पृतना", "सेना", "आयुध", "युध्", "वर्म", "इषु", "धन्व", "पुरंदर", "गविष्टि"],
+    "war":      ["वज्र", "पृतना", "सेना", "आयुध", "युध्", "वर्म", "इषु", "धन्व", "पुरंदर", "गविष्टि"],
+    "battle":   ["पृतना", "युध्", "वज्र", "सेना", "गविष्टि"],
+    "battles":  ["पृतना", "युध्", "वज्र", "सेना", "गविष्टि"],
+    "weapon":   ["वज्र", "आयुध", "इषु", "धन्व", "इषुधि", "हस्तघ्न"],
+    "weapons":  ["वज्र", "आयुध", "इषु", "धन्व", "इषुधि", "हस्तघ्न"],
+    "army":     ["सेना", "पृतना"],
+    "armies":   ["सेना", "पृतना"],
+    "bow":      ["धन्व", "धनुः", "इषुधि"],
+    "arrow":    ["इषु", "इषुधि"],
+    "arrows":   ["इषु", "इषुधि"],
+    "armor":    ["वर्म", "शिप्र", "हस्तघ्न"],
+    "armour":   ["वर्म", "शिप्र", "हस्तघ्न"],
+    "chariot":  ["रथ"],
+    "chariots": ["रथ"],
+    "horse":    ["अश्व"],
+    "horses":   ["अश्व"],
+    "fort":     ["पुरं", "पुरः", "पुरंदर"],
+    "forts":    ["पुरं", "पुरः", "पुरंदर"],
+    "fortress": ["पुरं", "पुरः", "पुरंदर"],
+    "metal":    ["आयस", "अयः", "हिरण्य"],
+    "metals":   ["आयस", "अयः", "हिरण्य"],
+    "cattle":   ["गव्य", "गविष्टि"],
+    "raid":     ["गविष्टि", "गव्य"],
+    "raids":    ["गविष्टि", "गव्य"],
+    "river":    ["नदी", "सिन्धु", "सरस्वती", "नद्य", "दृषद्वती"],
+    "rivers":   ["नदी", "सिन्धु", "सरस्वती", "नद्य", "दृषद्वती"],
+    # Brahmana-era concepts (layer 4)
+    "sattra":   ["सत्त्र", "सत्र"],
+    "vinashana": ["विनशन", "विनश"],
+    "sacrifice": ["यज्ञ", "सत्त्र", "होत्र"],
+    "ritual":   ["यज्ञ", "सत्त्र", "क्रतु", "विधि"],
+    "migration": ["पूर्व", "पूर्वदेश", "विदेह", "माथव"],
+    "king":     ["राजन्", "राजा", "क्षत्र", "सम्राट्"],
+    "lineage":  ["वंश", "गोत्र", "कुल"],
+}
+
 # English stopwords that pass the proper-noun-ish filter; skip lexicon lookup
 _SKIP = {"which", "verses", "verse", "describe", "describes", "talk", "talks",
-         "about", "kings", "king", "what", "where", "when", "tell", "hymn",
-         "hymns", "mention", "mentions", "river", "rivers", "battle", "there",
+         "about", "what", "where", "when", "tell", "hymn",
+         "hymns", "mention", "mentions", "there",
          "this", "that", "with", "from", "does", "have", "veda", "rigveda",
-         "mandala", "sanskrit", "their", "history", "story", "meaning"}
+         "mandala", "sanskrit", "their", "story", "meaning"}
+# Note: "king", "kings", "river", "rivers", "battle", "history", "lineage",
+# "sattra", "sacrifice", "ritual", "migration" removed from _SKIP — they are
+# now handled by THEME_GAZETTEER and should expand to Devanagari terms.
 
 
 def normalize_iast_ascii(s: str) -> str:
@@ -195,9 +276,14 @@ def query_terms(query: str, deep: bool = False) -> List[str]:
     terms: List[str] = []
     # Devanagari words in the query are used directly
     terms.extend(_DEV_WORD.findall(query))
-    # Latin words: curated gazetteer first, then corpus lexicon
+    # Latin words: theme map first (beats _SKIP — "battle" etc. are themes),
+    # then proper-noun gazetteer, then corpus lexicon
     for w in _LAT_WORD.findall(query):
         norm = _normalize_latin(w)
+        theme = THEME_GAZETTEER.get(norm, [])
+        if theme:
+            terms.extend(theme)
+            continue
         if norm in _SKIP:
             continue
         gaz = GAZETTEER.get(norm, [])
@@ -255,7 +341,11 @@ def concordance(query: str, docs: list, max_verses: int = 60):
 def devanagari_lexical_hits(query: str, docs: list, top_k: int = 5) -> Tuple[list, List[str]]:
     """Substring-scan `docs` for Devanagari terms implied by `query`.
 
-    Returns (matched_docs_sorted_by_count, terms_used).
+    Scoring: distinct query terms matched (primary key) + total hit count
+    (tiebreaker).  This prevents a high-frequency generic term (e.g. सत्त्र)
+    from outranking a rare co-occurrence (e.g. सरस्वत + विनश in PB 25.10).
+
+    Returns (matched_docs_sorted_by_score, terms_used).
     """
     terms = query_terms(query)
     if not terms or not docs:
@@ -264,15 +354,21 @@ def devanagari_lexical_hits(query: str, docs: list, top_k: int = 5) -> Tuple[lis
     scored = []
     for doc in docs:
         content = getattr(doc, "page_content", "")
-        count = sum(content.count(t) for t in terms)
-        if count > 0:
-            scored.append((count, doc))
+        distinct = sum(1 for t in terms if t in content)
+        if distinct == 0:
+            continue
+        total = sum(content.count(t) for t in terms)
+        # distinct * 1000 ensures a 2-term match always beats a 1-term match
+        # regardless of how many times the single term repeats
+        score = distinct * 1000 + total
+        scored.append((score, doc))
     scored.sort(key=lambda x: x[0], reverse=True)
     hits = [doc for _, doc in scored[:top_k]]
     if hits:
+        top_distinct = scored[0][0] // 1000
         logger.info(
             f"🪷 Devanagari lexical: terms={terms} -> {len(scored)} docs matched, "
-            f"top count={scored[0][0]}")
+            f"top distinct_terms={top_distinct} score={scored[0][0]}")
     else:
         logger.info(f"🪷 Devanagari lexical: terms={terms} -> no substring matches")
     return hits, terms

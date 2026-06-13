@@ -1,6 +1,6 @@
 # Vedic Sanskrit RAG — Project Status
 
-> Living document. Last updated: 2026-06-10 (session with Claude).
+> Living document. Last updated: 2026-06-13 (session with Claude).
 
 ## Mission
 
@@ -28,9 +28,11 @@ Vedic layers. Long-term: LLM translation grounded in Vedic grammar texts
 | Source | Status | Notes |
 |---|---|---|
 | RV Mandalas 1–10 | ✅ indexed (clean) | all from .itx, Devanagari, verse-per-line, layer-tagged; "Who is Sudas?" verified end-to-end |
+| Pancavimsa Brahmana | ✅ indexed | `ingest_pancavimsa_brahmana.py`; GRETIL IAST→Devanagari, ॥ PB B.C.P ॥ markers, layer 4; BM25 pickle patched; PB 25.10.16 verified as #1 for vinashana query |
+| Shatapatha Brahmana | ✅ script ready | `ingest_shatapatha_brahmana.py`; 14 GRETIL books, parser validated (SB 1.4.1 Videgha Mathava); run `python ingest_shatapatha_brahmana.py` on Mac |
+| Aitareya Brahmana | ✅ script ready | `ingest_aitareya_brahmana.py`; TITUS Frankfurt, 285 pages (ab001–ab285), TITUS→IAST→Devanagari; run script to upload |
 | Atharvaveda (Shaunaka) | 📋 planned | local copy is IAST (`library/vedic_texts/AV_sanskrit/`); prefer Devanagari source — sanskritdocuments.org has AV .itx |
 | Yajurveda (Vajasaneyi) | 📋 planned | no Sanskrit text locally (only Griffith/Sharma English); fetch from sanskritdocuments.org |
-| Shatapatha Brahmana | 📋 planned | local file is unusable OCR; need clean source (GRETIL) |
 
 ## Evidence sources — kings, clans, lineages, material culture
 
@@ -107,37 +109,134 @@ Fixed, in order discovered:
    Remaining structural fixes: Anukramani metadata (rishi/patron per hymn,
    comes with VedaWeb ingest) and the entity index.
 
+## Session log — 2026-06-12 (PB ingest + retrieval fixes)
+
+### Retrieval improvements (warfare query)
+- **THEME_GAZETTEER** added to `devanagari_lexical.py`: English research themes
+  (warfare, weapons, forts, metals, chariots, sacrifice, migration, lineage, etc.)
+  map to corpus-verified Devanagari terms. Validation: "warfare" → RV 6.75
+  (वज्र×291, वर्म×27, इषु+धन्व hits), RV 10.103 across early/late layers.
+- **SYNTHESIS_DOC_BUDGET = 12** in `agentic_rag.py` (was hardcoded 5).
+- **Diachronic synthesis prompt** added: layer-structured answer when comparison
+  query detected; states corpus-coverage limits honestly.
+- **_SKIP set** pruned: "king", "river", "battle", "lineage" etc. removed so
+  they expand via THEME_GAZETTEER instead of being silently dropped.
+
+### Pancavimsa Brahmana ingest script
+- `ingest_pancavimsa_brahmana.py` written; fetches GRETIL single-file HTML
+  (Kümmel/Griffiths/Kobayashi, all 25 books), parses `(PB B.C.P) text`
+  paragraphs, converts IAST→Devanagari, chunks and uploads to Qdrant as
+  layer-4 metadata, re-syncs BM25 pickle.
+- Dry-run parser validated (PB 25.10 Sarasvati vinashana passage confirmed
+  present and parseable).
+- GAZETTEER extended: vinashana, sattra, drishadvati, videha, mathava,
+  harishchandra, shunahshepa.
+- THEME_GAZETTEER extended: sattra, sacrifice, ritual, migration, lineage, king.
+
+**To complete PB ingest:** run `python ingest_pancavimsa_brahmana.py` on Mac,
+then `python build_corpus_lexicon.py` to rebuild the token lexicon.
+
+## Session log — 2026-06-13 (SB ingest + AB source gap + retrieval fixes)
+
+### Shatapatha Brahmana ingest script
+- `ingest_shatapatha_brahmana.py` written; fetches 14 GRETIL books
+  (`sb_01_u.htm`–`sb_14_u.htm`), parses `B.A.Br.[N]` paragraph IDs
+  (multi-line text, ID on its own line), converts IAST→Devanagari,
+  saves per-book `.md` files to `local_store/sb/`, chunks and uploads
+  to Qdrant as layer-4 metadata, re-syncs BM25 pickle (handles both
+  RV-style single-md and SB-style multi-md folders).
+- Verse IDs emit as `॥ SB B.A.Br.P ॥` (4-level citation) to match
+  standard SB referencing (Eggeling/Weber).
+- Parser validated: SB 1.4.1 (Videgha Mathava eastward migration —
+  fire moves east of Sadanira) confirmed parseable from GRETIL HTML.
+- Usage: `python ingest_shatapatha_brahmana.py --dry-run` to validate
+  first; then `python ingest_shatapatha_brahmana.py` for all 14 books
+  (~15–20 min on Mac).
+
+### Aitareya Brahmana — source gap documented
+- Searched GRETIL, TITUS, sanskritdocuments.org, vedicheritage.gov.in.
+- GRETIL UTF-8 index has only the Aitareya *Upanishad*, not the Brahmana.
+- TITUS has AB but access is restricted.
+- No clean Sanskrit/IAST digital text found publicly. AB deferred;
+  status marked ❌ in corpus table.
+
+### PB retrieval fix (carried forward from 2026-06-12 session)
+- Distinct-term-first scoring (`distinct × 1000 + total`) in
+  `devanagari_lexical_hits()` ensures PB 25.10.16 (विनश + सरस्वत
+  co-occurrence, score=4005) outranks high-frequency सत्त्र-only chunks.
+- All 3562 PB paragraph markers patched to `॥ PB B.C.P ॥` format
+  (both `local_store/pb/pb.md` and the BM25 pickle in-place).
+- Duplicate keys removed from GAZETTEER (videha, harishchandra,
+  shunahshepa were defined twice; Python silently kept the last).
+- GAZETTEER extended with SB key names: videgha, sadanira, janaka,
+  yajnavalkya, pravahana, jaivali, kosala, kuru, pancala, gandhara,
+  magadha, janamejaya, ambarisha.
+
+**To complete SB ingest:** run `python ingest_shatapatha_brahmana.py`
+on Mac, then `python build_corpus_lexicon.py` to rebuild token lexicon.
+After that, re-initialize the Streamlit app to reload BM25.
+
+## Session log — 2026-06-12 (Streamlit Cloud deploy)
+
+- **Crash fixed:** floating `langgraph` resolved to 1.0.10, incompatible with
+  pinned `langchain-core==1.2.3` (`Reviver(allowed_objects=)` TypeError) →
+  pinned langgraph 1.0.5 / checkpoint 3.0.1 / prebuilt 1.0.5.
+- **Cloud parity:** `.gitignore` excluded `local_store/` + `vector_store/` —
+  the deploy had no BM25 pickle/lexicon/corpus → un-ignored corpus markdown
+  and the two pickles; committed.
+- **SECURITY INCIDENT:** `.streamlit/secrets.toml.bak` (created during the
+  secrets sync — committable because the ignore pattern didn't cover `.bak`)
+  was pushed to the public repo; Google scanner revoked the Gemini key
+  (`403: API key reported as leaked`). Qdrant key exposed in the same file.
+  Remediation: both keys rotated, file untracked & deleted, gitignore
+  hardened (`secrets.toml*`, `*.toml.bak`). Older history also contains a
+  committed secrets.toml ("Add secrets.toml", later deleted) — history purge
+  via `git filter-repo` recommended; rotation neutralizes old keys regardless.
+
 ## Key scripts
 
 | Script | Purpose |
 |---|---|
 | `rebuild_mandala_clean.py [all\|N…]` | download .itx → clean Devanagari → chunk → delete+upload to cloud → re-sync BM25 pickle |
+| `ingest_pancavimsa_brahmana.py` | fetch GRETIL PB HTML → IAST→Devanagari → chunk → delete+upload (layer 4) → re-sync BM25 pickle |
+| `ingest_shatapatha_brahmana.py [N…] [--dry-run]` | fetch GRETIL SB 14 books → IAST→Devanagari → per-book .md → delete+upload (layer 4) → re-sync BM25 pickle |
+| `ingest_aitareya_brahmana.py [N…] [--dry-run]` | fetch TITUS 285 pages (ab001–ab285) → TITUS→IAST→Devanagari → single .md → delete+upload (layer 4) → re-sync BM25 pickle |
 | `rebuild_bm25_pickle.py` | regenerate keyword-index pickle from `local_store` |
+| `build_corpus_lexicon.py` | scan all local_store markdown → build corpus_lexicon.pkl (Devanagari→ASCII map) |
 | `test_sudas_retrieval.py` | isolation test: retriever finds Sudas/RV 7.18? |
 | `extract_and_upload_r07.py` | (superseded by rebuild_mandala_clean.py) |
 
 ## Backlog (rough priority)
 
-1. **Corpus lexicon** (built 2026-06-10, verify in app) — `build_corpus_lexicon.py`
-   maps every Devanagari corpus token to normalized ASCII so arbitrary Latin
-   spellings (Ikshvaku/Iksvaku) expand to actual surface forms, including
-   sandhi-fused ones (यस्येक्ष्वाकु…). Re-run after every corpus change.
-   Note: `local_store/` layout is now flat (`local_store/rXX/`); old
-   PDF-extract copies moved to `legacy_local_store_pdf_extracts/`.
-2. **AV in Devanagari** — check `https://sanskritdocuments.org/doc_veda/` for
-   AV .itx; extend rebuild script (layer 3 metadata, AVŚ book.hymn.verse IDs).
-3. **YV Vajasaneyi Samhita** — same source/pipeline (layer 3).
-4. **Clean Shatapatha Brahmana** — GRETIL transliteration → Devanagari
-   (layer 4); replaces garbage OCR file.
-5. **Diachronic query tool** — agent tool that detects evolution-over-time
-   questions and runs per-layer filtered retrievals for comparison
-   (metadata.chronology_layer index already in place).
-6. **Gazetteer expansion** — auto-generate Devanagari surface forms for the
-   ~44k proper-noun references in the existing variant JSONs
-   (`proper_noun_variants.json` etc.); current hand-built list is ~40 names.
-7. **Padapatha / sandhi phase** — VedaWeb (github.com/VedaWebProject) has the
-   full RV with padapatha + Zurich morphological annotation; foundation for
-   the grammar-grounded translation goal.
+1. **Run SB ingest** — `python ingest_shatapatha_brahmana.py` (on Mac, ~15–20 min).
+   Key passages: SB 1.4.1 (Videgha Mathava eastward migration), SB 3.1.2
+   (Pravahana Jaivali eastern doctrine), SB 13.5 (Ashvamedha geography).
+   Run `--dry-run` first to verify SB 1.4.1 Devanagari conversion.
+2. **Corpus lexicon rebuild** — `python build_corpus_lexicon.py` after every
+   corpus change. Maps every Devanagari token to normalized ASCII for
+   sandhi-fused form rescue.
+3. **Diachronic Sarasvati verification** — after SB indexed, test
+   "How does the Sarasvati appear in earlier vs later Vedic texts?" — should
+   cite RV river hymns (layer 1/2) + PB 25.10 vinashana (layer 4) + SB 1.4.1
+   Videgha Mathava (layer 4).
+4. **Re-run PB ingest** (optional) — `python ingest_pancavimsa_brahmana.py`
+   to update Qdrant with the ॥ PB B.C.P ॥ format (BM25 pickle already
+   patched; Qdrant still has old ॥ B.C.P ॥ markers in payloads).
+5. **AV Shaunaka** — local IAST copy in `library/vedic_texts/AV_sanskrit/`;
+   also on sanskritdocuments.org as .itx. Layer 3 metadata, AVŚ
+   book.hymn.verse IDs. Next corpus addition after SB.
+6. **YV Vajasaneyi Samhita** — GRETIL or sanskritdocuments.org (layer 3).
+   Pairs naturally with SB (same eastern/Videha tradition).
+7. **Aitareya Brahmana** — ❌ no clean digital source found; deferred.
+   Revisit if TITUS access opens or a new GRETIL upload appears.
+8. **Diachronic query tool** — ✅ first version shipped (2026-06-12).
+   Remaining: true per-layer filtered Qdrant searches once AV/YV (layers 3-4)
+   are indexed.
+9. **Gazetteer expansion** — auto-generate Devanagari surface forms from
+   `proper_noun_variants.json`; current hand-built list ~55 names.
+10. **Padapatha / sandhi phase** — VedaWeb (github.com/VedaWebProject) has
+    full RV padapatha + Zurich morphological annotation; foundation for the
+    grammar-grounded translation goal.
 
 ## Lessons learned
 

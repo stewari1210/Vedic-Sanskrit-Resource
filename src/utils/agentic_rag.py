@@ -34,6 +34,11 @@ import re
 
 llm = Settings.get_llm()
 
+# How many retrieved docs reach the synthesis LLM. Was 5 — starved the
+# synthesizer (Gemini Flash has ~1M-token context; 12 docs ≈ a few thousand
+# tokens). Raise further once AV/YV/Brahmana layers are indexed.
+SYNTHESIS_DOC_BUDGET = 12
+
 # Global shared vector store to avoid Qdrant lock issues
 _SHARED_VECTOR_STORE = None
 _SHARED_DOCS = None
@@ -590,12 +595,34 @@ Provide a clear, educational answer with proper citations:"""
         source_texts = "the Vedic corpus"
         if corpus_info:
             # Use enhanced citations instead of raw page_content
-            corpus_context = enhance_corpus_results_with_citations(corpus_info[:5])
+            corpus_context = enhance_corpus_results_with_citations(corpus_info[:SYNTHESIS_DOC_BUDGET])
             # Extract actual source texts from corpus documents
-            source_texts = extract_source_texts(corpus_info[:5])
+            source_texts = extract_source_texts(corpus_info[:SYNTHESIS_DOC_BUDGET])
 
         # Check if we actually have meaningful corpus content
         has_corpus = corpus_context and len(corpus_context.strip()) > 50 and "No relevant passages" not in corpus_context
+
+        # Detect comparison-over-time questions (must match retriever's
+        # diachronic mode, which layer-balances and [SOURCE:]-tags passages)
+        is_diachronic = bool(re.search(
+            r"(earlier|early|later|late|older|newer)[^.?]*\b(vedic|veda|period|"
+            r"layer|mandala|time)|evolv|over time|diachronic|through time|chronolog",
+            question, re.I))
+
+        diachronic_block = """
+7. This is a COMPARATIVE / CHRONOLOGICAL question. Passages carry [SOURCE: ...
+   chronology: early_rigveda / late_rigveda] tags. STRUCTURE YOUR ANSWER BY
+   LAYER: first what EARLY-layer passages (family books, Mandalas 2-7, oldest)
+   show, then what LATE-layer passages (Mandalas 1, 8-10) show, then an explicit
+   comparison of concrete details (weapons, chariots, horses, forts/pur,
+   metals, tactics, social organization).
+8. Do NOT retreat to a generic disclaimer if layer-specific evidence exists in
+   the passages — extract and contrast whatever they DO show, however partial,
+   and clearly mark inference vs attestation.
+9. State the corpus coverage honestly: currently only the Rigveda (early and
+   late layers) is indexed. Atharvaveda, Yajurveda and Brahmana prose (the
+   true 'latest Vedic period') are not yet indexed, so frame conclusions as
+   'early vs late Rigveda', not the full Vedic span.""" if is_diachronic else ""
 
         if has_corpus:
             synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts, history, and culture.
@@ -611,7 +638,7 @@ INSTRUCTIONS:
 3. Cite specific details and verse references from the passages (names, events, descriptions)
 4. Be informative and educational in your response
 5. Use Sanskrit terms with transliteration when appropriate
-6. If the passages mention the topic, explain what they say about it and reference which verse(s)
+6. If the passages mention the topic, explain what they say about it and reference which verse(s){diachronic_block}
 
 Provide a detailed answer based on the corpus passages, using proper verse references:"""
         else:
@@ -651,7 +678,7 @@ Provide a helpful response:"""
 
         answer = {
             "answer": answer_content,
-            "citations": create_enhanced_citations_list(corpus_info[:5]) if has_corpus else []
+            "citations": create_enhanced_citations_list(corpus_info[:SYNTHESIS_DOC_BUDGET]) if has_corpus else []
         }
 
         logger.info("[AGENT] Factual synthesis complete")

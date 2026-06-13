@@ -1,0 +1,18 @@
+{
+  "title": "Pancavimsa Brahmana",
+  "author": [
+    "Vedic Tradition",
+    "Input by Martin Kümmel, Arlo Griffiths, Masato Kobayashi (GRETIL 2005)"
+  ],
+  "subject": "Pancavimsa (= Tandya Maha) Brahmana of the Samaveda. 25 books. Key passages: sattra rituals, Sarasvati vinashana (PB 25.10), soma-related liturgy.",
+  "summary": "Pancavimsa Brahmana in Devanagari, converted from GRETIL IAST. Brahmana prose, layer 4. Contains the Sarasvati vinashana sattra passage (PB 25.10) — evidence for the drying of the Sarasvati river.",
+  "creator": "GRETIL (Göttingen Register of Electronic Texts in Indian Languages)",
+  "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/2_bra/pncvbr1u.htm",
+  "source_format": "iast_html",
+  "filename": "pb",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "pancavimsa_brahmana",
+  "chronology_layer": 4,
+  "chronology_name": "brahmana_prose"
+}
