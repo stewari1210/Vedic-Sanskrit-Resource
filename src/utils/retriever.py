@@ -1103,6 +1103,30 @@ class HybridRetriever(BaseRetriever):
         if mw_context:
             merged_docs = self._attach_mw_context_to_docs(merged_docs, mw_context)
 
+        # PER-SOURCE CAPPING: prevent any single text (e.g., SB with ~5000 chunks)
+        # from crowding out smaller corpora (AB ~800 chunks, PB ~300 chunks).
+        # Applied after all re-ranking so score order is preserved; just caps the
+        # number of slots any one filename can fill in the synthesis context.
+        _per_source_cap = max(4, self.k // 3)  # e.g. k=15 → 5 slots per source
+        _source_counts: dict = {}
+        _capped: list = []
+        _exempt_filenames = {"concordance"}  # synthetic docs that bypass the cap
+        for _d in merged_docs:
+            _fn = _d.metadata.get("filename", "unknown")
+            if _fn in _exempt_filenames:
+                _capped.append(_d)
+                continue
+            _cnt = _source_counts.get(_fn, 0)
+            if _cnt < _per_source_cap:
+                _capped.append(_d)
+                _source_counts[_fn] = _cnt + 1
+            else:
+                logger.info(f"⚖️  Per-source cap ({_per_source_cap}): skipping extra '{_fn}' chunk")
+        if len(_capped) < len(merged_docs):
+            logger.info(f"⚖️  Per-source capping: {len(merged_docs)} → {len(_capped)} docs "
+                        f"(caps: {_source_counts})")
+        merged_docs = _capped
+
         # Return top k primary results + limited expansion docs
         # For Groq: Keep total manageable to stay under 6K token limit
         max_expansion = EXPANSION_DOCS * 2 if EXPANSION_DOCS > 0 else 0

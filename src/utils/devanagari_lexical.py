@@ -78,7 +78,6 @@ GAZETTEER = {
     "vritra":       ["वृत्र"],
     "vrtra":        ["वृत्र"],
     # --- Brahmana prose proper nouns (layer 4) ---
-    "sarasvati":    ["सरस्वती", "सरस्वत"],   # also in rivers above — dedup safe
     "vinashana":    ["विनशन", "विनश"],
     "vinasana":     ["विनशन", "विनश"],
     "drishadvati":  ["दृषद्वती", "दृषद्वत्"],
@@ -110,9 +109,20 @@ GAZETTEER = {
     "panchala":     ["पञ्चाल"],
     "gandhara":     ["गन्धार"],
     "magadha":      ["मगध"],
-    # --- AB (Aitareya Brahmana) key proper nouns (ready for when AB is added) ---
+    # --- AB (Aitareya Brahmana) key proper nouns ---
     "janamejaya":   ["जनमेजय"],
     "ambarisha":    ["अम्बरीष"],
+    # Harishchandra story (AB 7.13–34)
+    "vaidhasa":     ["वैधस"],               # patronymic: son/descendant of Vidhasa (AB 7.13.1)
+    "ikshvaku":     ["ऐक्ष्वाक", "इक्ष्वाकु"],  # solar dynasty lineage tag in AB
+    "iksvaku":      ["ऐक्ष्वाक", "इक्ष्वाकु"],
+    "rohita":       ["रोहित"],              # Harishchandra's son (AB 7.14–7.17)
+    "ajigarta":     ["अजीगर्त"],            # Shunahshepa's father (AB 7.15)
+    "suyavasa":     ["सौयवसि"],             # Ajigarta's patronymic in AB
+    # AB 8.21 king register
+    "pariksit":     ["पारिक्षित", "परीक्षित"],
+    "parikshit":    ["पारिक्षित", "परीक्षित"],
+    "dausanti":     ["दौःषन्ति"],           # Bharata Dauḥṣanti (AB 8.23)
 }
 
 _DEV_WORD = re.compile(r"[ऀ-ॿ]{2,}")
