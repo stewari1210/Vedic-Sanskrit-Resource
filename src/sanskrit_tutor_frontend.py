@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 import tempfile
 import base64
+import subprocess
 from pathlib import Path
 import time
 import glob
@@ -579,6 +580,63 @@ Have natural conversation about Sanskrit:
             traceback.print_exc()
             return f"Sorry, I encountered an error: {e}"
 
+    def _make_export_data(self, question: str, answer: str):
+        """Build (md_bytes, docx_bytes_or_None) for a single Q+A pair."""
+        date_str = datetime.now().strftime('%Y-%m-%d')
+        md = (
+            f"# Vedic Sanskrit Resource — Response\n\n"
+            f"**Question:** {question}\n\n"
+            f"---\n\n"
+            f"{answer}\n\n"
+            f"---\n*Exported from Vedic Sanskrit Resource · {date_str}*\n"
+        )
+        md_bytes = md.encode('utf-8')
+
+        docx_bytes = None
+        try:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                md_path = os.path.join(tmpdir, 'export.md')
+                docx_path = os.path.join(tmpdir, 'export.docx')
+                with open(md_path, 'w', encoding='utf-8') as f:
+                    f.write(md)
+                result = subprocess.run(
+                    ['pandoc', '-f', 'markdown', '-t', 'docx',
+                     '-o', docx_path, md_path],
+                    capture_output=True, timeout=30
+                )
+                if result.returncode == 0 and os.path.exists(docx_path):
+                    with open(docx_path, 'rb') as f:
+                        docx_bytes = f.read()
+        except Exception:
+            pass
+
+        return md_bytes, docx_bytes
+
+    def _render_answer_export(self, question: str, answer: str, key_suffix: str):
+        """Render per-answer MD (and optional DOCX) download buttons."""
+        md_bytes, docx_bytes = self._make_export_data(question, answer)
+        ts = datetime.now().strftime('%Y%m%d_%H%M%S')
+        btn_cols = st.columns([6, 1, 1] if docx_bytes else [6, 1])
+        with btn_cols[1]:
+            st.download_button(
+                label="⬇️ .md",
+                data=md_bytes,
+                file_name=f"vedic_{ts}.md",
+                mime="text/markdown",
+                key=f"export_md_{key_suffix}",
+                use_container_width=True,
+            )
+        if docx_bytes:
+            with btn_cols[2]:
+                st.download_button(
+                    label="⬇️ .docx",
+                    data=docx_bytes,
+                    file_name=f"vedic_{ts}.docx",
+                    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    key=f"export_docx_{key_suffix}",
+                    use_container_width=True,
+                )
+
     def render_devanagari(self, text: str, large: bool = False):
         """Render text with Devanagari font."""
         css_class = "devanagari-large" if large else "devanagari"
@@ -640,6 +698,16 @@ Have natural conversation about Sanskrit:
             if st.session_state.initialized:
                 st.success(f"✓ Using: {st.session_state.model_name}")
 
+            # Language preference (compact, always visible)
+            st.markdown("---")
+            input_language = st.radio(
+                "🌐 Query language",
+                ["English", "Devanagari"],
+                horizontal=True,
+                key="input_lang_radio"
+            )
+            st.session_state.input_language = input_language
+
             # Qdrant lock cleanup utility
             if not st.session_state.initialized:
                 st.markdown("---")
@@ -664,10 +732,8 @@ Have natural conversation about Sanskrit:
                     "📚 Vocabulary Builder",
                     "🔤 Verse Translation",
                     "🗣️ Pronunciation",
-                    "🎯 Quiz Mode",
-                    "💬 Chat Mode"
                 ],
-                index=6,  # default to Chat Mode on first load
+                index=0,  # default to Home
                 key="module_selector"
             )
 
@@ -715,49 +781,142 @@ Have natural conversation about Sanskrit:
 
             st.markdown("""
             <div class="lesson-container">
-            <h3>Your Vedic Sanskrit Resource 🤖</h3>
-            <p>Access and understand Vedic texts with AI-powered agentic reasoning.</p>
+            <h3>Why this project exists</h3>
+            <p>
+            The primary Vedic texts — Rigveda, Shatapatha Brāhmaṇa, Aitareya Brāhmaṇa,
+            Pañcaviṃśa Brāhmaṇa, Vajasaneyi Saṃhitā, and Taittirīya Saṃhitā —
+            contain thousands of years of cosmological, historical, and ritual knowledge, but they are locked
+            inside dense Sanskrit scholarship that is hard to query, cross-reference, or reason over without
+            years of specialist training.
+            </p>
+            <p>
+            Existing English translations reflect the interpretive biases of nineteenth- and twentieth-century
+            scholars. This system <b>neutralises translator bias</b> by working directly from the original
+            Sanskrit and using an LLM to generate translations grounded in Vedic grammar texts
+            (Macdonell, Monier-Williams) rather than inheriting prior translators' readings.
+            It makes the corpus queryable in plain English or Devanagari, with answers cited to source passages.
+            </p>
 
-            <h4>🧠 Agentic RAG System:</h4>
+            <h4>🧠 How it works</h4>
             <ul>
-                <li>� <b>Multi-Step Reasoning</b> - Agent thinks through problems step-by-step</li>
-                <li>📖 <b>Dictionary Lookup</b> - 19,000+ Sanskrit-English word mappings</li>
-                <li>� <b>Grammar Analysis</b> - Retrieves declension and conjugation rules</li>
-                <li>� <b>Corpus Examples</b> - Finds usage patterns from Rigveda & Yajurveda</li>
-                <li>🎯 <b>Synthesis</b> - Combines all sources for accurate constructions</li>
+                <li>📜 <b>Multi-corpus RAG</b> — searches across RV (all 10 maṇḍalas), SB, AB, PB, VS, and TS simultaneously</li>
+                <li>🕸️ <b>Self-building Knowledge Graph</b> — every query extracts kinship, lineage, geographic, and
+                    social-role facts into a growing graph; later queries benefit from prior ones</li>
+                <li>📖 <b>Monier-Williams integration</b> — 176 000+ Sanskrit concepts looked up in real time</li>
+                <li>🔤 <b>Devanagari-aware retrieval</b> — queries transliterate automatically to find Sanskrit terms
+                    even when you type in English</li>
+                <li>🎯 <b>Agentic multi-step reasoning</b> — the system plans, retrieves, synthesises, and cites</li>
             </ul>
 
-            <h4>Perfect For:</h4>
-            <ul>
-                <li>✨ <b>"How do I say X in Sanskrit?"</b> - Construction queries</li>
-                <li>📖 <b>Vocabulary & Grammar</b> - Learn word-by-word</li>
-                <li>� <b>Verse Translation</b> - Understand Vedic texts</li>
-                <li>💬 <b>Free Q&A</b> - Ask anything about Sanskrit!</li>
-            </ul>
             </div>
             """, unsafe_allow_html=True)
 
-            st.markdown("### 🎓 Designed For:")
+            st.markdown("### 🎓 Designed for")
             st.info("""
-            - 📖 Students who want to construct Sanskrit sentences
-            - 🔤 Learners needing word-level translation and grammar
-            - 📜 Anyone reading Rigveda and Yajurveda texts
-            - 🧠 Those who want to see the AI's thinking process
+            - 📜 Scholars and students of Vedic literature
+            - 🔤 Anyone curious about Vedic history, genealogy, and geography
+            - 🧠 Researchers wanting cited, corpus-grounded answers rather than Wikipedia summaries
             """)
 
         with col2:
-            st.markdown("### 🕉️ Sample Verse")
+            st.markdown("### 🕉️ Sample verse")
             self.render_devanagari("अग्निमीळे पुरोहितं यज्ञस्य देवमृत्विजम्", large=True)
             st.markdown("*agnimīḷe purohitaṃ yajñasya devamṛtvijam*")
-            st.caption("RV 1.1.1 - First verse of Rigveda")
+            st.caption("RV 1.1.1 — First verse of the Rigveda")
 
             st.markdown("---")
-            st.markdown("### 🚀 Get Started")
+            st.markdown("### 📚 Corpus")
             st.markdown("""
-            1. Click **Initialize Resource** in sidebar
-            2. Choose a learning module
-            3. Start learning!
+            | Text | Coverage |
+            |------|----------|
+            | Rigveda (RV) | All 10 maṇḍalas |
+            | Shatapatha Brāhmaṇa (SB) | Books 1–14 |
+            | Aitareya Brāhmaṇa (AB) | Complete |
+            | Pañcaviṃśa Brāhmaṇa (PB) | Complete |
+            | Vajasaneyi Saṃhitā (VS) | Complete |
+            | Taittirīya Saṃhitā (TS) | All 7 Kāṇḍas |
             """)
+
+            st.markdown("---")
+            st.markdown("### 🚀 Get started")
+            st.markdown(
+                "Gemini loads automatically — just type a question below. "
+                "Use the sidebar only if you'd like to switch to a different LLM "
+                "(Ollama, Groq) or change the query language."
+            )
+
+        # ── Full-width chat section ────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("### 💬 Research the corpus")
+
+        # Example question buttons — clicking one fires it immediately
+        if st.session_state.initialized:
+            st.markdown("**Try an example:**")
+            example_cols = st.columns(4)
+            example_questions = [
+                "Who is the father of Harishchandra?",
+                "Where does the Sarasvati river disappear?",
+                "What dynasty does Trasadasyu belong to?",
+                "What metals are mentioned in the Taittiriya Samhita?",
+            ]
+            for col, q in zip(example_cols, example_questions):
+                with col:
+                    if st.button(q, key=f"ex_{hash(q)}", use_container_width=True):
+                        self.ask_tutor(q, mode="conversation")
+                        st.rerun()
+
+        # Conversation history
+        if st.session_state.chat_history:
+            st.markdown("#### 📜 Conversation")
+            history_slice = st.session_state.chat_history[-10:]
+            for i, msg in enumerate(history_slice):
+                if msg["role"] == "user":
+                    st.markdown(
+                        f'<div class="student-message">👤 <b>You:</b> {msg["content"]}</div>',
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.markdown(
+                        f'<div class="tutor-message">🧑‍🏫 <b>Resource:</b> {msg["content"]}</div>',
+                        unsafe_allow_html=True
+                    )
+                    # Per-answer export buttons
+                    preceding_q = next(
+                        (history_slice[j]["content"] for j in range(i - 1, -1, -1)
+                         if history_slice[j]["role"] == "user"),
+                        ""
+                    )
+                    self._render_answer_export(preceding_q, msg["content"], f"home_{i}")
+
+        # Input row
+        placeholder_text = (
+            "Type your question in English…"
+            if st.session_state.input_language == "English"
+            else "देवनागरी में प्रश्न लिखें…"
+        )
+        user_input = st.text_area(
+            "Your question:",
+            placeholder=placeholder_text,
+            key="chat_input",
+            height=90
+        )
+
+        col_send, col_clear = st.columns([2, 1])
+
+        with col_send:
+            if st.button("📨 Send", key="send_chat", use_container_width=True):
+                if user_input and st.session_state.initialized:
+                    self.ask_tutor(user_input, mode="conversation")
+                    st.rerun()
+                elif not st.session_state.initialized:
+                    st.warning("⚠️ Initialize the resource first (sidebar).")
+                else:
+                    st.warning("⚠️ Please type a question first.")
+
+        with col_clear:
+            if st.button("🗑️ Clear", key="clear_chat", use_container_width=True):
+                st.session_state.chat_history = []
+                st.rerun()
 
     def render_grammar_module(self):
         """Render grammar learning module."""
@@ -961,69 +1120,43 @@ Have natural conversation about Sanskrit:
                         st.rerun()
 
     def render_chat_module(self):
-        """Render free conversation module with language selector & proper noun lookup."""
+        """Render free conversation / Q&A module."""
         st.title("💬 Chat Mode (बातचीत)")
+        st.caption(
+            "Ask anything about Vedic texts. "
+            "Answers are grounded in RV, SB, AB, PB, VS, and TS with citations. "
+            "Query language can be changed in the sidebar."
+        )
 
-        # ✅ FEATURE 1: Language Input Selector
-        st.markdown("### 🌐 Input Language")
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            input_language = st.radio(
-                "Choose your input language:",
-                ["English", "Devanagari"],
-                horizontal=True,
-                key="input_lang_radio"
-            )
-            st.session_state.input_language = input_language
-        
-        with col2:
-            st.info(f"📝 Currently typing in: **{input_language}**")
-        
-        # ✅ FEATURE 2: Proper Noun Memory Lookup (Optional, before querying)
-        with st.expander("👤 Proper Noun Memory (Quick lookup)"):
-            st.markdown("""
-            **Look up Vedic proper nouns quickly**
-            
-            Search for information about:
-            - **People**: Sudas, Divodasa, Indra, Agni, Varuna
-            - **Places**: Kurukshetra, Saraswati, Sutudri
-            - **Tribes**: Yadavas, Pancalas, Anus
-            
-            *Tip: Type "Translate [word]" in chat for Sanskrit translations*
-            """)
-            
-            proper_noun = st.text_input(
-                "Search for a proper noun:",
-                placeholder="e.g., 'Sudas', 'Divodasa', 'Rigveda'",
-                key="proper_noun_input"
-            )
-            
-            if proper_noun:
-                translator = get_translator()
-                info = translator.get_proper_noun_info(proper_noun)
-                
-                if info:
-                    st.success(f"✅ Found: **{proper_noun}**")
-                    st.json(info)
+        # ── Conversation history ──────────────────────────────────────────────
+        if st.session_state.chat_history:
+            st.markdown("#### 📜 Conversation")
+            chat_slice = st.session_state.chat_history[-10:]
+            for i, msg in enumerate(chat_slice):
+                if msg["role"] == "user":
+                    st.markdown(
+                        f'<div class="student-message">👤 <b>You:</b> {msg["content"]}</div>',
+                        unsafe_allow_html=True
+                    )
                 else:
-                    st.info(f"ℹ️ No detailed info for '{proper_noun}'. This may appear in your query results.")
+                    st.markdown(
+                        f'<div class="tutor-message">🧑‍🏫 <b>Resource:</b> {msg["content"]}</div>',
+                        unsafe_allow_html=True
+                    )
+                    preceding_q = next(
+                        (chat_slice[j]["content"] for j in range(i - 1, -1, -1)
+                         if chat_slice[j]["role"] == "user"),
+                        ""
+                    )
+                    self._render_answer_export(preceding_q, msg["content"], f"chat_{i}")
 
-        st.markdown("---")
-        st.markdown("### 💬 Ask Your Question")
-        st.markdown(f"**Input Language: {st.session_state.input_language}**")
+        # ── Input area ────────────────────────────────────────────────────────
+        placeholder_text = (
+            "Type in English…"
+            if st.session_state.input_language == "English"
+            else "देवनागरी में टाइप करें…"
+        )
 
-        # Display chat history
-        st.markdown("#### 📜 Conversation History:")
-        for msg in st.session_state.chat_history[-10:]:
-            if msg["role"] == "user":
-                st.markdown(f'<div class="student-message">👤 <b>You:</b> {msg["content"]}</div>', unsafe_allow_html=True)
-            else:
-                st.markdown(f'<div class="tutor-message">🧑‍🏫 <b>Resource:</b> {msg["content"]}</div>', unsafe_allow_html=True)
-
-        # Chat input with language-aware placeholder
-        placeholder_text = "Type in English..." if st.session_state.input_language == "English" else "देवनागरी में टाइप करें..."
-        
         user_input = st.text_area(
             "Your question:",
             placeholder=placeholder_text,
@@ -1031,47 +1164,35 @@ Have natural conversation about Sanskrit:
             height=100
         )
 
-        # ✅ FEATURE 2b: Proper Noun Detection in Query
-        if user_input:
-            translator = get_translator()
-            query_analysis = translator.translate_query(user_input)
-            
-            if query_analysis["proper_nouns_found"]:
-                st.info(f"🎯 **Proper nouns detected:** {', '.join([noun[0] for noun in query_analysis['proper_nouns_found']])}")
+        # ── Action buttons ────────────────────────────────────────────────────
+        col_send, col_clear = st.columns([2, 1])
 
-        col1, col2 = st.columns([3, 1])
-        
-        with col1:
-            if st.button("📨 Send", key="send_chat"):
+        with col_send:
+            if st.button("📨 Send", key="send_chat", use_container_width=True):
                 if user_input:
-                    # Get response from tutor
-                    response = self.ask_tutor(user_input, mode="conversation")
-
-                    # Chat history is already updated in ask_tutor()
-                    # Just rerun to display it in the history above
+                    self.ask_tutor(user_input, mode="conversation")
                     st.rerun()
                 else:
                     st.warning("⚠️ Please type a question first!")
-        
-        with col2:
-            if st.button("🗑️ Clear", key="clear_chat"):
+
+        with col_clear:
+            if st.button("🗑️ Clear", key="clear_chat", use_container_width=True):
                 st.session_state.chat_history = []
                 st.rerun()
+
+        # (per-answer export buttons are rendered inline above each assistant message)
 
     def run(self):
         """Main application loop."""
         self.render_sidebar()
 
-        if not st.session_state.initialized:
-            self.render_home()
-            st.warning("👆 Please initialize the resource using the sidebar to start learning!")
-            return
-
-        # Route to appropriate module
+        # Route to appropriate module (Home is always available, even pre-init)
         module = st.session_state.current_module
 
         if module == "🏠 Home":
             self.render_home()
+            if not st.session_state.initialized:
+                st.warning("👆 Initialize the resource in the sidebar to enable querying.")
         elif module == "📖 Grammar Basics":
             self.render_grammar_module()
         elif module == "📚 Vocabulary Builder":
@@ -1080,10 +1201,8 @@ Have natural conversation about Sanskrit:
             self.render_translation_module()
         elif module == "🗣️ Pronunciation":
             self.render_pronunciation_module()
-        elif module == "🎯 Quiz Mode":
-            self.render_quiz_module()
-        elif module == "💬 Chat Mode":
-            self.render_chat_module()
+        else:
+            self.render_home()
 
 
 def main():

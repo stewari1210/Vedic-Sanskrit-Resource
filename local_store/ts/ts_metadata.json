@@ -1,0 +1,19 @@
+{
+  "title": "Taittiriya Samhita",
+  "author": [
+    "Vedic Tradition (Taittiriya / Kṛṣṇa Yajurveda school)",
+    "Ed. Albrecht Weber, Leipzig 1871–72",
+    "TITUS encoding by Jost Gippert / Makoto Fushimi"
+  ],
+  "subject": "Taittiriya Samhita, Black Yajurveda (Kṛṣṇa YV). 7 Kāṇḍas. Key passages: TS 1.1 opening rites; TS 1.8 Aśvamedha; TS 2.5 Śatarudrīya; TS 4.5 Puruṣa-sūkta; TS 5 Soma ritual; TS 6–7 Pravargya and solemn rites.",
+  "summary": "Taittiriya Samhita in Devanagari, converted from TITUS transliteration (Weber 1871–72 ed.). Saṃhitā layer. Contains mantras for all major Vedic rites together with embedded Brāhmaṇa passages (unique to Kṛṣṇa YV).",
+  "creator": "TITUS Project, Frankfurt / Albrecht Weber",
+  "source_url": "https://titus.uni-frankfurt.de/texte/etcs/ind/aind/ved/yvs/ts/ts001.htm",
+  "source_format": "titus_html",
+  "filename": "ts",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "taittiriya_samhita",
+  "chronology_layer": 2,
+  "chronology_name": "samhita"
+}

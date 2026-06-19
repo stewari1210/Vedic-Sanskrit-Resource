@@ -1,6 +1,6 @@
 # Vedic Sanskrit RAG — Project Status
 
-> Living document. Last updated: 2026-06-13 (session with Claude).
+> Living document. Last updated: 2026-06-19 (session with Claude).
 
 ## Mission
 
@@ -27,12 +27,13 @@ Vedic layers. Long-term: LLM translation grounded in Vedic grammar texts
 
 | Source | Status | Notes |
 |---|---|---|
-| RV Mandalas 1–10 | ✅ indexed (clean) | all from .itx, Devanagari, verse-per-line, layer-tagged; "Who is Sudas?" verified end-to-end |
+| RV Mandalas 1–10 | ✅ indexed (clean) | all from .itx, Devanagari, verse-per-line, layer-tagged; citations patched to `॥ RV N.NNN.NN ॥` (10 552 verses); "Who is Sudas?" verified end-to-end |
 | Pancavimsa Brahmana | ✅ indexed | `ingest_pancavimsa_brahmana.py`; GRETIL IAST→Devanagari, ॥ PB B.C.P ॥ markers, layer 4; BM25 pickle patched; PB 25.10.16 verified as #1 for vinashana query |
 | Shatapatha Brahmana | ✅ script ready | `ingest_shatapatha_brahmana.py`; 14 GRETIL books, parser validated (SB 1.4.1 Videgha Mathava); run `python ingest_shatapatha_brahmana.py` on Mac |
-| Aitareya Brahmana | ✅ script ready | `ingest_aitareya_brahmana.py`; TITUS Frankfurt, 285 pages (ab001–ab285), TITUS→IAST→Devanagari; run script to upload |
-| Atharvaveda (Shaunaka) | 📋 planned | local copy is IAST (`library/vedic_texts/AV_sanskrit/`); prefer Devanagari source — sanskritdocuments.org has AV .itx |
-| Yajurveda (Vajasaneyi) | 📋 planned | no Sanskrit text locally (only Griffith/Sharma English); fetch from sanskritdocuments.org |
+| Aitareya Brahmana | ✅ indexed | `ingest_aitareya_brahmana.py`; TITUS Frankfurt, 285 pages (ab001–ab285), TITUS→IAST→Devanagari; `local_store/ab/ab.md` present (2026-06-13); AB 8 (king-consecration register) in corpus |
+| Vajasaneyi Saṃhitā (VS) | ✅ script ready | `ingest_vajasaneyi_samhita.py`; TITUS IAST→Devanagari, ॥ VS A.V ॥ markers; run script to upload |
+| Taittirīya Saṃhitā (TS) | ✅ indexed (clean) | `ingest_taittiriya_samhita.py`; TITUS ts001–ts100, event-driven parser, 4-level hierarchy (Kāṇḍa.Prapāṭhaka.Anuvāka.Verse), ॥ TS B.C.P.V ॥ markers, cross-file Book state, content-hash dedup (catches ts045/ts046 TITUS duplicates); **2197 verses, 7 Kāṇḍas, 44 Prapāṭhakas** — uploaded 2026-06-19 |
+| Atharvaveda Śaunaka (AVŚ) | ✅ indexed | `ingest_atharvaveda_shaunaka.py`; GRETIL `avs___u.htm`, ~6000 verses, 20 kāṇḍas, IAST→Devanagari, ॥ AVŚ B.H.V ॥ markers, **layer 3** (`av_samhita`); fills diachronic gap between RV samhitas (1-2) and Brahmana prose (4). Key passages: AVŚ 5.22 (Gandhāri/Mūjavant/Aṅga/Magadha/Balhika peoples), AVŚ 20.127 (Parikṣit, Kuru king) — uploaded 2026-06-19 |
 
 ## Evidence sources — kings, clans, lineages, material culture
 
@@ -206,37 +207,191 @@ After that, re-initialize the Streamlit app to reload BM25.
 | `test_sudas_retrieval.py` | isolation test: retriever finds Sudas/RV 7.18? |
 | `extract_and_upload_r07.py` | (superseded by rebuild_mandala_clean.py) |
 
+## Session log — 2026-06-14 (VS + TS ingest, RV citation fix, frontend)
+
+### VS + TS ingest scripts completed
+- `ingest_vajasaneyi_samhita.py` — TITUS Frankfurt, VS chapters, IAST→Devanagari.
+- `ingest_taittiriya_samhita.py` — TITUS ts001–ts100, 4-level event-driven parser
+  (Book/Chapter/Paragraph/Verse/Sentence). Fixes applied this session:
+  - Structural label leakage (Book:/Chapter:/… appearing inside verse text as
+    Devanagari garbage) — fixed with `end_pos` parameter on `flush_verse()` and
+    `_STRUCT_LABEL_RE` stripping in `clean_titus_text()`.
+  - `None` Book values across file boundaries — fixed with `default_book` /
+    `default_chapter` cross-file state in `main()`.
+  - TITUS duplicate files ts045/ts046 (copies of ts043/ts044) — fixed with
+    `seen_hashes: set[int]`.
+  - Dry-run confirmed: 2197 verses, Kāṇḍas 1–7, 44 Prapāṭhakas, clean citations.
+
+### RV citation prefix fix
+- All r01–r10.md files patched: `॥ N.NNN.NN ॥` → `॥ RV N.NNN.NN ॥` (10 552 verses).
+  `rebuild_mandala_clean.py all` run 2026-06-19 — Qdrant payloads now reflect `RV` prefix. ✅
+
+### Frontend changes (src/sanskrit_tutor_frontend.py)
+- Per-answer export: `.md` (and `.docx` via pandoc if installed) download button
+  rendered after each assistant response, replacing the single "last answer" button.
+- Corpus table updated: added VS and TS rows.
+- "Why this project exists": added VS/TS to corpus list; added translator-bias
+  neutralisation paragraph.
+- "Get started" section simplified: Gemini auto-loads, sidebar only for LLM switching.
+- Example question "Translate RV 1.1.1 word by word" removed; replaced with
+  "What metals are mentioned in the Taittiriya Samhita?"
+
+### KG migration note
+The self-building KG (`vedic_kg.py`) currently persists to a local JSON file
+(`knowledge_store/vedic_relations.json`). On Streamlit Cloud this resets on every
+redeploy. Moving to Qdrant Cloud is **feasible** — see Architecture note below.
+
+## Session log — 2026-06-18 (AV Shaunaka ingest script)
+
+- Decision: **include AV Śaunaka.** Rationale — it is the richest Vedic source
+  for material culture (medicine, herbs, agriculture, house-building, commerce)
+  and it populates **layer 3**, previously reserved-but-empty, removing the
+  diachronic gap between RV samhitas (1-2) and Brahmana prose (4). Concrete
+  geography/king hooks: AVŚ 5.22 (takman banished to Gandhāri/Mūjavant/Aṅga/
+  Magadha/Balhika — a NW↔east peoples spread) and AVŚ 20.127 (Parikṣit, king of
+  the Kurus). Not a river/genealogy source — those are better covered by RV/SB.
+- **Source correction:** PROJECT_STATUS previously said "sanskritdocuments.org
+  has AV .itx". Verified false — /doc_veda hosts only AV *sūkta excerpts*
+  (gosUkta, oShadhIsUkta…), no complete Śaunaka samhita .itx like r01–r10.
+  Switched to GRETIL `avs___u.htm` (clean UTF-8 IAST whole-text, Orlandi 1991 /
+  Roth-Whitney, Books 11-20 rev. Griffiths) — same provenance + pipeline as
+  SB/VS/TS. Local `AV_sanskrit/` copy rejected: `atharvaveda_complete.txt` is
+  encoding-corrupt, and the per-hymn `.txt` files merge all verses to one line
+  with no verse IDs.
+- `ingest_atharvaveda_shaunaka.py` written (RV-style single-folder `avs/avs.md`):
+  fetch GRETIL → parse `(AVŚ_B,H.Va)` half-lines, group by verse key (joins
+  a/b/c/e, strips `||n||`/`|n||`/`||4 ||`/pada bars) → IAST→Devanagari →
+  ॥ AVŚ B.H.V ॥ → chunk → delete+upload layer 3 → re-sync BM25 pickle.
+  Has `--dry-run` and `--self-test` (offline parser unit test — passes:
+  half-line join, marker strip, AVŚ 5.22 + 20.127 anchors, takman/peoples
+  names present in Devanagari output).
+- GAZETTEER extended (`devanagari_lexical.py`): takman, gandhari, mujavant,
+  anga, magadhi, balhika/bahlika, mahavrisha, kushtha, atharvan, jangida,
+  sadanva.
+
+**To complete AV ingest:** run `python ingest_atharvaveda_shaunaka.py` on Mac
+(`--dry-run` first), then `python build_corpus_lexicon.py`, then restart Streamlit.
+
+## Session log — 2026-06-19 (TS + AVŚ ingest complete, RV Qdrant sync)
+
+### All three pending corpus ingests confirmed complete
+- **TS re-ingested (clean):** `ingest_taittiriya_samhita.py` re-run with content-hash dedup fix (not HTML-hash). Result: 2197 verses, 7 Kāṇḍas, 44 Prapāṭhakas — ts045/ts046 duplicates correctly suppressed. TS upgraded to ✅ indexed (clean).
+- **RV Qdrant payloads synced:** `rebuild_mandala_clean.py all` run — all 10 552 RV chunks now have `॥ RV N.NNN.NN ॥` citation format in Qdrant cloud payloads. Backlog item 4 closed.
+- **AVŚ uploaded:** `ingest_atharvaveda_shaunaka.py` run (GRETIL `avs___u.htm`, ~6000 verses, layer 3 `av_samhita`). Fills the diachronic gap between RV samhitas (layers 1-2) and Brahmana prose (layer 4). Key passages in corpus: AVŚ 5.22 (takman banished to Gandhāri/Mūjavant/Aṅga/Magadha/Balhika), AVŚ 20.127 (Parikṣit, Kuru king). AVŚ upgraded to ✅ indexed.
+
+### Retrieval fix (corpus-aware filtering)
+- `_detect_source_text_filter()` in `retriever.py` extended to cover all 6 corpus texts (RV, TS, VS, SB, AB, PB). Strict single-corpus mode enabled for unambiguous queries. Root-cause of "RV cited for TS metals question": retriever had no TS/VS/SB/AB/PB entries so all queries were unfiltered.
+
+### AB status corrected
+- `local_store/ab/ab.md` exists (2026-06-13) — AB was already indexed. Corpus table corrected from "script ready" to ✅ indexed.
+
+### Still pending
+- VS ingest: `ingest_vajasaneyi_samhita.py` script ready, not yet run.
+- SB ingest: `ingest_shatapatha_brahmana.py` script ready, not yet run (~15–20 min on Mac).
+- Corpus lexicon rebuild: `python build_corpus_lexicon.py` needed after TS + AVŚ addition.
+
+## Session log — 2026-06-19 (KG → Qdrant Cloud migration)
+
+### `vedic_kg.py` storage moved to Qdrant Cloud (backlog #12 implemented)
+- **Source of truth is now the Qdrant Cloud collection `vedic_kg`**; the local
+  `knowledge_store/vedic_relations.json` is demoted to a best-effort mirror.
+  Rationale: the JSON resets on every Streamlit Cloud redeploy (ephemeral FS),
+  wiping the self-built graph. A cloud collection persists across redeploys —
+  including when the app is `<iframe>`-embedded in WordPress (the Streamlit app
+  still runs on Streamlit Cloud; WordPress only displays it).
+- **Schema:** one payload-only point per triple — `{subject, subject_key,
+  relation, object, object_key, citations[], confidence, added_at}`. 1-dim dummy
+  vector (`[0.0]`, Distance.DOT): we never vector-search the KG, we look up by
+  exact subject key. Point id = `uuid5(namespace, "s_key|relation|o_key")` so
+  re-upserts dedup and migration is idempotent.
+- **Self-building loop unchanged:** `extract_and_store_facts()` → `add_fact()`
+  still fires post-synthesis after every query (`agentic_rag.py:720`). `add_fact`
+  now *also* upserts the new triple to Qdrant. So the graph keeps growing per
+  query exactly as before — it just persists now.
+- **In-memory cache preserved:** `_load()` pulls all points into the same
+  `_KG_CACHE` dict on startup; query-time `get_entity_context()` reads stay in
+  memory (zero per-query Qdrant latency). Public API (`add_fact`,
+  `get_entity_context`, `kg_stats`, `to_networkx`) byte-for-byte unchanged —
+  no caller touched.
+- **Resilience:** Qdrant load failure / not-configured falls back to JSON;
+  collection-empty falls back to JSON seed; JSON mirror write wrapped in
+  try/except so a read-only/ephemeral FS never crashes the app. Qdrant stays
+  authoritative throughout.
+- **Backfill:** `migrate_kg_to_qdrant.py` (idempotent, `--dry-run`) flattens the
+  329 facts / 131 entities into points and upserts them. Verified offline: the
+  Qdrant→cache rebuild reproduces the JSON graph exactly (329 facts, 0 relation
+  mismatches, 7 dynasty member-lists preserved). Note: `kg_stats()` entity count
+  rises (object-only nodes — e.g. dynasties — now materialise as nodes;
+  cosmetic, no behavioural change).
+
+**To complete migration:** on Mac (Qdrant reachable), run
+`python migrate_kg_to_qdrant.py --dry-run` then `python migrate_kg_to_qdrant.py`;
+confirm the printed point count. App then loads the KG from Qdrant on next start.
+
 ## Backlog (rough priority)
 
 1. **Run SB ingest** — `python ingest_shatapatha_brahmana.py` (on Mac, ~15–20 min).
    Key passages: SB 1.4.1 (Videgha Mathava eastward migration), SB 3.1.2
    (Pravahana Jaivali eastern doctrine), SB 13.5 (Ashvamedha geography).
-   Run `--dry-run` first to verify SB 1.4.1 Devanagari conversion.
-2. **Corpus lexicon rebuild** — `python build_corpus_lexicon.py` after every
-   corpus change. Maps every Devanagari token to normalized ASCII for
-   sandhi-fused form rescue.
-3. **Diachronic Sarasvati verification** — after SB indexed, test
+   Run `--dry-run` first. Note: SB Book 12 returns 404 from GRETIL — Vāṃśa
+   lineage lists (SB 12.9.3) not in corpus until alternate source found.
+2. **Run VS ingest** — `python ingest_vajasaneyi_samhita.py`. Eastern YV
+   tradition; Yajnavalkya; pairs with SB for east/west Yajurvedic contrast.
+3. ~~**Run TS ingest**~~ — ✅ done 2026-06-19 (2197 verses, clean).
+4. ~~**Re-ingest RV chunks**~~ — ✅ done 2026-06-19 (`rebuild_mandala_clean.py all`).
+5. **Corpus lexicon rebuild** — `python build_corpus_lexicon.py` after TS + AVŚ
+   addition. Maps every Devanagari token to normalized ASCII for sandhi-fused
+   form rescue.
+6. **Diachronic Sarasvati verification** — after SB indexed, test
    "How does the Sarasvati appear in earlier vs later Vedic texts?" — should
    cite RV river hymns (layer 1/2) + PB 25.10 vinashana (layer 4) + SB 1.4.1
    Videgha Mathava (layer 4).
-4. **Re-run PB ingest** (optional) — `python ingest_pancavimsa_brahmana.py`
+7. **Re-run PB ingest** (optional) — `python ingest_pancavimsa_brahmana.py`
    to update Qdrant with the ॥ PB B.C.P ॥ format (BM25 pickle already
    patched; Qdrant still has old ॥ B.C.P ॥ markers in payloads).
-5. **AV Shaunaka** — local IAST copy in `library/vedic_texts/AV_sanskrit/`;
-   also on sanskritdocuments.org as .itx. Layer 3 metadata, AVŚ
-   book.hymn.verse IDs. Next corpus addition after SB.
-6. **YV Vajasaneyi Samhita** — GRETIL or sanskritdocuments.org (layer 3).
-   Pairs naturally with SB (same eastern/Videha tradition).
-7. **Aitareya Brahmana** — ❌ no clean digital source found; deferred.
-   Revisit if TITUS access opens or a new GRETIL upload appears.
-8. **Diachronic query tool** — ✅ first version shipped (2026-06-12).
-   Remaining: true per-layer filtered Qdrant searches once AV/YV (layers 3-4)
-   are indexed.
-9. **Gazetteer expansion** — auto-generate Devanagari surface forms from
-   `proper_noun_variants.json`; current hand-built list ~55 names.
-10. **Padapatha / sandhi phase** — VedaWeb (github.com/VedaWebProject) has
+8. ~~**Run AV Shaunaka ingest**~~ — ✅ done 2026-06-19 (~6000 verses, layer 3).
+9. **Aitareya Brahmana** — ✅ indexed (`local_store/ab/ab.md`, 2026-06-13).
+   AB 8 king-consecration register in corpus. Source: TITUS Frankfurt.
+10. **Diachronic query tool** — ✅ first version shipped (2026-06-12).
+    Remaining: true per-layer filtered Qdrant searches (layers 3-4 now populated
+    with AVŚ).
+11. **Gazetteer expansion** — extend GAZETTEER with VS/TS proper nouns
+    (Yajnavalkya, Taittiriya-specific ritual terms, Kuru-region geography).
+    AVŚ names already added (takman, gandhari, mujavant, anga, magadhi, etc.).
+12. ~~**KG → Qdrant Cloud**~~ — ✅ implemented 2026-06-19 (`vedic_kg.py` reads/writes
+    Qdrant collection `vedic_kg`, JSON demoted to mirror; `migrate_kg_to_qdrant.py`
+    backfill ready). Remaining: run the backfill on Mac to populate the cloud
+    collection from the existing 329 facts.
+13. **Padapatha / sandhi phase** — VedaWeb (github.com/VedaWebProject) has
     full RV padapatha + Zurich morphological annotation; foundation for the
     grammar-grounded translation goal.
+14. **AV Paippalāda** (future) — more historical-geographic material than Śaunaka;
+    GRETIL (Lubotsky). Defer until VS + SB are indexed and diachronic queries
+    are verified.
+
+## KG → Qdrant Cloud migration (architecture note)
+
+**Current:** `knowledge_store/vedic_relations.json` — local file, resets on Streamlit
+Cloud redeploy, single-process only (JSON file locking not safe under concurrency).
+
+**Recommended approach** (feasible, moderate effort):
+
+1. Add a `vedic_kg` Qdrant collection (free tier; triples are tiny — each ~200 bytes).
+2. No embedding vector needed for triples: store as payload-only points with UUID IDs.
+   Schema per point: `{subject, relation, object, citations[], confidence, added_at}`.
+3. On app startup: fetch all points into the existing `_KG_CACHE` dict — same in-memory
+   cache as today, so query-time latency is unchanged.
+4. On write (`add_fact`): upsert one Qdrant point + update memory cache.
+5. For entity lookup (`get_entity_context`): use the memory cache (as now); no Qdrant
+   filter call needed per query.
+6. For multi-hop traversal: the `to_networkx()` export continues to work from cache.
+
+**Why not full vector KG:** Qdrant's vector search is unnecessary for structured
+triple lookup (we query by exact subject key, not semantic similarity). Adding embeddings
+per triple would inflate the collection and add latency for no benefit yet.
+
+**Effort estimate:** ~150 lines in `vedic_kg.py`. The public API (`add_fact`,
+`get_entity_context`, `kg_stats`, `to_networkx`) stays identical — callers unchanged.
 
 ## Lessons learned
 

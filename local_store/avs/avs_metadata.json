@@ -1,0 +1,18 @@
+{
+  "title": "Atharvaveda Saṃhitā (Śaunaka)",
+  "author": [
+    "Vedic Tradition",
+    "GRETIL: ed. Orlandi 1991, coll. Roth/Whitney, Books 11-20 rev. Arlo Griffiths"
+  ],
+  "subject": "Atharvaveda, Śaunaka recension. 20 kāṇḍas. Material culture (medicine, herbs, agriculture, house-building, commerce), royal charms. Key passages: takman/peoples hymn (AVŚ 5.22 — Gandhāri/Mūjavant/Aṅga/Magadha), Parikṣit of the Kurus (AVŚ 20.127).",
+  "summary": "Atharvaveda Śaunaka saṃhitā in Devanagari, converted from GRETIL IAST. Layer 3 (post-RV samhita) — the chronological bridge between the RV samhitas (layers 1-2) and the Brahmana prose (layer 4). Richest Vedic source for everyday material culture; AVŚ 5.22 carries a NW↔east peoples spread and AVŚ 20.127 names King Parikṣit of the Kurus.",
+  "creator": "GRETIL (Göttingen Register of Electronic Texts in Indian Languages)",
+  "source_url": "https://gretil.sub.uni-goettingen.de/gretil/1_sanskr/1_veda/1_sam/avs___u.htm",
+  "source_format": "iast_html",
+  "filename": "avs",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "atharvaveda_shaunaka",
+  "chronology_layer": 3,
+  "chronology_name": "av_samhita"
+}

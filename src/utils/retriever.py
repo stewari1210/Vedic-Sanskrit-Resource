@@ -346,64 +346,86 @@ class HybridRetriever(BaseRetriever):
         """Detect if query mentions specific source texts and should filter results.
 
         Returns:
-            tuple: (list of source identifiers, whether to apply strict filtering)
+            tuple: (list of veda-field identifiers, whether to apply strict filtering)
 
         Examples:
-            "What is X in Rigveda?" -> (['rigveda'], True)
-            "Compare X in Rigveda and Yajurveda" -> (['rigveda', 'yajurveda'], False)
+            "What metals are in the Taittiriya Samhita?" -> (['taittiriya_samhita'], True)
+            "Compare X in Rigveda and Yajurveda" -> (['rigveda', ...], False)
             "Tell me about X" -> ([], False)
         """
         query_lower = query.lower()
 
-        # Define source text identifiers and their variations
+        # Maps query keywords → veda metadata values used in chunk payloads.
+        # Order matters: more specific patterns first.
         source_mapping = {
-            'rigveda': ['rigveda', 'rig veda', 'rig-veda', 'rgveda'],
-            'yajurveda': ['yajurveda', 'yajur veda', 'yajur-veda'],
-            'griffith-rigveda': ['griffith rigveda', 'griffith\'s rigveda', 'griffith rig veda'],
-            'griffith-yajurveda': ['griffith yajurveda', 'griffith\'s yajurveda', 'griffith yajur veda'],
+            'taittiriya_samhita': [
+                'taittiriya samhita', 'taittirīya saṃhitā', 'taittiriya',
+                'black yajurveda', 'krishna yajurveda', 'kṛṣṇa yajurveda',
+                ' ts ', ' ts.', '(ts)',
+            ],
+            'vajasaneyi_samhita': [
+                'vajasaneyi samhita', 'vājasaneyi saṃhitā', 'vajasaneyi',
+                'white yajurveda', 'shukla yajurveda', 'śukla yajurveda',
+                ' vs ', ' vs.', '(vs)',
+            ],
+            'shatapatha_brahmana': [
+                'shatapatha brahmana', 'śatapatha brāhmaṇa', 'shatapatha',
+                'satapatha brahmana', 'satapatha',
+                ' sb ', ' sb.', '(sb)',
+            ],
+            'aitareya_brahmana': [
+                'aitareya brahmana', 'aitareya brāhmaṇa', 'aitareya',
+                ' ab ', ' ab.', '(ab)',
+            ],
+            'pancavimsa_brahmana': [
+                'pancavimsa brahmana', 'pañcaviṃśa brāhmaṇa', 'pancavimsa',
+                'pancavimsha', 'pañcaviṃśa',
+                ' pb ', ' pb.', '(pb)',
+            ],
+            'rigveda': [
+                'rigveda', 'rig veda', 'rig-veda', 'rgveda', 'ṛgveda',
+                ' rv ', ' rv.', '(rv)',
+            ],
         }
 
         detected_sources = []
-
-        # Check for each source
-        for source_key, variations in source_mapping.items():
-            for variation in variations:
-                if variation in query_lower:
-                    # Determine the base source (rigveda or yajurveda)
-                    if 'rigveda' in source_key or 'rig' in source_key:
-                        if 'rigveda' not in detected_sources:
-                            detected_sources.append('rigveda')
-                    elif 'yajurveda' in source_key or 'yajur' in source_key:
-                        if 'yajurveda' not in detected_sources:
-                            detected_sources.append('yajurveda')
+        for veda_key, patterns in source_mapping.items():
+            for pat in patterns:
+                if pat.strip() in query_lower:
+                    if veda_key not in detected_sources:
+                        detected_sources.append(veda_key)
                     break
 
-        # Determine if strict filtering (only one source mentioned)
-        # NOTE: Using balanced mode by default to allow proper noun expansion to work
-        # Strict mode can filter out all docs before expansion completes
-        strict_filter = False  # Always use balanced mode for now
+        # Strict mode: only return docs from that corpus.
+        # Use strict when exactly one corpus is explicitly named and the query
+        # is clearly about that corpus (not a cross-corpus comparison).
+        comparative_keywords = ['both', 'compare', 'comparison', 'versus', 'between',
+                                 'earlier', 'later', 'across', 'layers']
+        is_comparative = any(kw in query_lower for kw in comparative_keywords)
 
-        # Check for comparative queries (both texts mentioned)
-        comparative_keywords = ['both', 'compare', 'comparison', 'versus', 'vs', 'and', 'between']
-        is_comparative = any(keyword in query_lower for keyword in comparative_keywords)
-
-        # If comparative, ensure balanced retrieval (not strict)
-        if is_comparative and len(detected_sources) > 1:
-            strict_filter = False
+        strict_filter = (
+            len(detected_sources) == 1
+            and not is_comparative
+        )
 
         if detected_sources:
-            filter_type = "strict (single source)" if strict_filter else "balanced (multiple sources)"
-            logger.info(f"HybridRetriever: Detected source filter: {detected_sources} ({filter_type})")
+            filter_type = "strict" if strict_filter else "balanced"
+            logger.info(
+                f"HybridRetriever: Source filter: {detected_sources} ({filter_type})"
+            )
 
         return detected_sources, strict_filter
 
     def _filter_docs_by_source(self, docs: List[Document], source_filters: list[str], strict: bool) -> List[Document]:
-        """Filter documents based on source text.
+        """Filter/reorder documents based on source text.
+
+        Checks the `veda`, `filename`, `title`, and `source` metadata fields.
+        `veda` is the canonical field set by all ingest scripts (e.g. "taittiriya_samhita").
 
         Args:
             docs: Documents to filter
-            source_filters: List of source identifiers ('rigveda', 'yajurveda')
-            strict: If True, only return docs from specified sources. If False, boost them.
+            source_filters: List of veda-field identifiers
+            strict: If True, drop non-matching docs. If False, push them to the end.
 
         Returns:
             Filtered/reordered documents
@@ -415,13 +437,16 @@ class HybridRetriever(BaseRetriever):
         non_matching_docs = []
 
         for doc in docs:
+            veda     = doc.metadata.get('veda', '').lower()
             filename = doc.metadata.get('filename', '').lower()
-            title = doc.metadata.get('title', '').lower()
-            source = doc.metadata.get('source', '').lower()
+            title    = doc.metadata.get('title', '').lower()
+            source   = doc.metadata.get('source', '').lower()
 
-            # Check if document matches any of the source filters (check filename, title, and source fields)
             matches = any(
-                (filt in filename) or (filt in title) or (filt in source)
+                (filt in veda)
+                or (filt in filename)
+                or (filt.replace('_', ' ') in title)
+                or (filt in source)
                 for filt in source_filters
             )
 
@@ -431,12 +456,25 @@ class HybridRetriever(BaseRetriever):
                 non_matching_docs.append(doc)
 
         if strict:
-            # Strict mode: only return matching docs
-            logger.info(f"HybridRetriever: Strict filter applied - {len(matching_docs)} docs match {source_filters}, {len(non_matching_docs)} filtered out")
-            return matching_docs
+            # Strict: return only corpus-matching docs; fall back to all if none matched
+            # (avoids returning an empty result set when the corpus isn't yet indexed)
+            if matching_docs:
+                logger.info(
+                    f"HybridRetriever: Strict filter — {len(matching_docs)} matched "
+                    f"{source_filters}, {len(non_matching_docs)} dropped"
+                )
+                return matching_docs
+            else:
+                logger.warning(
+                    f"HybridRetriever: Strict filter found 0 matches for {source_filters} "
+                    f"— falling back to unfiltered results"
+                )
+                return docs
         else:
-            # Balanced mode: matching docs first, then others
-            logger.info(f"HybridRetriever: Balanced filter - {len(matching_docs)} docs from {source_filters} prioritized, {len(non_matching_docs)} others included")
+            logger.info(
+                f"HybridRetriever: Balanced filter — {len(matching_docs)} from "
+                f"{source_filters} prioritised, {len(non_matching_docs)} appended"
+            )
             return matching_docs + non_matching_docs
 
     _VERSE_ID = re.compile(r"॥ (\d+)\.(\d+)\.(\d+) ॥")
@@ -1102,30 +1140,6 @@ class HybridRetriever(BaseRetriever):
         # ATTACH MW CONTEXT to all documents for UI display
         if mw_context:
             merged_docs = self._attach_mw_context_to_docs(merged_docs, mw_context)
-
-        # PER-SOURCE CAPPING: prevent any single text (e.g., SB with ~5000 chunks)
-        # from crowding out smaller corpora (AB ~800 chunks, PB ~300 chunks).
-        # Applied after all re-ranking so score order is preserved; just caps the
-        # number of slots any one filename can fill in the synthesis context.
-        _per_source_cap = max(4, self.k // 3)  # e.g. k=15 → 5 slots per source
-        _source_counts: dict = {}
-        _capped: list = []
-        _exempt_filenames = {"concordance"}  # synthetic docs that bypass the cap
-        for _d in merged_docs:
-            _fn = _d.metadata.get("filename", "unknown")
-            if _fn in _exempt_filenames:
-                _capped.append(_d)
-                continue
-            _cnt = _source_counts.get(_fn, 0)
-            if _cnt < _per_source_cap:
-                _capped.append(_d)
-                _source_counts[_fn] = _cnt + 1
-            else:
-                logger.info(f"⚖️  Per-source cap ({_per_source_cap}): skipping extra '{_fn}' chunk")
-        if len(_capped) < len(merged_docs):
-            logger.info(f"⚖️  Per-source capping: {len(merged_docs)} → {len(_capped)} docs "
-                        f"(caps: {_source_counts})")
-        merged_docs = _capped
 
         # Return top k primary results + limited expansion docs
         # For Groq: Keep total manageable to stay under 6K token limit

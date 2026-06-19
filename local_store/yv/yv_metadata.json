@@ -1,0 +1,19 @@
+{
+  "title": "Vajasaneyi Samhita",
+  "author": [
+    "Vedic Tradition",
+    "Ed. Albrecht Weber, Berlin 1849",
+    "TITUS encoding by Martin Kümmel / Jost Gippert"
+  ],
+  "subject": "Vajasaneyi Samhita, Madhyandina recension (White Yajurveda). 40 adhyāyas. Key passages: VS 1 opening rites; VS 16 Śatarudrīya (66 Rudra litanies); VS 17–18 Vājapeya / Rājasūya; VS 22–25 Aśvamedha; VS 31 Puruṣa-sūkta; VS 40 Īśāvāsya Upaniṣad.",
+  "summary": "Vajasaneyi Samhita in Devanagari, converted from TITUS transliteration (Weber 1849 ed.). Saṃhitā layer. Contains the Śatarudrīya, Puruṣa-sūkta, and the Īśāvāsya Upaniṣad.",
+  "creator": "TITUS Project, Frankfurt / Albrecht Weber",
+  "source_url": "https://titus.uni-frankfurt.de/texte/etcs/ind/aind/ved/yvw/vs/vs001.htm",
+  "source_format": "titus_html",
+  "filename": "yv",
+  "preprocessing": "sanskrit",
+  "source_type": "vedic_text",
+  "veda": "vajasaneyi_samhita",
+  "chronology_layer": 2,
+  "chronology_name": "samhita"
+}

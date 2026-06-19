@@ -49,6 +49,7 @@ GAZETTEER = {
     "parushni":     ["परुष्णी", "परुष्णि"],
     "ravi":         ["परुष्णी"],
     "sarasvati":    ["सरस्वती", "सरस्वत"],
+    "saraswati":    ["सरस्वती", "सरस्वत"],   # alternate English spelling
     "sindhu":       ["सिन्धु"],
     "yamuna":       ["यमुना"],
     "vipas":        ["विपाश्"],
@@ -123,6 +124,22 @@ GAZETTEER = {
     "pariksit":     ["पारिक्षित", "परीक्षित"],
     "parikshit":    ["पारिक्षित", "परीक्षित"],
     "dausanti":     ["दौःषन्ति"],           # Bharata Dauḥṣanti (AB 8.23)
+    # --- AV (Atharvaveda Śaunaka) key proper nouns (layer 3) ---
+    "takman":       ["तक्मन्", "तक्मान"],     # fever (AVŚ 5.22 etc.) — the disease personified
+    "gandhari":     ["गन्धारि", "गान्धारि"],  # NW people (AVŚ 5.22 takman geography)
+    "mujavant":     ["मूजवन्त", "मूजवत्"],    # NW mountain people (AVŚ 5.22) — cf. Mūjavat soma
+    "mujavat":      ["मूजवत्", "मूजवन्त"],
+    "anga":         ["अङ्ग"],                # eastern people (AVŚ 5.22)
+    "magadhi":      ["मगध"],                 # eastern people (AVŚ 5.22); cf. "magadha" above
+    "balhika":      ["बल्हिक", "बाल्हिक"],    # NW (Bactria) people (AVŚ 5.22)
+    "bahlika":      ["बल्हिक", "बाल्हिक"],
+    "mahavrisha":   ["महावृष"],              # NW people (AVŚ 5.22)
+    "mahavrsa":     ["महावृष"],
+    "kushtha":      ["कुष्ठ"],               # the kuṣṭha healing-plant (AVŚ 5.4, 6.95)
+    "kustha":       ["कुष्ठ"],
+    "atharvan":     ["अथर्वन्", "अथर्व"],     # the Atharvan priests/seers
+    "jangida":      ["जङ्गिड"],              # protective amulet-plant (AVŚ 2.4, 19.34-35)
+    "sadanva":      ["सदान्वा", "सदान्व"],    # class of female demons (AVŚ 2.14 etc.)
 }
 
 _DEV_WORD = re.compile(r"[ऀ-ॿ]{2,}")
