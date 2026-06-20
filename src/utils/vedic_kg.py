@@ -122,12 +122,29 @@ def _upsert_triple_to_qdrant(s_key: str, subject: str, relation: str,
                     "object_key": o_key,
                     "citations": fact.get("citations", []),
                     "confidence": fact.get("confidence", "medium"),
+                    "provenance": fact.get("provenance", "inferred"),
                     "added_at": fact.get("added_at", str(datetime.now())),
                 },
             )],
         )
     except Exception as e:
         logger.warning(f"🕸️  KG: Qdrant upsert failed ({e}) — JSON mirror still holds it.")
+
+
+def _delete_triple_from_qdrant(s_key: str, relation: str, o_key: str) -> None:
+    """Best-effort delete of one triple's point (used when an authoritative seed
+    corrects a conflicting inferred singleton, so the stale point doesn't linger)."""
+    client = _get_qdrant_client()
+    if client is None:
+        return
+    try:
+        from qdrant_client.http.models import PointIdsList
+        client.delete(
+            collection_name=KG_COLLECTION,
+            points_selector=PointIdsList(points=[_point_id(s_key, relation, o_key)]),
+        )
+    except Exception as e:
+        logger.warning(f"🕸️  KG: Qdrant delete failed ({e}).")
 
 
 def _build_kg_from_triples(triples: list) -> dict:
@@ -146,6 +163,7 @@ def _build_kg_from_triples(triples: list) -> dict:
             "object": t["object"],
             "citations": t.get("citations", []),
             "confidence": t.get("confidence", "medium"),
+            "provenance": t.get("provenance", "inferred"),
             "added_at": t.get("added_at", ""),
         })
         # Ensure object appears as a node too (object-only nodes keep relations=[])
@@ -328,12 +346,21 @@ def _save(kg: dict):
 
 def add_fact(subject: str, relation: str, obj: str, citation: str,
              confidence: str = "high", source_query: str = "",
+             provenance: str = "inferred",
              _add_inverse: bool = True) -> bool:
     """
     Add one (subject, relation, object) triple to the KG.
 
     Returns True if the fact was new, False if it already existed.
     Automatically adds inverse relation if defined in _INVERSES.
+
+    provenance:
+        "authoritative" — curated / anukramaṇī-seeded ground truth. Protected:
+            an "inferred" add can never overwrite or downgrade it, and an
+            authoritative add CORRECTS a conflicting inferred singleton.
+        "inferred"      — extracted from an LLM answer (the self-building path).
+    This keeps the graph self-learning while pinning verified facts so a weak
+    model's guess can't clobber them.
     """
     if relation not in VALID_RELATIONS:
         logger.warning(f"🕸️  Unknown relation '{relation}' — skipped")
@@ -352,19 +379,38 @@ def add_fact(subject: str, relation: str, obj: str, citation: str,
     # Dedup by (relation, normalised object)
     for fact in existing:
         if fact["relation"] == relation and _norm(fact["object"]) == o_key:
-            # Already stored — merge new citation if different
+            # Already stored — merge new citation, and upgrade provenance if this
+            # add is authoritative (authoritative beats inferred, never the reverse).
             cites = fact.setdefault("citations", [fact.get("citation", "")])
+            changed = False
             if citation and citation not in cites:
                 cites.append(citation)
+                changed = True
+            if provenance == "authoritative" and fact.get("provenance") != "authoritative":
+                fact["provenance"] = "authoritative"
+                changed = True
+            if changed:
                 _save(kg)
                 _upsert_triple_to_qdrant(s_key, subject, relation, obj, o_key, fact)
             return False   # not a new fact
 
     # Singleton check — for certain relations only one object is valid per subject.
-    # A second extraction with different phrasing is treated as a duplicate.
     if relation in _SINGLETON_RELATIONS:
         for fact in existing:
             if fact["relation"] == relation:
+                # Authoritative seed CORRECTS an earlier inferred singleton.
+                if provenance == "authoritative" and fact.get("provenance") != "authoritative":
+                    old_o_key = _norm(fact["object"])
+                    fact["object"] = obj
+                    fact["citations"] = [citation] if citation else []
+                    fact["confidence"] = confidence
+                    fact["provenance"] = "authoritative"
+                    _save(kg)
+                    if old_o_key != o_key:
+                        _delete_triple_from_qdrant(s_key, relation, old_o_key)
+                    _upsert_triple_to_qdrant(s_key, subject, relation, obj, o_key, fact)
+                    logger.info(f"🕸️  ✓ authoritative override: {subject} —[{relation}]→ {obj}")
+                    return True
                 logger.debug(
                     f"🕸️  Singleton skip: {subject} —[{relation}]→ {obj} "
                     f"(already have → {fact['object']})"
@@ -377,12 +423,13 @@ def add_fact(subject: str, relation: str, obj: str, citation: str,
         "object": obj,
         "citations": [citation] if citation else [],
         "confidence": confidence,
+        "provenance": provenance,
         "added_at": str(datetime.now()),
     }
     existing.append(new_fact)
     _save(kg)
     _upsert_triple_to_qdrant(s_key, subject, relation, obj, o_key, new_fact)
-    logger.info(f"🕸️  +fact: {subject} —[{relation}]→ {obj}  [{citation}]")
+    logger.info(f"🕸️  +fact ({provenance}): {subject} —[{relation}]→ {obj}  [{citation}]")
 
     # Dynasty membership index
     if relation == "member_of_dynasty":
@@ -394,12 +441,12 @@ def add_fact(subject: str, relation: str, obj: str, citation: str,
             kg["entities"][o_key]["members"].append(s_key)
         _save(kg)
 
-    # Automatic inverse
+    # Automatic inverse (carries the same provenance)
     if _add_inverse:
         inv = _INVERSES.get(relation)
         if inv:
             add_fact(obj, inv, subject, citation, confidence, source_query,
-                     _add_inverse=False)
+                     provenance=provenance, _add_inverse=False)
 
     return True
 
@@ -437,9 +484,13 @@ def get_entity_context(entity_names: list, hops: int = 2) -> str:
                     continue
                 seen_facts.add(fkey)
                 cites = ", ".join(fact.get("citations", [fact.get("citation", "?")]))
+                # Mark provenance so the LLM knows which facts are verified
+                # tradition (anukramaṇī / curated) vs. self-built inferences.
+                tag = " ✓traditional" if fact.get("provenance") == "authoritative" else ""
                 lines.append(
                     f"  • {display} —[{fact['relation']}]→ {fact['object']}"
                     + (f"  [{cites}]" if cites else "")
+                    + tag
                 )
                 next_frontier.add(_norm(fact["object"]))
         frontier = next_frontier
@@ -449,7 +500,8 @@ def get_entity_context(entity_names: list, hops: int = 2) -> str:
 
     total = kg["_meta"]["total_facts"]
     return (
-        f"KNOWLEDGE GRAPH ({total} corpus-grounded facts):\n"
+        f"KNOWLEDGE GRAPH ({total} corpus-grounded facts; "
+        f"✓traditional = verified anukramaṇī/curated, trust over inference):\n"
         + "\n".join(lines)
         + "\n"
     )

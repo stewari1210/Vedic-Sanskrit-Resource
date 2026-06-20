@@ -662,12 +662,28 @@ Provide a clear, educational answer with proper citations:"""
         pinned_verse = state.get("pinned_verse")
         pinned_block = ""
         if pinned_verse:
+            # AUTHORITATIVE grounding for this hymn: anukramaṇī metadata (ṛṣi,
+            # patron, theme) + curated KG facts for its named entities. These are
+            # seed-verified (✓traditional), so they anchor name-vs-epithet calls.
+            try:
+                from src.utils.anukramani import format_anukramani_block
+                anukr = pinned_verse.get("anukramani")
+                if anukr:
+                    pinned_block += format_anukramani_block(anukr) + "\n"
+                ents = pinned_verse.get("kg_entities") or []
+                if ents and KG_ENABLED:
+                    ek = get_entity_context(ents, hops=2)
+                    if ek:
+                        pinned_block += ek + "\n"
+            except Exception as _anukr_e:
+                logger.warning(f"📜 anukramaṇī/KG injection failed (non-fatal): {_anukr_e}")
+
             focus_cite = pinned_verse["citation"]
             focus_text = pinned_verse["text"]
             sukta_text = pinned_verse.get("sukta_text")
             sukta_cite = pinned_verse.get("sukta_citation", "")
             if sukta_text and sukta_text.strip() != focus_text.strip():
-                pinned_block = (
+                pinned_block += (
                     f"FOCUS VERSE — the exact verse the user asks about ({focus_cite}):\n"
                     f"{focus_text}\n\n"
                     f"FULL SŪKTA for context — {sukta_cite}. Use these surrounding verses to "
@@ -676,7 +692,7 @@ Provide a clear, educational answer with proper citations:"""
                     f"whether a word in the focus verse is a proper noun or an epithet:\n{sukta_text}\n"
                 )
             else:
-                pinned_block = (
+                pinned_block += (
                     f"PINNED VERSE — exact corpus text for {focus_cite}:\n{focus_text}\n"
                 )
 

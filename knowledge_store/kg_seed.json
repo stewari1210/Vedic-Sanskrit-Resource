@@ -1,0 +1,48 @@
+{
+  "_about": "Curated, AUTHORITATIVE seed for the Vedic KG. Sources are indigenous Vedic apparatus (the anukramaṇī hymn-indices, the Bṛhaddevatā/itihāsa tradition) and standard entity identifications — NOT colonial translations, so this stays consistent with the project's anti-translator-bias mission. Loaded with provenance='authoritative' so the self-building (inferred) layer can never overwrite it. Keep every entry verifiable; do not add speculative genealogy.",
+
+  "facts": [
+    {"subject": "Asamati", "relation": "patronymic", "object": "Rathaproshtha", "citation": "RV 10.60.5", "note": "asamātiṣu rathaproṣṭheṣu — name + patronymic in the clan-plural"},
+    {"subject": "Asamati", "relation": "has_attribute", "object": "king", "citation": "RV 10.60", "note": "the praised patron of the hymn; addressed rājan in 10.60.6"},
+    {"subject": "Asamati", "relation": "has_attribute", "object": "patron of the Gaupayana rishis", "citation": "RV 10.60"},
+
+    {"subject": "Subandhu", "relation": "epithet", "object": "Gaupayana", "citation": "RV 10.57-60"},
+    {"subject": "Subandhu", "relation": "has_brother", "object": "Bandhu", "citation": "RV 10.57-60"},
+    {"subject": "Subandhu", "relation": "has_brother", "object": "Shrutabandhu", "citation": "RV 10.57-60"},
+    {"subject": "Subandhu", "relation": "has_brother", "object": "Viprabandhu", "citation": "RV 10.57-60"},
+    {"subject": "Subandhu", "relation": "has_attribute", "object": "Gaupayana rishi revived in the Subandhu legend", "citation": "RV 10.60.7-10"},
+    {"subject": "Bandhu", "relation": "epithet", "object": "Gaupayana", "citation": "RV 10.57-60"},
+
+    {"subject": "Sudas", "relation": "patronymic", "object": "Paijavana", "citation": "RV 7.18"},
+    {"subject": "Sudas", "relation": "has_attribute", "object": "king", "citation": "RV 7.18"},
+    {"subject": "Sudas", "relation": "member_of_dynasty", "object": "Tritsu", "citation": "RV 7.18"},
+    {"subject": "Sudas", "relation": "fought", "object": "Ten Kings (Dasarajna)", "citation": "RV 7.18"},
+    {"subject": "Vasishtha", "relation": "is_purohita_of", "object": "Sudas", "citation": "RV 7.18"},
+    {"subject": "Vasishtha", "relation": "has_attribute", "object": "rishi of Rigveda Mandala 7", "citation": "RV 7"},
+    {"subject": "Vishvamitra", "relation": "has_attribute", "object": "rishi of Rigveda Mandala 3", "citation": "RV 3"}
+  ],
+
+  "hymns": {
+    "10.060": {
+      "rishi": "the Gaupāyanas — Bandhu, Subandhu, Śrutabandhu and Viprabandhu",
+      "devata": "Subandhu's revival; the king Asamāti; the hand (v.12)",
+      "patron": "Asamāti Rāthaproṣṭha — a king",
+      "theme": "Praise of the king Asamāti and the bringing-back-to-life of the slain Gaupāyana Subandhu (the Subandhu/Gaupāyana legend). v.3 describes a warlike sovereign; v.4 names Ikṣvāku; v.6 addresses 'rājan' (O king); vv.7-10 are the revival.",
+      "entities": ["Asamati", "Subandhu"]
+    },
+    "7.018": {
+      "rishi": "Vasiṣṭha Maitrāvaruṇi",
+      "devata": "Indra",
+      "patron": "Sudās Paijavana — Tṛtsu/Bhārata king",
+      "theme": "The Battle of the Ten Kings (dāśarājña): Sudās's victory on the Paruṣṇī.",
+      "entities": ["Sudas", "Vasishtha"]
+    },
+    "3.062": {
+      "rishi": "Viśvāmitra Gāthina and the Gāthins",
+      "devata": "various; v.10 (the Gāyatrī) is to Savitṛ",
+      "patron": null,
+      "theme": "Contains the Gāyatrī mantra at 3.62.10.",
+      "entities": ["Vishvamitra"]
+    }
+  }
+}

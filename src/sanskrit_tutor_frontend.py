@@ -1073,6 +1073,16 @@ Have natural conversation about Sanskrit:
             focus = sukta_lines  # the user asked for the whole sūkta
         citation = (f"RV {mand}.{sukta:03d}.{verse:02d}" if verse is not None
                     else f"RV {mand}.{sukta:03d} (whole sūkta)")
+        # Attach authoritative anukramaṇī metadata (ṛṣi/patron/theme + KG entities)
+        # for this hymn, if we have a curated seed entry for it.
+        anukramani = kg_entities = None
+        try:
+            from src.utils.anukramani import get_hymn_anukramani
+            anukramani = get_hymn_anukramani(f"{mand}.{sukta:03d}")
+            if anukramani:
+                kg_entities = anukramani.get("entities")
+        except Exception:
+            pass
         return {
             "mandala": mand, "sukta": sukta, "verse": verse,
             "citation": citation,
@@ -1082,6 +1092,9 @@ Have natural conversation about Sanskrit:
             "sukta_verses": sukta_lines,
             "sukta_text": "\n".join(sukta_lines),
             "sukta_citation": f"RV {mand}.{sukta:03d} (full sūkta, {len(sukta_lines)} verses)",
+            # authoritative seed grounding (anukramaṇī + KG entity facts)
+            "anukramani": anukramani,
+            "kg_entities": kg_entities,
         }
 
     @staticmethod
