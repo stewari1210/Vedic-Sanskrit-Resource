@@ -662,10 +662,23 @@ Provide a clear, educational answer with proper citations:"""
         pinned_verse = state.get("pinned_verse")
         pinned_block = ""
         if pinned_verse:
-            pinned_block = (
-                f"PINNED VERSE — exact corpus text for {pinned_verse['citation']}:\n"
-                f"{pinned_verse['text']}\n"
-            )
+            focus_cite = pinned_verse["citation"]
+            focus_text = pinned_verse["text"]
+            sukta_text = pinned_verse.get("sukta_text")
+            sukta_cite = pinned_verse.get("sukta_citation", "")
+            if sukta_text and sukta_text.strip() != focus_text.strip():
+                pinned_block = (
+                    f"FOCUS VERSE — the exact verse the user asks about ({focus_cite}):\n"
+                    f"{focus_text}\n\n"
+                    f"FULL SŪKTA for context — {sukta_cite}. Use these surrounding verses to "
+                    f"identify the referent: trace relative pronouns (yáḥ / yásya / tám), "
+                    f"continuity of subject, and any named figures across the hymn before deciding "
+                    f"whether a word in the focus verse is a proper noun or an epithet:\n{sukta_text}\n"
+                )
+            else:
+                pinned_block = (
+                    f"PINNED VERSE — exact corpus text for {focus_cite}:\n{focus_text}\n"
+                )
 
         if pinned_block:
             support = (f"\nADDITIONAL CORPUS PASSAGES (supporting context only):\n{corpus_context}\n"
@@ -676,12 +689,13 @@ QUESTION: {question}
 {(chr(10) + kg_context) if kg_context else ""}
 {pinned_block}{support}
 INSTRUCTIONS:
-1. The PINNED VERSE above is the exact, authoritative text of the verse in question — base your interpretation strictly and primarily on THESE words.
+1. Interpret the FOCUS VERSE. If a FULL SŪKTA is provided, read the whole hymn FIRST and use it to fix the subject and referents of the focus verse — do NOT treat the focus verse as isolated. Resolving who/what the verse is about almost always requires the surrounding verses.
 2. Provide: the Devanagari (as given), IAST transliteration, a word-by-word breakdown with sandhi resolution, grammatical analysis, and an English interpretation grounded in that morphology.
-3. Work from the Sanskrit itself and Vedic grammar (Macdonell, Monier-Williams). You MAY reach conclusions that differ from earlier translators (Wilson, Griffith, etc.), but every claim must be justified from the verse's own words and grammar — never borrowed from an external translation.
-4. Clearly distinguish what the text ATTESTS from what is INFERENCE. If a word is ambiguous (e.g. a possible proper noun vs. an epithet), say so and give the grammatical evidence on each side rather than asserting one reading.
-5. Use any KNOWLEDGE GRAPH facts above only as corroborating context, not as a substitute for reading the verse.
-6. Cite the verse as {pinned_verse['citation']}.
+3. Work from the Sanskrit itself and Vedic grammar (Macdonell, Monier-Williams). You MAY reach conclusions that differ from earlier translators (Wilson, Griffith, etc.), but every claim must be justified from the words and grammar — never borrowed from an external translation.
+4. Before deciding whether a word is a PROPER NOUN or an EPITHET, check the rest of the sūkta: do relative pronouns (yáḥ "who", yásya "whose") or later verses describe the same entity as a person, king, or agent (e.g. one who acts, rules, is served by others)? A coherent referent across the hymn outweighs an isolated etymological reading. Test your reading for semantic coherence — a single accusative string can describe more than one entity (e.g. a patron AND his chariot); do not force a 'lord/protector' word to modify an inanimate object.
+5. Clearly distinguish what the text ATTESTS from what is INFERENCE. Where genuine ambiguity remains after using the whole sūkta, give the grammatical evidence on each side rather than asserting one reading.
+6. Use any KNOWLEDGE GRAPH facts above only as corroborating context, not as a substitute for reading the text.
+7. Cite the focus verse as {pinned_verse['citation']}.
 
 Provide a careful, text-grounded interpretation:"""
         elif has_corpus:

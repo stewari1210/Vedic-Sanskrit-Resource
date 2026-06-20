@@ -1057,20 +1057,32 @@ Have natural conversation about Sanskrit:
         f = Path(LOCAL_FOLDER) / f"r{mand:02d}" / f"r{mand:02d}.md"
         if not f.exists():
             return None
-        text = f.read_text(encoding="utf-8")
-        verses = []
+        lines = f.read_text(encoding="utf-8").splitlines()
+        # Always gather the FULL sūkta — interpretation needs the surrounding
+        # verses (relative pronouns, named referents) to resolve name-vs-epithet.
+        prefix = f"॥ {mand}.{sukta:03d}."
+        sukta_lines = [ln.strip() for ln in lines if prefix in ln]
+        if not sukta_lines:
+            return None
         if verse is not None:
             marker = f"॥ {mand}.{sukta:03d}.{verse:02d} ॥"
-            verses = [ln.strip() for ln in text.splitlines() if marker in ln]
+            focus = [ln.strip() for ln in lines if marker in ln]
+            if not focus:
+                return None
         else:
-            prefix = f"॥ {mand}.{sukta:03d}."
-            verses = [ln.strip() for ln in text.splitlines() if prefix in ln]
-        if not verses:
-            return None
+            focus = sukta_lines  # the user asked for the whole sūkta
         citation = (f"RV {mand}.{sukta:03d}.{verse:02d}" if verse is not None
                     else f"RV {mand}.{sukta:03d} (whole sūkta)")
-        return {"mandala": mand, "sukta": sukta, "verse": verse,
-                "citation": citation, "verses": verses, "text": "\n".join(verses)}
+        return {
+            "mandala": mand, "sukta": sukta, "verse": verse,
+            "citation": citation,
+            # focus verse(s) — these keys preserve the translation module's behavior
+            "verses": focus, "text": "\n".join(focus),
+            # full sūkta context (used by the home-chat grounding)
+            "sukta_verses": sukta_lines,
+            "sukta_text": "\n".join(sukta_lines),
+            "sukta_citation": f"RV {mand}.{sukta:03d} (full sūkta, {len(sukta_lines)} verses)",
+        }
 
     @staticmethod
     def _is_verse_followup(query: str) -> bool:
