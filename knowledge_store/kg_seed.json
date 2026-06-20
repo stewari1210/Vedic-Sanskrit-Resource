@@ -22,7 +22,15 @@
     {"subject": "Vishvamitra", "relation": "has_attribute", "object": "rishi of Rigveda Mandala 3", "citation": "RV 3"},
 
     {"subject": "Parikshit", "relation": "has_attribute", "object": "king of the Kurus", "citation": "AVŚ 20.127"},
-    {"subject": "Parikshit", "relation": "member_of_dynasty", "object": "Kuru", "citation": "AVŚ 20.127"}
+    {"subject": "Parikshit", "relation": "member_of_dynasty", "object": "Kuru", "citation": "AVŚ 20.127"},
+
+    {"subject": "Shunahshepa", "relation": "has_father", "object": "Ajigarta", "citation": "Bṛhaddevatā; AB 7.13-18", "provenance": "itihasa"},
+    {"subject": "Shunahshepa", "relation": "same_as", "object": "Devarata", "citation": "Bṛhaddevatā; AB 7.13-18", "provenance": "itihasa"},
+    {"subject": "Harishchandra", "relation": "has_attribute", "object": "Ikshvaku king of the Shunahshepa legend", "citation": "Bṛhaddevatā; AB 7.13-18", "provenance": "itihasa"},
+    {"subject": "Pururava", "relation": "has_spouse", "object": "Urvashi", "citation": "Bṛhaddevatā; RV 10.95", "provenance": "itihasa"},
+    {"subject": "Yama", "relation": "has_sister", "object": "Yami", "citation": "RV 10.10", "provenance": "itihasa"},
+    {"subject": "Yama", "relation": "has_father", "object": "Vivasvat", "citation": "RV 10.10/10.14 (Vaivasvata)", "provenance": "itihasa"},
+    {"subject": "Agastya", "relation": "has_spouse", "object": "Lopamudra", "citation": "Bṛhaddevatā; RV 1.179", "provenance": "itihasa"}
   ],
 
   "hymns": {
@@ -31,6 +39,7 @@
       "devata": "Subandhu's revival; the king Asamāti; the hand (v.12)",
       "patron": "Asamāti Rāthaproṣṭha — a king",
       "theme": "Praise of the king Asamāti and the bringing-back-to-life of the slain Gaupāyana Subandhu (the Subandhu/Gaupāyana legend). v.3 describes a warlike sovereign; v.4 names Ikṣvāku; v.6 addresses 'rājan' (O king); vv.7-10 are the revival.",
+      "legend": "The Gaupāyana brothers serve King Asamāti; when Subandhu is struck dead, his brothers revive him by their hymns (vv. 7-12).",
       "entities": ["Asamati", "Subandhu"]
     },
     "7.018": {
@@ -61,6 +70,37 @@
       "patron": null,
       "theme": "A charm to banish takman (fever) to distant peoples — it names the Gandhāris, Mūjavants, Aṅgas, Magadhas (and Balhikas): a NW↔east spread of peoples and a key geographic/ethnographic passage.",
       "entities": []
+    },
+
+    "1.024": {
+      "patron": null,
+      "theme": "Hymns of Śunaḥśepa to Varuṇa and other gods (the Śunaḥśepa cluster, RV 1.24-30).",
+      "legend": "Śunaḥśepa, son of Ajīgarta, was bought by the Ikṣvāku king Hariścandra to be offered in place of his son Rohita; bound to the stake, he praised the gods (esp. Varuṇa), was freed, and was adopted by Viśvāmitra as his son Devarāta.",
+      "entities": ["Shunahshepa", "Harishchandra"]
+    },
+    "10.095": {
+      "patron": null,
+      "theme": "The Purūravā–Urvaśī dialogue.",
+      "legend": "King Purūravā and the apsaras Urvaśī: their union, her departure on the breaking of a condition, and his lament — the dialogue of RV 10.95.",
+      "entities": ["Pururava", "Urvashi"]
+    },
+    "10.010": {
+      "patron": null,
+      "theme": "The Yama–Yamī dialogue.",
+      "legend": "The twins Yama and Yamī, children of Vivasvat: Yamī urges union, Yama refuses on the ground of kinship — the dialogue of RV 10.10.",
+      "entities": ["Yama", "Yami"]
+    },
+    "10.108": {
+      "patron": null,
+      "theme": "The Saramā–Paṇis dialogue.",
+      "legend": "Saramā, Indra's messenger, crosses the Rasā to the Paṇis, who hold the stolen/hidden cows, and demands their return — the dialogue of RV 10.108.",
+      "entities": ["Sarama"]
+    },
+    "1.179": {
+      "patron": null,
+      "theme": "The Agastya–Lopāmudrā dialogue.",
+      "legend": "The ṛṣi Agastya and his wife Lopāmudrā: her appeal and his response — the dialogue of RV 1.179.",
+      "entities": ["Agastya", "Lopamudra"]
     }
   }
 }

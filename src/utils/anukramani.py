@@ -92,6 +92,10 @@ def format_anukramani_block(meta: dict) -> str:
         parts.append(f"  • Patron: {meta['patron']}")
     if meta.get("theme"):
         parts.append(f"  • Theme: {meta['theme']}")
+    if meta.get("legend"):
+        parts.append(f"  • Legend (Bṛhaddevatā / itihāsa tradition — present as "
+                     f"'the tradition holds', not as the mantra's own statement): "
+                     f"{meta['legend']}")
     parts.append("Treat the named patron/figures above as established proper nouns "
                  "of the tradition; do not re-analyse them into common-noun epithets "
                  "unless the text positively contradicts this.")

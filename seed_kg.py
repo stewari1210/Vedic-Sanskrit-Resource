@@ -54,7 +54,9 @@ def main():
             obj=fct["object"],
             citation=fct.get("citation", ""),
             confidence="high",
-            provenance="authoritative",
+            # Structural facts default to 'authoritative'; legend-derived facts
+            # carry "provenance": "itihasa" in the seed.
+            provenance=fct.get("provenance", "authoritative"),
         )
         new += int(bool(is_new))
 

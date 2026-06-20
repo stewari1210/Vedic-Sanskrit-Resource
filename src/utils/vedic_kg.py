@@ -344,6 +344,16 @@ def _save(kg: dict):
 
 # ── Public write API ──────────────────────────────────────────────────────────
 
+# Trust hierarchy: anukramaṇī/curated structural fact > traditional legend
+# (Bṛhaddevatā/itihāsa) > LLM-inferred. A higher tier can correct/override a
+# lower one; a lower tier can never overwrite a higher one.
+_PROV_RANK = {"inferred": 1, "itihasa": 2, "authoritative": 3}
+
+
+def _prov_rank(p: str) -> int:
+    return _PROV_RANK.get(p, 1)
+
+
 def add_fact(subject: str, relation: str, obj: str, citation: str,
              confidence: str = "high", source_query: str = "",
              provenance: str = "inferred",
@@ -386,8 +396,9 @@ def add_fact(subject: str, relation: str, obj: str, citation: str,
             if citation and citation not in cites:
                 cites.append(citation)
                 changed = True
-            if provenance == "authoritative" and fact.get("provenance") != "authoritative":
-                fact["provenance"] = "authoritative"
+            # Upgrade provenance if this add is from a higher-trust tier.
+            if _prov_rank(provenance) > _prov_rank(fact.get("provenance", "inferred")):
+                fact["provenance"] = provenance
                 changed = True
             if changed:
                 _save(kg)
@@ -398,18 +409,18 @@ def add_fact(subject: str, relation: str, obj: str, citation: str,
     if relation in _SINGLETON_RELATIONS:
         for fact in existing:
             if fact["relation"] == relation:
-                # Authoritative seed CORRECTS an earlier inferred singleton.
-                if provenance == "authoritative" and fact.get("provenance") != "authoritative":
+                # A higher-trust source CORRECTS an earlier lower-trust singleton.
+                if _prov_rank(provenance) > _prov_rank(fact.get("provenance", "inferred")):
                     old_o_key = _norm(fact["object"])
                     fact["object"] = obj
                     fact["citations"] = [citation] if citation else []
                     fact["confidence"] = confidence
-                    fact["provenance"] = "authoritative"
+                    fact["provenance"] = provenance
                     _save(kg)
                     if old_o_key != o_key:
                         _delete_triple_from_qdrant(s_key, relation, old_o_key)
                     _upsert_triple_to_qdrant(s_key, subject, relation, obj, o_key, fact)
-                    logger.info(f"🕸️  ✓ authoritative override: {subject} —[{relation}]→ {obj}")
+                    logger.info(f"🕸️  ✓ {provenance} override: {subject} —[{relation}]→ {obj}")
                     return True
                 logger.debug(
                     f"🕸️  Singleton skip: {subject} —[{relation}]→ {obj} "
@@ -484,9 +495,11 @@ def get_entity_context(entity_names: list, hops: int = 2) -> str:
                     continue
                 seen_facts.add(fkey)
                 cites = ", ".join(fact.get("citations", [fact.get("citation", "?")]))
-                # Mark provenance so the LLM knows which facts are verified
-                # tradition (anukramaṇī / curated) vs. self-built inferences.
-                tag = " ✓traditional" if fact.get("provenance") == "authoritative" else ""
+                # Mark provenance so the LLM knows how to weigh each fact.
+                _prov = fact.get("provenance")
+                tag = (" ✓traditional" if _prov == "authoritative"
+                       else " ⚑legend(itihāsa)" if _prov == "itihasa"
+                       else "")
                 lines.append(
                     f"  • {display} —[{fact['relation']}]→ {fact['object']}"
                     + (f"  [{cites}]" if cites else "")
@@ -501,7 +514,8 @@ def get_entity_context(entity_names: list, hops: int = 2) -> str:
     total = kg["_meta"]["total_facts"]
     return (
         f"KNOWLEDGE GRAPH ({total} corpus-grounded facts; "
-        f"✓traditional = verified anukramaṇī/curated, trust over inference):\n"
+        f"✓traditional = verified anukramaṇī/curated; ⚑legend(itihāsa) = traditional "
+        f"legend, treat as 'the tradition holds'; untagged = inferred):\n"
         + "\n".join(lines)
         + "\n"
     )
