@@ -598,9 +598,12 @@ Have natural conversation about Sanskrit:
             else:
                 answer_text = str(result)
 
-            # Update chat history
-            st.session_state.chat_history.append({"role": "user", "content": query})
-            st.session_state.chat_history.append({"role": "assistant", "content": answer_text})
+            # Update chat history ONLY for the home conversation.
+            # Module modes (translation, grammar, vocabulary, pronunciation, quiz)
+            # render their own output and must not leak into the home chatbox.
+            if mode == "conversation":
+                st.session_state.chat_history.append({"role": "user", "content": query})
+                st.session_state.chat_history.append({"role": "assistant", "content": answer_text})
 
             return answer_text
 
@@ -1002,6 +1005,49 @@ Have natural conversation about Sanskrit:
                 if "learned" not in st.session_state:
                     st.session_state.learned_words.extend([category])
 
+    def _lookup_verse_text(self, verse_ref: str):
+        """Look up the exact Devanagari text of a Rigveda verse (or whole sūkta)
+        directly from the formatted corpus in local_store.
+
+        Returns a dict {mandala, sukta, verse, citation, verses[], text} or None
+        when the reference can't be parsed / isn't a Rigveda verse present locally
+        (in which case the caller falls back to ordinary RAG).
+        """
+        import re as _re
+        s = verse_ref.lower().replace("ṛ", "r")
+        # Skip if another corpus is explicitly named — this lookup is RV-only.
+        if _re.search(r'\b(ts|vs|sb|ab|pb|av|avs|avś|taittir|vajasan|shatapatha|'
+                      r'aitareya|pancavim|atharva)\b', s):
+            return None
+        # "Mandala 10 Sukta 60 (verse 1)"  or  "RV 10.60.1" / "10.060.01" / "RV 10.60"
+        m = _re.search(r'mandal\w*\s*(\d+)[,\s]+s[uuū]kt\w*\s*(\d+)'
+                       r'(?:[,\s]+(?:verse|v|mantra)?\s*(\d+))?', s)
+        if not m:
+            m = _re.search(r'(?:rv|rgveda|rigveda)?\s*(\d{1,2})[.\s](\d{1,3})(?:[.\s](\d{1,3}))?', s)
+        if not m:
+            return None
+        mand, sukta = int(m.group(1)), int(m.group(2))
+        verse = int(m.group(3)) if m.group(3) else None
+        if not (1 <= mand <= 10):
+            return None
+        f = Path(LOCAL_FOLDER) / f"r{mand:02d}" / f"r{mand:02d}.md"
+        if not f.exists():
+            return None
+        text = f.read_text(encoding="utf-8")
+        verses = []
+        if verse is not None:
+            marker = f"॥ {mand}.{sukta:03d}.{verse:02d} ॥"
+            verses = [ln.strip() for ln in text.splitlines() if marker in ln]
+        else:
+            prefix = f"॥ {mand}.{sukta:03d}."
+            verses = [ln.strip() for ln in text.splitlines() if prefix in ln]
+        if not verses:
+            return None
+        citation = (f"RV {mand}.{sukta:03d}.{verse:02d}" if verse is not None
+                    else f"RV {mand}.{sukta:03d} (whole sūkta)")
+        return {"mandala": mand, "sukta": sukta, "verse": verse,
+                "citation": citation, "verses": verses, "text": "\n".join(verses)}
+
     def render_translation_module(self):
         """Render verse translation module."""
         st.title("🔤 Verse Translation (अनुवाद)")
@@ -1031,7 +1077,36 @@ Have natural conversation about Sanskrit:
                 st.session_state.selected_verse = None
 
         if verse_ref:
-            query = f"Help me translate {verse_ref}. Show: 1) Original in Devanagari, 2) Word-by-word breakdown with sandhi, 3) Grammar analysis, 4) Hindi translation, 5) English translation, 6) Context."
+            # Look the exact verse up directly from the corpus so interpretation
+            # never depends on semantic retrieval surfacing it.
+            verse_data = self._lookup_verse_text(verse_ref)
+
+            if verse_data:
+                # Guarantee the LLM sees the real verse text.
+                cite = verse_data["citation"]
+                query = (
+                    f"Interpret and translate {cite} from the Rigveda. "
+                    f"Here is the exact Devanagari text:\n\n{verse_data['text']}\n\n"
+                    f"Provide: 1) the Devanagari (as given), 2) IAST transliteration, "
+                    f"3) word-by-word breakdown with sandhi resolution, 4) grammar analysis, "
+                    f"5) Hindi translation, 6) English translation, 7) interpretive context "
+                    f"(deities, ṛṣi, theme). Base everything strictly on the verse text above."
+                )
+                # Drive the audio player from the looked-up text (works for ANY verse,
+                # not just the two hardcoded beginner mantras). Strip the numeric
+                # ॥ N.NNN.NN ॥ end-markers so TTS doesn't read them as digits.
+                import re as _re
+                clean = _re.sub(r'॥\s*\d+\.\d+\.\d+\s*॥', '॥', verse_data["text"]).strip()
+                st.session_state.selected_verse = clean
+                st.caption(f"📖 Loaded {cite} directly from the corpus "
+                           f"({len(verse_data['verses'])} verse line(s)).")
+            else:
+                # Not a local RV verse — fall back to ordinary RAG behaviour.
+                query = (
+                    f"Help me translate {verse_ref}. Show: 1) Original in Devanagari, "
+                    f"2) Word-by-word breakdown with sandhi, 3) Grammar analysis, "
+                    f"4) Hindi translation, 5) English translation, 6) Context."
+                )
 
             with st.container():
                 response = self.ask_tutor(query, mode="translation")
