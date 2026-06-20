@@ -504,8 +504,15 @@ Have natural conversation about Sanskrit:
 
         return base + mode_specific.get(mode, mode_specific["conversation"])
 
-    def ask_tutor(self, query: str, mode: str = "conversation") -> str:
-        """Query the resource using Agentic RAG with language preference."""
+    def ask_tutor(self, query: str, mode: str = "conversation",
+                  pinned_verse: dict = None) -> str:
+        """Query the resource using Agentic RAG with language preference.
+
+        pinned_verse: when a caller (e.g. the Verse Translation module) already has
+        the resolved verse, it passes it directly. That routes through the
+        pinned-verse interpretation branch — so the English instruction is NOT
+        treated as a phrase to translate.
+        """
         system_prompt = self.get_system_prompt(mode)
 
         try:
@@ -513,15 +520,13 @@ Have natural conversation about Sanskrit:
             with st.spinner("🤖 Agent analyzing your question..."):
                 logger.info(f"[FRONTEND] Processing query with Agentic RAG: {query}")
                 logger.info(f"[FRONTEND] Input language: {st.session_state.input_language}")
-                
+
                 # ── Verse grounding for the Home conversation ──────────────────
-                # If the question cites a specific verse, resolve its exact text
-                # and pin it so the agent interprets from the real words. Only for
-                # conversation mode; gated entirely on a citation being present, so
-                # ordinary semantic-search queries are completely unaffected. The
-                # pin is remembered across turns so follow-ups stay grounded.
-                pinned_verse = None
-                if mode == "conversation":
+                # If a pinned verse wasn't supplied by the caller and we're in the
+                # Home chat, auto-detect a citation in the query and pin it
+                # (remembered across follow-ups). Gated on a citation being present,
+                # so ordinary semantic-search queries are completely unaffected.
+                if pinned_verse is None and mode == "conversation":
                     found = self._lookup_verse_text(query)
                     if found:
                         pinned_verse = found
@@ -1146,31 +1151,20 @@ Have natural conversation about Sanskrit:
             # never depends on semantic retrieval surfacing it.
             verse_data = self._lookup_verse_text(verse_ref)
 
+            pinned = None
             if verse_data:
-                # Guarantee the LLM sees the real verse text — plus the whole sūkta
-                # as context so referents (relative pronouns, named figures) can be
-                # resolved before deciding name-vs-epithet.
+                # The verse text, full sūkta, and anukramaṇī all travel via the
+                # pinned-verse channel (pinned=verse_data) — NOT crammed into an
+                # English instruction. This stops the agent from treating the
+                # instruction itself as a phrase to translate. The query is a
+                # short, clean format request only.
                 cite = verse_data["citation"]
-                focus_text = verse_data["text"]
-                sukta_text = verse_data.get("sukta_text", "")
-                context_block = ""
-                if sukta_text and sukta_text.strip() != focus_text.strip():
-                    context_block = (
-                        f"\n\nFULL SŪKTA for context ({verse_data.get('sukta_citation', '')}) — "
-                        f"read the whole hymn first and use the surrounding verses to fix the "
-                        f"subject and referents (trace relative pronouns yáḥ/yásya, named figures, "
-                        f"patronymics) before deciding whether a word is a proper noun or an "
-                        f"epithet. Do NOT translate these context verses, only the focus verse:\n"
-                        f"{sukta_text}"
-                    )
+                pinned = verse_data
                 query = (
-                    f"Interpret and translate the FOCUS VERSE {cite} from the Rigveda.\n\n"
-                    f"FOCUS VERSE (Devanagari):\n{focus_text}{context_block}\n\n"
-                    f"Provide for the FOCUS VERSE: 1) the Devanagari (as given), 2) IAST "
-                    f"transliteration, 3) word-by-word breakdown with sandhi resolution, "
-                    f"4) grammar analysis, 5) Hindi translation, 6) English translation, "
-                    f"7) interpretive context (deities, ṛṣi, theme). Ground every claim in the "
-                    f"text; you may differ from earlier translators but justify it from the words."
+                    f"Give a full scholarly translation and interpretation of the focus "
+                    f"verse {cite}: 1) Devanagari (as given), 2) IAST, 3) word-by-word with "
+                    f"sandhi, 4) grammar, 5) Hindi translation, 6) English translation, "
+                    f"7) interpretive context (ṛṣi, devatā, theme)."
                 )
                 # Drive the audio player from the looked-up text (works for ANY verse,
                 # not just the two hardcoded beginner mantras). Strip the numeric
@@ -1189,7 +1183,7 @@ Have natural conversation about Sanskrit:
                 )
 
             with st.container():
-                response = self.ask_tutor(query, mode="translation")
+                response = self.ask_tutor(query, mode="translation", pinned_verse=pinned)
                 st.markdown(f'<div class="lesson-container">{response}</div>', unsafe_allow_html=True)
 
                 # Per-translation export buttons (.md + .docx), same as the chat window

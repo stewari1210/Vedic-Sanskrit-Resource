@@ -303,7 +303,13 @@ def classify_and_plan_node(state: AgentState):
     is_construction = any(kw in question.lower() for kw in construction_keywords)
     is_grammar = any(kw in question.lower() for kw in grammar_keywords)
 
-    if is_construction:
+    # A pinned verse always means "interpret THIS verse" — never an English→Sanskrit
+    # construction. Force factual so the instruction text (e.g. "translate RV 10.60.2")
+    # is NOT itself translated, and the pinned-verse synthesis branch is reached.
+    if state.get("pinned_verse"):
+        query_type = "factual"
+        logger.info("[AGENT] Query type: FACTUAL (pinned verse — interpretation mode)")
+    elif is_construction:
         query_type = "construction"
         logger.info("[AGENT] Query type: CONSTRUCTION (need dictionary + grammar + examples)")
     elif is_grammar:
