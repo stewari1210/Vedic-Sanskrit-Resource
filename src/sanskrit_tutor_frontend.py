@@ -1112,6 +1112,14 @@ Have natural conversation about Sanskrit:
                 response = self.ask_tutor(query, mode="translation")
                 st.markdown(f'<div class="lesson-container">{response}</div>', unsafe_allow_html=True)
 
+                # Per-translation export buttons (.md + .docx), same as the chat window
+                export_label = verse_data["citation"] if verse_data else verse_ref
+                self._render_answer_export(
+                    f"Verse translation — {export_label}",
+                    response,
+                    f"trans_{abs(hash(verse_ref))}",
+                )
+
                 # If we have the verse text, provide audio
                 if hasattr(st.session_state, 'selected_verse') and st.session_state.selected_verse:
                     st.markdown("---")
