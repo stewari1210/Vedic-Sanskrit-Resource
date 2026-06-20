@@ -1,0 +1,6173 @@
+{
+  "_meta": {
+    "source": "Akavarapu & Bhattacharya 2023, Digital Rig Veda Anukramaṇī (WSC/ACL)",
+    "url": "https://github.com/mahesh-ak/WSC2023",
+    "license": "Apache-2.0",
+    "provenance": "authoritative",
+    "note": "Traditional Śaunaka/Kātyāyana anukramaṇī, anuvṛtti resolved. ṛṣi/devatā/meter per sūkta."
+  },
+  "hymns": {
+    "1.001": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.002": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "(1-3)vāyuḥ,(4-6)indravāyū,(7-9)mitrāvaruṇau",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.003": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "(1-3)aśvinau,(4-6)indraḥ,(7-9)viśvedevāḥ,(10-12)sarasvatī",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "1.004": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.005": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.006": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.007": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.008": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.009": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.010": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "indraḥ",
+      "meter": "anuṣṭup",
+      "verses": 12
+    },
+    "1.011": {
+      "rishi": "mādhucchandaso jetā",
+      "devata": "indraḥ",
+      "meter": "anuṣṭup",
+      "verses": 8
+    },
+    "1.012": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "1.013": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "(1-5,12)agniḥ,(6)devīrdvāraḥ,(7)uṣāsānaktā,(8)daivyau hotārau,(9)iḻā-sarasvatī-mahī,(10)tvaṣṭā,(11)vanaspatiḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "1.014": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "1.015": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "(1)indraḥ,(2)marutaḥ,(3)tvaṣṭā,(4,7-10,12)agniḥ,(5)indraḥ,(6)mitrāvaruṇau,(11)aśvinau",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "1.016": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.017": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.018": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "brahmaṇaspatiḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.019": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "agniḥ-marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.020": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "1.021": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "indrāgnī",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "1.022": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "(1-4)aśvinau,(5-8)savitā,(9-10)agniḥ,(11)devyaḥ,(12)indrāṇī-varuṇānī-agnāyī,(13-14)dyāvāpṛthivyau,(15)pṛthivī,(16-21)viṣṇuḥ",
+      "meter": "gāyatrī",
+      "verses": 21
+    },
+    "1.023": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "(1)vāyuḥ,(2-3)indravāyū,(4-6)mitrāvaruṇau,(7-9)indraḥ-marutaḥ,(10-12)viśvedevāḥ,(13-15)pūṣā,(16-23)āpaḥ,(24)agniḥ",
+      "meter": "(1-18,21)gāyatrī,(19)uṣṇik,(20,22-24)anuṣṭup",
+      "verses": 24
+    },
+    "1.024": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "(1)kaḥ,(2)agniḥ,(3-5)savitā,(6-15)varuṇaḥ",
+      "meter": "(1-2,6-15)triṣṭup,(3-5)gāyatrī",
+      "verses": 15
+    },
+    "1.025": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "gāyatrī",
+      "verses": 21
+    },
+    "1.026": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.027": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "(1-12)agniḥ,(13)devāḥ",
+      "meter": "(1-12)gāyatrī,(13)triṣṭup",
+      "verses": 13
+    },
+    "1.028": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "(1-4)indraḥ,(5-6)ulūkhalam,(7-8)ulūkhalamusale,(9)somaḥ",
+      "meter": "(1-6)anuṣṭup,(7-9)gāyatrī",
+      "verses": 9
+    },
+    "1.029": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "indraḥ",
+      "meter": "paṅktiḥ",
+      "verses": 7
+    },
+    "1.030": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "(1-16)indraḥ,(17-19)aśvinau,(20-22)uṣāḥ",
+      "meter": "(1-15,17-22)gāyatrī,(16)triṣṭup",
+      "verses": 22
+    },
+    "1.031": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-7,9-15,17)jagatī,(8,16,18)triṣṭup",
+      "verses": 18
+    },
+    "1.032": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "1.033": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "1.034": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "aśvinau",
+      "meter": "(1-8,10-11)jagatī,(9,12)triṣṭup",
+      "verses": 12
+    },
+    "1.035": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "(1)agniḥ-mitrāvaruṇau-rātriḥ-savitā,(2-11)savitā",
+      "meter": "(1,9)jagatī,(2-8,10-11)triṣṭup",
+      "verses": 11
+    },
+    "1.036": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "agniḥ",
+      "meter": "bṛhatī",
+      "verses": 20
+    },
+    "1.037": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "1.038": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "1.039": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "marutaḥ",
+      "meter": "bṛhatī",
+      "verses": 10
+    },
+    "1.040": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "brahmaṇaspatiḥ",
+      "meter": "bṛhatī",
+      "verses": 8
+    },
+    "1.041": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "ādityāḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.042": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "pūṣā",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.043": {
+      "rishi": "ghauraḥ kaṇvaḥ",
+      "devata": "(1-6)rudraḥ,(7-9)somaḥ",
+      "meter": "(1-8)gāyatrī,(9)anuṣṭup",
+      "verses": 9
+    },
+    "1.044": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "agniḥ",
+      "meter": "bṛhatī",
+      "verses": 14
+    },
+    "1.045": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "agniḥ",
+      "meter": "anuṣṭup",
+      "verses": 10
+    },
+    "1.046": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "aśvinau",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "1.047": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "aśvinau",
+      "meter": "bṛhatī",
+      "verses": 10
+    },
+    "1.048": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "uṣāḥ",
+      "meter": "bṛhatī",
+      "verses": 16
+    },
+    "1.049": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "uṣāḥ",
+      "meter": "anuṣṭup",
+      "verses": 4
+    },
+    "1.050": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "sūryaḥ",
+      "meter": "(1-9)gāyatrī,(10-13)anuṣṭup",
+      "verses": 13
+    },
+    "1.051": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-13)jagatī,(14-15)triṣṭup",
+      "verses": 15
+    },
+    "1.052": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-12,14)jagatī,(13,15)triṣṭup",
+      "verses": 15
+    },
+    "1.053": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)jagatī,(10-11)triṣṭup",
+      "verses": 11
+    },
+    "1.054": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-5,7,10)jagatī,(6,8-9,11)triṣṭup",
+      "verses": 11
+    },
+    "1.055": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "jagatī",
+      "verses": 8
+    },
+    "1.056": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "1.057": {
+      "rishi": "āṅgirasaḥ savyaḥ",
+      "devata": "indraḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "1.058": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "agniḥ",
+      "meter": "(1-5)jagatī,(6-9)triṣṭup",
+      "verses": 9
+    },
+    "1.059": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "1.060": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.061": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 16
+    },
+    "1.062": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "1.063": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "1.064": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-14)jagatī,(15)triṣṭup",
+      "verses": 15
+    },
+    "1.065": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 10
+    },
+    "1.066": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 10
+    },
+    "1.067": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 10
+    },
+    "1.068": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 10
+    },
+    "1.069": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 10
+    },
+    "1.070": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 11
+    },
+    "1.071": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "1.072": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "1.073": {
+      "rishi": "śāktyaḥ parāśaraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "1.074": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "1.075": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "1.076": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.077": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.078": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "1.079": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3)triṣṭup,(4-6)uṣṇik,(7-12)gāyatrī",
+      "verses": 12
+    },
+    "1.080": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "indraḥ",
+      "meter": "paṅktiḥ",
+      "verses": 16
+    },
+    "1.081": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "indraḥ",
+      "meter": "paṅktiḥ",
+      "verses": 9
+    },
+    "1.082": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-5)paṅktiḥ,(6)jagatī",
+      "verses": 6
+    },
+    "1.083": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "indraḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "1.084": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6)anuṣṭup,(7-9)uṣṇik,(10-12)paṅktiḥ,(13-15)gāyatrī,(16-18)triṣṭup,(19-20)bṛhatī",
+      "verses": 20
+    },
+    "1.085": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-4,6-11)jagatī,(5,12)triṣṭup",
+      "verses": 12
+    },
+    "1.086": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "1.087": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "marutaḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "1.088": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1,6)paṅktiḥ,(2-4)triṣṭup,(5)virāṭ",
+      "verses": 6
+    },
+    "1.089": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-5,7)jagatī,(6)virāṭ,(8-10)triṣṭup",
+      "verses": 10
+    },
+    "1.090": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-8)gāyatrī,(9)anuṣṭup",
+      "verses": 9
+    },
+    "1.091": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "somaḥ",
+      "meter": "(1-4,18-23)triṣṭup,(5-16)gāyatrī,(17)uṣṇik",
+      "verses": 23
+    },
+    "1.092": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "(1-15)uṣāḥ,(16-18)aśvinau",
+      "meter": "(1-4)jagatī,(5-12)triṣṭup,(13-18)uṣṇik",
+      "verses": 18
+    },
+    "1.093": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "agnīṣomau",
+      "meter": "(1-3)anuṣṭup,(4-7,12)triṣṭup,(8)jagatī,(9-11)gāyatrī",
+      "verses": 12
+    },
+    "1.094": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-14)jagatī,(15-16)triṣṭup",
+      "verses": 16
+    },
+    "1.095": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "1.096": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "1.097": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "1.098": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "1.099": {
+      "rishi": "mārīcaḥ kaśyapaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 1
+    },
+    "1.100": {
+      "rishi": "vārṣāgirāḥ ṛjrāśvaḥ-ambarīṣaḥ-sahadevaḥ-bhayamānaḥ-surādhasaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 19
+    },
+    "1.101": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-7)jagatī,(8-11)triṣṭup",
+      "verses": 11
+    },
+    "1.102": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-10)jagatī,(11)triṣṭup",
+      "verses": 11
+    },
+    "1.103": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "1.104": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "1.105": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-7,9-18)paṅktiḥ,(8)bṛhatī,(19)triṣṭup",
+      "verses": 19
+    },
+    "1.106": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-6)jagatī,(7)triṣṭup",
+      "verses": 7
+    },
+    "1.107": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "1.108": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "indrāgnī",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "1.109": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "indrāgnī",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "1.110": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "(1-4,6-8)jagatī,(5,9)triṣṭup",
+      "verses": 9
+    },
+    "1.111": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "(1-4)jagatī,(5)triṣṭup",
+      "verses": 5
+    },
+    "1.112": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "aśvinau",
+      "meter": "(1-23)jagatī,(24-25)triṣṭup",
+      "verses": 25
+    },
+    "1.113": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 20
+    },
+    "1.114": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "rudraḥ",
+      "meter": "(1-9)jagatī,(10-11)triṣṭup",
+      "verses": 11
+    },
+    "1.115": {
+      "rishi": "āṅgirasaḥ kutsaḥ",
+      "devata": "sūryaḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "1.116": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 25
+    },
+    "1.117": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 25
+    },
+    "1.118": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "1.119": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "aśvinau",
+      "meter": "jagatī",
+      "verses": 10
+    },
+    "1.120": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "aśvinau",
+      "meter": "(1,10-12)gāyatrī,(2)kakup,(4)naṣṭarūpī,(5)tanuśirā,(6)uṣṇik,(7)bṛhatī,(8)kṛtiḥ,(3,9)virāṭ",
+      "verses": 12
+    },
+    "1.121": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "1.122": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-4,7-15)triṣṭup,(5-6)virāṭ",
+      "verses": 15
+    },
+    "1.123": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "1.124": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "1.125": {
+      "rishi": "auśijo dairghatamasaḥ kakṣīvān",
+      "devata": "svanayamya dānastutiḥ",
+      "meter": "(1-3,6-7)triṣṭup,(4-5)jagatī",
+      "verses": 7
+    },
+    "1.126": {
+      "rishi": "(1-5)auśijo dairghatamasaḥ kakṣīvān,(6)svanayo bhāvayavyaḥ,(7)romaśā",
+      "devata": "(1-5,7)svanayo bhāvayavyaḥ,(6)romaśā",
+      "meter": "(1-5)triṣṭup,(6,7)anuṣṭup",
+      "verses": 7
+    },
+    "1.127": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-5,7-11)atyaṣṭiḥ,(6)ādhṛtiḥ",
+      "verses": 11
+    },
+    "1.128": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "agniḥ",
+      "meter": "atyaṣṭiḥ",
+      "verses": 8
+    },
+    "1.129": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-7,10)atyaṣṭiḥ,(8-9)atiśakvarī,(11)aṣṭiḥ",
+      "verses": 11
+    },
+    "1.130": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)atyaṣṭiḥ,(10)triṣṭup",
+      "verses": 10
+    },
+    "1.131": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "indraḥ",
+      "meter": "atyaṣṭiḥ",
+      "verses": 7
+    },
+    "1.132": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "indraḥ",
+      "meter": "atyaṣṭiḥ",
+      "verses": 6
+    },
+    "1.133": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "indraḥ",
+      "meter": "(1)triṣṭup,(2-4)anuṣṭup,(5)gāyatrī,(6)dhṛtiḥ,(7)aṣṭiḥ",
+      "verses": 7
+    },
+    "1.134": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "vāyuḥ",
+      "meter": "(1-5)atyaṣṭiḥ,(6)aṣṭiḥ",
+      "verses": 6
+    },
+    "1.135": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "(1-3,9)vāyuḥ,(4-8)indravāyū",
+      "meter": "(1-6,9)atyaṣṭiḥ,(7-8)aṣṭiḥ",
+      "verses": 9
+    },
+    "1.136": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "(1-5)mitrāvaruṇau,(6-7)liṅgoktāḥ",
+      "meter": "(1-6)atyaṣṭiḥ,(7)triṣṭup",
+      "verses": 7
+    },
+    "1.137": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "atiśakvarī",
+      "verses": 3
+    },
+    "1.138": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "pūṣā",
+      "meter": "atyaṣṭiḥ",
+      "verses": 4
+    },
+    "1.139": {
+      "rishi": "daivaodāsiḥ parucchepaḥ",
+      "devata": "(1,11)viśvedevāḥ,(2)mitrāvaruṇau,(3-5)aśvinau,(6)indraḥ,(7)agniḥ,(8)marutaḥ,(9)indrāgnī,(10)bṛhaspatiḥ",
+      "meter": "(1-4,6-10)atyaṣṭiḥ,(5)bṛhatī,(11)triṣṭup",
+      "verses": 11
+    },
+    "1.140": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "(1-9,11)jagatī,(10)triṣṭup,(12-13)triṣṭup",
+      "verses": 13
+    },
+    "1.141": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "(1-11)jagatī,(12-13)triṣṭup",
+      "verses": 13
+    },
+    "1.142": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "(1-4)agniḥ,(5)barhiḥ,(6)devīrdvāraḥ,(7)uṣāsānaktā,(8)daivyau hotārau,(9)sarasvatī-iḻā-bhāratī,(10)tvaṣṭā,(11)vanaspatiḥ,(12)svāhākṛtayaḥ,(13)indraḥ",
+      "meter": "anuṣṭup",
+      "verses": 13
+    },
+    "1.143": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "(1-7)jagatī,(8)triṣṭup",
+      "verses": 8
+    },
+    "1.144": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "jagatī",
+      "verses": 7
+    },
+    "1.145": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "(1-4)jagatī,(5)triṣṭup",
+      "verses": 5
+    },
+    "1.146": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.147": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.148": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.149": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 5
+    },
+    "1.150": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "agniḥ",
+      "meter": "uṣṇik",
+      "verses": 3
+    },
+    "1.151": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "(1)mitraḥ,(2-9)mitrāvaruṇau",
+      "meter": "jagatī",
+      "verses": 9
+    },
+    "1.152": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "1.153": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "1.154": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "viṣṇuḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "1.155": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "(1-3)indrāviṣṇū,(4-6)viṣṇuḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "1.156": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "viṣṇuḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "1.157": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "aśvinau",
+      "meter": "(1-4)jagatī,(5-6)triṣṭup",
+      "verses": 6
+    },
+    "1.158": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "aśvinau",
+      "meter": "(1-5)triṣṭup,(6)anuṣṭup",
+      "verses": 6
+    },
+    "1.159": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "dyāvāpṛthivyau",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "1.160": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "dyāvāpṛthivyau",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "1.161": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "(1-13)jagatī,(14)triṣṭup",
+      "verses": 14
+    },
+    "1.162": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "aśvaḥ",
+      "meter": "(1-2,4-5,7-22)triṣṭup,(3,6)jagatī",
+      "verses": 22
+    },
+    "1.163": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "aśvaḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "1.164": {
+      "rishi": "aucathyo dīrghatamāḥ",
+      "devata": "(1-41)viśvedevāḥ,(42)vāk-āpaḥ,(43)somaḥ,(44)keśinaḥ,(45)vāk,(46-47)sūryaḥ,(48)saṁvatsarakālacakram,(49)sarasvatī,(50)sādhyāḥ,(51-52)sūryaḥ",
+      "meter": "(1-11,13-14,16-22,24-28,30-35,37-40,43-50,52)triṣṭup,(12,15,23,29,36,41)jagatī,(42)paṅktiḥ,(51)anuṣṭup",
+      "verses": 52
+    },
+    "1.165": {
+      "rishi": "(1-2,4,6,8,10-12)indraḥ,(3,5,7,9)marutaḥ,(13-15)maitrāvaruṇiragastyaḥ",
+      "devata": "marutvānindraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "1.166": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-13)jagatī,(14-15)triṣṭup",
+      "verses": 15
+    },
+    "1.167": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "(1)indraḥ,(2-11)marutaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "1.168": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-7)jagatī,(8-10)triṣṭup",
+      "verses": 10
+    },
+    "1.169": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1,3-8)triṣṭup,(2)virāṭ",
+      "verses": 8
+    },
+    "1.170": {
+      "rishi": "(1,3,4)indraḥ,(2,5)maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1)bṛhatī,(2-4)anuṣṭup,(5)triṣṭup",
+      "verses": 5
+    },
+    "1.171": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "(1-2)marutaḥ,(3-6)marutvānindraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "1.172": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "1.173": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "1.174": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "1.175": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1)bṛhatī,(2-5)anuṣṭup,(6)triṣṭup",
+      "verses": 6
+    },
+    "1.176": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-5)anuṣṭup,(6)triṣṭup",
+      "verses": 6
+    },
+    "1.177": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.178": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "1.179": {
+      "rishi": "(1-2)lopāmudrā,(3-4)maitrāvaruṇiragastyaḥ,(5-6)agastyāntevāsī brahmacārī",
+      "devata": "ratiḥ",
+      "meter": "(1-4,6)triṣṭup,(5)bṛhatī",
+      "verses": 6
+    },
+    "1.180": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "1.181": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "1.182": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "aśvinau",
+      "meter": "(1-5,7)jagatī,(6,8)triṣṭup",
+      "verses": 8
+    },
+    "1.183": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "1.184": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "1.185": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "dyāvāpṛthivyau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "1.186": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "1.187": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "annam",
+      "meter": "(1,3,5-7,11)anuṣṭup,(2,4,8-10)gāyatrī",
+      "verses": 11
+    },
+    "1.188": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "(1-3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "gāyatrī",
+      "verses": 11
+    },
+    "1.189": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "1.190": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "bṛhaspatiḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "1.191": {
+      "rishi": "maitrāvaruṇiragastyaḥ",
+      "devata": "aptṛṇaḥ-sūryaḥ",
+      "meter": "(1-9,14-16)anuṣṭup,(10-11)paṅktiḥ,(13)bṛhatī",
+      "verses": 16
+    },
+    "2.001": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "agniḥ",
+      "meter": "jagatī",
+      "verses": 16
+    },
+    "2.002": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "agniḥ",
+      "meter": "jagatī",
+      "verses": 13
+    },
+    "2.003": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1-3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "(1-6,8-11)triṣṭup,(7)jagatī",
+      "verses": 11
+    },
+    "2.004": {
+      "rishi": "bhārgavaḥ somāhutiḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "2.005": {
+      "rishi": "bhārgavaḥ somāhutiḥ",
+      "devata": "agniḥ",
+      "meter": "anuṣṭup",
+      "verses": 8
+    },
+    "2.006": {
+      "rishi": "bhārgavaḥ somāhutiḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "2.007": {
+      "rishi": "bhārgavaḥ somāhutiḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "2.008": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-5)gāyatrī,(6)anuṣṭup",
+      "verses": 6
+    },
+    "2.009": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "2.010": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "2.011": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-20)virāṭ,(21)triṣṭup",
+      "verses": 21
+    },
+    "2.012": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "2.013": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-12)jagatī,(13)triṣṭup",
+      "verses": 13
+    },
+    "2.014": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "2.015": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "2.016": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-8)jagatī,(9)triṣṭup",
+      "verses": 9
+    },
+    "2.017": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-7)jagatī,(8-9)triṣṭup",
+      "verses": 9
+    },
+    "2.018": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "2.019": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "2.020": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-2,4-9)triṣṭup,(3)virāṭ",
+      "verses": 9
+    },
+    "2.021": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-5)jagatī,(6)triṣṭup",
+      "verses": 6
+    },
+    "2.022": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "indraḥ",
+      "meter": "(1)aṣṭiḥ,(2-4)atiśakvarī",
+      "verses": 4
+    },
+    "2.023": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1,5,9,11,17,19)brahmaṇaspatiḥ,(2-4,6-8,10,12-16,18)bṛhaspatiḥ",
+      "meter": "(1-14,16-18)jagatī,(15,19)triṣṭup",
+      "verses": 19
+    },
+    "2.024": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1,10)bṛhaspatiḥ,(2-9,11,13-16)brahmaṇaspatiḥ,(12)indrābrahmaṇaspatī",
+      "meter": "(1-11,13-15)jagatī,(12,16)triṣṭup",
+      "verses": 16
+    },
+    "2.025": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "brahmaṇaspatiḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "2.026": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "brahmaṇaspatiḥ",
+      "meter": "jagatī",
+      "verses": 4
+    },
+    "2.027": {
+      "rishi": "gārtsamadaḥ kūrmaḥ",
+      "devata": "ādityāḥ",
+      "meter": "triṣṭup",
+      "verses": 17
+    },
+    "2.028": {
+      "rishi": "gārtsamadaḥ kūrmaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "2.029": {
+      "rishi": "gārtsamadaḥ kūrmaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "2.030": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1-5,7,8,10)indraḥ,(6)indrāsomau,(9)bṛhaspatiḥ,(11)marutaḥ",
+      "meter": "(1-10)triṣṭup,(11)jagatī",
+      "verses": 11
+    },
+    "2.031": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-6)jagatī,(7)triṣṭup",
+      "verses": 7
+    },
+    "2.032": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1)dyāvāpṛthivyau,(2-3)indraḥ,(4-5)rākā,(6-7)sinīvālī,(8)liṅgoktāḥ",
+      "meter": "(1-5)jagatī,(6-8)anuṣṭup",
+      "verses": 8
+    },
+    "2.033": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "rudraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "2.034": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-14)jagatī,(15)triṣṭup",
+      "verses": 15
+    },
+    "2.035": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "apāṁ napāt",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "2.036": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1)indraḥ,(2)marutaḥ,(3)tvaṣṭā,(4)agniḥ,(5)indraḥ,(6)mitrāvaruṇau",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "2.037": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1-4)draviṇodāḥ,(5)aśvinau,(6)agniḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "2.038": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "savitā",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "2.039": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "2.040": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "somāpūṣāṇau",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "2.041": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "(1-2)vāyuḥ,(3)indravāyū,(4-6)mitrāvaruṇau,(7-9)aśvinau,(10-12)indraḥ,(13-15)viśvedevāḥ,(16-18)sarasvatī,(19-21)dyāvāpṛthivyau",
+      "meter": "(1-15,19-21)gāyatrī,(16-17)anuṣṭup,(18)bṛhatī",
+      "verses": 21
+    },
+    "2.042": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "śakuntaḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "2.043": {
+      "rishi": "śaunako gṛtsamadaḥ",
+      "devata": "śakuntaḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "3.001": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 23
+    },
+    "3.002": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "jagatiī",
+      "verses": 15
+    },
+    "3.003": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "jagatiī",
+      "verses": 11
+    },
+    "3.004": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "(1-3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)devyau hotārau,(8)sarasvati-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.005": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.006": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.007": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.008": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "yūpaḥ",
+      "meter": "(1-2,4-6,8-11)triṣṭup,(3,7)anuṣṭup",
+      "verses": 11
+    },
+    "3.009": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "(1-8)bṛhatī,(9)triṣṭup",
+      "verses": 9
+    },
+    "3.010": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "uṣṇik",
+      "verses": 9
+    },
+    "3.011": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "3.012": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indrāgnī",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "3.013": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "anuṣṭup",
+      "verses": 7
+    },
+    "3.014": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "3.015": {
+      "rishi": "kātya utkīlaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "3.016": {
+      "rishi": "kātya utkīlaḥ",
+      "devata": "agniḥ",
+      "meter": "bṛhatī",
+      "verses": 6
+    },
+    "3.017": {
+      "rishi": "vaiśvāmitraḥ kataḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.018": {
+      "rishi": "vaiśvāmitraḥ kataḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.019": {
+      "rishi": "kauśiko gāthī",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.020": {
+      "rishi": "kauśiko gāthī",
+      "devata": "(1,5)viśvedevāḥ,(2-4)agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.021": {
+      "rishi": "kauśiko gāthī",
+      "devata": "agniḥ",
+      "meter": "(1)triṣṭup,(2-3)anuṣṭup,(4)virāṭ,(5)bṛhatī",
+      "verses": 5
+    },
+    "3.022": {
+      "rishi": "kauśiko gāthī",
+      "devata": "agniḥ",
+      "meter": "(1-3,5)triṣṭup,(4)anuṣṭup",
+      "verses": 5
+    },
+    "3.023": {
+      "rishi": "bhāratau devaśravodevavatau",
+      "devata": "agniḥ",
+      "meter": "(1-2,4-5)triṣṭup,(3)bṛhatī",
+      "verses": 5
+    },
+    "3.024": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "(1)anuṣṭup,(2-5)gāyatrī",
+      "verses": 5
+    },
+    "3.025": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "(1-3,5)agniḥ,(4)indrāgnī",
+      "meter": "virāṭ",
+      "verses": 5
+    },
+    "3.026": {
+      "rishi": "(1-6,8-9)gāthino viśvāmitraḥ,(7)brahma",
+      "devata": "(1-8)agniḥ,(9)viśvāmitropādhyāyaḥ",
+      "meter": "(1-6)jagatiī,(7-9)triṣṭup",
+      "verses": 9
+    },
+    "3.027": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "3.028": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "(1-2,6)gāyatrī,(3)uṣṇik,(4)triṣṭup,(5)jagatiī",
+      "verses": 6
+    },
+    "3.029": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "agniḥ",
+      "meter": "(1,4,10,12)anuṣṭup,(2,3,5,7-9,13,16)triṣṭup,(6,11,14,15)jagatiī",
+      "verses": 16
+    },
+    "3.030": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 22
+    },
+    "3.031": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 22
+    },
+    "3.032": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 17
+    },
+    "3.033": {
+      "rishi": "(1-3,5,7,9,11-13)gāthino viśvāmitraḥ,(4,6,8,10)nadyaḥ",
+      "devata": "(1-3,5,9,11-13)nadyaḥ,(4,8,10)viśvāmitraḥ,(6,7)indraḥ",
+      "meter": "(1-12)triṣṭup,(13)anuṣṭup",
+      "verses": 13
+    },
+    "3.034": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.035": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.036": {
+      "rishi": "(1-9,11)gāthino viśvāmitraḥ,(10)āṅgiraso ghoraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "3.037": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "(1-10)gāyatrī,(11)anuṣṭup",
+      "verses": 11
+    },
+    "3.038": {
+      "rishi": "vaiśvāmitro vācyaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "3.039": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "3.040": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "3.041": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "3.042": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "3.043": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "3.044": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "bṛhatī",
+      "verses": 5
+    },
+    "3.045": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "bṛhatī",
+      "verses": 5
+    },
+    "3.046": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.047": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.048": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.049": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.050": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "3.051": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "(1-3)jagatiī,(4-9)triṣṭup,(10-12)gāyatrī",
+      "verses": 12
+    },
+    "3.052": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "indraḥ",
+      "meter": "(1-4)gāyatrī,(5,7-8)triṣṭup,(6)jagatiī",
+      "verses": 8
+    },
+    "3.053": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "(1)indrāparvatau,(2-14)indraḥ,(15-16)sasarparī vāk,(17-20)rathāṅgāni,(21-24)abhiśāpaḥ",
+      "meter": "(1-9,11,14-15,17,19,21,23-24)triṣṭup,(10,16)jagatiī,(12,20,22)anuṣṭup,(13)gāyatrī,(18)bṛhatī",
+      "verses": 24
+    },
+    "3.054": {
+      "rishi": "vaiśvāmitraḥ vācyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 22
+    },
+    "3.055": {
+      "rishi": "vaiśvāmitraḥ vācyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 22
+    },
+    "3.056": {
+      "rishi": "vaiśvāmitraḥ vācyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "3.057": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "3.058": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "3.059": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "mitraḥ",
+      "meter": "(1-5)triṣṭup,(6-9)gāyatrī",
+      "verses": 9
+    },
+    "3.060": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "jagatiī",
+      "verses": 7
+    },
+    "3.061": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "3.062": {
+      "rishi": "gāthino viśvāmitraḥ",
+      "devata": "(1-3)indrāvaruṇau,(4-6)bṛhaspatiḥ,(7-9)pūṣā,(10-12)savitā,(13-15)somaḥ,(16-18)mitrāvaruṇau",
+      "meter": "(1-3)triṣṭup,(4-15)gāyatrī",
+      "verses": 18
+    },
+    "4.001": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "(1)aṣṭiḥ,(2)atijagatī,(3)dhṛtiḥ,(4-20)triṣṭup",
+      "verses": 20
+    },
+    "4.002": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 20
+    },
+    "4.003": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 16
+    },
+    "4.004": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "4.005": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "4.006": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.007": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "(1)jagatī,(2-6)anuṣṭup,(7-11)triṣṭup",
+      "verses": 11
+    },
+    "4.008": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "4.009": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "4.010": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3,5)paṅktiḥ,(4,6,7,8)uṣnik",
+      "verses": 8
+    },
+    "4.011": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "4.012": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "4.013": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "4.014": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "4.015": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-6)agniḥ,(7-8)sāhadevyaḥ somakaḥ,(9-10)aśvinau",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "4.016": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 21
+    },
+    "4.017": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-14,16-21)triṣṭup,(15)virāṭ",
+      "verses": 21
+    },
+    "4.018": {
+      "rishi": "(1)indraḥ,(2-4,8-13)gautamo vāmadevaḥ,(5-7)aditiḥ",
+      "devata": "(1,5-7)vāmadevaḥ,(2-4,8-13)indraḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "4.019": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.020": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.021": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.022": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.023": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.024": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9,11)triṣṭup,(10)anuṣṭup",
+      "verses": 11
+    },
+    "4.025": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "4.026": {
+      "rishi": "(1-3)indraḥ,(4-7)gautamo vāmadevaḥ",
+      "devata": "(1-3)indraḥ,(4-7)śyenaḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "4.027": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-4)śyenaḥ,(5)indraḥ",
+      "meter": "(1-4)triṣṭup,(5)śakvarī",
+      "verses": 5
+    },
+    "4.028": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "4.029": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "4.030": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-8,12-24)indraḥ,(9-11)indroṣasau",
+      "meter": "(1-7,9-23)gāyatrī,(8,24)anuṣṭup",
+      "verses": 24
+    },
+    "4.031": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "4.032": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-22)indraḥ,(23-24)indrasyāśvau",
+      "meter": "gāyatrī",
+      "verses": 24
+    },
+    "4.033": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.034": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.035": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "4.036": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "(1-8)jagatī,(9)triṣṭup",
+      "verses": 9
+    },
+    "4.037": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "ṛbhavaḥ",
+      "meter": "(1-4)triṣṭup,(5-8)anuṣṭup",
+      "verses": 8
+    },
+    "4.038": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1)dyāvāpṛthivyau,(2-10)dadhikrāḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "4.039": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "dadhikrāḥ",
+      "meter": "(1-5)triṣṭup,(6)anuṣṭup",
+      "verses": 6
+    },
+    "4.040": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-4)dadhikrāḥ,(5)sūryaḥ",
+      "meter": "(1)triṣṭup,(2-5)jagatī",
+      "verses": 5
+    },
+    "4.041": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.042": {
+      "rishi": "paurukutsyastrasadasyuḥ",
+      "devata": "(1-6)ātmā,(7-10)indrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "4.043": {
+      "rishi": "sauhotro ajamīḻhaḥ,sauhotraḥ purumīḻhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "4.044": {
+      "rishi": "sauhotro ajamīḻhaḥ,sauhotraḥ purumīḻhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "4.045": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "aśvinau",
+      "meter": "(1-6)jagatī,(7)triṣṭup",
+      "verses": 7
+    },
+    "4.046": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1)vāyuḥ,(2-7)indravāyū",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "4.047": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1)vāyuḥ,(2-4)indravāyū",
+      "meter": "anuṣṭup",
+      "verses": 4
+    },
+    "4.048": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "vāyuḥ",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "4.049": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "indrābṛhaspatī",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "4.050": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-9)bṛhaspatiḥ,(10-11)indrābṛhaspatī",
+      "meter": "(1-9,11)triṣṭup,(10)jagatī",
+      "verses": 11
+    },
+    "4.051": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "4.052": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "uṣāḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "4.053": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "savitā",
+      "meter": "jagatī",
+      "verses": 7
+    },
+    "4.054": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "savitā",
+      "meter": "(1-5)jagatī,(6)triṣṭup",
+      "verses": 6
+    },
+    "4.055": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "viṣve devāḥ",
+      "meter": "(1-7)triṣṭup,(8-10)gāyatrī",
+      "verses": 10
+    },
+    "4.056": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "dyāvāpṛthivyau",
+      "meter": "(1-4)triṣṭup,(5-7)gāyatrī",
+      "verses": 7
+    },
+    "4.057": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "(1-3)kṣetrapatiḥ,(4)śunaḥ,(5,8)śunāsīrau,(6-7)sītā",
+      "meter": "(1,4,6-7)anuṣṭup,(2-3,8)triṣṭup,(5)uṣnik",
+      "verses": 8
+    },
+    "4.058": {
+      "rishi": "gautamo vāmadevaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-10)triṣṭup,(11)jagatī",
+      "verses": 11
+    },
+    "5.001": {
+      "rishi": "ātreyo budhaḥ,ātreyo gaviṣṭhiraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "5.002": {
+      "rishi": "(1,3-8,10-12)ātreyaḥ kumāraḥ,(2,9)jāno vṛśaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-11)triṣṭup,(12)śakvarī",
+      "verses": 12
+    },
+    "5.003": {
+      "rishi": "ātreyo vasuśrutaḥ",
+      "devata": "(1-2,4-12)agniḥ,(3)marudrudraviṣṇavaḥ",
+      "meter": "(1)virāṭ,(2-12)triṣṭup",
+      "verses": 12
+    },
+    "5.004": {
+      "rishi": "ātreyo vasuśrutaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "5.005": {
+      "rishi": "ātreyo vasuśrutaḥ",
+      "devata": "(1-3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "gāyatrī",
+      "verses": 11
+    },
+    "5.006": {
+      "rishi": "ātreyo vasuśrutaḥ",
+      "devata": "agniḥ",
+      "meter": "paṅktiḥ",
+      "verses": 10
+    },
+    "5.007": {
+      "rishi": "ātreya iṣaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-9)anuṣṭup,(10)paṅktiḥ",
+      "verses": 10
+    },
+    "5.008": {
+      "rishi": "ātreyo iṣaḥ",
+      "devata": "agniḥ",
+      "meter": "jagatī",
+      "verses": 7
+    },
+    "5.009": {
+      "rishi": "ātreyo gayaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-4,6)anuṣṭup,(5,7)paṅktiḥ",
+      "verses": 7
+    },
+    "5.010": {
+      "rishi": "ātreyo gayaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3,5-6)anuṣṭup,(4,7)paṅktiḥ",
+      "verses": 7
+    },
+    "5.011": {
+      "rishi": "ātreyaḥ sutambharaḥ",
+      "devata": "agniḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "5.012": {
+      "rishi": "ātreyaḥ sutambharaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "5.013": {
+      "rishi": "ātreyaḥ sutambharaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "5.014": {
+      "rishi": "ātreyaḥ sutambharaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "5.015": {
+      "rishi": "āṅgiraso dharuṇaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "5.016": {
+      "rishi": "ātreyaḥ pūruḥ",
+      "devata": "agniḥ",
+      "meter": "(1-4)anuṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "5.017": {
+      "rishi": "ātreyaḥ pūruḥ",
+      "devata": "agniḥ",
+      "meter": "(1-4)anuṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "5.018": {
+      "rishi": "mṛktavāhā ātreyo dvitaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-4)anuṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "5.019": {
+      "rishi": "ātreyo vavriḥ",
+      "devata": "agniḥ",
+      "meter": "(1-2)gāyatrī,(3-4)anuṣṭup,(5)virāṭ",
+      "verses": 5
+    },
+    "5.020": {
+      "rishi": "ātreyāḥ prayasvantaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3)anuṣṭup,(4)paṅktiḥ",
+      "verses": 4
+    },
+    "5.021": {
+      "rishi": "ātreyaḥ sasaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3)anuṣṭup,(4)paṅktiḥ",
+      "verses": 4
+    },
+    "5.022": {
+      "rishi": "ātreyo viśvasāmā",
+      "devata": "agniḥ",
+      "meter": "(1-3)anuṣṭup,(4)paṅktiḥ",
+      "verses": 4
+    },
+    "5.023": {
+      "rishi": "ātreyo viśvacarṣaṇirdyumnaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3)anuṣṭup,(4)paṅktiḥ",
+      "verses": 4
+    },
+    "5.024": {
+      "rishi": "bandhuḥ subandhuḥ śrutabandhurviprabandhuśca gaupāyanāḥ",
+      "devata": "agniḥ",
+      "meter": "virāṭ",
+      "verses": 4
+    },
+    "5.025": {
+      "rishi": "ātreyāḥ vasūyavaḥ",
+      "devata": "agniḥ",
+      "meter": "anuṣṭup",
+      "verses": 9
+    },
+    "5.026": {
+      "rishi": "ātreyāḥ vasūyavaḥ",
+      "devata": "(1-8)agniḥ,(9)viśvedevāḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "5.027": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "(1-5)agniḥ,(6)indrāgnī",
+      "meter": "(1-3)triṣṭup,(4-6)anuṣṭup",
+      "verses": 6
+    },
+    "5.028": {
+      "rishi": "ātreyī viśvavārā",
+      "devata": "agniḥ",
+      "meter": "(1,3)triṣṭup,(2)jagatī,(4)anuṣṭup,(5-6)gāyatrī",
+      "verses": 6
+    },
+    "5.029": {
+      "rishi": "śāktyaḥ gaurivītiḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "5.030": {
+      "rishi": "ātreyo vabhuḥ",
+      "devata": "(1-11)indraḥ,(12-15)ṛṇañcayendrau",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "5.031": {
+      "rishi": "ātreya avasyuḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "5.032": {
+      "rishi": "ātreyo gātuḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "5.033": {
+      "rishi": "prājāpatyaḥ saṁvaraṇaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "5.034": {
+      "rishi": "prājāpatyaḥ saṁvaraṇaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-8)jagatī,(9)triṣṭup",
+      "verses": 9
+    },
+    "5.035": {
+      "rishi": "āṅgirasaḥ prabhūvasuḥ",
+      "devata": "indraḥ",
+      "meter": "(1-7)anuṣṭup,(8)paṅktiḥ",
+      "verses": 8
+    },
+    "5.036": {
+      "rishi": "āṅgirasaḥ prabhūvasuḥ",
+      "devata": "indraḥ",
+      "meter": "(1-2,4-6)triṣṭup,(3)jagatī",
+      "verses": 6
+    },
+    "5.037": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "5.038": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "indraḥ",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "5.039": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "indraḥ",
+      "meter": "(1-4)anuṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "5.040": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "(1-4)indraḥ,(5)sūryaḥ,(6-9)atriḥ",
+      "meter": "(1-3)uṣṇik,(4,6-8)triṣṭup,(5,9)anuṣṭup",
+      "verses": 9
+    },
+    "5.041": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-15,18-19)triṣṭup,(16-17)jagatī,(20)virāṭ",
+      "verses": 20
+    },
+    "5.042": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "(1-10,12-18)viśvedevāḥ,(11)rudraḥ",
+      "meter": "(1-16,18)triṣṭup,(17)virāṭ",
+      "verses": 18
+    },
+    "5.043": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-15,17)triṣṭup,(16)virāṭ",
+      "verses": 17
+    },
+    "5.044": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-13)jagatī,(14-15)triṣṭup",
+      "verses": 15
+    },
+    "5.045": {
+      "rishi": "ātreyaḥ sadāpṛṇaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "5.046": {
+      "rishi": "ātreyaḥ pratikṣatraḥ",
+      "devata": "(1-6)viśvedevāḥ,(7-8)devapatnyaḥ",
+      "meter": "(1,3-7)jagatī,(2,8)triṣṭup",
+      "verses": 8
+    },
+    "5.047": {
+      "rishi": "ātreyaḥ pratirathaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "5.048": {
+      "rishi": "ātreyaḥ pratibhānuḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "5.049": {
+      "rishi": "ātreyaḥ pratiprabhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "5.050": {
+      "rishi": "ātreyaḥ svastyātreyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-4)anuṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "5.051": {
+      "rishi": "ātreyaḥ svastyātreyaḥ",
+      "devata": "(1-3,8-15)viśvedevāḥ,(4,6-7)indravāyū,(5)vāyuḥ",
+      "meter": "(1-4)gāyatrī,(5-10)uṣṇik,(11-13)jagatī,(14-15)anuṣṭup",
+      "verses": 15
+    },
+    "5.052": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-5,7-5)anuṣṭup,(6,16-17)paṅktiḥ",
+      "verses": 17
+    },
+    "5.053": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1,5,10-11,15)kakubh,(2,6-7,9,13-14,16)bṛhatī,(3)anuṣṭup,(4)uṣṇik,(8,13)gāyatrī",
+      "verses": 16
+    },
+    "5.054": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-13,15)jagatī,(14)triṣṭup",
+      "verses": 15
+    },
+    "5.055": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-9)jagatī,(10)triṣṭup",
+      "verses": 10
+    },
+    "5.056": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "bṛhatī",
+      "verses": 9
+    },
+    "5.057": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-6)jagatī,(7-8)triṣṭup",
+      "verses": 8
+    },
+    "5.058": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "5.059": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-7)jagatī,(8)triṣṭup",
+      "verses": 8
+    },
+    "5.060": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-6)triṣṭup,(7-8)jagatī",
+      "verses": 8
+    },
+    "5.061": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "(1-4,11-19)marutaḥ,(5-8)tarantamahiṣī śaśīyasī,(9)vaidadaściḥ purumīḻhaḥ,(10)vaidadaściḥ tarantaḥ,(17-19)dārbhyaḥ rathavītiḥ",
+      "meter": "(1-4,6-8,10-19)gāyatrī,(5)anuṣṭup,(9)bṛhatī",
+      "verses": 19
+    },
+    "5.062": {
+      "rishi": "ātreyaḥ śrutavit",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "5.063": {
+      "rishi": "ātreyo arcanānāḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "jagatī",
+      "verses": 7
+    },
+    "5.064": {
+      "rishi": "ātreyo arcanānāḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "(1-6)anuṣṭup,(7)paṅktiḥ",
+      "verses": 7
+    },
+    "5.065": {
+      "rishi": "ātreyo rātahavyaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "(1-5)anuṣṭup,(6)paṅktiḥ",
+      "verses": 6
+    },
+    "5.066": {
+      "rishi": "ātreyo rātahavyaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "5.067": {
+      "rishi": "ātreyo yajataḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "5.068": {
+      "rishi": "ātreyo yajataḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "5.069": {
+      "rishi": "ātreya urucakriḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "5.070": {
+      "rishi": "ātreya urucakriḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "5.071": {
+      "rishi": "ātreyo bāhuvṛktaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "5.072": {
+      "rishi": "ātreyo bāhuvṛktaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "uṣṇik",
+      "verses": 3
+    },
+    "5.073": {
+      "rishi": "ātreyaḥ pauraḥ",
+      "devata": "aśvinau",
+      "meter": "anuṣṭup",
+      "verses": 10
+    },
+    "5.074": {
+      "rishi": "ātreyaḥ pauraḥ",
+      "devata": "aśvinau",
+      "meter": "anuṣṭup",
+      "verses": 10
+    },
+    "5.075": {
+      "rishi": "ātreyo avasyuḥ",
+      "devata": "aśvinau",
+      "meter": "paṅktiḥ",
+      "verses": 9
+    },
+    "5.076": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "5.077": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "5.078": {
+      "rishi": "ātreyaḥ saptavadhriḥ",
+      "devata": "aśvinau",
+      "meter": "(1-3)uṣṇik,(4)triṣṭup,(5-9)anuṣṭup",
+      "verses": 9
+    },
+    "5.079": {
+      "rishi": "ātreyaḥ satyaśravāḥ",
+      "devata": "uṣāḥ",
+      "meter": "paṅktiḥ",
+      "verses": 10
+    },
+    "5.080": {
+      "rishi": "ātreyaḥ satyaśravāḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "5.081": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "savitā",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "5.082": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "savitā",
+      "meter": "(1)anuṣṭup,(2-9)gāyatrī",
+      "verses": 9
+    },
+    "5.083": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "parjanyaḥ",
+      "meter": "(1,5-8,10)triṣṭup,(2-4)jagatī,(9)anuṣṭup",
+      "verses": 10
+    },
+    "5.084": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "pṛthivī",
+      "meter": "anuṣṭup",
+      "verses": 3
+    },
+    "5.085": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "varuṇaḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "5.086": {
+      "rishi": "bhaumo atriḥ",
+      "devata": "indrāgnī",
+      "meter": "(1-5)anuṣṭup,(6)virāṭ",
+      "verses": 6
+    },
+    "5.087": {
+      "rishi": "ātreya evayāmarut",
+      "devata": "marutaḥ",
+      "meter": "jagatī",
+      "verses": 9
+    },
+    "6.001": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "6.002": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-10)anuṣṭup,(11)śakvarī",
+      "verses": 11
+    },
+    "6.003": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "6.004": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "6.005": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "6.006": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "6.007": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-5)triṣṭup,(6-7)jagatī",
+      "verses": 7
+    },
+    "6.008": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-6)jagatī,(7)triṣṭup",
+      "verses": 7
+    },
+    "6.009": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "6.010": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-6)triṣṭup,(7)virāṭ",
+      "verses": 7
+    },
+    "6.011": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "6.012": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "6.013": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "6.014": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-5)anuṣṭup,(6)śakvarī",
+      "verses": 6
+    },
+    "6.015": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-2,4-5,7-9)jagatī,(3,15)śakvarī,(6)atiśakvarī,(10-15,16,19)triṣṭup,(17)anuṣṭup,(18)bṛhatī",
+      "verses": 19
+    },
+    "6.016": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "agniḥ",
+      "meter": "(1,6)vardhamānā,(2-5,7-26,28-45)gāyatrī,(27,47-48)anuṣṭup,(46)triṣṭup",
+      "verses": 48
+    },
+    "6.017": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "6.018": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "6.019": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 13
+    },
+    "6.020": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6,8-13)triṣṭup,(7)virāṭ",
+      "verses": 13
+    },
+    "6.021": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "(1-8,10,12)indraḥ,(9,11)viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "6.022": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "6.023": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "6.024": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "6.025": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "6.026": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "6.027": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "(1-7)indraḥ,(8)cāyamānasyābhyāvartino dānam",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "6.028": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "gāvaḥ",
+      "meter": "(1,5-7)triṣṭup,(2-4)jagatī,(8)anuṣṭup",
+      "verses": 8
+    },
+    "6.029": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "6.030": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.031": {
+      "rishi": "bhāradvājaḥ suhotraḥ",
+      "devata": "indraḥ",
+      "meter": "(1-3,5)triṣṭup,(4)śakvarī",
+      "verses": 5
+    },
+    "6.032": {
+      "rishi": "bhāradvājaḥ suhotraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.033": {
+      "rishi": "bhāradvājaḥ śunahotraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.034": {
+      "rishi": "bhāradvājaḥ śunahotraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.035": {
+      "rishi": "bhāradvājaḥ naraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.036": {
+      "rishi": "bhāradvājaḥ naraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.037": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.038": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.039": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.040": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.041": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.042": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-3)anuṣṭup,(4)bṛhatī",
+      "verses": 4
+    },
+    "6.043": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indraḥ",
+      "meter": "uṣṇik",
+      "verses": 4
+    },
+    "6.044": {
+      "rishi": "bārhaspatyaḥ śaṁyuḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6)anuṣṭup,(7,9-24)triṣṭup,(8)virāṭ",
+      "verses": 24
+    },
+    "6.045": {
+      "rishi": "bārhaspatyaḥ śaṁyuḥ",
+      "devata": "(1-30)indraḥ,(31-33)bṛbustakṣā",
+      "meter": "(1-28,30-32)gāyatrī,(29)atinicṛt,(33)anuṣṭup",
+      "verses": 33
+    },
+    "6.046": {
+      "rishi": "bārhaspatyaḥ śaṁyuḥ",
+      "devata": "indraḥ",
+      "meter": "bṛhatī",
+      "verses": 14
+    },
+    "6.047": {
+      "rishi": "bhāradvājo gargaḥ",
+      "devata": "(1-5)somaḥ,(6-21)indraḥ,(22-25)sārñjayasya prastokasya dānastutiḥ,(26-28)rathaḥ,(29-31)dundubhiḥ",
+      "meter": "(1-18,20-22,26,28-31)triṣṭup,(19)bṛhatī,(23)anuṣṭup,(24)gāyatrī,(25)dvipadā triṣṭup,(27)jagatī",
+      "verses": 31
+    },
+    "6.048": {
+      "rishi": "bārhaspatyaḥ śaṁyuḥ",
+      "devata": "(1-10)agniḥ,(11-15,20-21)marutaḥ,(16-19)pūṣā,(22)dyāvābhūmī",
+      "meter": "(1-12)pragāthaḥ,(13,18)uṣṇik,(14,17,19-21)bṛhatī,(15)atijagatī,(16)kakup,(22)anuṣṭup",
+      "verses": 22
+    },
+    "6.049": {
+      "rishi": "bhāradvāja ṛjiśvā",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-14)triṣṭup,(15)śakvarī",
+      "verses": 15
+    },
+    "6.050": {
+      "rishi": "bhāradvāja ṛjiśvā",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "6.051": {
+      "rishi": "bhāradvāja ṛjiśvā",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-12)triṣṭup,(13-15)uṣṇik,(16)anuṣṭup",
+      "verses": 16
+    },
+    "6.052": {
+      "rishi": "bhāradvāja ṛjiśvā",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-6,13,15-17)triṣṭup,(7-12)gāyatrī,(14)jagatī",
+      "verses": 17
+    },
+    "6.053": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "pūṣā",
+      "meter": "(1-4,9-10)gāyatrī,(8)anuṣṭup",
+      "verses": 10
+    },
+    "6.054": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "pūṣā",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "6.055": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "pūṣā",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "6.056": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "pūṣā",
+      "meter": "(1-5)gāyatrī,(6)anuṣṭup",
+      "verses": 6
+    },
+    "6.057": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indrāpūṣaṇau",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "6.058": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "pūṣā",
+      "meter": "(1,3-4)triṣṭup,(2)jagatī",
+      "verses": 4
+    },
+    "6.059": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indrāgnī",
+      "meter": "(1-6)bṛhatī,(7-10)anuṣṭup",
+      "verses": 10
+    },
+    "6.060": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indrāgnī",
+      "meter": "(1-3,13)triṣṭup,(4-12)gāyatrī,(14)bṛhatī,(15)anuṣṭup",
+      "verses": 15
+    },
+    "6.061": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "sarasvatī",
+      "meter": "(1-3,13)jagatī,(4-12)gāyatrī,(14)triṣṭup",
+      "verses": 14
+    },
+    "6.062": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "6.063": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "6.064": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "6.065": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "6.066": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "marutaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "6.067": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "6.068": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "(1-8,11)triṣṭup,(9-10)jagatī",
+      "verses": 11
+    },
+    "6.069": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indrāviṣṇū",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "6.070": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "dyāvāpṛthivyau",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "6.071": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "savitā",
+      "meter": "(1-3)jagatī,(4-6)triṣṭup",
+      "verses": 6
+    },
+    "6.072": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "indrāsomau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "6.073": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "bṛhaspatiḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "6.074": {
+      "rishi": "bārhaspatyo bharadvājaḥ",
+      "devata": "somārudrau",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "6.075": {
+      "rishi": "bhāradvājaḥ pāyuḥ",
+      "devata": "(1)varma,(2)dhanuḥ,(3)jyā,(4)ārtnī,(5)iṣudhiḥ,(6)sārathiḥ-raśmayaḥ,(7)aśvāḥ,(8)rathaḥ,(9)rathagopāḥ,(10)brāhmaṇapitṛsomadyāvāpṛthivīpūṣāṇaḥ,(11-12,15-16)iṣavaḥ,(13)pratodaḥ,(14)hastaghnaḥ,(17)brahmaṇaspatiḥ,(18)somavaruṇau,(19)brahma",
+      "meter": "(1-5,7-9,11,14,18)triṣṭup,(6,10)jagatī,(12-13,15-16,19)anuṣṭup,(17)paṅktiḥ",
+      "verses": 19
+    },
+    "7.001": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-18)virāṭ,(19-25)triṣṭup",
+      "verses": 25
+    },
+    "7.002": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "7.003": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "7.004": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "7.005": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "7.006": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.007": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.008": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.009": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.010": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.011": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.012": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.013": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.014": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "(1)bṛhatī,(2-3)triṣṭup",
+      "verses": 3
+    },
+    "7.015": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "7.016": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "pragāthaḥ",
+      "verses": 12
+    },
+    "7.017": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "agniḥ",
+      "meter": "dvipadā triṣṭup",
+      "verses": 7
+    },
+    "7.018": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-21)indraḥ,(22-25)paijavanasya sudāso dānastutiḥ",
+      "meter": "triṣṭup",
+      "verses": 25
+    },
+    "7.019": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "7.020": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "7.021": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "7.022": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-8)virāṭ,(9)triṣṭup",
+      "verses": 9
+    },
+    "7.023": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.024": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.025": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.026": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.027": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.028": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.029": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.030": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.031": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)gāyatrī,(10-12)virāṭ",
+      "verses": 12
+    },
+    "7.032": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-2,4-27)pragāthaḥ,(3)dvipadā",
+      "verses": 27
+    },
+    "7.033": {
+      "rishi": "(1-9)maitrāvaruṇirvasiṣṭhaḥ,(10-14)vasiṣṭhaputrāḥ",
+      "devata": "(1-9)vasiṣṭhaputrāḥ,(10-14)vasiṣthaḥ",
+      "meter": "triṣṭup",
+      "verses": 14
+    },
+    "7.034": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-15,18-25)viśvedevāḥ,(16)ahiḥ,(17)ahirbudhnyaḥ",
+      "meter": "(1-21)dvipadā virāṭ,(22-25)triṣṭup",
+      "verses": 25
+    },
+    "7.035": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "7.036": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "7.037": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "7.038": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-6)savitā,(7-8)vājinaḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "7.039": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.040": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.041": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1)jagatī,(2-7)triṣṭup",
+      "verses": 7
+    },
+    "7.042": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.043": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.044": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1)viśvedevāḥ,(2-5)dadhikrā",
+      "meter": "(1)jagatī,(2-5)triṣṭup",
+      "verses": 5
+    },
+    "7.045": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "savitā",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "7.046": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "rudraḥ",
+      "meter": "(1-3)jagatī,(4)triṣṭup",
+      "verses": 4
+    },
+    "7.047": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "āpaḥ",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "7.048": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-3)ṛbhavaḥ,(4)viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "7.049": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "āpaḥ",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "7.050": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1)mitrāvaruṇau,(2)agniḥ,(3)viśvedevāḥ,(4)nadyaḥ",
+      "meter": "(1-3)jagatī,(4)śakvarī",
+      "verses": 4
+    },
+    "7.051": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "ādityāḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.052": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "ādityāḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.053": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "dyāvāpṛthivyau",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.054": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "vāstoṣpatiḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.055": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1)vāstoṣpatiḥ,(2-8)indraḥ",
+      "meter": "(1)gāyatrī,(2-4)bṛhatī,(5-8)anuṣṭup",
+      "verses": 8
+    },
+    "7.056": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-11)dvipadā virāṭ,(12-25)triṣṭup",
+      "verses": 25
+    },
+    "7.057": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "marutaḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.058": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "marutaḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.059": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-11)marutaḥ,(12)rudraḥ",
+      "meter": "(1-6)pragāthaḥ,(7-8)triṣṭup,(9-11)gāyatrī,(12)anuṣṭup",
+      "verses": 12
+    },
+    "7.060": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1)sūryaḥ,(2-12)mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "7.061": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.062": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-3)sūryaḥ,(4-6)mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.063": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-4,5)sūryaḥ,(5-6)mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.064": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.065": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "mitrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.066": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-3,17-19)mitrāvaruṇau,(4-13)ādityāḥ,(14-16)sūryaḥ",
+      "meter": "(1-9,17,19)gāyatrī,(10-15)pragāthaḥ,(16)uṣṇik",
+      "verses": 19
+    },
+    "7.067": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "7.068": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "(1-7)virāṭ,(8-9)triṣṭup",
+      "verses": 9
+    },
+    "7.069": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "7.070": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.071": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.072": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.073": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.074": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "aśvinau",
+      "meter": "pragāthaḥ",
+      "verses": 6
+    },
+    "7.075": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "7.076": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.077": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.078": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.079": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.080": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "7.081": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "uṣāḥ",
+      "meter": "pragāthaḥ",
+      "verses": 6
+    },
+    "7.082": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "jagatī",
+      "verses": 10
+    },
+    "7.083": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "jagatī",
+      "verses": 10
+    },
+    "7.084": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.085": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.086": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "7.087": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.088": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.089": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "(1-4)gāyatrī,(5)jagatī",
+      "verses": 5
+    },
+    "7.090": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-4)vāyuḥ,(5-7)indravāyū",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.091": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1,3)vāyuḥ,(2,4-7)indravāyū",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.092": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1,3,5)vāyuḥ,(2,4)indravāyū",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "7.093": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indrāgnī",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "7.094": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "indrāgnī",
+      "meter": "(1-11)gāyatrī,(12)anuṣṭup",
+      "verses": 12
+    },
+    "7.095": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-2,4-6)sarasvatī,(3)sarasvān",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.096": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-3)sarasvatī,(4-6)sarasvān",
+      "meter": "(1-2)pragāthaḥ,(3)prastārapaṅktiḥ,(4-6)gāyatrī",
+      "verses": 6
+    },
+    "7.097": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1)indraḥ,(2,4-8)bṛhaspatiḥ,(3,9)indrābrahmaṇaspatī,(10)indrābṛhaspatī",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "7.098": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-6)indraḥ,(7)indrābṛhaspatī",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.099": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-3,7)viṣṇuḥ,(4-6)indrāviṣṇū",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.100": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "viṣṇuḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "7.101": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "parjanyaḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "7.102": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "parjanyaḥ",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "7.103": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "maṇḍūkāḥ",
+      "meter": "(1)anuṣṭup,(2-10)triṣṭup",
+      "verses": 10
+    },
+    "7.104": {
+      "rishi": "maitrāvaruṇirvasiṣṭhaḥ",
+      "devata": "(1-7,15,24-25)indrāsomau,(8,16,19-22)indraḥ,(9,12-13)somaḥ,(10,14)agniḥ,(11)devāḥ,(17)grāvāṇaḥ,(18)marutaḥ,(23)pṛthivyantarikṣe",
+      "meter": "(1,6,18,21,23)jagatī,(7)jagatī,(8-17,19-20,22,24)triṣṭup,(25)anuṣṭup",
+      "verses": 25
+    },
+    "8.001": {
+      "rishi": "(1-2)ghauraḥ pragāthaḥ,(3-29)kāṇvau medhātithimedhyātithī,(30-33)plāyoṅgirāsaṅga,(34)āṅgirasī śaśvatī",
+      "devata": "(1-29)indraḥ,(30-34)asaṅgaḥ",
+      "meter": "(1-4)pragāthaḥ,(5-32)bṛhatī,(33-34)triṣṭup",
+      "verses": 34
+    },
+    "8.002": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "(1-40)indraḥ,(41-42)dānastutiḥ",
+      "meter": "(1-27,29-42)gāyatrī,(28)anuṣṭup",
+      "verses": 42
+    },
+    "8.003": {
+      "rishi": "kāṇvo medhyātithiḥ",
+      "devata": "(1-20)indraḥ,(21-24)dānastutiḥ",
+      "meter": "(1-20)pragāthaḥ,(21)anuṣṭup,(22-23)gāyatrī,(24)bṛhatī",
+      "verses": 24
+    },
+    "8.004": {
+      "rishi": "kāṇvo devātithiḥ",
+      "devata": "(1-14)indraḥ,(15-18)pūṣā,(19-21)dānastutiḥ",
+      "meter": "(1-20)pragāthaḥ,(21)uṣṇik",
+      "verses": 21
+    },
+    "8.005": {
+      "rishi": "kāṇvaḥ brahmātithiḥ",
+      "devata": "(1-36)aśvinau,(37-39)dānastutiḥ",
+      "meter": "(1-36)gāyatrī,(37-38)bṛhatī,(39)anuṣṭup",
+      "verses": 39
+    },
+    "8.006": {
+      "rishi": "kāṇvo vatsaḥ",
+      "devata": "(1-45)indraḥ,(46-48)dānastutiḥ",
+      "meter": "gāyatrī",
+      "verses": 48
+    },
+    "8.007": {
+      "rishi": "kāṇvaḥ punarvatsaḥ",
+      "devata": "marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 36
+    },
+    "8.008": {
+      "rishi": "kāṇvaḥ sadhvaṁsaḥ",
+      "devata": "aśvinau",
+      "meter": "anuṣṭup",
+      "verses": 23
+    },
+    "8.009": {
+      "rishi": "kāṇvaḥ śaśakarṇaḥ",
+      "devata": "aśvinau",
+      "meter": "(1,4,6,14-15)bṛhatī,(2-3,20-21)gāyatrī,(5)kakup,(7-9,13,16-19)anuṣṭup,(10)triṣṭup,(11)virāṭ,(12)jagatī",
+      "verses": 21
+    },
+    "8.010": {
+      "rishi": "ghauraḥ pragāthaḥ",
+      "devata": "aśvinau",
+      "meter": "(1)bṛhatī,(2)triṣṭup,(3)anuṣṭup,(4)paṅktiḥ,(5-6)pragāthaḥ",
+      "verses": 6
+    },
+    "8.011": {
+      "rishi": "kāṇvo vatsaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-9)gāyatrī,(10)triṣṭup",
+      "verses": 10
+    },
+    "8.012": {
+      "rishi": "kāṇvaḥ parvataḥ",
+      "devata": "indraḥ",
+      "meter": "uṣṇik",
+      "verses": 33
+    },
+    "8.013": {
+      "rishi": "kāṇvo nāradaḥ",
+      "devata": "indraḥ",
+      "meter": "uṣṇik",
+      "verses": 33
+    },
+    "8.014": {
+      "rishi": "kāṇvāyanau goṣūktyaśvasūktinau",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 15
+    },
+    "8.015": {
+      "rishi": "kāṇvāyanau goṣūktyaśvasūktinau",
+      "devata": "indraḥ",
+      "meter": "uṣṇik",
+      "verses": 13
+    },
+    "8.016": {
+      "rishi": "kāṇva irimbiṭhiḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "8.017": {
+      "rishi": "kāṇva irimbiṭhiḥ",
+      "devata": "(1-13,15)indraḥ,(14)vāstoṣpatiḥ",
+      "meter": "(1-13)gāyatrī,(14-15)pragāthaḥ",
+      "verses": 15
+    },
+    "8.018": {
+      "rishi": "kāṇva irimbiṭhiḥ",
+      "devata": "(1-3,5,10-22)ādityāḥ,(4,6-7)aditiḥ,(8)aśvinau,(9)agnisūryānilāḥ",
+      "meter": "uṣṇik",
+      "verses": 22
+    },
+    "8.019": {
+      "rishi": "kāṇvaḥ sobhariḥ",
+      "devata": "(1-33)agniḥ,(34-35)ādityāḥ,(36-37)dānastutiḥ",
+      "meter": "(1-23,28-33)pragāthaḥ,(27)dvipadā virāṭ,(34)uṣṇik,(35)bṛhatī,(36)kakup,(37)paṅktiḥ",
+      "verses": 37
+    },
+    "8.020": {
+      "rishi": "kāṇvaḥ sobhariḥ",
+      "devata": "marutaḥ",
+      "meter": "pragāthaḥ",
+      "verses": 26
+    },
+    "8.021": {
+      "rishi": "kāṇvaḥ sobhariḥ",
+      "devata": "(1-16)indraḥ,(17-18)dānastutiḥ",
+      "meter": "pragāthaḥ",
+      "verses": 18
+    },
+    "8.022": {
+      "rishi": "kāṇvaḥ sobhariḥ",
+      "devata": "aśvinau",
+      "meter": "(1-6)pragāthaḥ,(7)bṛhatī,(8)anuṣṭup,(9-10,13-18)pragāthaḥ,(11)kakup,(12)triṣṭup",
+      "verses": 18
+    },
+    "8.023": {
+      "rishi": "vaiyaśvo viśvamanāḥ",
+      "devata": "agniḥ",
+      "meter": "uṣṇik",
+      "verses": 30
+    },
+    "8.024": {
+      "rishi": "vaiyaśvo viśvamanāḥ",
+      "devata": "(1-27)indraḥ,(28-30)dānastutiḥ",
+      "meter": "(1-29)uṣṇik,(30)anuṣṭup",
+      "verses": 30
+    },
+    "8.025": {
+      "rishi": "vaiyaśvo viśvamanāḥ",
+      "devata": "(1-9,13-24)mitrāvaruṇau,(10-12)viśvedevāḥ",
+      "meter": "uṣṇik",
+      "verses": 24
+    },
+    "8.026": {
+      "rishi": "vaiyaśvo viśvamanāḥ",
+      "devata": "(1-19)aśvinau,(20-25)vāyuḥ",
+      "meter": "(10-15,22-24)uṣṇik,(16-19,21,25)gāyatrī,(20)anuṣṭup",
+      "verses": 25
+    },
+    "8.027": {
+      "rishi": "vaivasvasto manuḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "pragāthaḥ",
+      "verses": 22
+    },
+    "8.028": {
+      "rishi": "vaivasvasto manuḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-3,5)gāyatrī,(4)uṣṇik",
+      "verses": 5
+    },
+    "8.029": {
+      "rishi": "vaivasvasto manuḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "dvipadā virāṭ",
+      "verses": 10
+    },
+    "8.030": {
+      "rishi": "vaivasvasto manuḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1)gāyatrī,(2)uṣṇik,(3)bṛhatī,(4)anuṣṭup",
+      "verses": 4
+    },
+    "8.032": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "8.033": {
+      "rishi": "kāṇvo medhyātithiḥ",
+      "devata": "indraḥ",
+      "meter": "(1-15) bṛhatī,(13-18)gāyatrī,(19)anuṣṭup",
+      "verses": 19
+    },
+    "8.034": {
+      "rishi": "(1-15)kāṇvo nīpātithiḥ,(16-18)āṅgirasāḥ sahasraṁ vasurociṣaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-15)anuṣṭup,(16-18)gāyatrī",
+      "verses": 18
+    },
+    "8.035": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "aśvinau",
+      "meter": "(1-21)jyotiḥ,(22,24)paṅktiḥ,(23)mahābṛhatī",
+      "verses": 24
+    },
+    "8.036": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6)śakvarī,(7)mahāpaṅktiḥ",
+      "verses": 7
+    },
+    "8.037": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "indraḥ",
+      "meter": "(1)atijagatī,(2-7)mahāpaṅktiḥ",
+      "verses": 7
+    },
+    "8.038": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "indrāgnī",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "8.039": {
+      "rishi": "kāṇvo nābhākaḥ",
+      "devata": "agniḥ",
+      "meter": "mahāpaṅktiḥ",
+      "verses": 10
+    },
+    "8.040": {
+      "rishi": "kāṇvo nābhākaḥ",
+      "devata": "indrāgnī",
+      "meter": "(1,3-11)mahāpaṅktiḥ,(2)śakvarī,(12)triṣṭup",
+      "verses": 12
+    },
+    "8.041": {
+      "rishi": "kāṇvo nābhākaḥ",
+      "devata": "varuṇaḥ",
+      "meter": "mahāpaṅktiḥ",
+      "verses": 10
+    },
+    "8.042": {
+      "rishi": "kāṇvo nābhākaḥ",
+      "devata": "(1-3)varuṇaḥ,(4-6)aśvinau",
+      "meter": "(1-3)triṣṭup,(4-6)anuṣṭup",
+      "verses": 6
+    },
+    "8.043": {
+      "rishi": "āṅgiraso virūpaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 33
+    },
+    "8.044": {
+      "rishi": "āṅgiraso virūpaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "8.045": {
+      "rishi": "kāṇvastriśokaḥ",
+      "devata": "(1)agnīndrau,(2-42)indraḥ",
+      "meter": "gāyatrī",
+      "verses": 42
+    },
+    "8.046": {
+      "rishi": "āśvyo vaśaḥ",
+      "devata": "(1-20,29-31,33)indraḥ,(21-24)dānastutiḥ,(25-28,32)vāyuḥ",
+      "meter": "(1-4,6,10,23,29,33)gāyatrī,(5)kakup,(7,9,14,18-20)bṛhatī,(8)anuṣṭup,(11-12,25-28)pragāthaḥ,(13,17)jagatī,(15)kakumnyaṅkuśirā,(16,30)virāṭ,(21-22,24,32)paṅktiḥ,(25-28)pragāthaḥ,(31)uṣṇik",
+      "verses": 33
+    },
+    "8.047": {
+      "rishi": "āptyastritaḥ",
+      "devata": "(1-13)ādityāḥ,(14-18)ādityoṣasaḥ",
+      "meter": "mahāpaṅktiḥ",
+      "verses": 18
+    },
+    "8.048": {
+      "rishi": "kāṇvaḥ pragāthaḥ",
+      "devata": "somaḥ",
+      "meter": "(1-4,6-15)triṣṭup,(5)jagatī",
+      "verses": 15
+    },
+    "8.049": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 10
+    },
+    "8.050": {
+      "rishi": "kāṇvaḥ puṣṭiguḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 10
+    },
+    "8.051": {
+      "rishi": "kāṇvaḥ śruṣṭiguḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 10
+    },
+    "8.052": {
+      "rishi": "kāṇva āyuḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 10
+    },
+    "8.053": {
+      "rishi": "kāṇvo medhyaḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 8
+    },
+    "8.054": {
+      "rishi": "kāṇvo mātariśvā",
+      "devata": "(1-2,5-8)indraḥ,(3-4)viśvedevāḥ",
+      "meter": "pragāthaḥ",
+      "verses": 8
+    },
+    "8.055": {
+      "rishi": "kāṇvaḥ kṛśaḥ",
+      "devata": "dānastutiḥ",
+      "meter": "(1-2,4)gāyatrī,(3,5)anuṣṭup",
+      "verses": 5
+    },
+    "8.056": {
+      "rishi": "kāṇvaḥ pṛṣadhraḥ",
+      "devata": "(1-4)dānastutiḥ,(5)agnisūyau",
+      "meter": "(1-4)gāyatrī,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "8.057": {
+      "rishi": "kāṇvo medhyaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "8.058": {
+      "rishi": "kāṇvo medhyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "8.059": {
+      "rishi": "kāṇvaḥ suparṇaḥ",
+      "devata": "indrāvaruṇau",
+      "meter": "jagatī",
+      "verses": 7
+    },
+    "8.060": {
+      "rishi": "prāgātho bhargaḥ",
+      "devata": "agniḥ",
+      "meter": "pragāthaḥ",
+      "verses": 20
+    },
+    "8.061": {
+      "rishi": "prāgātho bhargaḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 18
+    },
+    "8.062": {
+      "rishi": "kāṇvaḥ pragāthaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6,10-12)paṅktiḥ,(7-9)bṛhatī",
+      "verses": 12
+    },
+    "8.063": {
+      "rishi": "kāṇvaḥ pragāthaḥ",
+      "devata": "indraḥ",
+      "meter": "(1,4-5,7)anuṣṭup,(2-3,6,8-11)gāyatrī,(12)triṣṭup",
+      "verses": 12
+    },
+    "8.064": {
+      "rishi": "kāṇvaḥ pragāthaḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "8.065": {
+      "rishi": "kāṇvaḥ pragāthaḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "8.066": {
+      "rishi": "prāgāthaḥ kaliḥ",
+      "devata": "indraḥ",
+      "meter": "(1-14)pragāthaḥ,(15)anuṣṭup",
+      "verses": 15
+    },
+    "8.067": {
+      "rishi": "sāmmado matysaḥ",
+      "devata": "ādityāḥ",
+      "meter": "gāyatrī",
+      "verses": 21
+    },
+    "8.068": {
+      "rishi": "āṅgirasaḥ priyamedhaḥ",
+      "devata": "(1-13)indraḥ,(14-19)dānastutiḥ",
+      "meter": "(1-12)pragāthaḥ,(13-19)gāyatrī",
+      "verses": 19
+    },
+    "8.069": {
+      "rishi": "āṅgirasaḥ priyamedhaḥ",
+      "devata": "(1-10,13-18)indraḥ,(11)viśvedevāḥ,(12)varuṇaḥ",
+      "meter": "(1,3,7-10,12-15)anuṣṭup,(2)uṣṇik,(4-6)gāyatrī,(11,16)paṅktiḥ,(17-18)bṛhatī",
+      "verses": 18
+    },
+    "8.070": {
+      "rishi": "āṅgirasaḥ puruhanmā",
+      "devata": "indraḥ",
+      "meter": "(1-6)pragāthaḥ,(7-12)bṛhatī,(13)uṣṇik,(14)anuṣṭup,(15)pura uṣṇik",
+      "verses": 15
+    },
+    "8.071": {
+      "rishi": "āṅgirasau sudītipurumīḻhau",
+      "devata": "agniḥ",
+      "meter": "(1-9)gāyatrī,(10-15)pragāthaḥ",
+      "verses": 15
+    },
+    "8.072": {
+      "rishi": "prāgātho haryataḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 18
+    },
+    "8.073": {
+      "rishi": "gopavanaḥ saptavadhriḥ",
+      "devata": "aśvinau",
+      "meter": "gāyatrī",
+      "verses": 18
+    },
+    "8.074": {
+      "rishi": "ātreyo gopavanaḥ",
+      "devata": "(1-12)agniḥ,(13-15)dānastutiḥ",
+      "meter": "(1-12)pragāthaḥ,(13-15)anuṣṭup",
+      "verses": 15
+    },
+    "8.075": {
+      "rishi": "āṅgiraso virūpaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 16
+    },
+    "8.076": {
+      "rishi": "kāṇvaḥ kurusutiḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "8.077": {
+      "rishi": "kāṇvaḥ kurusutiḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)gāyatrī,(10-11)pragāthaḥ",
+      "verses": 11
+    },
+    "8.078": {
+      "rishi": "kāṇvaḥ kurusutiḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)gāyatrī,(10)bṛhatī",
+      "verses": 10
+    },
+    "8.079": {
+      "rishi": "bhārgavaḥ kṛtnuḥ",
+      "devata": "somaḥ",
+      "meter": "(1-8)gāyatrī,(9)anuṣṭup",
+      "verses": 9
+    },
+    "8.080": {
+      "rishi": "naudhasa ekadyūḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)gāyatrī,(10)triṣṭup",
+      "verses": 10
+    },
+    "8.081": {
+      "rishi": "kāṇvaḥ kusīdī",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "8.082": {
+      "rishi": "kāṇvaḥ kusīdī",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "8.083": {
+      "rishi": "kāṇvaḥ kusīdī",
+      "devata": "viśvedevāḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "8.084": {
+      "rishi": "kāvya uśanāḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "8.085": {
+      "rishi": "āṅgirasaḥ kṛṣṇaḥ",
+      "devata": "aśvinau",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "8.086": {
+      "rishi": "āṅgirasaḥ kṛṣṇaḥ",
+      "devata": "aśvinau",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "8.087": {
+      "rishi": "vāsiṣṭho dyumnīkaḥ",
+      "devata": "aśvinau",
+      "meter": "pragāthaḥ",
+      "verses": 6
+    },
+    "8.088": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 6
+    },
+    "8.089": {
+      "rishi": "āṅgirasau nṛmedhapurumedhau",
+      "devata": "indraḥ",
+      "meter": "(1-4)pragāthaḥ,(5-6)anuṣṭup,(7)bṛhatī",
+      "verses": 7
+    },
+    "8.090": {
+      "rishi": "āṅgirasau nṛmedhapurumedhau",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 6
+    },
+    "8.091": {
+      "rishi": "ātreyyapālā",
+      "devata": "indraḥ",
+      "meter": "(1-2)paṅktiḥ,(3-7)anuṣṭup",
+      "verses": 7
+    },
+    "8.092": {
+      "rishi": "āṅgirasaḥ śrutakakṣaḥ",
+      "devata": "indraḥ",
+      "meter": "(1)anuṣṭup,(2-33)gāyatrī",
+      "verses": 33
+    },
+    "8.093": {
+      "rishi": "āṅgirasaḥ sukakṣaḥ",
+      "devata": "(1-33)indraḥ,(34)ṛbhavaḥ",
+      "meter": "gāyatrī",
+      "verses": 34
+    },
+    "8.094": {
+      "rishi": "āṅgiraso binduḥ",
+      "devata": "marutaḥ",
+      "meter": "gāyatrī",
+      "verses": 12
+    },
+    "8.095": {
+      "rishi": "āṅgirasas tiraścīḥ",
+      "devata": "indraḥ",
+      "meter": "anuṣṭup",
+      "verses": 9
+    },
+    "8.096": {
+      "rishi": "āṅgirasas tiraścīḥ",
+      "devata": "(1-13,16-21)indraḥ,(14)marutaḥ,(15)indrābṛhaspatī",
+      "meter": "(1-3,5-21)triṣṭup,(4)virāṭ",
+      "verses": 21
+    },
+    "8.097": {
+      "rishi": "kāśyapo rebhaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)bṛhatī,(10,13)atijagatī,(11-12)bṛhatī,(14)triṣṭup,(15)jagatī",
+      "verses": 15
+    },
+    "8.098": {
+      "rishi": "āṅgiraso nṛmedhaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6,8-9,12)uṣṇik,(7,10-11)kakup",
+      "verses": 12
+    },
+    "8.099": {
+      "rishi": "āṅgiraso nṛmedhaḥ",
+      "devata": "indraḥ",
+      "meter": "pragāthaḥ",
+      "verses": 8
+    },
+    "8.100": {
+      "rishi": "(1-3,6-12)bhāgavo nemaḥ,(4-5)indraḥ",
+      "devata": "(1-9,12)indraḥ,(10-11)vāk",
+      "meter": "(1-5,10-12)triṣṭup,(6)jagatī,(7-9)anuṣṭup",
+      "verses": 12
+    },
+    "8.101": {
+      "rishi": "bhārgavo jamadagniḥ",
+      "devata": "(1-4,5)mitrāvaruṇau,(5-6)ādityāḥ,(7-8)aśvinau,(9-10)vāyuḥ,(11-12)sūryaḥ,(13)uṣāḥ,(14)pavamānaḥ,(15-16)gauḥ",
+      "meter": "(1-2,5-12)pragāthaḥ,(3)gāyatrī,(4,13)bṛhatī,(14-16)triṣṭup",
+      "verses": 16
+    },
+    "8.102": {
+      "rishi": "bhārgavaḥ prayogaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 22
+    },
+    "8.103": {
+      "rishi": "kāṇvaḥ sobhariḥ",
+      "devata": "(1-13)agniḥ,(14)agnāmarutaḥ",
+      "meter": "(1-4,6-7,9,11,13)bṛhatī,(5)virāṭ,(8,12)kakup,(10)gāyatrī,(14)anuṣṭup",
+      "verses": 14
+    },
+    "9.001": {
+      "rishi": "vaiśvāmitro madhucchandāḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "9.002": {
+      "rishi": "kāṇvo medhātithiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "9.003": {
+      "rishi": "ājīgartiḥ śunaḥśepaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "9.004": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 10
+    },
+    "9.005": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "(1,2,3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "(1-7)gāyatrī,(8-11)anuṣṭup",
+      "verses": 11
+    },
+    "9.006": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.007": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.008": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.009": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.010": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.011": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.012": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.013": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "9.014": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "9.015": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "9.016": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "9.017": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "9.018": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.019": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.020": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.021": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.022": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.023": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.024": {
+      "rishi": "kāśyapo asitaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 7
+    },
+    "9.025": {
+      "rishi": "āgastyo dṛḻhacyutaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.026": {
+      "rishi": "dārḻhacyuta idhmavāhaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.027": {
+      "rishi": "āṅgiraso nṛmedhaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.028": {
+      "rishi": "āṅgiraso priyamedhaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.029": {
+      "rishi": "āṅgiraso nṛmedhaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.030": {
+      "rishi": "āṅgiraso binduḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.031": {
+      "rishi": "rāhūgaṇo gotamaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.032": {
+      "rishi": "ātreyaḥ śyāvāśvaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.033": {
+      "rishi": "āptyastritaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.034": {
+      "rishi": "āptyastritaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.035": {
+      "rishi": "āṅgirasaḥ prabhūvasuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.036": {
+      "rishi": "āṅgirasaḥ prabhūvasuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.037": {
+      "rishi": "āṅgiraso rahūgaṇaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.038": {
+      "rishi": "āṅgiraso rahūgaṇaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.039": {
+      "rishi": "āṅgiraso bṛhanmatiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.040": {
+      "rishi": "āṅgiraso bṛhanmatiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.041": {
+      "rishi": "kāṇvo medhyātithiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.042": {
+      "rishi": "kāṇvo medhyātithiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.043": {
+      "rishi": "kāṇvo medhyātithiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.044": {
+      "rishi": "āṅgirasa ayāsyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.045": {
+      "rishi": "āṅgirasa ayāsyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.046": {
+      "rishi": "āṅgirasa ayāsyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "9.047": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "9.048": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "9.049": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "9.050": {
+      "rishi": "āṅgirasa ucathyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "9.051": {
+      "rishi": "āṅgirasa ucathyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "9.052": {
+      "rishi": "āṅgirasa ucathyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "9.053": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.054": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.055": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.056": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.057": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.058": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.059": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "9.060": {
+      "rishi": "kāśyapo avatsāraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-2,4)gāyatrī,(3)uṣṇik",
+      "verses": 4
+    },
+    "9.061": {
+      "rishi": "āṅgiraso amahīyuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "9.062": {
+      "rishi": "bhārgavo jamadagniḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "9.063": {
+      "rishi": "kāśyapo nidhruviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "9.064": {
+      "rishi": "mārīcāḥ kaśyapaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "9.065": {
+      "rishi": "vāruṇirbhṛguḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "gāyatrī",
+      "verses": 30
+    },
+    "9.066": {
+      "rishi": "śataṁ vaikhānasāḥ",
+      "devata": "(1-18,22-30)pavamānaḥ somaḥ,(19-21)pavamāno agniḥ",
+      "meter": "(1-17,19-30)gāyatrī,(18)anuṣṭup",
+      "verses": 30
+    },
+    "9.067": {
+      "rishi": "saptarṣayaḥ",
+      "devata": "(1-22,28-30)pavamānaḥ somaḥ,(23-27)pavamāno agniḥ,(31-32)adhyetṛstutiḥ",
+      "meter": "(1-26,28-29)gāyatrī,(27,31-32)anuṣṭup,(30)uṣṇik",
+      "verses": 32
+    },
+    "9.068": {
+      "rishi": "bhālandano vatsapriḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-9)jagatī,(10)triṣṭup",
+      "verses": 10
+    },
+    "9.069": {
+      "rishi": "āṅgiraso hiraṇyastūpaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-8)jagatī,(9-10)triṣṭup",
+      "verses": 10
+    },
+    "9.070": {
+      "rishi": "vaiśvāmitro reṇuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-9)jagatī,(10)triṣṭup",
+      "verses": 10
+    },
+    "9.071": {
+      "rishi": "vaiśvāmitra ṛbhavaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-8)jagatī,(9)triṣṭup",
+      "verses": 9
+    },
+    "9.072": {
+      "rishi": "āṅgiraso harimantaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 9
+    },
+    "9.073": {
+      "rishi": "āṅgirasaḥ pavitraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 9
+    },
+    "9.074": {
+      "rishi": "dairghatamasaḥ kakṣīvān",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-7,9)jagatī,(8)triṣṭup",
+      "verses": 9
+    },
+    "9.075": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.076": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.077": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.078": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.079": {
+      "rishi": "bhārgavaḥ kaviḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.080": {
+      "rishi": "bhāradvājo vasuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.081": {
+      "rishi": "bhāradvājo vasuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-4)jagatī,(5)triṣṭup",
+      "verses": 5
+    },
+    "9.082": {
+      "rishi": "bhāradvājo vasuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-4)jagatī,(5)triṣṭup",
+      "verses": 5
+    },
+    "9.083": {
+      "rishi": "āṅgirasaḥ pavitraḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.084": {
+      "rishi": "vācyaḥ prajāpatiḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "9.085": {
+      "rishi": "bhārgavo venaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-10)jagatī,(11-12)triṣṭup",
+      "verses": 12
+    },
+    "9.086": {
+      "rishi": "(1-10)akṛṣṭā māṣāḥ,(11-20)sikatā nivāvarī,(21-30)pṛśnayo ajāḥ,(31-40)atreyaḥ,(41-45)bhaumo atriḥ,(46-48)śaunako gṛtsamadaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "jagatī",
+      "verses": 48
+    },
+    "9.087": {
+      "rishi": "kāvya uśanāḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "9.088": {
+      "rishi": "kāvya uśanāḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "9.089": {
+      "rishi": "kāvya uśanāḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "9.090": {
+      "rishi": "maitrāvaruṇirvasiṭḥaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "9.091": {
+      "rishi": "mārīcaḥ kaśyapaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "9.092": {
+      "rishi": "mārīcaḥ kaśyapaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "9.093": {
+      "rishi": "gautamo nodhāḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "9.094": {
+      "rishi": "āṅgirasaḥ kaṇvaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "9.095": {
+      "rishi": "kāṇvaḥ praskaṇvaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "9.096": {
+      "rishi": "daivodāsiḥ pratardanaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 24
+    },
+    "9.097": {
+      "rishi": "(1-3)maitrāvaruṇirvasiṭḥaḥ,(4-6)vāsiṣṭha indrapramatiḥ,(7-9)vāsiṣṭho vṛṣagaṇaḥ,(10-12)vāsiṣṭho manyuḥ,(13-15)vāsiṣṭho upamanyuḥ,(16-18)vāsiṣṭho vyāghrapāt,(19-21)vāsiṣṭhaḥ śaktiḥ,(22-24)vāsiṣṭhaḥ karṇaśrut,(25-27)vāsiṣṭho mṛḻīkaḥ,(28-30)vāsiṣṭho vasukraḥ,(31-44)śāktyaḥ parāśaraḥ,(45-58)āṅgirasaḥ kutsaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "triṣṭup",
+      "verses": 58
+    },
+    "9.098": {
+      "rishi": "vārṣāgiro ambarīṣaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-10,12)anuṣṭup,(11)bṛhatī",
+      "verses": 12
+    },
+    "9.099": {
+      "rishi": "kāśyapau rebhasūnū",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1)bṛhatī,(2-8)anuṣṭup",
+      "verses": 8
+    },
+    "9.100": {
+      "rishi": "kāśyapo rebhasūnū",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "anuṣṭup",
+      "verses": 9
+    },
+    "9.101": {
+      "rishi": "(1-3)śyāvāśvirandhīguḥ,(4-6)nāhuṣo yayāti,(7-9)mānavo nahuṣaḥ,(10-12)sāṁvaraṇo manuḥ,(13-16)vaiśvāmitro vācyaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1,4-16)anuṣṭup,(2-3)gāyatrī",
+      "verses": 16
+    },
+    "9.102": {
+      "rishi": "āptyastritaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "uṣṇik",
+      "verses": 8
+    },
+    "9.103": {
+      "rishi": "āptyastritaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "uṣṇik",
+      "verses": 6
+    },
+    "9.104": {
+      "rishi": "kāṇvau parvatanāradau",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "uṣṇik",
+      "verses": 6
+    },
+    "9.105": {
+      "rishi": "kāṇvau parvatanāradau",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "uṣṇik",
+      "verses": 6
+    },
+    "9.106": {
+      "rishi": "(1-3,10-14)cākṣuṣo agniḥ,(4-6)mānavaścakṣuḥ,(7-9)cāpsavo manuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "uṣṇik",
+      "verses": 14
+    },
+    "9.107": {
+      "rishi": "saptarṣayaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-2,4-7,10-15,17-26)pragāthaḥ,(3)dvipadā virāṭ,(8-9)bṛhatī,(16)dvipadā virāṭ",
+      "verses": 26
+    },
+    "9.108": {
+      "rishi": "(1-2)śāktyo gaurivītiḥ,(3,14-16)vāsiṣṭhaḥ śaktiḥ,(4-5)āṅgirasa uruḥ,(6-7)bhāradvāja ṛjiśvā,(8-9)āṅgirasa ūrdhvasadmā,(10-11)āṅgirasaḥ kṛtayaśāḥ,(12-13)ṛṇañcayaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-12,14-16)pragāthaḥ,(13)gāyatrī",
+      "verses": 16
+    },
+    "9.109": {
+      "rishi": "aiśvarayo dhiśṇyāgnayaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "dvipadā virāṭ",
+      "verses": 22
+    },
+    "9.110": {
+      "rishi": "traivṛṣṇastryaruṇaḥ paurukutsastrasadasyuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "(1-3)anuṣṭup,(4-9)bṛhatī,(10-12)virāṭ",
+      "verses": 12
+    },
+    "9.111": {
+      "rishi": "pārucchepiranānataḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "atyaṣtiḥ",
+      "verses": 3
+    },
+    "9.112": {
+      "rishi": "āṅgirasaḥ śiśuḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "paṅktiḥ",
+      "verses": 4
+    },
+    "9.113": {
+      "rishi": "mārīcaḥ kaśyapaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "paṅktiḥ",
+      "verses": 11
+    },
+    "9.114": {
+      "rishi": "mārīcaḥ kaśyapaḥ",
+      "devata": "pavamānaḥ somaḥ",
+      "meter": "paṅktiḥ",
+      "verses": 4
+    },
+    "10.001": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.002": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.003": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.004": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.005": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.006": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.007": {
+      "rishi": "āptyastritaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.008": {
+      "rishi": "tvāṣṭrastriśirāḥ",
+      "devata": "(1-6)agniḥ,(7-9)indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "10.009": {
+      "rishi": "sindhu dvīpaḥ",
+      "devata": "āpaḥ",
+      "meter": "(1-7)gāyatrī,(8-9)anuṣṭup",
+      "verses": 9
+    },
+    "10.010": {
+      "rishi": "(1,3,5-7,11,13)vaivasvatī yamī,(2,4,8-10,12,14)vaivasvato yamaḥ",
+      "devata": "(1,3,5-7,11,13)yamaḥ,(2,4,8-10,12,14)yamī",
+      "meter": "(1-12,14)triṣṭup,(13)virāṭ",
+      "verses": 14
+    },
+    "10.011": {
+      "rishi": "āṅgirhavirdhānaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-6)jagatī,(7-9)triṣṭup",
+      "verses": 9
+    },
+    "10.012": {
+      "rishi": "āṅgirhavirdhānaḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "10.013": {
+      "rishi": "ādityo vivasvān",
+      "devata": "havirdhāne śakaṭe",
+      "meter": "(1-4)triṣṭup,(5)jagatī",
+      "verses": 5
+    },
+    "10.014": {
+      "rishi": "vaivasvato yamaḥ",
+      "devata": "(1-5,13-16)yamaḥ,(6-9)pitaraḥ,(10-12)sārameyau śvānau",
+      "meter": "(1-12)triṣṭup,(13-14,16)anuṣṭup,(15)bṛhatī",
+      "verses": 16
+    },
+    "10.015": {
+      "rishi": "yāmāyanaḥ śaṅkhaḥ",
+      "devata": "pitaraḥ",
+      "meter": "(1-10,12-14)triṣṭup,(11)jagatī",
+      "verses": 14
+    },
+    "10.016": {
+      "rishi": "yāmāyanaḥ damanaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-10)triṣṭup,(11-14)anuṣṭup",
+      "verses": 14
+    },
+    "10.017": {
+      "rishi": "yāmāyano devaśravāḥ",
+      "devata": "(1-2)saraṇyūḥ,(3-6)pūṣā,(7-9)sarasvatī,(10-14)āpaḥ",
+      "meter": "(1-12)triṣṭup,(13-14)anuṣṭup",
+      "verses": 14
+    },
+    "10.018": {
+      "rishi": "yāmāyanaḥ saṁkusukaḥ",
+      "devata": "(1-4)mṛtyuḥ,(5)dhātā,(6)tvaṣṭā,(7-14)pitṛmedhaḥ",
+      "meter": "(1-12)paṅktiḥ,(13)jagatī,(14)anuṣṭup",
+      "verses": 14
+    },
+    "10.019": {
+      "rishi": "yāmāyano mathito",
+      "devata": "gāvaḥ",
+      "meter": "(1-5,7-8)anuṣṭup,(6)gāyatrī",
+      "verses": 8
+    },
+    "10.020": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "agniḥ",
+      "meter": "(1,9)virāṭ,(2)anuṣṭup,(3-8)gāyatrī,(10)triṣṭup",
+      "verses": 10
+    },
+    "10.021": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "agniḥ",
+      "meter": "paṅktiḥ",
+      "verses": 8
+    },
+    "10.022": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-4,6,8,10-14)bṛhatī,(5,7,9)anuṣṭup,(15)triṣṭup",
+      "verses": 15
+    },
+    "10.023": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "indraḥ",
+      "meter": "(1,7)triṣṭup,(2-4,6)jagatī,(5)abhisāriṇī",
+      "verses": 7
+    },
+    "10.024": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "(1-3)indraḥ,(4-6)aśvinau",
+      "meter": "(1-3)paṅktiḥ,(4-6)anuṣṭup",
+      "verses": 6
+    },
+    "10.025": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "somaḥ",
+      "meter": "paṅktiḥ",
+      "verses": 11
+    },
+    "10.026": {
+      "rishi": "aindraḥ prājapatyaḥ",
+      "devata": "pūṣā",
+      "meter": "(1,4)uṣṇik,(2-3,5-9)anuṣṭup",
+      "verses": 9
+    },
+    "10.027": {
+      "rishi": "aindro vasukraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 24
+    },
+    "10.028": {
+      "rishi": "(1)vasukrapatnī,(2,6,8,10,12)indraḥ,(3-5,7,9,11)aindro vasukraḥ",
+      "devata": "(1,3-6,7,9,11)indraḥ,(2,6,8,10,12)vasukraḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "10.029": {
+      "rishi": "aindraḥ vasukraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "10.030": {
+      "rishi": "ailūṣaḥ kavaṣaḥ",
+      "devata": "āpaḥ",
+      "meter": "triṣṭup",
+      "verses": 15
+    },
+    "10.031": {
+      "rishi": "ailūṣaḥ kavaṣaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.032": {
+      "rishi": "ailūṣaḥ kavaṣaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-5)jagatī,(6-9)triṣṭup",
+      "verses": 9
+    },
+    "10.033": {
+      "rishi": "ailūṣaḥ kavaṣaḥ",
+      "devata": "(1)viśvedevāḥ,(2-3)indraḥ,(4-5)dānastutiḥ,(6-9)maitrātithirupamaśravāḥ",
+      "meter": "(1)triṣṭup,(2-3)pragāthaḥ,(4-9)gāyatrī",
+      "verses": 9
+    },
+    "10.034": {
+      "rishi": "ailūṣaḥ kavaṣaḥ",
+      "devata": "(1,7,9,12)akṣāḥ,(2-6,8,10-11,14)akṣakitavanindā,(13)kṛṣiḥ",
+      "meter": "(1-6,8-14)triṣṭup,(7)jagatī",
+      "verses": 14
+    },
+    "10.035": {
+      "rishi": "dhānāko luśaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-12)jagatī,(13-14)triṣṭup",
+      "verses": 14
+    },
+    "10.036": {
+      "rishi": "dhānāko luśaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-12)jagatī,(13-14)triṣṭup",
+      "verses": 14
+    },
+    "10.037": {
+      "rishi": "sauryo abhitapāḥ",
+      "devata": "sūryaḥ",
+      "meter": "(1-9,11-12)jagatī,(10)triṣṭup",
+      "verses": 12
+    },
+    "10.038": {
+      "rishi": "muṣkavān indraḥ",
+      "devata": "indraḥ",
+      "meter": "jagatī",
+      "verses": 5
+    },
+    "10.039": {
+      "rishi": "kākṣīvatī ghoṣā",
+      "devata": "aśvinau",
+      "meter": "(1-13)jagatī,(14)triṣṭup",
+      "verses": 14
+    },
+    "10.040": {
+      "rishi": "kākṣīvatī ghoṣā",
+      "devata": "aśvinau",
+      "meter": "jagatī",
+      "verses": 14
+    },
+    "10.041": {
+      "rishi": "ghauṣeyaḥ suhastyaḥ",
+      "devata": "aśvinau",
+      "meter": "jagatī",
+      "verses": 3
+    },
+    "10.042": {
+      "rishi": "āṅgirasaḥ kṛṣṇaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.043": {
+      "rishi": "āṅgirasaḥ kṛṣṇaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)jagatī,(10-11)triṣṭup",
+      "verses": 11
+    },
+    "10.044": {
+      "rishi": "āṅgirasaḥ kṛṣṇaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-3,10-11)triṣṭup,(4-9)jagatī",
+      "verses": 11
+    },
+    "10.045": {
+      "rishi": "bhālandano vatsapriḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "10.046": {
+      "rishi": "bhālandano vatsapriḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "10.047": {
+      "rishi": "āṅgirasaḥ saptaguḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "10.048": {
+      "rishi": "vaikuṇṭha indraḥ",
+      "devata": "indraḥ",
+      "meter": "(1-6,8-9)jagatī,(7,10-11)triṣṭup",
+      "verses": 11
+    },
+    "10.049": {
+      "rishi": "vaikuṇṭha indraḥ",
+      "devata": "indraḥ",
+      "meter": "(1,3-10)jagatī,(2,11)triṣṭup",
+      "verses": 11
+    },
+    "10.050": {
+      "rishi": "vaikuṇṭha indraḥ",
+      "devata": "indraḥ",
+      "meter": "(1-2,6-7)jagatī,(3-4)abhisāriṇī,(5)triṣṭup",
+      "verses": 7
+    },
+    "10.051": {
+      "rishi": "(1,3,5,7,9)devāḥ,(2,4,6,8)saucīko agniḥ",
+      "devata": "(1,3,5,7,9)agniḥ,(2,4,6,8)devāḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "10.052": {
+      "rishi": "saucīko agniḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "10.053": {
+      "rishi": "(1-3,6-11)devāḥ,(4-5)sauvīko agniḥ",
+      "devata": "(1-3,6-11)agniḥ,(4-5)devāḥ",
+      "meter": "(1-5,8)triṣṭup,(6-7,9-11)jagatī",
+      "verses": 11
+    },
+    "10.054": {
+      "rishi": "vāmadevyo bṛhadukthaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "10.055": {
+      "rishi": "vāmadevyo bṛhadukthaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "10.056": {
+      "rishi": "vāmadevyo bṛhadukthaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-3,7)triṣṭup,(4-6)jagatī",
+      "verses": 7
+    },
+    "10.057": {
+      "rishi": "bandhuḥ śrutabandhurviprabandhugaupāyanāḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "gāyatrī",
+      "verses": 6
+    },
+    "10.058": {
+      "rishi": "bandhuḥ śrutabandhurviprabandhugaupāyanāḥ",
+      "devata": "āvartamānam manaḥ",
+      "meter": "anuṣṭup",
+      "verses": 12
+    },
+    "10.059": {
+      "rishi": "bandhuḥ śrutabandhurviprabandhugaupāyanāḥ",
+      "devata": "(1-4)nirṛtiḥ,(5-6)asunītiḥ,(7)svastayaḥ,(8-9,10)dyāvāpṛthivyau",
+      "meter": "(1-7)triṣṭup,(8-10)paṅktiḥ",
+      "verses": 10
+    },
+    "10.060": {
+      "rishi": "(1-5,7-12)bandhuḥ śrutabandhurviprabandhugaupāyanāḥ,(6)agastyasvasā",
+      "devata": "(1-4,6)asamātiḥ,(5)indraḥ,(7-11)subandhojīvaḥ,(12)bandhvādīnāṁ hastāḥ",
+      "meter": "(1-5)gāyatrī,(6-7,10-12)anuṣṭup,(8-9)paṅktiḥ",
+      "verses": 12
+    },
+    "10.061": {
+      "rishi": "mānavo nābhānediṣṭhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 27
+    },
+    "10.062": {
+      "rishi": "mānavo nābhānediṣṭhaḥ",
+      "devata": "(1-7)viśvedevāḥ,(8-11)dānastutiḥ",
+      "meter": "(1-4)jagatī,(5,8,9)anuṣṭup,(6-7)pragāthaḥ,(10)gāyatrī,(11)triṣṭup",
+      "verses": 11
+    },
+    "10.063": {
+      "rishi": "plāto gayaḥ",
+      "devata": "(1-14,17)viśvedevāḥ,(15,16)pathyāsvastiḥ",
+      "meter": "(1-14)jagatī,(15-17)triṣṭup",
+      "verses": 17
+    },
+    "10.064": {
+      "rishi": "plāto gayaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-11,13-15)jagatī,(12,16-17)triṣṭup",
+      "verses": 17
+    },
+    "10.065": {
+      "rishi": "vāsukro vasukarṇaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-14)jagatī,(15)triṣṭup",
+      "verses": 15
+    },
+    "10.066": {
+      "rishi": "vāsukro vasukarṇaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-14)jagatī,(15)triṣṭup",
+      "verses": 15
+    },
+    "10.067": {
+      "rishi": "āṅgiraso ayāsyaḥ",
+      "devata": "bṛhaspatiḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "10.068": {
+      "rishi": "āṅgiraso ayāsyaḥ",
+      "devata": "bṛhaspatiḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "10.069": {
+      "rishi": "vādhryaśvaḥ sumitraḥ",
+      "devata": "agniḥ",
+      "meter": "(1-2)jagatī,(3-12)triṣṭup",
+      "verses": 12
+    },
+    "10.070": {
+      "rishi": "vādhryaśvaḥ sumitraḥ",
+      "devata": "(1-3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.071": {
+      "rishi": "āṅgiraso bṛhaspatiḥ",
+      "devata": "jñānam",
+      "meter": "(1-8,10-11)triṣṭup,(9)jagatī",
+      "verses": 11
+    },
+    "10.072": {
+      "rishi": "laukya āṅgirasaḥ",
+      "devata": "devāḥ",
+      "meter": "anuṣṭup",
+      "verses": 9
+    },
+    "10.073": {
+      "rishi": "śāktyo gaurivītiḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.074": {
+      "rishi": "śāktyo gaurivītiḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "10.075": {
+      "rishi": "praiyamedhaḥ sindhukṣit",
+      "devata": "nadyaḥ",
+      "meter": "jagatī",
+      "verses": 9
+    },
+    "10.076": {
+      "rishi": "sārpa airāvato jaratkarṇaḥ",
+      "devata": "grāvāṇaḥ",
+      "meter": "jagatī",
+      "verses": 8
+    },
+    "10.077": {
+      "rishi": "bhārgavaḥ syūmaraśmiḥ",
+      "devata": "marutaḥ",
+      "meter": "(1-4,6-8)triṣṭup,(5)jagatī",
+      "verses": 8
+    },
+    "10.078": {
+      "rishi": "bhārgavaḥ syūmaraśmiḥ",
+      "devata": "marutaḥ",
+      "meter": "(1,3-4,8)triṣṭup,(2,5-7)jagatī",
+      "verses": 8
+    },
+    "10.079": {
+      "rishi": "saucīko vaiśvānaraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.080": {
+      "rishi": "saucīko vaiśvānaraḥ",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.081": {
+      "rishi": "bhauvano viśvakarmā",
+      "devata": "viśvakarmā",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.082": {
+      "rishi": "bhauvano viśvakarmā",
+      "devata": "viśvakarmā",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.083": {
+      "rishi": "tāpaso manyuḥ",
+      "devata": "manyuḥ",
+      "meter": "(1)jagatī,(2-7)triṣṭup",
+      "verses": 7
+    },
+    "10.084": {
+      "rishi": "tāpaso manyuḥ",
+      "devata": "manyuḥ",
+      "meter": "(1-3)triṣṭup,(4-7)jagatī",
+      "verses": 7
+    },
+    "10.085": {
+      "rishi": "sāvitrī sūryā",
+      "devata": "(1-5)somaḥ,(6-16)sūryāvivāhaḥ,(17)devāḥ,(18)somarkau,(19)candramāḥ,(20-31)vivāvahamantrāḥ,(32-47)sāvitrī sūryā",
+      "meter": "(1-13,15-17,22,25,28-33,35,38-42,45-47)anuṣṭup,(14,19-21,23-24,26,36-37,44)triṣṭup,(18,27,43)jagatī,(34)bṛhatī",
+      "verses": 47
+    },
+    "10.086": {
+      "rishi": "(1,8,11-12,14,19-22)indraḥ,(2-6,9-10,15-18)indrāṇī,(7-13,23)vṛṣākapiḥ",
+      "devata": "indraḥ",
+      "meter": "paṅktiḥ",
+      "verses": 23
+    },
+    "10.087": {
+      "rishi": "bhāradvājaḥ pāyuḥ",
+      "devata": "agniḥ",
+      "meter": "(1-21)triṣṭup,(22-25)anuṣṭup",
+      "verses": 25
+    },
+    "10.088": {
+      "rishi": "āṅgiraso mūrdhanvān",
+      "devata": "agniḥ",
+      "meter": "triṣṭup",
+      "verses": 19
+    },
+    "10.089": {
+      "rishi": "vaiśvāmitro reṇuḥ",
+      "devata": "(1-4,6-18)indraḥ,(5)indrāsomau",
+      "meter": "triṣṭup",
+      "verses": 18
+    },
+    "10.090": {
+      "rishi": "nārāyaṇaḥ",
+      "devata": "puruṣaḥ",
+      "meter": "(1-15)anuṣṭup,(16)triṣṭup",
+      "verses": 16
+    },
+    "10.091": {
+      "rishi": "vaitahavyo aruṇaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-14)jagatī,(15)triṣṭup",
+      "verses": 15
+    },
+    "10.092": {
+      "rishi": "vaitahavyo aruṇaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-14)jagatī,(15)triṣṭup",
+      "verses": 15
+    },
+    "10.093": {
+      "rishi": "mānavaḥ śāryātaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "jagatī",
+      "verses": 15
+    },
+    "10.094": {
+      "rishi": "kādraveyaḥ sarpaḥ arbudaḥ",
+      "devata": "grāvāṇaḥ",
+      "meter": "(1-4,6,8-13)jagatī,(5,7,14)triṣṭup",
+      "verses": 14
+    },
+    "10.095": {
+      "rishi": "(1,3,6,8-10,12,14,17)purūravāḥ,(2,4-5,7,11,13,15-16,18)urvaśī",
+      "devata": "(1,3,6,8-10,12,14,17)urvaśī,(2,4-5,7,11,13,15-16,18)purūravāḥ",
+      "meter": "triṣṭup",
+      "verses": 18
+    },
+    "10.096": {
+      "rishi": "āṅgiraso baruraindraḥ",
+      "devata": "hariḥ",
+      "meter": "(1-11)jagatī,(12-13)triṣṭup",
+      "verses": 13
+    },
+    "10.097": {
+      "rishi": "atharvaṇo bhiṣak",
+      "devata": "oṣadhayaḥ",
+      "meter": "anuṣṭup",
+      "verses": 23
+    },
+    "10.098": {
+      "rishi": "ārṣṭiṣeṇo devāpiḥ",
+      "devata": "devāḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "10.099": {
+      "rishi": "vaikhānaso vamraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 12
+    },
+    "10.100": {
+      "rishi": "vāndano devasyuḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-11)jagatī,(12)triṣṭup",
+      "verses": 12
+    },
+    "10.101": {
+      "rishi": "saumyo budhaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-3,7-8,10-11)triṣṭup,(4,6)gāyatrī,(5)bṛhatī,(9,12)jagatī",
+      "verses": 12
+    },
+    "10.102": {
+      "rishi": "bhāmyaśvo mudgalaḥ",
+      "devata": "indraḥ",
+      "meter": "(1,3,12)bṛhatī,(2,4-11)triṣṭup",
+      "verses": 12
+    },
+    "10.103": {
+      "rishi": "aindro apratirathaḥ",
+      "devata": "(1-3,5-13)indraḥ,(4)bṛhaspatiḥ",
+      "meter": "(1-12)triṣṭup,(13)anuṣṭup",
+      "verses": 13
+    },
+    "10.104": {
+      "rishi": "vaiśvāmitro aṣṭakaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.105": {
+      "rishi": "kautso durmitraḥ",
+      "devata": "indraḥ",
+      "meter": "(1)gāyatrī,(2,7)pipīlikamadhyā,(3-6,8-10)uṣṇik,(11)triṣṭup",
+      "verses": 11
+    },
+    "10.106": {
+      "rishi": "kāśyapo bhūtāṁśaḥ",
+      "devata": "aśvinau",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.107": {
+      "rishi": "āṅgiraso divyaḥ",
+      "devata": "dakṣiṇā",
+      "meter": "(1-3,5-11)triṣṭup,(4)jagatī",
+      "verses": 11
+    },
+    "10.108": {
+      "rishi": "(1,3,5,7,9)paṇayaḥ asurāḥ,(2,4,6,8,10-11)saramā",
+      "devata": "(1,3,5,7,9)saramā,(2,4,6,8,10-11)paṇayaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.109": {
+      "rishi": "juhūḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-5)triṣṭup,(6-7)anuṣṭup",
+      "verses": 7
+    },
+    "10.110": {
+      "rishi": "bhārgavo jamadagniḥ",
+      "devata": "(1,2,3)agniḥ,(4)barhiḥ,(5)devīrdvāraḥ,(6)uṣāsānaktā,(7)daivyau hotārau,(8)sarasvatī-iḻā-bhāratī,(9)tvaṣṭā,(10)vanaspatiḥ,(11)svāhākṛtayaḥ",
+      "meter": "triṣṭup",
+      "verses": 11
+    },
+    "10.111": {
+      "rishi": "vairūpo aṣṭrādaṁṣṭraḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "10.112": {
+      "rishi": "vairūpo nabhaḥprabhedanaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "10.113": {
+      "rishi": "vairūpaḥ śataprabhedanaḥ",
+      "devata": "indraḥ",
+      "meter": "(1-9)jagatī,(10)triṣṭup",
+      "verses": 10
+    },
+    "10.114": {
+      "rishi": "vairūpaḥ sadhristāpasaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-3,5-10)triṣṭup,(4)jagatī",
+      "verses": 10
+    },
+    "10.115": {
+      "rishi": "vārṣṭihavya upastutaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-7)jagatī,(8)triṣṭup,(9)śakvarī",
+      "verses": 9
+    },
+    "10.116": {
+      "rishi": "sthauro agniyutaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "10.117": {
+      "rishi": "āṅgiraso bhikṣuḥ",
+      "devata": "dhanānnadānam",
+      "meter": "(1-2)jagatī,(3-9)triṣṭup",
+      "verses": 9
+    },
+    "10.118": {
+      "rishi": "āmahīyava urukṣayaḥ",
+      "devata": "rakṣohāgniḥ",
+      "meter": "gāyatrī",
+      "verses": 9
+    },
+    "10.119": {
+      "rishi": "indro labaḥ",
+      "devata": "ātmā",
+      "meter": "gāyatrī",
+      "verses": 13
+    },
+    "10.120": {
+      "rishi": "atharvaṇo bṛhaddivaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 9
+    },
+    "10.121": {
+      "rishi": "prājapatyo hiraṇyagarbhaḥ",
+      "devata": "kaḥ",
+      "meter": "triṣṭup",
+      "verses": 10
+    },
+    "10.122": {
+      "rishi": "vāsiṣṭhaścitramahāḥ",
+      "devata": "agniḥ",
+      "meter": "(1,5)triṣṭup,(2-4,6-8)jagatī",
+      "verses": 8
+    },
+    "10.123": {
+      "rishi": "bhārgavo venaḥ",
+      "devata": "venaḥ",
+      "meter": "triṣṭup",
+      "verses": 8
+    },
+    "10.124": {
+      "rishi": "(1,5-9)agnivaruṇasomāḥ,(2-4)agniḥ",
+      "devata": "(1)agniḥ,(2-4)agnerātmā,(5,7-8)varuṇaḥ,(6)somaḥ,(9)indraḥ",
+      "meter": "(1-6,8-9)triṣṭup,(7)jagatī",
+      "verses": 9
+    },
+    "10.125": {
+      "rishi": "āmbhṛṇī vāk",
+      "devata": "ātmā",
+      "meter": "(1,3-8)triṣṭup,(2)jagatī",
+      "verses": 8
+    },
+    "10.126": {
+      "rishi": "śailūṣaḥ kulmalabarhiṣaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-7)bṛhatī,(8)triṣṭup",
+      "verses": 8
+    },
+    "10.127": {
+      "rishi": "saubharaḥ kuśikaḥ",
+      "devata": "rātriḥ",
+      "meter": "gāyatrī",
+      "verses": 8
+    },
+    "10.128": {
+      "rishi": "āṅgiraso vihavyaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "(1-8)triṣṭup,(9)jagatī",
+      "verses": 9
+    },
+    "10.129": {
+      "rishi": "parameṣṭhī prajāpatiḥ",
+      "devata": "bhāvavṛttham",
+      "meter": "triṣṭup",
+      "verses": 7
+    },
+    "10.130": {
+      "rishi": "prājapatyo yajña",
+      "devata": "bhāvavṛttam",
+      "meter": "(1)jagatī,(2-7)triṣṭup",
+      "verses": 7
+    },
+    "10.131": {
+      "rishi": "(1-7)kākṣīvataḥ sukīrtiḥ",
+      "devata": "(1-3,6-7)indraḥ,(4-5)aśvinau",
+      "meter": "(1-3,5-7)triṣṭup,(4)anuṣṭup",
+      "verses": 7
+    },
+    "10.132": {
+      "rishi": "nārmedhaḥ śakapūtaḥ",
+      "devata": "(1)dyubhūmyaśvinaḥ,(2-7)mitrāvaruṇau",
+      "meter": "(1)nyaṅkurāriṇī,(2,6)prastārapaṅktiḥ,(3-5)virāṭ,(7)bṛhatī",
+      "verses": 7
+    },
+    "10.133": {
+      "rishi": "paijavanaḥ sudāḥ",
+      "devata": "indraḥ",
+      "meter": "(1-3)śakvarī,(4-6)paṅktiḥ,(7)triṣṭup",
+      "verses": 7
+    },
+    "10.134": {
+      "rishi": "(1-5,6)yauvanāśvo māndhātā,(7)godhā",
+      "devata": "indraḥ",
+      "meter": "(1-7)paṅktiḥ",
+      "verses": 7
+    },
+    "10.135": {
+      "rishi": "yāmāyanaḥ kumāraḥ",
+      "devata": "yamaḥ",
+      "meter": "anuṣṭup",
+      "verses": 7
+    },
+    "10.136": {
+      "rishi": "vātaśanāḥ",
+      "devata": "keśinaḥ",
+      "meter": "anuṣṭup",
+      "verses": 7
+    },
+    "10.137": {
+      "rishi": "saptarṣayaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "anuṣṭup",
+      "verses": 7
+    },
+    "10.138": {
+      "rishi": "auravo aṅgaḥ",
+      "devata": "indraḥ",
+      "meter": "jagatī",
+      "verses": 6
+    },
+    "10.139": {
+      "rishi": "gandharvo viśvāvasuḥ",
+      "devata": "(1-3)savitā,(4-6)ātmā",
+      "meter": "triṣṭup",
+      "verses": 6
+    },
+    "10.140": {
+      "rishi": "pāvako agniḥ",
+      "devata": "agniḥ",
+      "meter": "(1-2)paṅktiḥ,(3-5)bṛhatī,(6)jyotiḥ",
+      "verses": 6
+    },
+    "10.141": {
+      "rishi": "tāpaso agniḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.142": {
+      "rishi": "śārṅgāḥ",
+      "devata": "agniḥ",
+      "meter": "(1-2)jagatī,(3-6)triṣṭup,(7-8)anuṣṭup",
+      "verses": 8
+    },
+    "10.143": {
+      "rishi": "sāṅkhyo atriḥ",
+      "devata": "aśvinau",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.144": {
+      "rishi": "tārkṣyaḥ suparṇaḥ",
+      "devata": "indraḥ",
+      "meter": "(1,3-4)gāyatrī,(2,5)bṛhatī,(6)paṅktiḥ",
+      "verses": 6
+    },
+    "10.145": {
+      "rishi": "indrāṇī",
+      "devata": "sapatnībādhanarūpo arthaḥ",
+      "meter": "(1-5)anuṣṭup,(6)paṅktiḥ",
+      "verses": 6
+    },
+    "10.146": {
+      "rishi": "airammado devamuniḥ",
+      "devata": "araṇyānī",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.147": {
+      "rishi": "śairīṣiḥ suvedāḥ",
+      "devata": "indraḥ",
+      "meter": "(1-4)jagatī,(5)triṣṭup",
+      "verses": 5
+    },
+    "10.148": {
+      "rishi": "vainyaḥ pṛthuḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "10.149": {
+      "rishi": "hairaṇyastūpaḥ arcan",
+      "devata": "savitā",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "10.150": {
+      "rishi": "vāsiṣṭho mṛḻīkaḥ",
+      "devata": "agniḥ",
+      "meter": "(1-3)bṛhatī,(4-5)jyotiḥ",
+      "verses": 5
+    },
+    "10.151": {
+      "rishi": "kāmayānī śraddhā",
+      "devata": "śraddhā",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "10.152": {
+      "rishi": "bhāradvājaḥ śāsaḥ",
+      "devata": "indraḥ",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "10.153": {
+      "rishi": "devajāmayaḥ indramātaraḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "10.154": {
+      "rishi": "vaivasvatī yamī",
+      "devata": "bhāvavṛttam",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "10.155": {
+      "rishi": "bhāradvājaḥ śirimbiṭhaḥ",
+      "devata": "(1,4)alakṣmīghnaḥ,(2-3)brahmaṇaspatiḥ,(5)viśvedevāḥ",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "10.156": {
+      "rishi": "āgneyaḥ ketuḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "10.157": {
+      "rishi": "āptyo bhuvanaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "10.158": {
+      "rishi": "sauryaścakṣuḥ",
+      "devata": "sūryaḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "10.159": {
+      "rishi": "paulomī śacī",
+      "devata": "śacī",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.160": {
+      "rishi": "vaiśvāmitraḥ pūraṇaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "10.161": {
+      "rishi": "prājāpatyo yakṣmanāśanaḥ",
+      "devata": "indrāgnī",
+      "meter": "(1-4)triṣṭup,(5)anuṣṭup",
+      "verses": 5
+    },
+    "10.162": {
+      "rishi": "brāhmo rakṣohā",
+      "devata": "garbhasmādhānarūpo arthaḥ",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.163": {
+      "rishi": "kāśyapo vivṛhā",
+      "devata": "yakṣmanāśanaḥ",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.164": {
+      "rishi": "āṅgirasaḥ pracetāḥ",
+      "devata": "duḥsvapnanāśanaḥ",
+      "meter": "(1-2,4)anuṣṭup,(3)triṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "10.165": {
+      "rishi": "nairṛtaḥ kapotaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 5
+    },
+    "10.166": {
+      "rishi": "vairājaḥ śākvaro",
+      "devata": "sapatnaghnarūpo arthaḥ",
+      "meter": "(1-4)anuṣṭup,(5)paṅktiḥ",
+      "verses": 5
+    },
+    "10.167": {
+      "rishi": "viśvāmitrajamadagnī",
+      "devata": "(1-2,4)indraḥ,(3)viśvedevāḥ",
+      "meter": "jagatī",
+      "verses": 4
+    },
+    "10.168": {
+      "rishi": "vātāyano anilaḥ",
+      "devata": "vāyuḥ",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "10.169": {
+      "rishi": "kākṣīvataḥ śabaraḥ",
+      "devata": "gāvaḥ",
+      "meter": "triṣṭup",
+      "verses": 4
+    },
+    "10.170": {
+      "rishi": "sauryo vibhrāṭ",
+      "devata": "sūryaḥ",
+      "meter": "(1-3)jagatī,(4)paṅktiḥ",
+      "verses": 4
+    },
+    "10.171": {
+      "rishi": "bhārgavaḥ iṭaḥ",
+      "devata": "indraḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "10.172": {
+      "rishi": "āṅgirasaḥ saṁvartaḥ",
+      "devata": "uṣāḥ",
+      "meter": "virāṭ",
+      "verses": 4
+    },
+    "10.173": {
+      "rishi": "āṅgiraso dhruvaḥ",
+      "devata": "rājastutiḥ",
+      "meter": "anuṣṭup",
+      "verses": 6
+    },
+    "10.174": {
+      "rishi": "āṅgiraso abhīvartaḥ",
+      "devata": "rājastutiḥ",
+      "meter": "anuṣṭup",
+      "verses": 5
+    },
+    "10.175": {
+      "rishi": "arbudaḥ sārpaḥ",
+      "devata": "grāvāṇaḥ",
+      "meter": "gāyatrī",
+      "verses": 4
+    },
+    "10.176": {
+      "rishi": "arbhavaḥ sūnuḥ",
+      "devata": "(1)ṛbhavaḥ,(2-4)agniḥ",
+      "meter": "(1,3-4)anuṣṭup,(2)gāyatrī",
+      "verses": 4
+    },
+    "10.177": {
+      "rishi": "prājapatyaḥ pataṅgaḥ",
+      "devata": "māyābhedaḥ",
+      "meter": "(1)jagatī,(2-3)triṣṭup",
+      "verses": 3
+    },
+    "10.178": {
+      "rishi": "tārkṣyo ariṣṭanemiḥ",
+      "devata": "tārkṣyaḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "10.179": {
+      "rishi": "(1)auśinaraḥ śibiḥ,(2)kāśirājaḥ pratardanaḥ,(3)rauhidaśvo vasumanāḥ",
+      "devata": "indraḥ",
+      "meter": "(1)anuṣṭup,(2-3)triṣṭup",
+      "verses": 3
+    },
+    "10.180": {
+      "rishi": "aindro jayaḥ",
+      "devata": "indraḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "10.181": {
+      "rishi": "(1)vāsiṣṭhaḥ prathaḥ,(2)bhāradvājaḥ saprathaḥ,(3)sauryo gharmaḥ",
+      "devata": "viśvedevāḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "10.182": {
+      "rishi": "bārhaspatyastapurmūrdhā",
+      "devata": "bṛhaspatiḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "10.183": {
+      "rishi": "prājāpatyaḥ prajāvān",
+      "devata": "(1)yajamānaḥ,(2)yajamānapatnī,(3)hotrāśiṣaḥ",
+      "meter": "triṣṭup",
+      "verses": 3
+    },
+    "10.184": {
+      "rishi": "garbhakartā tvaṣṭā",
+      "devata": "viśvedevāḥ",
+      "meter": "anuṣṭup",
+      "verses": 3
+    },
+    "10.185": {
+      "rishi": "vāruṇiḥ satyadhṛtiḥ",
+      "devata": "ādityāḥ",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "10.186": {
+      "rishi": "vātāyana ulaḥ",
+      "devata": "vāyuḥ",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "10.187": {
+      "rishi": "āgneyo vatsaḥ",
+      "devata": "agniḥ",
+      "meter": "gāyatrī",
+      "verses": 5
+    },
+    "10.188": {
+      "rishi": "āgneyaḥ śyenaḥ",
+      "devata": "jātavedā agniḥ",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "10.189": {
+      "rishi": "sārparājñī",
+      "devata": "sūryaḥ",
+      "meter": "gāyatrī",
+      "verses": 3
+    },
+    "10.190": {
+      "rishi": "mādhucchandaso aghamarṣaṇaḥ",
+      "devata": "bhāvavṛttam",
+      "meter": "anuṣṭup",
+      "verses": 3
+    },
+    "10.191": {
+      "rishi": "āṅgirasaḥ saṁvananaḥ",
+      "devata": "(1)agniḥ,(2-4)sañjñānam",
+      "meter": "(1-2,4)anuṣṭup,(3)triṣṭup",
+      "verses": 4
+    }
+  }
+}
