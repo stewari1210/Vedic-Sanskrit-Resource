@@ -328,6 +328,75 @@ redeploy. Moving to Qdrant Cloud is **feasible** — see Architecture note below
 `python migrate_kg_to_qdrant.py --dry-run` then `python migrate_kg_to_qdrant.py`;
 confirm the printed point count. App then loads the KG from Qdrant on next start.
 
+## Session log — 2026-06-20 (verse-grounded interpretation + anukramaṇī-seeded KG)
+
+### Verse interpretation grounding (retriever untouched)
+- **Exact-verse lookup** (`_lookup_verse_text` in `sanskrit_tutor_frontend.py`): a
+  cited verse (`RV 10.60.2`, `Mandala 10 Sukta 60`, `10.60.1`…) is resolved
+  directly from `local_store/rNN.md` — not via semantic retrieval, which could
+  not reliably surface a bare citation. Markers are `॥ M.SSS.VV ॥` (no `RV`
+  prefix on the danda; `RV` is only in the `## RV M.SSS` header).
+- **Whole-sūkta anchoring:** the lookup returns the focus verse PLUS the full
+  sūkta, because name-vs-epithet calls need the surrounding verses (relative
+  pronouns `yáḥ/yásya`, named figures). E.g. RV 10.60.2 only resolves once v3
+  (`yó janān…`), v4 (Ikṣvāku), v5 (`rathaproṣṭheṣu` patronymic) and v6 (`rājan`)
+  are in view.
+- **Verse Translation tab** (mode=`translation`) feeds the focus verse + sūkta
+  context inline; **Home chat** uses a separate `pinned_verse` side-channel
+  (`run_agentic_rag(pinned_verse=…)` → `AgentState.pinned_verse` →
+  `synthesize_answer_node`). The pin is gated on a citation being present, kept
+  across follow-ups via `st.session_state.pinned_verse`, and dropped on topic
+  change. **Retrieval/BM25 are never touched** — normal semantic queries are
+  byte-for-byte unchanged.
+- Chatbox leak fixed: `ask_tutor` now writes `chat_history` only for
+  `mode="conversation"`, so module tabs don't post into the Home chat.
+
+### KG provenance tiers (self-learning preserved)
+- `add_fact` gains a `provenance` field: `authoritative` (curated/anukramaṇī
+  ground truth) vs `inferred` (LLM-extracted, the self-building path).
+  Authoritative facts are **protected** — an inferred add can never overwrite or
+  downgrade one, and an authoritative add *corrects* a conflicting inferred
+  singleton. Stored on the fact + Qdrant payload + JSON; surfaced as
+  `✓traditional` in `get_entity_context`. The graph keeps self-building; it just
+  can't clobber verified facts. Pinned-verse (interpretive) answers are excluded
+  from KG extraction so tentative readings don't pollute the graph.
+
+### Curated anukramaṇī seed (starter)
+- `knowledge_store/kg_seed.json` — **3 hymns (10.060, 7.018, 3.062) + 16 entity
+  facts**, indigenous sources only (anukramaṇī + Bṛhaddevatā/itihāsa), no
+  translations. `seed_kg.py` (idempotent, `--dry-run`) upserts the facts as
+  `authoritative`. `src/utils/anukramani.py` loads the seed and, when a hymn is
+  pinned, injects an ANUKRAMAṆĪ block (ṛṣi/devatā/patron/theme) + the entities'
+  KG facts into synthesis.
+- **Outcome:** flash's RV 10.60.2 reading went confabulation → correct — it now
+  names Asamāti as the king (anukramaṇī patron = Asamāti Rāthaproṣṭha), cites
+  v5 `rathaproṣṭheṣu` (the patronymic it had silently dropped), and only diverges
+  on *Bhajeratha* (a now-defensible, genuinely contested call, not a hallucination).
+
+### Decision — anukramaṇī coverage roadmap
+The anukramaṇī ṛṣi/devatā/meter schema applies to **metrical saṃhitās**, not
+prose Brāhmaṇas. Agreed scope:
+- **RV** — full anukramaṇī ingest (Śaunaka's Ārṣa/Daivata/Chandas + Kātyāyana
+  Sarvānukramaṇī; GRETIL/VedaWeb), all 1028 sūktas.
+- **AVŚ** — full (its Bṛhatsarvānukramaṇī).
+- **YV (VS, TS)** — **partial**: section-level ṛṣi/devatā only (prose-heavy, unit
+  is a ritual section, not a sūkta).
+- **Brāhmaṇas (AB, PB, SB)** — anukramaṇī **N/A** (prose, no ṛṣi/devatā/meter);
+  instead curate **legend/king/ritual-topic** metadata + śākhā/author per section.
+- **Bṛhaddevatā legend layer** — curated/extracted (Macdonell ed., GRETIL/
+  archive.org), tagged **`traditional/itihāsa`** provenance and phrased as "the
+  tradition holds X" (distinct from "the mantra says X"). Supplies the
+  patron/king/legend anchors (the layer that fixed the Asamāti case) and the
+  Brāhmaṇa legend metadata. Only a few dozen hymns carry major ākhyānas, so
+  tractable.
+- All layers slot into the same `kg_seed.json["hymns"]` structure → the
+  injection path needs no change. Ingest scripts fetch from real sources (run on
+  Mac), never hand-typed.
+- **Cost-aware note:** synthesis stays on gemini-2.5-flash; the open lever for
+  residual reasoning errors is a *gated* evaluator/critic pass (one extra call,
+  only on interpretation queries, ideally a cheap OpenRouter reasoning model with
+  a Vedic rubric) — not upgrading the always-on synthesis model.
+
 ## Backlog (rough priority)
 
 1. **Run SB ingest** — `python ingest_shatapatha_brahmana.py` (on Mac, ~15–20 min).
@@ -368,6 +437,22 @@ confirm the printed point count. App then loads the KG from Qdrant on next start
 14. **AV Paippalāda** (future) — more historical-geographic material than Śaunaka;
     GRETIL (Lubotsky). Defer until VS + SB are indexed and diachronic queries
     are verified.
+15. **RV anukramaṇī bulk ingest** — fetch/parse Śaunaka's & Kātyāyana's
+    anukramaṇīs (GRETIL/VedaWeb) → ṛṣi/devatā/meter for all 1028 sūktas into
+    `kg_seed.json["hymns"]`. The cleanest, highest-coverage grounding floor.
+    (Starter seed for 10.060/7.018/3.062 already in place, 2026-06-20.)
+16. **Bṛhaddevatā legend layer** — curated/extracted (Macdonell HOS ed.,
+    GRETIL/archive.org), `traditional/itihāsa` provenance; the patron/king/legend
+    anchors (Subandhu/Asamāti, Śunaḥśepa, Purūravas–Urvaśī, …) + Brāhmaṇa
+    legends. Only a few dozen hymns carry major ākhyānas → tractable.
+17. **AVŚ anukramaṇī** — Bṛhatsarvānukramaṇī → ṛṣi/devatā/meter per Śaunaka hymn.
+18. **YV (VS/TS) partial anukramaṇī** — section-level ṛṣi/devatā only (prose unit).
+19. **Brāhmaṇa legend/topic curation** (AB/PB/SB) — no ṛṣi/devatā/meter; curate
+    legend/king/ritual-topic + śākhā/author per section instead.
+20. **Gated evaluator/critic** (cost-aware) — one extra LLM call on interpretation
+    (pinned-verse) queries only, with a Vedic-philology rubric; ideally a cheap
+    OpenRouter reasoning model. Catches residual flash errors (e.g. dropping a
+    word adjacent to the one being analysed) without upgrading always-on synthesis.
 
 ## KG → Qdrant Cloud migration (architecture note)
 
