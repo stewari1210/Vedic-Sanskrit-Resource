@@ -336,6 +336,38 @@ class SanskritTutorApp:
                 st.session_state.vec_db = vec_db
                 st.session_state.docs = docs
 
+                # ── TEMP DIAGNOSTIC: what backend is this deploy actually using,
+                #    and can it see the Atharvaveda chunks? Remove once resolved. ──
+                try:
+                    from src.config import QDRANT_URL as _QURL
+                    _host = (str(_QURL).split("//")[-1].split(".")[0] + "…") if _QURL else "(none → LOCAL)"
+                    _client = getattr(vec_db, "client", None)
+                    _total = _av = 0
+                    if _client is not None:
+                        from src.config import COLLECTION_NAME as _COLL
+                        _total = _client.count(collection_name=str(_COLL), exact=True).count
+                        _off = None
+                        while True:
+                            _pts, _off = _client.scroll(collection_name=str(_COLL), limit=1000,
+                                                        offset=_off, with_payload=True, with_vectors=False)
+                            for _p in _pts:
+                                _md = (_p.payload or {}).get("metadata", _p.payload or {})
+                                if "atharva" in str(_md.get("veda", "")).lower():
+                                    _av += 1
+                            if _off is None:
+                                break
+                    # BM25 side: how many AV chunks are in the loaded pickle?
+                    _bm_av = sum(1 for d in (docs or [])
+                                 if "atharva" in str(getattr(d, "metadata", {}).get("veda", "")).lower())
+                    st.sidebar.warning(
+                        f"🔬 Backend cluster: `{_host}` · points={_total} · "
+                        f"AV in Qdrant={_av} · AV in BM25 pickle={_bm_av}"
+                    )
+                    logger.info(f"[DIAG] cluster={_host} total={_total} av_qdrant={_av} av_bm25={_bm_av}")
+                except Exception as _e:
+                    st.sidebar.error(f"🔬 Diagnostic failed: {_e}")
+                    logger.warning(f"[DIAG] failed: {_e}")
+
                 # CRITICAL: Set shared vector store for agentic RAG tools
                 set_shared_vector_store(vec_db, docs)
                 logger.info("[FRONTEND] Shared vector store configured for agentic RAG")
