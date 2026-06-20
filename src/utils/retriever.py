@@ -74,7 +74,8 @@ class HybridRetriever(BaseRetriever):
     k: int = 10
     mw_store: Optional[Any] = None
     trans_helper: Optional[Any] = None
-    
+    vec_db: Optional[Any] = None   # QdrantVectorStore — for server-side metadata filtering
+
     def __init__(self, **kwargs):
         """Initialize with MW Concept Store if available."""
         super().__init__(**kwargs)
@@ -356,42 +357,55 @@ class HybridRetriever(BaseRetriever):
         query_lower = query.lower()
 
         # Maps query keywords → veda metadata values used in chunk payloads.
-        # Order matters: more specific patterns first.
+        # Abbreviations are bare tokens (rv, ts, av…); they are matched with word
+        # boundaries below, so they only fire as standalone words — never as a
+        # substring inside a longer word (e.g. "rv" in "athaRVaveda", "ab" in
+        # "ABout", "av" in "hAVe"). Order: more specific patterns first.
         source_mapping = {
             'taittiriya_samhita': [
                 'taittiriya samhita', 'taittirīya saṃhitā', 'taittiriya',
                 'black yajurveda', 'krishna yajurveda', 'kṛṣṇa yajurveda',
-                ' ts ', ' ts.', '(ts)',
+                'ts',
             ],
             'vajasaneyi_samhita': [
                 'vajasaneyi samhita', 'vājasaneyi saṃhitā', 'vajasaneyi',
                 'white yajurveda', 'shukla yajurveda', 'śukla yajurveda',
-                ' vs ', ' vs.', '(vs)',
+                'vs',
             ],
             'shatapatha_brahmana': [
                 'shatapatha brahmana', 'śatapatha brāhmaṇa', 'shatapatha',
                 'satapatha brahmana', 'satapatha',
-                ' sb ', ' sb.', '(sb)',
+                'sb',
             ],
             'aitareya_brahmana': [
                 'aitareya brahmana', 'aitareya brāhmaṇa', 'aitareya',
-                ' ab ', ' ab.', '(ab)',
+                'ab',
             ],
             'pancavimsa_brahmana': [
                 'pancavimsa brahmana', 'pañcaviṃśa brāhmaṇa', 'pancavimsa',
                 'pancavimsha', 'pañcaviṃśa',
-                ' pb ', ' pb.', '(pb)',
+                'pb',
+            ],
+            # AV Śaunaka — key must equal the chunk metadata.veda value set by
+            # ingest_atharvaveda_shaunaka.py ("atharvaveda_shaunaka").
+            'atharvaveda_shaunaka': [
+                'atharvaveda', 'atharva veda', 'atharva-veda', 'atharvaveda samhita',
+                'atharvaveda śaunaka', 'atharvaveda shaunaka',
+                'śaunaka', 'shaunaka', 'saunaka',
+                'avś', 'avs', 'av',
             ],
             'rigveda': [
                 'rigveda', 'rig veda', 'rig-veda', 'rgveda', 'ṛgveda',
-                ' rv ', ' rv.', '(rv)',
+                'rv',
             ],
         }
 
         detected_sources = []
         for veda_key, patterns in source_mapping.items():
             for pat in patterns:
-                if pat.strip() in query_lower:
+                # Word-boundary match: a bare abbreviation like "rv" must be its
+                # own token, not a substring inside another word.
+                if re.search(r'\b' + re.escape(pat) + r'\b', query_lower):
                     if veda_key not in detected_sources:
                         detected_sources.append(veda_key)
                     break
@@ -476,6 +490,33 @@ class HybridRetriever(BaseRetriever):
                 f"{source_filters} prioritised, {len(non_matching_docs)} appended"
             )
             return matching_docs + non_matching_docs
+
+    def _filtered_semantic_search(self, query: str, veda_value: str, k: int) -> List[Document]:
+        """Server-side Qdrant search restricted to one corpus by metadata.veda.
+
+        Guarantees a named single corpus is represented in the candidate pool
+        even when an abstract English query wouldn't rank its (Devanagari)
+        chunks into the global top-k. Best-effort: returns [] on any failure,
+        so the caller's existing behaviour is preserved.
+        """
+        if self.vec_db is None:
+            return []
+        try:
+            from qdrant_client.http import models as qm
+            flt = qm.Filter(must=[qm.FieldCondition(
+                key="metadata.veda", match=qm.MatchValue(value=veda_value))])
+            docs = self.vec_db.similarity_search(query, k=k, filter=flt)
+            logger.info(
+                f"HybridRetriever: Server-side corpus search veda={veda_value} "
+                f"→ {len(docs)} docs"
+            )
+            return docs
+        except Exception as e:
+            logger.warning(
+                f"HybridRetriever: Server-side corpus search failed "
+                f"(veda={veda_value}): {e}"
+            )
+            return []
 
     _VERSE_ID = re.compile(r"॥ (\d+)\.(\d+)\.(\d+) ॥")
     _VERSE_LINE = re.compile(r"^(.+?॥ \d+\.\d+\.\d+ ॥)\s*$", re.M)
@@ -987,6 +1028,20 @@ class HybridRetriever(BaseRetriever):
         except Exception:
             logger.exception("⏳ Diachronic mode failed (non-fatal):")
 
+        # SERVER-SIDE CORPUS GUARANTEE: when the query names exactly one corpus
+        # (strict mode), the global top-k may contain none of its chunks — an
+        # abstract English query won't rank Devanagari AV/TS/etc. verses highly.
+        # Pull that corpus directly from Qdrant by metadata.veda so the strict
+        # filter below has real docs to keep instead of falling back to RV.
+        if strict_filter and len(source_filters) == 1:
+            corpus_docs = self._filtered_semantic_search(
+                enhanced_query, source_filters[0], k=self.k * 2)
+            if corpus_docs:
+                seen = {hash(d.page_content[:200]) for d in corpus_docs}
+                merged_docs = corpus_docs + [
+                    d for d in merged_docs if hash(d.page_content[:200]) not in seen
+                ]
+
         # APPLY SOURCE TEXT FILTERING (if specific texts mentioned in query)
         if source_filters:
             merged_docs = self._filter_docs_by_source(merged_docs, source_filters, strict_filter)
@@ -1175,7 +1230,8 @@ def create_retriever(vec_db, documents, top_n=5):
         hybrid = HybridRetriever(
             semantic_retriever=qdrant_retriever,
             keyword_retriever=bm25_retriever,
-            k=effective_k
+            k=effective_k,
+            vec_db=vec_db,
         )
 
         logger.info(f"Hybrid retriever created: BM25 (keywords) + Qdrant (semantic), k={effective_k}")
