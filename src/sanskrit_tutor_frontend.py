@@ -514,8 +514,32 @@ Have natural conversation about Sanskrit:
                 logger.info(f"[FRONTEND] Processing query with Agentic RAG: {query}")
                 logger.info(f"[FRONTEND] Input language: {st.session_state.input_language}")
                 
-                # ✅ Pass language preference to RAG
-                result = run_agentic_rag(query, input_language=st.session_state.input_language)
+                # ── Verse grounding for the Home conversation ──────────────────
+                # If the question cites a specific verse, resolve its exact text
+                # and pin it so the agent interprets from the real words. Only for
+                # conversation mode; gated entirely on a citation being present, so
+                # ordinary semantic-search queries are completely unaffected. The
+                # pin is remembered across turns so follow-ups stay grounded.
+                pinned_verse = None
+                if mode == "conversation":
+                    found = self._lookup_verse_text(query)
+                    if found:
+                        pinned_verse = found
+                        st.session_state.pinned_verse = found
+                        logger.info(f"[FRONTEND] Pinned verse {found['citation']} for grounding")
+                    else:
+                        prev = st.session_state.get("pinned_verse")
+                        if prev and self._is_verse_followup(query):
+                            pinned_verse = prev  # carry the same verse into a follow-up
+                        else:
+                            st.session_state.pinned_verse = None  # topic changed → unpin
+
+                # ✅ Pass language preference (+ optional pinned verse) to RAG
+                result = run_agentic_rag(
+                    query,
+                    input_language=st.session_state.input_language,
+                    pinned_verse=pinned_verse,
+                )
                 
                 logger.info(f"[FRONTEND] Agentic RAG returned result type: {type(result)}")
                 logger.info(f"[FRONTEND] Result keys: {result.keys() if isinstance(result, dict) else 'not a dict'}")
@@ -1047,6 +1071,22 @@ Have natural conversation about Sanskrit:
                     else f"RV {mand}.{sukta:03d} (whole sūkta)")
         return {"mandala": mand, "sukta": sukta, "verse": verse,
                 "citation": citation, "verses": verses, "text": "\n".join(verses)}
+
+    @staticmethod
+    def _is_verse_followup(query: str) -> bool:
+        """Heuristic: does this message continue the discussion of an already-pinned
+        verse (so we keep grounding it), rather than start a fresh topic?
+        Conservative — only continuity cues keep the pin alive."""
+        q = query.lower()
+        cues = (
+            "this verse", "that verse", "the verse", "this line", "that line",
+            "this hymn", "that hymn", "this reading", "your reading", "your interpretation",
+            "you said", "you interpret", "why do you", "why did you", "how do you",
+            "justif", "differ", "instead of", "epithet", "proper noun", "not a name",
+            "same verse", "translate it", "interpret it", "its meaning", "the meaning",
+            "word-by-word", "word by word", "sandhi", "grammar", " it ", " its ",
+        )
+        return any(c in q for c in cues)
 
     def render_translation_module(self):
         """Render verse translation module."""

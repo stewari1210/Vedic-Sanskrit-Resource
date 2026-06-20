@@ -16,7 +16,7 @@ Architecture:
             Sanskrit Construction
 """
 
-from typing import TypedDict, List, Annotated, Literal
+from typing import TypedDict, List, Annotated, Literal, Optional
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.documents import Document
 from langgraph.graph import StateGraph, END
@@ -121,6 +121,7 @@ class AgentState(TypedDict):
     """State for the agentic RAG system"""
     question: str
     input_language: str  # ✅ NEW: "English" or "Devanagari"
+    pinned_verse: Optional[dict]  # exact verse text when the query cites one (e.g. RV 10.60.2)
     query_type: str  # "construction" | "grammar" | "factual"
 
     # Extracted information
@@ -653,7 +654,37 @@ Provide a clear, educational answer with proper citations:"""
    true 'latest Vedic period') are not yet indexed, so frame conclusions as
    'early vs late Rigveda', not the full Vedic span.""" if is_diachronic else ""
 
-        if has_corpus:
+        # ── Pinned-verse grounding (home-module verse interpretation) ─────────
+        # When the user's question cited a specific verse, the frontend resolves
+        # its exact text and passes it through. We inject it as authoritative
+        # synthesis context WITHOUT touching retrieval — purely additive, and
+        # only active when a verse was actually pinned. Normal queries skip this.
+        pinned_verse = state.get("pinned_verse")
+        pinned_block = ""
+        if pinned_verse:
+            pinned_block = (
+                f"PINNED VERSE — exact corpus text for {pinned_verse['citation']}:\n"
+                f"{pinned_verse['text']}\n"
+            )
+
+        if pinned_block:
+            support = (f"\nADDITIONAL CORPUS PASSAGES (supporting context only):\n{corpus_context}\n"
+                       if has_corpus else "")
+            synthesis_prompt = f"""You are a Sanskrit scholar interpreting a specific Vedic verse directly from its original text.
+
+QUESTION: {question}
+{(chr(10) + kg_context) if kg_context else ""}
+{pinned_block}{support}
+INSTRUCTIONS:
+1. The PINNED VERSE above is the exact, authoritative text of the verse in question — base your interpretation strictly and primarily on THESE words.
+2. Provide: the Devanagari (as given), IAST transliteration, a word-by-word breakdown with sandhi resolution, grammatical analysis, and an English interpretation grounded in that morphology.
+3. Work from the Sanskrit itself and Vedic grammar (Macdonell, Monier-Williams). You MAY reach conclusions that differ from earlier translators (Wilson, Griffith, etc.), but every claim must be justified from the verse's own words and grammar — never borrowed from an external translation.
+4. Clearly distinguish what the text ATTESTS from what is INFERENCE. If a word is ambiguous (e.g. a possible proper noun vs. an epithet), say so and give the grammatical evidence on each side rather than asserting one reading.
+5. Use any KNOWLEDGE GRAPH facts above only as corroborating context, not as a substitute for reading the verse.
+6. Cite the verse as {pinned_verse['citation']}.
+
+Provide a careful, text-grounded interpretation:"""
+        elif has_corpus:
             synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts, history, and culture.
 
 QUESTION: {question}
@@ -715,7 +746,10 @@ Provide a helpful response:"""
         # Extract relationship triples from the LLM's answer and store them.
         # This builds the KG organically — every query that reveals a fact
         # saves it for future queries to use as pre-synthesis context.
-        if KG_ENABLED and has_corpus and answer_content:
+        # Skip KG extraction for pinned-verse interpretations: those answers are
+        # interpretive (and may be deliberately tentative), so we don't want them
+        # auto-seeding the graph as asserted facts.
+        if KG_ENABLED and has_corpus and answer_content and not pinned_verse:
             try:
                 n_new = extract_and_store_facts(answer_content, question, llm)
                 if n_new:
@@ -791,24 +825,31 @@ def create_agentic_rag_graph():
     return workflow.compile()
 
 
-def run_agentic_rag(question: str, input_language: str = "English"):
+def run_agentic_rag(question: str, input_language: str = "English",
+                    pinned_verse: Optional[dict] = None):
     """
     Run the agentic RAG system on a question.
 
     Args:
         question: User's question
         input_language: Language of input ("English" or "Devanagari")
+        pinned_verse: Optional exact verse text (dict with 'citation' and 'text')
+            when the query cites a specific verse. Injected as authoritative
+            synthesis context ONLY — retrieval is unaffected. None for all
+            normal queries, so semantic search behaves identically.
 
     Returns:
         Final answer with construction details
     """
-    logger.info(f"=== AGENTIC RAG START: {question} (Language: {input_language}) ===")
+    logger.info(f"=== AGENTIC RAG START: {question} (Language: {input_language}"
+                f"{', pinned ' + pinned_verse['citation'] if pinned_verse else ''}) ===")
 
     graph = create_agentic_rag_graph()
 
     initial_state = {
         "question": question,
         "input_language": input_language,  # ✅ Pass language preference
+        "pinned_verse": pinned_verse,
         "query_type": "",
         "english_words": [],
         "sanskrit_words": {},
