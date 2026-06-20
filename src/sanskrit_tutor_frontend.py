@@ -48,92 +48,122 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Devanagari fonts and styling
+# ── Theme: warm saffron & parchment, mobile-first ──────────────────────────────
 st.markdown("""
 <style>
-    /* Import Noto Sans Devanagari font */
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Serif+Devanagari:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Serif+Devanagari:wght@400;500;700&family=Marcellus&family=EB+Garamond:ital@0;1&display=swap');
 
-    /* Devanagari text styling */
-    .devanagari {
-        font-family: 'Noto Serif Devanagari', serif;
-        font-size: 1.5em;
-        line-height: 1.8;
-        color: #8B4513;
+    :root {
+        --saffron: #E07A1F;
+        --saffron-deep: #C75B12;
+        --maroon: #7A2E1E;
+        --gold: #C8962B;
+        --parchment: #FBF3E2;
+        --parchment-2: #F6E8CE;
+        --ink: #3A2A1E;
+        --ink-soft: #6B5742;
     }
 
-    .devanagari-large {
-        font-family: 'Noto Serif Devanagari', serif;
-        font-size: 2em;
-        line-height: 2;
-        color: #8B4513;
-        font-weight: 700;
+    /* Page canvas — soft parchment wash */
+    .stApp {
+        background:
+            radial-gradient(1200px 500px at 50% -200px, #FFF7E8 0%, rgba(255,247,232,0) 70%),
+            linear-gradient(180deg, #FBF3E2 0%, #F7ECD6 100%);
     }
 
-    /* Sanskrit transliteration */
-    .sanskrit-iast {
-        font-family: 'Times New Roman', serif;
-        font-style: italic;
-        color: #2F4F4F;
-    }
+    /* Headings in a refined display serif */
+    h1, h2, h3, h4 { font-family: 'Marcellus', 'EB Garamond', serif !important; color: var(--maroon) !important; letter-spacing: .3px; }
 
-    /* Module cards */
-    .module-card {
-        background: linear-gradient(135deg, #FFF8DC 0%, #F0E68C 100%);
-        padding: 20px;
-        border-radius: 10px;
-        border-left: 5px solid #FF6347;
-        margin: 10px 0;
-    }
+    /* Devanagari */
+    .devanagari { font-family: 'Noto Serif Devanagari', serif; font-size: 1.5em; line-height: 1.8; color: var(--maroon); }
+    .devanagari-large { font-family: 'Noto Serif Devanagari', serif; font-size: 2em; line-height: 2; color: var(--maroon); font-weight: 700; }
+    .sanskrit-iast { font-family: 'EB Garamond', serif; font-style: italic; color: var(--ink-soft); }
 
-    /* Lesson container */
-    .lesson-container {
-        background: #FFFAF0;
-        padding: 20px;
-        border-radius: 10px;
-        border: 2px solid #DEB887;
-        color: #000000;
+    /* ── Hero verse band ── */
+    .hero {
+        position: relative;
+        text-align: center;
+        padding: 30px 22px 26px;
+        margin: 4px 0 10px;
+        background: linear-gradient(180deg, #FFFDF8 0%, var(--parchment) 100%);
+        border: 1px solid #EAD7B0;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(122,46,30,.08), inset 0 1px 0 #FFFFFF;
+        overflow: hidden;
     }
+    .hero::before { content: "🕉️"; position: absolute; font-size: 9rem; opacity: .05; top: -18px; right: 8px; transform: rotate(8deg); }
+    .hero-eyebrow { font-family:'Marcellus',serif; text-transform: uppercase; letter-spacing: 3px; font-size: .72rem; color: var(--saffron-deep); margin-bottom: 10px; }
+    .hero-verse {
+        font-family: 'Noto Serif Devanagari', serif; font-weight: 700;
+        font-size: clamp(1.5rem, 5.2vw, 2.8rem); line-height: 1.55; color: var(--maroon);
+        margin: 2px auto 12px; max-width: 22ch;
+    }
+    .hero-rule { width: 120px; height: 2px; margin: 0 auto 12px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .hero-iast { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(.95rem, 2.6vw, 1.15rem); color: var(--ink-soft); }
+    .hero-cite { font-family: 'Marcellus', serif; font-size: .8rem; letter-spacing: 1px; color: var(--saffron-deep); margin-top: 6px; }
 
-    .lesson-container h3, .lesson-container h4, .lesson-container p, .lesson-container li {
-        color: #000000 !important;
+    /* ── Parchment content cards ── */
+    .lesson-container, .panel {
+        background: #FFFDF8; padding: 22px 24px; border-radius: 14px;
+        border: 1px solid #EAD7B0; border-left: 5px solid var(--saffron);
+        box-shadow: 0 6px 18px rgba(122,46,30,.06); color: var(--ink); margin: 6px 0 14px;
     }
+    .lesson-container h3, .lesson-container h4, .lesson-container p, .lesson-container li,
+    .panel h3, .panel h4, .panel p, .panel li { color: var(--ink) !important; }
+    .lesson-container ul { margin: 6px 0 0; padding-left: 1.1em; }
+    .lesson-container li { margin: 7px 0; line-height: 1.5; }
 
-    /* Quiz card */
-    .quiz-card {
-        background: #F0FFF0;
-        padding: 15px;
-        border-radius: 8px;
-        border-left: 4px solid #32CD32;
-    }
+    /* Section eyebrow label */
+    .eyebrow { font-family:'Marcellus',serif; text-transform: uppercase; letter-spacing: 2.5px;
+        font-size: .74rem; color: var(--saffron-deep); margin: 4px 0 8px; }
 
-    /* Progress bar custom */
-    .progress-text {
-        font-family: 'Noto Sans Devanagari', sans-serif;
-        font-size: 0.9em;
-        color: #696969;
+    /* ── Corpus cards ── */
+    .corpus-group { font-family:'Marcellus',serif; color: var(--maroon); font-size: .82rem;
+        letter-spacing: 1.5px; text-transform: uppercase; margin: 12px 0 6px; }
+    .corpus-card {
+        display: flex; align-items: baseline; gap: 10px; background: var(--parchment);
+        border: 1px solid #EAD7B0; border-radius: 10px; padding: 9px 13px; margin: 7px 0;
     }
+    .corpus-card .abbr { font-family:'Marcellus',serif; font-weight: 700; color: var(--saffron-deep);
+        min-width: 46px; font-size: .95rem; }
+    .corpus-card .name { color: var(--ink); font-size: .92rem; }
+    .corpus-card .name small { color: var(--ink-soft); }
 
-    /* Chat messages */
-    .student-message {
-        background: #E6F3FF;
-        padding: 10px;
-        border-radius: 8px;
-        margin: 5px 0;
-        color: #000000;
-    }
+    /* "Designed for" chips */
+    .designed-for .row { display: flex; gap: 11px; align-items: flex-start; margin: 11px 0; }
+    .designed-for .ic { font-size: 1.25rem; line-height: 1.3; }
+    .designed-for .tx { color: var(--ink); line-height: 1.45; }
 
-    .tutor-message {
-        background: #FFF5E6;
-        padding: 10px;
-        border-radius: 8px;
-        margin: 5px 0;
-        color: #000000;
-    }
+    /* Module / quiz / chat */
+    .module-card { background: linear-gradient(135deg, #FFF8DC 0%, #F3E2B8 100%); padding: 20px;
+        border-radius: 12px; border-left: 5px solid var(--saffron); margin: 10px 0; }
+    .quiz-card { background: #FBF3E2; padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold); }
+    .progress-text { font-family: 'Noto Sans Devanagari', sans-serif; font-size: .9em; color: var(--ink-soft); }
+    .student-message { background: #FDEBD3; padding: 12px 15px; border-radius: 12px 12px 12px 4px;
+        margin: 8px 0; color: var(--ink); border: 1px solid #F0D9B5; }
+    .tutor-message { background: #FFFDF8; padding: 12px 15px; border-radius: 12px 12px 4px 12px;
+        margin: 8px 0; color: var(--ink); border: 1px solid #EAD7B0; border-left: 4px solid var(--saffron); }
+
+    /* Subtle footer note */
+    .getstarted-note { text-align: center; color: var(--ink-soft); font-size: .86rem;
+        font-style: italic; margin: 10px auto 4px; max-width: 60ch; }
+
+    /* Buttons → saffron */
+    .stButton > button { border: 1px solid #E6C98F !important; background: #FFFDF8 !important;
+        color: var(--maroon) !important; border-radius: 10px !important; font-size: .9rem; }
+    .stButton > button:hover { border-color: var(--saffron) !important; background: var(--parchment) !important; }
 
     /* Hide streamlit branding */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
+    #MainMenu {visibility: hidden;} footer {visibility: hidden;}
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+        .hero { padding: 22px 14px 20px; border-radius: 14px; }
+        .hero::before { font-size: 6rem; }
+        .hero-verse { max-width: 100%; }
+        .lesson-container, .panel { padding: 16px 16px; }
+        .block-container { padding-left: .8rem !important; padding-right: .8rem !important; }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -335,38 +365,6 @@ class SanskritTutorApp:
                 # Store vector DB for agentic RAG access
                 st.session_state.vec_db = vec_db
                 st.session_state.docs = docs
-
-                # ── TEMP DIAGNOSTIC: what backend is this deploy actually using,
-                #    and can it see the Atharvaveda chunks? Remove once resolved. ──
-                try:
-                    from src.config import QDRANT_URL as _QURL
-                    _host = (str(_QURL).split("//")[-1].split(".")[0] + "…") if _QURL else "(none → LOCAL)"
-                    _client = getattr(vec_db, "client", None)
-                    _total = _av = 0
-                    if _client is not None:
-                        from src.config import COLLECTION_NAME as _COLL
-                        _total = _client.count(collection_name=str(_COLL), exact=True).count
-                        _off = None
-                        while True:
-                            _pts, _off = _client.scroll(collection_name=str(_COLL), limit=1000,
-                                                        offset=_off, with_payload=True, with_vectors=False)
-                            for _p in _pts:
-                                _md = (_p.payload or {}).get("metadata", _p.payload or {})
-                                if "atharva" in str(_md.get("veda", "")).lower():
-                                    _av += 1
-                            if _off is None:
-                                break
-                    # BM25 side: how many AV chunks are in the loaded pickle?
-                    _bm_av = sum(1 for d in (docs or [])
-                                 if "atharva" in str(getattr(d, "metadata", {}).get("veda", "")).lower())
-                    st.sidebar.warning(
-                        f"🔬 Backend cluster: `{_host}` · points={_total} · "
-                        f"AV in Qdrant={_av} · AV in BM25 pickle={_bm_av}"
-                    )
-                    logger.info(f"[DIAG] cluster={_host} total={_total} av_qdrant={_av} av_bm25={_bm_av}")
-                except Exception as _e:
-                    st.sidebar.error(f"🔬 Diagnostic failed: {_e}")
-                    logger.warning(f"[DIAG] failed: {_e}")
 
                 # CRITICAL: Set shared vector store for agentic RAG tools
                 set_shared_vector_store(vec_db, docs)
@@ -804,22 +802,30 @@ Have natural conversation about Sanskrit:
 
     def render_home(self):
         """Render home page."""
-        st.title("🕉️ Vedic Sanskrit Resource")
+        # ── Hero: the opening verse of the Rigveda as a headline ──────────────
+        st.markdown("""
+        <div class="hero">
+            <div class="hero-eyebrow">🕉️ Vedic Sanskrit Resource</div>
+            <div class="hero-verse">अग्निमीळे पुरोहितं यज्ञस्य देवमृत्विजम्</div>
+            <div class="hero-rule"></div>
+            <div class="hero-iast">agnimīḷe purohitaṃ yajñasya devam ṛtvijam</div>
+            <div class="hero-cite">RV 1.1.1 · the first words of the Ṛgveda</div>
+        </div>
+        """, unsafe_allow_html=True)
 
         col1, col2 = st.columns([2, 1])
 
         with col1:
-            st.markdown("## स्वागतम्! Welcome!")
-
             st.markdown("""
             <div class="lesson-container">
-            <h3>Why this project exists</h3>
+            <div class="eyebrow">Why this project exists</div>
             <p>
-            The primary Vedic texts — Rigveda, Shatapatha Brāhmaṇa, Aitareya Brāhmaṇa,
-            Pañcaviṃśa Brāhmaṇa, Vajasaneyi Saṃhitā, and Taittirīya Saṃhitā —
-            contain thousands of years of cosmological, historical, and ritual knowledge, but they are locked
-            inside dense Sanskrit scholarship that is hard to query, cross-reference, or reason over without
-            years of specialist training.
+            The primary Vedic corpus — the <b>Ṛgveda</b>, the <b>Atharvaveda (Śaunaka)</b>, both
+            Yajurveda saṃhitās (<b>Vājasaneyi / Śukla</b> and <b>Taittirīya / Kṛṣṇa</b>), and the
+            <b>Aitareya</b>, <b>Pañcaviṃśa</b>, and <b>Śatapatha Brāhmaṇas</b> — holds thousands of
+            years of cosmological, historical, and ritual knowledge, locked inside dense Sanskrit
+            scholarship that is hard to query, cross-reference, or reason over without years of
+            specialist training.
             </p>
             <p>
             Existing English translations reflect the interpretive biases of nineteenth- and twentieth-century
@@ -831,7 +837,8 @@ Have natural conversation about Sanskrit:
 
             <h4>🧠 How it works</h4>
             <ul>
-                <li>📜 <b>Multi-corpus RAG</b> — searches across RV (all 10 maṇḍalas), SB, AB, PB, VS, and TS simultaneously</li>
+                <li>📜 <b>Multi-corpus RAG</b> — searches the Ṛgveda (all 10 maṇḍalas), Atharvaveda,
+                    both Yajurveda saṃhitās (VS, TS), and the AB, PB &amp; SB Brāhmaṇas simultaneously</li>
                 <li>🕸️ <b>Self-building Knowledge Graph</b> — every query extracts kinship, lineage, geographic, and
                     social-role facts into a growing graph; later queries benefit from prior ones</li>
                 <li>📖 <b>Monier-Williams integration</b> — 176 000+ Sanskrit concepts looked up in real time</li>
@@ -839,43 +846,35 @@ Have natural conversation about Sanskrit:
                     even when you type in English</li>
                 <li>🎯 <b>Agentic multi-step reasoning</b> — the system plans, retrieves, synthesises, and cites</li>
             </ul>
-
             </div>
             """, unsafe_allow_html=True)
 
-            st.markdown("### 🎓 Designed for")
-            st.info("""
-            - 📜 Scholars and students of Vedic literature
-            - 🔤 Anyone curious about Vedic history, genealogy, and geography
-            - 🧠 Researchers wanting cited, corpus-grounded answers rather than Wikipedia summaries
-            """)
-
         with col2:
-            st.markdown("### 🕉️ Sample verse")
-            self.render_devanagari("अग्निमीळे पुरोहितं यज्ञस्य देवमृत्विजम्", large=True)
-            st.markdown("*agnimīḷe purohitaṃ yajñasya devamṛtvijam*")
-            st.caption("RV 1.1.1 — First verse of the Rigveda")
-
-            st.markdown("---")
-            st.markdown("### 📚 Corpus")
+            # ── "Designed for" — in the slot the sample verse used to occupy ──
             st.markdown("""
-            | Text | Coverage |
-            |------|----------|
-            | Rigveda (RV) | All 10 maṇḍalas |
-            | Shatapatha Brāhmaṇa (SB) | Books 1–14 |
-            | Aitareya Brāhmaṇa (AB) | Complete |
-            | Pañcaviṃśa Brāhmaṇa (PB) | Complete |
-            | Vajasaneyi Saṃhitā (VS) | Complete |
-            | Taittirīya Saṃhitā (TS) | All 7 Kāṇḍas |
-            """)
+            <div class="panel designed-for">
+            <div class="eyebrow">🎓 Designed for</div>
+            <div class="row"><div class="ic">📜</div><div class="tx">Scholars and students of Vedic literature</div></div>
+            <div class="row"><div class="ic">🔤</div><div class="tx">Anyone curious about Vedic history, genealogy, and geography</div></div>
+            <div class="row"><div class="ic">🧠</div><div class="tx">Researchers who want cited, corpus-grounded answers — not Wikipedia summaries</div></div>
+            </div>
+            """, unsafe_allow_html=True)
 
-            st.markdown("---")
-            st.markdown("### 🚀 Get started")
-            st.markdown(
-                "Gemini loads automatically — just type a question below. "
-                "Use the sidebar only if you'd like to switch to a different LLM "
-                "(Ollama, Groq) or change the query language."
-            )
+            # ── Complete corpus list (all indexed texts) ──
+            st.markdown("""
+            <div class="panel">
+            <div class="eyebrow">📚 The corpus</div>
+            <div class="corpus-group">Saṃhitās</div>
+            <div class="corpus-card"><span class="abbr">RV</span><span class="name">Ṛgveda <small>· all 10 maṇḍalas</small></span></div>
+            <div class="corpus-card"><span class="abbr">AVŚ</span><span class="name">Atharvaveda <small>· Śaunaka, 20 kāṇḍas</small></span></div>
+            <div class="corpus-card"><span class="abbr">VS</span><span class="name">Vājasaneyi <small>· Śukla Yajurveda</small></span></div>
+            <div class="corpus-card"><span class="abbr">TS</span><span class="name">Taittirīya <small>· Kṛṣṇa Yajurveda, 7 kāṇḍas</small></span></div>
+            <div class="corpus-group">Brāhmaṇas</div>
+            <div class="corpus-card"><span class="abbr">AB</span><span class="name">Aitareya <small>· complete</small></span></div>
+            <div class="corpus-card"><span class="abbr">PB</span><span class="name">Pañcaviṃśa <small>· complete</small></span></div>
+            <div class="corpus-card"><span class="abbr">SB</span><span class="name">Śatapatha <small>· Mādhyandina</small></span></div>
+            </div>
+            """, unsafe_allow_html=True)
 
         # ── Full-width chat section ────────────────────────────────────────────
         st.markdown("---")
@@ -949,6 +948,13 @@ Have natural conversation about Sanskrit:
             if st.button("🗑️ Clear", key="clear_chat", use_container_width=True):
                 st.session_state.chat_history = []
                 st.rerun()
+
+        # ── Subtle getting-started note (kept at the bottom, out of the way) ──
+        st.markdown(
+            '<div class="getstarted-note">🚀 Gemini loads automatically — just type a question above. '
+            'Use the sidebar only to switch the model (Ollama, Groq) or change the query language.</div>',
+            unsafe_allow_html=True
+        )
 
     def render_grammar_module(self):
         """Render grammar learning module."""
