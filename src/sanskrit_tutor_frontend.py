@@ -1134,15 +1134,30 @@ Have natural conversation about Sanskrit:
             verse_data = self._lookup_verse_text(verse_ref)
 
             if verse_data:
-                # Guarantee the LLM sees the real verse text.
+                # Guarantee the LLM sees the real verse text — plus the whole sūkta
+                # as context so referents (relative pronouns, named figures) can be
+                # resolved before deciding name-vs-epithet.
                 cite = verse_data["citation"]
+                focus_text = verse_data["text"]
+                sukta_text = verse_data.get("sukta_text", "")
+                context_block = ""
+                if sukta_text and sukta_text.strip() != focus_text.strip():
+                    context_block = (
+                        f"\n\nFULL SŪKTA for context ({verse_data.get('sukta_citation', '')}) — "
+                        f"read the whole hymn first and use the surrounding verses to fix the "
+                        f"subject and referents (trace relative pronouns yáḥ/yásya, named figures, "
+                        f"patronymics) before deciding whether a word is a proper noun or an "
+                        f"epithet. Do NOT translate these context verses, only the focus verse:\n"
+                        f"{sukta_text}"
+                    )
                 query = (
-                    f"Interpret and translate {cite} from the Rigveda. "
-                    f"Here is the exact Devanagari text:\n\n{verse_data['text']}\n\n"
-                    f"Provide: 1) the Devanagari (as given), 2) IAST transliteration, "
-                    f"3) word-by-word breakdown with sandhi resolution, 4) grammar analysis, "
-                    f"5) Hindi translation, 6) English translation, 7) interpretive context "
-                    f"(deities, ṛṣi, theme). Base everything strictly on the verse text above."
+                    f"Interpret and translate the FOCUS VERSE {cite} from the Rigveda.\n\n"
+                    f"FOCUS VERSE (Devanagari):\n{focus_text}{context_block}\n\n"
+                    f"Provide for the FOCUS VERSE: 1) the Devanagari (as given), 2) IAST "
+                    f"transliteration, 3) word-by-word breakdown with sandhi resolution, "
+                    f"4) grammar analysis, 5) Hindi translation, 6) English translation, "
+                    f"7) interpretive context (deities, ṛṣi, theme). Ground every claim in the "
+                    f"text; you may differ from earlier translators but justify it from the words."
                 )
                 # Drive the audio player from the looked-up text (works for ANY verse,
                 # not just the two hardcoded beginner mantras). Strip the numeric
