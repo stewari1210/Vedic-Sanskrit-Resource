@@ -19,7 +19,10 @@
     {"subject": "Sudas", "relation": "fought", "object": "Ten Kings (Dasarajna)", "citation": "RV 7.18"},
     {"subject": "Vasishtha", "relation": "is_purohita_of", "object": "Sudas", "citation": "RV 7.18"},
     {"subject": "Vasishtha", "relation": "has_attribute", "object": "rishi of Rigveda Mandala 7", "citation": "RV 7"},
-    {"subject": "Vishvamitra", "relation": "has_attribute", "object": "rishi of Rigveda Mandala 3", "citation": "RV 3"}
+    {"subject": "Vishvamitra", "relation": "has_attribute", "object": "rishi of Rigveda Mandala 3", "citation": "RV 3"},
+
+    {"subject": "Parikshit", "relation": "has_attribute", "object": "king of the Kurus", "citation": "AVŚ 20.127"},
+    {"subject": "Parikshit", "relation": "member_of_dynasty", "object": "Kuru", "citation": "AVŚ 20.127"}
   ],
 
   "hymns": {
@@ -43,6 +46,21 @@
       "patron": null,
       "theme": "Contains the Gāyatrī mantra at 3.62.10.",
       "entities": ["Vishvamitra"]
+    },
+
+    "AVŚ 20.127": {
+      "rishi": null,
+      "devata": "Parikṣit / Indra (a Kuntāpa praise-hymn)",
+      "patron": "Parikṣit, king of the Kurus",
+      "theme": "One of the Kuntāpa hymns: praise of King Parikṣit and his flourishing Kuru realm ('the people of the Kuru king'). A rare named historical king in the Atharvaveda.",
+      "entities": ["Parikshit"]
+    },
+    "AVŚ 5.22": {
+      "rishi": null,
+      "devata": "takman (fever, personified)",
+      "patron": null,
+      "theme": "A charm to banish takman (fever) to distant peoples — it names the Gandhāris, Mūjavants, Aṅgas, Magadhas (and Balhikas): a NW↔east spread of peoples and a key geographic/ethnographic passage.",
+      "entities": []
     }
   }
 }

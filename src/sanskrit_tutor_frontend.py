@@ -1034,6 +1034,71 @@ Have natural conversation about Sanskrit:
                 if "learned" not in st.session_state:
                     st.session_state.learned_words.extend([category])
 
+    # (corpus prefix in the danda, detection regex, local_store file, n levels)
+    _NONRV_CORPORA = [
+        ("AVŚ", r'\b(av[sś]?|atharva\w*)\b', "avs/avs.md", 3),
+        ("VS",  r'\b(vs|vajasaneyi\w*)\b',   "yv/yv.md",  2),
+        ("TS",  r'\b(ts|taittir\w*)\b',      "ts/ts.md",  4),
+    ]
+    _NONRV_MAX_CTX = 30   # cap section context (VS/TS sections can be large)
+
+    def _lookup_nonrv_verse(self, verse_ref: str):
+        """Resolve an AVŚ / VS / TS citation directly from its local_store file.
+
+        Markers carry the corpus prefix and are unpadded, e.g. `॥ AVŚ 5.22.1 ॥`,
+        `॥ VS 1.1 ॥`, `॥ TS 1.1.1.1 ॥`. The context group is everything sharing the
+        citation prefix minus the final (verse) component — the hymn for AVŚ, the
+        adhyāya for VS, the anuvāka for TS. Returns the same dict shape as the RV
+        lookup, or None (so the RV path / RAG fallback runs).
+        """
+        import re as _re
+        from src.utils.anukramani import get_hymn_anukramani
+        low = verse_ref.lower().replace("ṛ", "r").replace("ś", "s")
+        for prefix, pat, relpath, levels in self._NONRV_CORPORA:
+            if not _re.search(pat, low):
+                continue
+            nums = _re.findall(r'\d+', verse_ref)
+            if not (levels - 1 <= len(nums) <= levels):
+                return None
+            f = Path(LOCAL_FOLDER) / relpath
+            if not f.exists():
+                return None
+            lines = f.read_text(encoding="utf-8").splitlines()
+            group_path = ".".join(nums[:levels - 1])
+            group_marker = f"॥ {prefix} {group_path}."
+            section = [ln.strip() for ln in lines if group_marker in ln]
+            if not section:
+                return None
+            if len(nums) == levels:
+                vm = f"॥ {prefix} {'.'.join(nums)} ॥"
+                focus = [ln.strip() for ln in lines if vm in ln]
+                if not focus:
+                    return None
+                citation = f"{prefix} {'.'.join(nums)}"
+            else:
+                focus = section
+                citation = f"{prefix} {group_path} (whole section)"
+            # Cap large sections to a window around the focus verse.
+            if len(section) > self._NONRV_MAX_CTX and len(nums) == levels:
+                try:
+                    fi = section.index(focus[0])
+                except ValueError:
+                    fi = 0
+                lo = max(0, fi - self._NONRV_MAX_CTX // 2)
+                section = section[lo:lo + self._NONRV_MAX_CTX]
+            hymn_id = f"{prefix} {group_path}"
+            anukr = get_hymn_anukramani(hymn_id)
+            return {
+                "corpus": prefix, "mandala": None, "sukta": None, "verse": None,
+                "citation": citation,
+                "verses": focus, "text": "\n".join(focus),
+                "sukta_verses": section, "sukta_text": "\n".join(section),
+                "sukta_citation": f"{prefix} {group_path} ({len(section)} verses shown)",
+                "anukramani": anukr,
+                "kg_entities": (anukr or {}).get("entities"),
+            }
+        return None
+
     def _lookup_verse_text(self, verse_ref: str):
         """Look up the exact Devanagari text of a Rigveda verse (or whole sūkta)
         directly from the formatted corpus in local_store.
@@ -1043,8 +1108,12 @@ Have natural conversation about Sanskrit:
         (in which case the caller falls back to ordinary RAG).
         """
         import re as _re
+        # Non-RV corpora (AVŚ / VS / TS) are resolved first, from their own files.
+        nonrv = self._lookup_nonrv_verse(verse_ref)
+        if nonrv:
+            return nonrv
         s = verse_ref.lower().replace("ṛ", "r")
-        # Skip if another corpus is explicitly named — this lookup is RV-only.
+        # Skip if another corpus is explicitly named — this RV branch is RV-only.
         if _re.search(r'\b(ts|vs|sb|ab|pb|av|avs|avś|taittir|vajasan|shatapatha|'
                       r'aitareya|pancavim|atharva)\b', s):
             return None
