@@ -71,6 +71,18 @@ except ImportError:
     logger.info("Parallelization config not found - using default settings")
 
 
+def _make_gemini(kwargs: dict, thinking_budget=None):
+    """Construct ChatGoogleGenerativeAI, adding the Gemini-2.5 `thinking_budget`
+    when supported (0 = off, -1 = dynamic, or 0-24576 tokens). Falls back cleanly
+    on older langchain-google-genai versions that don't accept the kwarg."""
+    if thinking_budget is not None:
+        try:
+            return ChatGoogleGenerativeAI(**kwargs, thinking_budget=int(thinking_budget))
+        except Exception as e:
+            logger.warning(f"thinking_budget unsupported ({e}); using model default thinking.")
+    return ChatGoogleGenerativeAI(**kwargs)
+
+
 class RateLimitedEmbeddings:
     """
     Wrapper around GoogleGenerativeAIEmbeddings that adds rate limiting
@@ -255,7 +267,7 @@ class Settings:
                 )
             else:
                 logger.info(f"Using Google Gemini LLM for QA: {get_config_value('GEMINI_MODEL', 'gemini-2.0-flash-exp')}")
-                cls._llm = ChatGoogleGenerativeAI(
+                _g_kwargs = dict(
                     model=get_config_value("GEMINI_MODEL", "gemini-2.0-flash-exp"),
                     google_api_key=get_config_value("GEMINI_API_KEY"),
                     temperature=get_config_value("TEMPERATURE", 0.0, float),
@@ -263,6 +275,10 @@ class Settings:
                     timeout=get_config_value("TIMEOUT", 600, int),
                     max_retries=get_config_value("MAX_RETRIES", 2, int),
                 )
+                # Gemini 2.5 thinking budget (tokens): improves grounded reasoning.
+                # 0 = off, -1 = dynamic, or an int 0-24576. Default -1 (dynamic).
+                _tb = get_config_value("GEMINI_THINKING_BUDGET", -1, int)
+                cls._llm = _make_gemini(_g_kwargs, _tb)
         else:  # Default to Groq
             # Validate Groq model configuration
             groq_model = get_config_value("MODEL") or get_config_value("GROQ_MODEL")

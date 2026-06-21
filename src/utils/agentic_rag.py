@@ -56,13 +56,17 @@ SYNTHESIS_DOC_BUDGET = 12
 # re-scored — capped at EVAL_MAX_REFINES. Gated to factual/interpretation
 # queries (the answers that matter), so tutor/construction queries skip the
 # extra call. Tunable via env: EVAL_ENABLED, EVAL_THRESHOLD, EVAL_MAX_REFINES.
+# NOTE: the evaluator/refine loop is OFF by default. Grounding is enforced in the
+# synthesis system prompt instead (plus Gemini thinking budget), which avoids the
+# latency/cost of a second model and the literalism regression a grounding-only
+# critic caused. Set EVAL_ENABLED=true to re-enable the loop (code kept dormant).
 try:
     from src.config import get_config_value as _gcv
-    EVAL_ENABLED = str(_gcv("EVAL_ENABLED", "true")).lower() not in ("0", "false", "no")
+    EVAL_ENABLED = str(_gcv("EVAL_ENABLED", "false")).lower() in ("1", "true", "yes", "on")
     EVAL_THRESHOLD = int(_gcv("EVAL_THRESHOLD", 70, int) or 70)
     EVAL_MAX_REFINES = int(_gcv("EVAL_MAX_REFINES", 1, int) or 1)
 except Exception:
-    EVAL_ENABLED, EVAL_THRESHOLD, EVAL_MAX_REFINES = True, 70, 1
+    EVAL_ENABLED, EVAL_THRESHOLD, EVAL_MAX_REFINES = False, 70, 1
 
 # Global shared vector store to avoid Qdrant lock issues
 _SHARED_VECTOR_STORE = None
@@ -760,9 +764,11 @@ INSTRUCTIONS:
 4. Be informative and educational in your response
 5. Use Sanskrit terms with transliteration when appropriate
 6. If the passages mention the topic, explain what they say about it and reference which verse(s)
-7. If the KNOWLEDGE GRAPH section above contains relevant facts, USE them to make connections the corpus passages alone may not make explicit (e.g. inherited dynasty membership, kinship chains){diachronic_block}
+7. If the KNOWLEDGE GRAPH section above contains relevant facts, USE them to make connections the corpus passages alone may not make explicit (e.g. inherited dynasty membership, kinship chains)
+8. GROUNDING — base every claim about what the CORPUS says strictly on the passages above. NEVER invent verse text, citations, events, or numbers. If the passages do not cover the question, say so plainly and note the gap rather than filling it in.
+9. HONESTY & CALIBRATION — clearly distinguish (a) what the passages ATTEST, (b) your own INFERENCE, and (c) wider tradition/scholarship. You MAY add relevant, clearly-attributed context beyond the passages ("in the wider tradition…", "scholars read this as…"), but never present it as a corpus quote. Flag genuine ambiguities or scholarly disputes (e.g. proper-noun vs epithet, individual vs clan, contested lineage) instead of asserting one reading as settled.{diachronic_block}
 
-Provide a detailed answer based on the corpus passages, using proper verse references:"""
+Provide a detailed, well-grounded answer using proper verse references:"""
         else:
             synthesis_prompt = f"""You are a Sanskrit scholar with expertise in Vedic texts.
 
