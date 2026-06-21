@@ -878,10 +878,11 @@ Have natural conversation about Sanskrit:
             </p>
             <p>
             Existing English translations reflect the interpretive biases of nineteenth- and twentieth-century
-            scholars. This system <b>neutralises translator bias</b> by working directly from the original
+            scholars, or any other translator-bias. This system <b>neutralises translator bias</b> by working directly from the original
             Sanskrit and using an LLM to generate translations grounded in Vedic grammar texts
             (Macdonell, Monier-Williams) rather than inheriting prior translators' readings.
-            It makes the corpus queryable in plain English or Devanagari, with answers cited to source passages.
+            It makes the corpus queryable in plain English or Devanagari, with answers cited to source passages. It's backed by a dynamic Knowledge Graph that parses relationships, lineages, and geography across the corpus (Ṛgveda, Atharvaveda, both Yajurveda saṃhitās, and the Brāhmaṇas). The graph self-builds with use — so the more you search, the smarter it gets; 
+                        e.g., the RAG learnt from the corpus that Trasadasyu was an Ikshvaku King, despite Puranas are not in the corpus.
             </p>
 
             <h4>🧠 How it works</h4>
@@ -1000,13 +1001,13 @@ Have natural conversation about Sanskrit:
 
         # ── Subtle getting-started note (kept at the bottom, out of the way) ──
         st.markdown(
-            '<div class="getstarted-note">🚀 Gemini loads automatically — just type a question above. '
+            '<div class="getstarted-note">🚀 By default Gemini LLM loads automatically — just type a question above. '
             'Use the sidebar only to switch the model (Ollama, Groq) or change the query language.</div>',
             unsafe_allow_html=True
         )
         st.markdown(
             '<a href="https://www.buymeacoffee.com/shiv.tewari" target="_blank" '
-            'class="bmc-btn">☕ Buy me a coffee</a>',
+            'class="bmc-btn">☕ Buy me a Soma (coffee)</a>',
             unsafe_allow_html=True,
         )
         st.markdown(
