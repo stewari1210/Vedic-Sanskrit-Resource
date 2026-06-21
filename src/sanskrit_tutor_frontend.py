@@ -844,7 +844,7 @@ Have natural conversation about Sanskrit:
             st.markdown("---")
             st.markdown(
                 '<a href="https://www.buymeacoffee.com/shiv.tewari" target="_blank" '
-                'class="bmc-btn">☕ Buy me a coffee</a>',
+                'class="bmc-btn">☕ Buy me a Soma (coffee)</a>',
                 unsafe_allow_html=True,
             )
             st.caption("This is a personally-funded research preview — support keeps it running. 🙏")
