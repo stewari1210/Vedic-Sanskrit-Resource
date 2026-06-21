@@ -32,14 +32,31 @@ def _client():
         return None
     if _CLIENT is not None:
         return _CLIENT
+
+    # PERMANENT disable only for missing config / missing library — these won't
+    # fix themselves on retry.
     try:
         from src.config import QDRANT_URL, QDRANT_API_KEY
-        if not QDRANT_URL or not QDRANT_API_KEY:
-            _DISABLED = True
-            return None
+    except Exception:
+        _DISABLED = True
+        return None
+    if not QDRANT_URL or not QDRANT_API_KEY:
+        logger.info("👣 visitor counter: QDRANT creds not set — counter hidden.")
+        _DISABLED = True
+        return None
+    try:
         from qdrant_client import QdrantClient
         from qdrant_client.http.models import VectorParams, Distance
-        c = QdrantClient(url=str(QDRANT_URL), api_key=str(QDRANT_API_KEY), timeout=10)
+    except Exception:
+        _DISABLED = True
+        return None
+
+    # TRANSIENT failures (cold free-tier cluster, timeout) — return None but do
+    # NOT permanently disable, so the next session retries once the cluster warms.
+    # The counter runs at app load (cluster may be cold) whereas RAG runs later
+    # when it's warm, so a generous timeout matters here.
+    try:
+        c = QdrantClient(url=str(QDRANT_URL), api_key=str(QDRANT_API_KEY), timeout=30)
         existing = {x.name for x in c.get_collections().collections}
         if STATS_COLLECTION not in existing:
             # 1-dim dummy vector; we never search, only store the payload count.
@@ -50,9 +67,9 @@ def _client():
         _CLIENT = c
         return c
     except Exception as e:
-        logger.warning(f"👣 visitor counter: Qdrant unavailable ({e}) — counter hidden.")
-        _DISABLED = True
-        return None
+        logger.warning(f"👣 visitor counter: Qdrant connect failed ({e}); "
+                       f"will retry next session.")
+        return None  # transient — no permanent disable
 
 
 def _read(c) -> int:
