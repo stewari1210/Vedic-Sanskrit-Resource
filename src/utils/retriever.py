@@ -971,9 +971,11 @@ class HybridRetriever(BaseRetriever):
         # need an exhaustive corpus scan, not top-k ranking. Prepend the
         # complete verse list so the LLM can enumerate with confidence.
         try:
-            if (re.search(r"\b(which|what|where|list|all|every|how many)\b", query, re.I)
+            if (re.search(r"\b(which|what|where|list|all|every|how\s+many|find|show|give|"
+                          r"tell|discuss|talk|about|search|name|enumerate|any)\b", query, re.I)
                     and re.search(r"\b(verse|verses|hymn|hymns|mention|mentions|mentioned"
-                                  r"|contain|contains|occur|occurs|appear|appears)\b",
+                                  r"|contain|contains|occur|occurs|appear|appears|talk|talks"
+                                  r"|reference|references|passage|passages)\b",
                                   query, re.I)):
                 try:
                     from src.utils.devanagari_lexical import concordance
