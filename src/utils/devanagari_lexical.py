@@ -171,6 +171,10 @@ _ENGLISH_STOP = {
     "during", "time", "times", "layer", "layers", "role", "usage",
     "hydrology", "geography", "history", "evolution", "evolve", "change",
     "warfare", "metal", "metals", "people", "place", "places",
+    "type", "types", "houses", "house", "such", "contain", "contains",
+    "containing", "information", "supposed", "describe", "described",
+    "describes", "information", "various", "different", "kind", "kinds",
+    "used", "within", "regarding", "concerning", "related", "details",
 }
 
 

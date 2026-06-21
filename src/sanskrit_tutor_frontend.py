@@ -930,7 +930,7 @@ Have natural conversation about Sanskrit:
                 "Who is Sudas?",
                 "How does the flow of Sarasvati compare between early to later Vedic periods?",
                 "What dynasty does Trasadasyu belong to?",
-                "What metals are mentioned in the Taittiriya Samhita?",
+                "What type of houses are described in the corpus?",
             ]
             for col, q in zip(example_cols, example_questions):
                 with col:

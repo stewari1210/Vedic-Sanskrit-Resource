@@ -456,6 +456,11 @@ class HybridRetriever(BaseRetriever):
         non_matching_docs = []
 
         for doc in docs:
+            # Aggregated/synthetic docs (concordance exhaustive scan) are not tied
+            # to one veda — never drop them in the strict corpus filter.
+            if doc.metadata.get('source_type') == 'concordance':
+                matching_docs.append(doc)
+                continue
             veda     = doc.metadata.get('veda', '').lower()
             filename = doc.metadata.get('filename', '').lower()
             title    = doc.metadata.get('title', '').lower()
@@ -1044,9 +1049,13 @@ class HybridRetriever(BaseRetriever):
             corpus_docs = self._filtered_semantic_search(
                 enhanced_query, source_filters[0], k=self.k * 2)
             if corpus_docs:
-                seen = {hash(d.page_content[:200]) for d in corpus_docs}
-                merged_docs = corpus_docs + [
-                    d for d in merged_docs if hash(d.page_content[:200]) not in seen
+                # BACKFILL, don't bury: the lexical rescue + concordance already
+                # prepended the highest-precision (exact-term) hits to the front.
+                # Append the semantic corpus docs only as additional coverage so
+                # they can't push the precise hits past the synthesis budget.
+                seen = {hash(d.page_content[:200]) for d in merged_docs}
+                merged_docs = merged_docs + [
+                    d for d in corpus_docs if hash(d.page_content[:200]) not in seen
                 ]
 
         # APPLY SOURCE TEXT FILTERING (if specific texts mentioned in query)
