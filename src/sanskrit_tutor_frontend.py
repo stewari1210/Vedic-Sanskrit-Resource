@@ -927,8 +927,8 @@ Have natural conversation about Sanskrit:
             st.markdown("**Try an example:**")
             example_cols = st.columns(4)
             example_questions = [
-                "Who is the father of Harishchandra?",
-                "Where does the Sarasvati river disappear?",
+                "Who is Sudas?",
+                "How does the flow of Sarasvati compare between early to later Vedic periods?",
                 "What dynasty does Trasadasyu belong to?",
                 "What metals are mentioned in the Taittiriya Samhita?",
             ]

@@ -164,6 +164,13 @@ _ENGLISH_STOP = {
     "vedic", "text", "corpus", "passage", "verse", "hymn", "book",
     "chapter", "section", "story", "account", "meaning", "context",
     "known", "called", "said", "mentioned", "described", "found",
+    # common query adjectives/nouns that substring-match Devanagari junk
+    "early", "earlier", "late", "later", "latest", "oldest", "newer",
+    "used", "use", "uses", "using", "made", "make", "period", "periods",
+    "compare", "comparison", "comparing", "versus", "between", "across",
+    "during", "time", "times", "layer", "layers", "role", "usage",
+    "hydrology", "geography", "history", "evolution", "evolve", "change",
+    "warfare", "metal", "metals", "people", "place", "places",
 }
 
 
@@ -438,8 +445,10 @@ def query_terms(query: str, deep: bool = False) -> List[str]:
             _add(theme)
             continue
 
-        # Stage 2: skip list
-        if norm in _SKIP:
+        # Stage 2: skip list — English stop-words must NOT reach the GAZETTEER
+        # or the substring lexicon (e.g. "late" → स्खलते, "early"/"used"/"period"
+        # producing garbage Devanagari that then poisons ranking).
+        if norm in _SKIP or norm in _ENGLISH_STOP:
             continue
 
         # Stage 3a: manual GAZETTEER (curated proper nouns)
@@ -514,9 +523,13 @@ def concordance(query: str, docs: list, max_verses: int = 60):
 def devanagari_lexical_hits(query: str, docs: list, top_k: int = 5) -> Tuple[list, List[str]]:
     """Substring-scan `docs` for Devanagari terms implied by `query`.
 
-    Scoring: distinct query terms matched (primary key) + total hit count
-    (tiebreaker).  This prevents a high-frequency generic term (e.g. सत्त्र)
-    from outranking a rare co-occurrence (e.g. सरस्वत + विनश in PB 25.10).
+    Scoring is RARITY-FIRST: a verse is ranked primarily by the rarest (most
+    discriminating) query term it contains, then by how many distinct terms it
+    matches, then by total hits. This is what makes a mixed query like "metals in
+    WARFARE" surface the rare `अयस` / `लोह` / iron verses instead of being flooded
+    by verses that merely pile up common warfare terms (वज्र, सेना, पृतना…). It
+    also keeps the old behaviour where a rare co-occurrence (सरस्वत + विनश in
+    PB 25.10) beats a high-frequency single term.
 
     Returns (matched_docs_sorted_by_score, terms_used).
     """
@@ -524,24 +537,50 @@ def devanagari_lexical_hits(query: str, docs: list, top_k: int = 5) -> Tuple[lis
     if not terms or not docs:
         return [], terms
 
-    scored = []
+    # Pass 1: cache contents + document frequency per term (for the rarity guard).
+    contents = []
+    df = {t: 0 for t in terms}
     for doc in docs:
-        content = getattr(doc, "page_content", "")
-        distinct = sum(1 for t in terms if t in content)
-        if distinct == 0:
+        c = getattr(doc, "page_content", "")
+        contents.append((c, doc))
+        for t in terms:
+            if t in c:
+                df[t] += 1
+
+    # Primary ranking (unchanged, well-tuned): distinct terms then total hits.
+    scored = []
+    for c, doc in contents:
+        matched = [t for t in terms if t in c]
+        if not matched:
             continue
-        total = sum(content.count(t) for t in terms)
-        # distinct * 1000 ensures a 2-term match always beats a 1-term match
-        # regardless of how many times the single term repeats
-        score = distinct * 1000 + total
-        scored.append((score, doc))
+        score = len(matched) * 1000 + sum(c.count(t) for t in matched)
+        scored.append((score, doc, set(matched)))
     scored.sort(key=lambda x: x[0], reverse=True)
-    hits = [doc for _, doc in scored[:top_k]]
+
+    hits = [d for _, d, _ in scored[:top_k]]
+    hit_ids = {id(h) for h in hits}
+
+    # RARITY GUARANTEE: in a mixed query ("metals in WARFARE"), common terms
+    # (वज्र, सेना…) pile up distinct hits and bury the rare, discriminating term
+    # (अयस, लोह, विनश…). Reserve extra slots so the best verse for each genuinely
+    # rare term is always surfaced, without disturbing the primary ranking.
+    n = len(docs) or 1
+    rare_cut = max(50, n // 100)
+    rare_terms = sorted((t for t in terms if 0 < df[t] <= rare_cut),
+                        key=lambda t: df[t])[:6]
+    for rt in rare_terms:
+        if any(rt in getattr(h, "page_content", "") for h in hits):
+            continue  # already represented
+        for _, doc, matched in scored:
+            if rt in matched and id(doc) not in hit_ids:
+                hits.append(doc)
+                hit_ids.add(id(doc))
+                break
+
     if hits:
-        top_distinct = scored[0][0] // 1000
         logger.info(
             f"🪷 Devanagari lexical: terms={terms} -> {len(scored)} docs matched, "
-            f"top distinct_terms={top_distinct} score={scored[0][0]}")
+            f"top distinct={scored[0][0] // 1000}, rare-guaranteed={rare_terms}")
     else:
         logger.info(f"🪷 Devanagari lexical: terms={terms} -> no substring matches")
     return hits, terms

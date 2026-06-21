@@ -1,8 +1,8 @@
 {
   "_meta": {
     "created": "qdrant",
-    "total_facts": 1475,
-    "last_updated": "2026-06-21 08:33:15.266549"
+    "total_facts": 1576,
+    "last_updated": "2026-06-21 13:45:28.699116"
   },
   "entities": {
     "asvins": {
@@ -27,6 +27,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 13:10:51.934180"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "chariot",
+          "citations": [
+            "RV 8.022"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.314802"
         },
         {
           "relation": "has_attribute",
@@ -109,6 +119,36 @@
           "added_at": "2026-06-20 13:10:52.009199"
         },
         {
+          "relation": "has_attribute",
+          "object": "three-wheeled chariot",
+          "citations": [
+            "RV 8.022"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:55:42.081674"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "swift and helpful nature",
+          "citations": [
+            "RV 8.022"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.194060"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "divine physicians",
+          "citations": [
+            "RV 8.022"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:55:41.735218"
+        },
+        {
           "relation": "received_boon",
           "object": "divine gifts",
           "citations": [
@@ -117,6 +157,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 13:20:46.834494"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Sarasvati",
+          "citations": [
+            "YV 20.57"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.235678"
         },
         {
           "relation": "performed_ritual",
@@ -239,6 +289,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "one who leads the soul by the right path",
+          "citations": [
+            "VS 40.14-17"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:55:42.374287"
+        },
+        {
+          "relation": "has_attribute",
           "object": "messenger between humans and gods",
           "citations": [
             "SB 6.6.4.2"
@@ -248,10 +308,21 @@
           "added_at": "2026-06-20 18:49:50.770906"
         },
         {
-          "relation": "epithet",
-          "object": "Jātavedas",
+          "relation": "has_attribute",
+          "object": "leads the soul on the right path",
           "citations": [
-            "RV 1.044.01"
+            "VS 40.14-17"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.885166"
+        },
+        {
+          "relation": "epithet",
+          "object": "Jatavedas",
+          "citations": [
+            "RV 1.044.01",
+            "AB 3.35.2"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -484,13 +555,24 @@
         },
         {
           "relation": "has_attribute",
-          "object": "Hotā",
+          "object": "hotā",
           "citations": [
-            "YV 21.58"
+            "YV 21.58",
+            "TS 4.1.3.4"
           ],
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 20:42:27.667344"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "seven treasures",
+          "citations": [
+            "TS 4.1.3.4"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:33:47.711391"
         },
         {
           "relation": "epithet",
@@ -666,7 +748,8 @@
           "object": "Dasharajna",
           "citations": [
             "RV 7.033.01-03",
-            "RV 7.18"
+            "RV 7.18",
+            "RV 7.033.03"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -697,7 +780,8 @@
           "relation": "fought",
           "object": "Bheda",
           "citations": [
-            "RV 7.033.01-03"
+            "RV 7.033.01-03",
+            "RV 7.033.03"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -754,6 +838,26 @@
           "added_at": "2026-06-13 13:27:03.580306"
         },
         {
+          "relation": "allied_with",
+          "object": "Vashishthas",
+          "citations": [
+            "RV 7.033.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:38.064955"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "invincible chariot",
+          "citations": [
+            "AB 5.1.16"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:51:39.901439"
+        },
+        {
           "relation": "fought",
           "object": "Dasarajna",
           "citations": [
@@ -762,6 +866,27 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:24:36.514923"
+        },
+        {
+          "relation": "has_father",
+          "object": "Pijavana",
+          "citations": [
+            "AB 8.21.11",
+            "RV 7.18"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:38.388370"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "asvamedha",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:51:39.857893"
         },
         {
           "relation": "has_attribute",
@@ -805,10 +930,21 @@
           "added_at": "2026-06-13 23:16:50.422122"
         },
         {
+          "relation": "fought",
+          "object": "Ten Kings",
+          "citations": [
+            "RV 7.18"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:37.862000"
+        },
+        {
           "relation": "allied_with",
           "object": "Vasiṣṭha",
           "citations": [
-            "RV 7.033.01-03"
+            "RV 7.033.01-03",
+            "RV 7.18"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -819,11 +955,22 @@
           "object": "Bharatas",
           "citations": [
             "RV 7.18.13",
-            "AB 8.21.11"
+            "AB 8.21.11",
+            "RV 7.18.13, AB 8.21.11"
           ],
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-13 13:27:03.577248"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "unassailable chariot",
+          "citations": [
+            "AB 5.1.16"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:55:11.025127"
         },
         {
           "relation": "member_of_dynasty",
@@ -849,11 +996,22 @@
           "relation": "allied_with",
           "object": "Indra",
           "citations": [
-            "RV 7.033.03"
+            "RV 7.033.03",
+            "RV 7.18"
           ],
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 19:51:43.979634"
+        },
+        {
+          "relation": "member_of_dynasty",
+          "object": "Tritsu-Bharata",
+          "citations": [
+            "RV 7.18.13, AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:37.740354"
         },
         {
           "relation": "member_of_dynasty",
@@ -928,10 +1086,21 @@
           "added_at": "2026-06-20 22:48:21.750165"
         },
         {
-          "relation": "fought",
-          "object": "Daśarājña confederation",
+          "relation": "member_of_dynasty",
+          "object": "Tṛtsu",
           "citations": [
-            "RV 7.033.01-03"
+            "RV 7.18"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:56:23.829927"
+        },
+        {
+          "relation": "fought",
+          "object": "Dasarajna confederation",
+          "citations": [
+            "RV 7.033.01-03",
+            "RV 7.033.01"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -947,6 +1116,26 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-13 23:16:50.425316"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Vishvamitra",
+          "citations": [
+            "RV 3.053.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.638568"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "horse sacrifice",
+          "citations": [
+            "RV 3.053.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.698876"
         }
       ]
     },
@@ -1459,6 +1648,16 @@
           "added_at": "2026-06-20 13:20:46.067515"
         },
         {
+          "relation": "allied_with",
+          "object": "Trasadasyu",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:15.097952"
+        },
+        {
           "relation": "associated_with_place",
           "object": "Soma",
           "citations": [
@@ -1555,9 +1754,10 @@
         },
         {
           "relation": "allied_with",
-          "object": "Sudās",
+          "object": "Sudas",
           "citations": [
-            "RV 7.033.03"
+            "RV 7.033.03",
+            "AVŚ 20.37.3"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -1594,6 +1794,16 @@
           "added_at": "2026-06-20 13:20:46.145142"
         },
         {
+          "relation": "allied_with",
+          "object": "Puru",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:15.189293"
+        },
+        {
           "relation": "has_attribute",
           "object": "kingly ruler",
           "citations": [
@@ -1617,7 +1827,8 @@
           "relation": "has_attribute",
           "object": "warrior",
           "citations": [
-            "RV 1.004.09"
+            "RV 1.004.09",
+            "RV 6.046"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -1654,6 +1865,16 @@
           "added_at": "2026-06-13 13:39:36.008117"
         },
         {
+          "relation": "allied_with",
+          "object": "Sarasvati",
+          "citations": [
+            "YV 20.56"
+          ],
+          "confidence": "medium",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.119310"
+        },
+        {
           "relation": "epithet",
           "object": "satpati",
           "citations": [
@@ -1685,6 +1906,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "vajrabahu",
+          "citations": [
+            "VS 17.38"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:02:42.690394"
+        },
+        {
+          "relation": "has_attribute",
           "object": "destroyer of foes",
           "citations": [
             "RV 10.060.02"
@@ -1702,6 +1933,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 00:00:41.501220"
+        },
+        {
+          "relation": "epithet",
+          "object": "fort-breaker",
+          "citations": [
+            "VS 17.38"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:34.342038"
         },
         {
           "relation": "has_attribute",
@@ -1722,6 +1963,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 13:34:07.696702"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "arrow-handed",
+          "citations": [
+            "RV 10.103.02"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:33.903231"
         },
         {
           "relation": "has_attribute",
@@ -1858,6 +2109,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "lord of wealth",
+          "citations": [
+            "RV 6.046"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.421567"
+        },
+        {
+          "relation": "has_attribute",
           "object": "invoked to unite Dampati",
           "citations": [
             "AVŚ 14.2.64"
@@ -1885,6 +2146,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:01:15.058710"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "bow",
+          "citations": [
+            "TS 4.6.4.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:34.234054"
         },
         {
           "relation": "epithet",
@@ -1961,7 +2232,8 @@
           "relation": "has_attribute",
           "object": "powerful warrior",
           "citations": [
-            "RV 8.014.13"
+            "RV 8.014.13",
+            "RV 6.046"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -2163,6 +2435,16 @@
           "added_at": "2026-06-20 23:49:43.766920"
         },
         {
+          "relation": "has_attribute",
+          "object": "wielder of the thunderbolt",
+          "citations": [
+            "RV 6.046"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.269530"
+        },
+        {
           "relation": "allied_with",
           "object": "Sudas Paijavana",
           "citations": [
@@ -2171,6 +2453,26 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:44:15.574551"
+        },
+        {
+          "relation": "epithet",
+          "object": "vajri",
+          "citations": [
+            "AVŚ 2.5.5-6"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 15:47:59.996403"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Vitahavya",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:48:51.881754"
         },
         {
           "relation": "fought",
@@ -2196,7 +2498,8 @@
           "relation": "fought",
           "object": "Ahi",
           "citations": [
-            "RV 6.017.09"
+            "RV 6.017.09",
+            "AVŚ 2.5.5-6"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -2261,6 +2564,17 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 16:41:46.203840"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "quivers",
+          "citations": [
+            "RV 10.103.03",
+            "TS 4.6.4.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:33.952955"
         },
         {
           "relation": "has_attribute",
@@ -2375,6 +2689,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "mighty warrior",
+          "citations": [
+            "RV 6.046"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.382346"
+        },
+        {
+          "relation": "has_attribute",
           "object": "power",
           "citations": [
             "Shatapatha Brahmana 5.1.5.4"
@@ -2403,6 +2727,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:07:29.782445"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "formidable bow",
+          "citations": [
+            "RV 10.103.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:33.994333"
         },
         {
           "relation": "has_attribute",
@@ -2566,6 +2900,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "leader",
+          "citations": [
+            "RV 6.046"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:55:42.276824"
+        },
+        {
+          "relation": "has_attribute",
           "object": "giver of bounty",
           "citations": [
             "RV 8.021.16-17"
@@ -2657,6 +3001,26 @@
           "added_at": "2026-06-20 16:29:06.532691"
         },
         {
+          "relation": "has_attribute",
+          "object": "arrows",
+          "citations": [
+            "TS 4.6.4.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:34.121038"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "vajra-armed",
+          "citations": [
+            "VS 17.38"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:34.290743"
+        },
+        {
           "relation": "epithet",
           "object": "slayer of Vritra",
           "citations": [
@@ -2676,26 +3040,6 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 20:42:27.925004"
-        },
-        {
-          "relation": "allied_with",
-          "object": "Trasadasyu",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:15.097952"
-        },
-        {
-          "relation": "allied_with",
-          "object": "Puru",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:15.189293"
         }
       ]
     },
@@ -2791,6 +3135,438 @@
         }
       ]
     },
+    "tryaruna": {
+      "display_name": "Tryaruna",
+      "relations": [
+        {
+          "relation": "allied_with",
+          "object": "Trasadasyu",
+          "citations": [
+            "RV 5.027.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:48:52.758063"
+        },
+        {
+          "relation": "is_purohita_of",
+          "object": "Trasadasyu",
+          "citations": [
+            "RV 5.027.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.517699"
+        },
+        {
+          "relation": "patronymic",
+          "object": "Traivrshna",
+          "citations": [
+            "RV 5.027.01"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.329407"
+        },
+        {
+          "relation": "patronymic",
+          "object": "Traivrishna",
+          "citations": [
+            "RV 5.027.01"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:27:13.935517"
+        },
+        {
+          "relation": "member_of_dynasty",
+          "object": "Ikshvaku",
+          "citations": [
+            "PB 13.3.12"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 16:03:37.487243"
+        },
+        {
+          "relation": "patronymic",
+          "object": "Traivrsna",
+          "citations": [
+            "RV 5.027.01-03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:14.893992"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "Agni",
+          "citations": [
+            "RV 5.027.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:27:13.837938"
+        }
+      ]
+    },
+    "trasadasyu": {
+      "display_name": "Trasadasyu",
+      "relations": [
+        {
+          "relation": "patronymic",
+          "object": "Paurukutsa",
+          "citations": [
+            "AVŚ 20.037.03",
+            "PB 25.16.03",
+            "AVŚ 20.37.3",
+            "PB 25.16.3",
+            "RV 4.042.09",
+            "AVS 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 16:11:23.096418"
+        },
+        {
+          "relation": "epithet",
+          "object": "Vritra-slaying",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 23:03:08.283837"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Indra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:15.144497"
+        },
+        {
+          "relation": "epithet",
+          "object": "Vrtrahana",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:26:50.584941"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "sattrayana ritual",
+          "citations": [
+            "PB 25.16.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 23:03:08.713005"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "a ritual",
+          "citations": [
+            "PB 25.16.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:26:50.483827"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "demigod",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:48:52.467635"
+        },
+        {
+          "relation": "member_of_dynasty",
+          "object": "Kuru",
+          "citations": [
+            "RV 10.033.04"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:27:03.579921"
+        },
+        {
+          "relation": "is_king_of",
+          "object": "Pūru",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:04:50.885549"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "sattrāyaṇa",
+          "citations": [
+            "PB 25.16.3",
+            "PB 25.16.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:30:07.152199"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "Agni",
+          "citations": [
+            "RV 5.027.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:27:13.744528"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Paurukutsa",
+          "citations": [
+            "RV 7.019.03"
+          ],
+          "confidence": "medium",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:32:54.511311"
+        },
+        {
+          "relation": "fought",
+          "object": "Vritra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 23:03:08.541039"
+        },
+        {
+          "relation": "epithet",
+          "object": "Vritrahana",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:48:52.359519"
+        },
+        {
+          "relation": "has_father",
+          "object": "Purukutsa",
+          "citations": [
+            "RV 4.042.09",
+            "AVŚ 20.37.3",
+            "PB 25.16.3",
+            "AVS 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:30:07.147654"
+        },
+        {
+          "relation": "epithet",
+          "object": "vrtrahanam",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.705082"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "semi-divine",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:26:50.687877"
+        },
+        {
+          "relation": "epithet",
+          "object": "Vrtrahan",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:15.043093"
+        },
+        {
+          "relation": "has_mother",
+          "object": "Purukutsani",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 23:03:07.993622"
+        },
+        {
+          "relation": "received_boon",
+          "object": "ardhadeva",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:30:07.151256"
+        },
+        {
+          "relation": "epithet",
+          "object": "Vṛtrahaṁ ardhadēvam",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 16:12:57.540218"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "ardhadeva",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:14.992262"
+        },
+        {
+          "relation": "has_son",
+          "object": "Tṛkṣi",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 16:31:21.190304"
+        },
+        {
+          "relation": "epithet",
+          "object": "ardhadevam",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.748531"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Tryaruna",
+          "citations": [
+            "RV 5.027.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:48:52.637572"
+        },
+        {
+          "relation": "associated_with_place",
+          "object": "Agni Vaiśvānara",
+          "citations": [
+            "RV 5.027.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:30:07.153735"
+        },
+        {
+          "relation": "epithet",
+          "object": "Paurukutsa",
+          "citations": [
+            "AVŚ 20.37.3",
+            "PB 25.16.3",
+            "AVŚ 20.037.03",
+            "PB 25.16.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 16:00:27.881508"
+        },
+        {
+          "relation": "received_boon",
+          "object": "Indra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.786254"
+        },
+        {
+          "relation": "epithet",
+          "object": "Vritra-slayer",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:27:13.281186"
+        },
+        {
+          "relation": "epithet",
+          "object": "semi-divine",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 23:03:08.369528"
+        },
+        {
+          "relation": "received_boon",
+          "object": "thousand sons",
+          "citations": [
+            "PB 25.16.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:15.266372"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "King",
+          "citations": [
+            "RV 4.042.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:27:13.373695"
+        },
+        {
+          "relation": "member_of_dynasty",
+          "object": "Kuru dynasty",
+          "citations": [
+            "RV 10.033.04"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 23:03:07.724520"
+        },
+        {
+          "relation": "has_son",
+          "object": "Trkshi",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 09:00:43.711793"
+        }
+      ]
+    },
     "gauri": {
       "display_name": "Gaurī",
       "relations": [
@@ -2860,6 +3636,56 @@
       "display_name": "navapadī",
       "relations": []
     },
+    "adhvaryu": {
+      "display_name": "Adhvaryu",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "recipient of the sacrificial fee",
+          "citations": [
+            "AB 5.34.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.485857"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "invocation",
+          "citations": [
+            "AB 3.12.4"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 18:50:27.259317"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "born of Brahman",
+          "citations": [
+            "AVŚ 19.42.1",
+            "AVŚ 19.42.2"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 05:46:02.782359"
+        },
+        {
+          "relation": "originates_from",
+          "object": "Brahman",
+          "citations": [
+            "AVŚ 19.42.2"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:39:00.717849"
+        }
+      ]
+    },
+    "recipient_of_the_sacrificial_fee": {
+      "display_name": "recipient of the sacrificial fee",
+      "relations": []
+    },
     "lopamudra": {
       "display_name": "Lopamudra",
       "relations": [
@@ -2915,6 +3741,16 @@
         },
         {
           "relation": "performed_ritual",
+          "object": "Sudās",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:56:23.984719"
+        },
+        {
+          "relation": "performed_ritual",
           "object": "Mahābhiṣeka",
           "citations": [
             "AB 8.21.11"
@@ -2925,11 +3761,12 @@
         },
         {
           "relation": "is_purohita_of",
-          "object": "Sudas",
+          "object": "Sudās",
           "citations": [
             "RV 7.18.13",
             "RV 7.18",
-            "RV 7.033.01-03"
+            "RV 7.033.01-03",
+            "AB 8.21.11"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -2954,6 +3791,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:49:43.681310"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "aindra mahabhiseka",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:51:39.814688"
         },
         {
           "relation": "is_purohita_of",
@@ -3031,303 +3878,6 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 21:02:25.244958"
-        }
-      ]
-    },
-    "trasadasyu": {
-      "display_name": "Trasadasyu",
-      "relations": [
-        {
-          "relation": "patronymic",
-          "object": "Paurukutsa",
-          "citations": [
-            "AVŚ 20.037.03",
-            "PB 25.16.03",
-            "AVŚ 20.37.3",
-            "PB 25.16.3",
-            "RV 4.042.09",
-            "AVS 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 16:11:23.096418"
-        },
-        {
-          "relation": "epithet",
-          "object": "Vritra-slaying",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 23:03:08.283837"
-        },
-        {
-          "relation": "epithet",
-          "object": "Vrtrahana",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:26:50.584941"
-        },
-        {
-          "relation": "performed_ritual",
-          "object": "sattrayana ritual",
-          "citations": [
-            "PB 25.16.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 23:03:08.713005"
-        },
-        {
-          "relation": "performed_ritual",
-          "object": "a ritual",
-          "citations": [
-            "PB 25.16.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:26:50.483827"
-        },
-        {
-          "relation": "member_of_dynasty",
-          "object": "Kuru",
-          "citations": [
-            "RV 10.033.04"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:27:03.579921"
-        },
-        {
-          "relation": "performed_ritual",
-          "object": "sattrāyaṇa",
-          "citations": [
-            "PB 25.16.3",
-            "PB 25.16.03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:30:07.152199"
-        },
-        {
-          "relation": "performed_ritual",
-          "object": "Agni",
-          "citations": [
-            "RV 5.027.03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:27:13.744528"
-        },
-        {
-          "relation": "allied_with",
-          "object": "Paurukutsa",
-          "citations": [
-            "RV 7.019.03"
-          ],
-          "confidence": "medium",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:32:54.511311"
-        },
-        {
-          "relation": "fought",
-          "object": "Vritra",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 23:03:08.541039"
-        },
-        {
-          "relation": "has_father",
-          "object": "Purukutsa",
-          "citations": [
-            "RV 4.042.09",
-            "AVŚ 20.37.3",
-            "PB 25.16.3",
-            "AVS 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:30:07.147654"
-        },
-        {
-          "relation": "epithet",
-          "object": "vrtrahanam",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.705082"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "semi-divine",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:26:50.687877"
-        },
-        {
-          "relation": "has_mother",
-          "object": "Purukutsani",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 23:03:07.993622"
-        },
-        {
-          "relation": "received_boon",
-          "object": "ardhadeva",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:30:07.151256"
-        },
-        {
-          "relation": "epithet",
-          "object": "Vṛtrahaṁ ardhadēvam",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 16:12:57.540218"
-        },
-        {
-          "relation": "epithet",
-          "object": "ardhadevam",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.748531"
-        },
-        {
-          "relation": "associated_with_place",
-          "object": "Agni Vaiśvānara",
-          "citations": [
-            "RV 5.027.03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:30:07.153735"
-        },
-        {
-          "relation": "epithet",
-          "object": "Paurukutsa",
-          "citations": [
-            "AVŚ 20.37.3",
-            "PB 25.16.3",
-            "AVŚ 20.037.03",
-            "PB 25.16.03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 16:00:27.881508"
-        },
-        {
-          "relation": "received_boon",
-          "object": "Indra",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.786254"
-        },
-        {
-          "relation": "epithet",
-          "object": "Vritra-slayer",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:27:13.281186"
-        },
-        {
-          "relation": "epithet",
-          "object": "semi-divine",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 23:03:08.369528"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "King",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:27:13.373695"
-        },
-        {
-          "relation": "member_of_dynasty",
-          "object": "Kuru dynasty",
-          "citations": [
-            "RV 10.033.04"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 23:03:07.724520"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "ardhadeva",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:14.992262"
-        },
-        {
-          "relation": "epithet",
-          "object": "Vrtrahan",
-          "citations": [
-            "RV 4.042.09"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:15.043093"
-        },
-        {
-          "relation": "allied_with",
-          "object": "Indra",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:15.144497"
-        },
-        {
-          "relation": "received_boon",
-          "object": "thousand sons",
-          "citations": [
-            "PB 25.16.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:15.266372"
         }
       ]
     },
@@ -3415,6 +3965,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 19:22:56.018721"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "swift and wonderful chariot",
+          "citations": [
+            "RV 8.022"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:32.921477"
         },
         {
           "relation": "performed_ritual",
@@ -4061,6 +4621,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "recipient of the sacrificial fee",
+          "citations": [
+            "AB 5.34.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.786505"
+        },
+        {
+          "relation": "has_attribute",
           "object": "above",
           "citations": [
             "AVŚ 14.1.64"
@@ -4410,78 +4980,19 @@
       "display_name": "Tantrāyiṇaḥ",
       "relations": []
     },
-    "cow": {
-      "display_name": "cow",
-      "relations": [
-        {
-          "relation": "has_attribute",
-          "object": "essence",
-          "citations": [
-            "SB 2.3.4.25"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 04:30:07.406577"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "blind strength",
-          "citations": [
-            "SB 2.3.4.25"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 04:30:06.850316"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "vigor",
-          "citations": [
-            "SB 2.3.4.25"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 04:30:07.306015"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "abundance",
-          "citations": [
-            "SB 2.3.4.25"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 04:30:07.600283"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "greatness",
-          "citations": [
-            "SB 2.3.4.25"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 04:30:07.207104"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "prosperity in wealth",
-          "citations": [
-            "SB 2.3.4.25"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 04:30:07.503506"
-        }
-      ]
-    },
-    "essence": {
-      "display_name": "essence",
-      "relations": []
-    },
     "sarasvati": {
       "display_name": "Sarasvati",
       "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "grants happiness",
+          "citations": [
+            "YV 25.16"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 15:47:59.757358"
+        },
         {
           "relation": "has_attribute",
           "object": "power",
@@ -4597,6 +5108,16 @@
           "added_at": "2026-06-20 15:51:10.415943"
         },
         {
+          "relation": "associated_with_place",
+          "object": "Adhvara",
+          "citations": [
+            "AVS 18.4.45"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.326464"
+        },
+        {
           "relation": "flows_through",
           "object": "mountain ranges",
           "citations": [
@@ -4630,7 +5151,8 @@
           "relation": "flows_through",
           "object": "mountains",
           "citations": [
-            "RV 7.095.02"
+            "RV 7.095.02",
+            "RV 6.061.02"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -4700,6 +5222,18 @@
           "added_at": "2026-06-13 13:27:03.578301"
         },
         {
+          "relation": "allied_with",
+          "object": "Indra",
+          "citations": [
+            "YV 20.56",
+            "YV 20.57",
+            "YV 20.59"
+          ],
+          "confidence": "medium",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.000476"
+        },
+        {
           "relation": "has_attribute",
           "object": "auspicious giver of wealth",
           "citations": [
@@ -4708,6 +5242,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:04:41.037771"
+        },
+        {
+          "relation": "same_as",
+          "object": "Amavasya",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.378885"
         },
         {
           "relation": "has_attribute",
@@ -4771,6 +5315,17 @@
           "added_at": "2026-06-20 19:38:14.678778"
         },
         {
+          "relation": "allied_with",
+          "object": "Asvins",
+          "citations": [
+            "YV 20.57",
+            "YV 20.59"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.183925"
+        },
+        {
           "relation": "has_attribute",
           "object": "breaking mountains",
           "citations": [
@@ -4813,6 +5368,16 @@
         },
         {
           "relation": "has_attribute",
+          "object": "giver of bounties",
+          "citations": [
+            "AVS 18.4.45-46"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 15:37:58.807512"
+        },
+        {
+          "relation": "has_attribute",
           "object": "highly revered",
           "citations": [
             "AVŚ 18.4.45-46, AVŚ 18.1.41"
@@ -4820,6 +5385,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-21 07:48:20.633454"
+        },
+        {
+          "relation": "originates_from",
+          "object": "mountains",
+          "citations": [
+            "RV 7.095.02"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 15:37:58.705997"
         },
         {
           "relation": "has_attribute",
@@ -4850,6 +5425,26 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-14 17:15:55.281702"
+        },
+        {
+          "relation": "has_spouse",
+          "object": "Sarasvan",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.539330"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "giver of nourishment",
+          "citations": [
+            "AVS 18.1.41"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 15:37:58.913210"
         },
         {
           "relation": "associated_with_place",
@@ -4942,6 +5537,79 @@
           "added_at": "2026-06-21 07:48:14.669696"
         }
       ]
+    },
+    "grants_happiness": {
+      "display_name": "grants happiness",
+      "relations": []
+    },
+    "cow": {
+      "display_name": "cow",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "essence",
+          "citations": [
+            "SB 2.3.4.25"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 04:30:07.406577"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "blind strength",
+          "citations": [
+            "SB 2.3.4.25"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 04:30:06.850316"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "vigor",
+          "citations": [
+            "SB 2.3.4.25"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 04:30:07.306015"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "abundance",
+          "citations": [
+            "SB 2.3.4.25"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 04:30:07.600283"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "greatness",
+          "citations": [
+            "SB 2.3.4.25"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 04:30:07.207104"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "prosperity in wealth",
+          "citations": [
+            "SB 2.3.4.25"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 04:30:07.503506"
+        }
+      ]
+    },
+    "essence": {
+      "display_name": "essence",
+      "relations": []
     },
     "power": {
       "display_name": "power",
@@ -5398,6 +6066,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-14 20:04:11.715099"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Sudas",
+          "citations": [
+            "RV 7.033.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:38.176314"
         }
       ],
       "type": "dynasty",
@@ -5630,6 +6308,26 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 22:54:59.020304"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Bharatas",
+          "citations": [
+            "RV 3.053.12"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.104835"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Sudas",
+          "citations": [
+            "RV 3.053.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.587495"
         }
       ]
     },
@@ -6671,6 +7369,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-21 07:38:43.139568"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "recipient of the sacrificial fee",
+          "citations": [
+            "AB 5.34.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.684627"
         }
       ]
     },
@@ -6689,6 +7397,36 @@
         },
         {
           "relation": "has_attribute",
+          "object": "great dominion",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 09:00:43.843480"
+        },
+        {
+          "relation": "received_boon",
+          "object": "Asvins",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 09:00:43.536567"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "wealth",
+          "citations": [
+            "RV 6.046.08"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 09:00:43.881959"
+        },
+        {
+          "relation": "has_attribute",
           "object": "Rigvedic name (RV 8.22.7; also RV 6.46.8), appearing as 'tṛkṣiṃ trāsadasyavam' — of the Trasadasyu line, sped by the Aśvins to great kṣatra (dominion). DISPUTED: read either as an individual prince descended from Trasadasyu (Vedic Index) or as a tribe/clan of his descendants (Talageri).",
           "citations": [
             "RV 8.22.7"
@@ -6696,6 +7434,26 @@
           "confidence": "high",
           "provenance": "authoritative",
           "added_at": "2026-06-21 08:23:02.141939"
+        },
+        {
+          "relation": "has_father",
+          "object": "Trasadasyu",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 09:00:43.652540"
+        },
+        {
+          "relation": "member_of_dynasty",
+          "object": "Puru",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 09:00:43.775740"
         }
       ]
     },
@@ -7039,6 +7797,61 @@
       "display_name": "generations",
       "relations": []
     },
+    "chariot": {
+      "display_name": "chariot",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "two charioteers",
+          "citations": [
+            "SB 5.4.3.17"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 09:08:36.972146"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "four horses",
+          "citations": [
+            "SB 5.4.3.17"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 09:08:36.930777"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "three-wheeled",
+          "citations": [
+            "4.036.01"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 09:08:37.103785"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "with horses",
+          "citations": [
+            "4.045.02"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 09:08:37.186456"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "encircling",
+          "citations": [
+            "4.045.01"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-20 09:08:37.142095"
+        }
+      ]
+    },
     "visvamitra": {
       "display_name": "Viśvāmitra",
       "relations": [
@@ -7063,6 +7876,16 @@
           "added_at": "2026-06-20 22:48:21.863754"
         },
         {
+          "relation": "performed_ritual",
+          "object": "Sudās",
+          "citations": [
+            "RV 3.053.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:56:23.717980"
+        },
+        {
           "relation": "has_son",
           "object": "Devavrata",
           "citations": [
@@ -7081,6 +7904,27 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 22:48:21.955269"
+        },
+        {
+          "relation": "is_purohita_of",
+          "object": "Sudas",
+          "citations": [
+            "RV 3.053.11",
+            "RV 3.053.09"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:55:10.919533"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "horse sacrifice",
+          "citations": [
+            "RV 3.053.11"
+          ],
+          "confidence": "medium",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 11:51:39.664939"
         }
       ]
     },
@@ -7556,6 +8400,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-19 23:59:11.573102"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "hiraṇyavat",
+          "citations": [
+            "VS 8.63"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:31:40.771653"
         },
         {
           "relation": "has_attribute",
@@ -8546,6 +9400,16 @@
           "added_at": "2026-06-21 07:59:37.983938"
         },
         {
+          "relation": "has_attribute",
+          "object": "overpowered",
+          "citations": [
+            "RV 6.038.05"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:31:40.575096"
+        },
+        {
           "relation": "fought",
           "object": "Indra",
           "citations": [
@@ -9299,11 +10163,25 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:44:15.037600"
+        },
+        {
+          "relation": "fought",
+          "object": "Sudas",
+          "citations": [
+            "RV 7.18"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:37.970950"
         }
       ]
     },
     "makes_prosperous": {
       "display_name": "makes prosperous",
+      "relations": []
+    },
+    "one_who_leads_the_soul_by_the_right_path": {
+      "display_name": "one who leads the soul by the right path",
       "relations": []
     },
     "aitareya_brahmana": {
@@ -9525,6 +10403,16 @@
           "added_at": "2026-06-14 20:04:11.696230"
         },
         {
+          "relation": "performed_ritual",
+          "object": "Aindra Mahabhisheka",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:38.286418"
+        },
+        {
           "relation": "epithet",
           "object": "one who resides most excellently",
           "citations": [
@@ -9653,6 +10541,26 @@
           "confidence": "medium",
           "provenance": "inferred",
           "added_at": "2026-06-14 20:04:11.692576"
+        },
+        {
+          "relation": "is_purohita_of",
+          "object": "Sudas",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.482199"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "mahabhisheka",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.533644"
         }
       ]
     },
@@ -9982,6 +10890,35 @@
       "display_name": "king of charsheṇīnaḥ",
       "relations": []
     },
+    "warrior": {
+      "display_name": "Warrior",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "ishuhaste",
+          "citations": [
+            "RV 10.103"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:02:42.599899"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "ugradhanvan",
+          "citations": [
+            "RV 10.103"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:02:42.646325"
+        }
+      ]
+    },
+    "ishuhaste": {
+      "display_name": "ishuhaste",
+      "relations": []
+    },
     "king": {
       "display_name": "King",
       "relations": [
@@ -10154,61 +11091,6 @@
         }
       ]
     },
-    "chariot": {
-      "display_name": "chariot",
-      "relations": [
-        {
-          "relation": "has_attribute",
-          "object": "two charioteers",
-          "citations": [
-            "SB 5.4.3.17"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 09:08:36.972146"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "four horses",
-          "citations": [
-            "SB 5.4.3.17"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 09:08:36.930777"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "three-wheeled",
-          "citations": [
-            "4.036.01"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 09:08:37.103785"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "with horses",
-          "citations": [
-            "4.045.02"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 09:08:37.186456"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "encircling",
-          "citations": [
-            "4.045.01"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 09:08:37.142095"
-        }
-      ]
-    },
     "two_charioteers": {
       "display_name": "two charioteers",
       "relations": []
@@ -10364,6 +11246,25 @@
     },
     "metal": {
       "display_name": "metal",
+      "relations": []
+    },
+    "sodasin": {
+      "display_name": "Ṣoḍaśin",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "linked to the number sixteen",
+          "citations": [
+            "AB 4.1.5"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.768867"
+        }
+      ]
+    },
+    "linked_to_the_number_sixteen": {
+      "display_name": "linked to the number sixteen",
       "relations": []
     },
     "yields_all_desires": {
@@ -10589,6 +11490,25 @@
       "display_name": "bright king",
       "relations": []
     },
+    "parna": {
+      "display_name": "parna",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "wood used for sacrificial ladles",
+          "citations": [
+            "TS 3.5.7.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:33:48.055033"
+        }
+      ]
+    },
+    "wood_used_for_sacrificial_ladles": {
+      "display_name": "wood used for sacrificial ladles",
+      "relations": []
+    },
     "shunahshepa": {
       "display_name": "Shunahshepa",
       "relations": [
@@ -10647,6 +11567,46 @@
           "provenance": "inferred",
           "added_at": "2026-06-14 16:54:47.749300"
         }
+      ]
+    },
+    "puru": {
+      "display_name": "Puru",
+      "relations": [
+        {
+          "relation": "fought",
+          "object": "Vrtra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.859144"
+        },
+        {
+          "relation": "received_boon",
+          "object": "Indra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 07:59:37.820949"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Indra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:33:15.224129"
+        }
+      ],
+      "type": "dynasty",
+      "members": [
+        "trkshi",
+        "trksi"
       ]
     },
     "kshatriya_sacrifice": {
@@ -10711,6 +11671,61 @@
     "union_for_procreation": {
       "display_name": "union for procreation",
       "relations": []
+    },
+    "trksi": {
+      "display_name": "Tṛkṣi",
+      "relations": [
+        {
+          "relation": "member_of_dynasty",
+          "object": "Pūru",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:41:48.480319"
+        },
+        {
+          "relation": "has_father",
+          "object": "Trasadasyu",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 16:31:20.936632"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "wealth and strength",
+          "citations": [
+            "RV 6.046.08"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:04:50.411543"
+        },
+        {
+          "relation": "received_boon",
+          "object": "Aśvins",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:04:50.686749"
+        },
+        {
+          "relation": "patronymic",
+          "object": "Trāsadasyava",
+          "citations": [
+            "RV 8.022.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:04:50.788434"
+        }
+      ]
     },
     "kingly_ruler": {
       "display_name": "kingly ruler",
@@ -10794,71 +11809,6 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 17:19:37.566172"
-        }
-      ]
-    },
-    "tryaruna": {
-      "display_name": "Tryaruna",
-      "relations": [
-        {
-          "relation": "is_purohita_of",
-          "object": "Trasadasyu",
-          "citations": [
-            "RV 5.027.03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.517699"
-        },
-        {
-          "relation": "patronymic",
-          "object": "Traivrshna",
-          "citations": [
-            "RV 5.027.01"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.329407"
-        },
-        {
-          "relation": "patronymic",
-          "object": "Traivrishna",
-          "citations": [
-            "RV 5.027.01"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:27:13.935517"
-        },
-        {
-          "relation": "member_of_dynasty",
-          "object": "Ikshvaku",
-          "citations": [
-            "PB 13.3.12"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 16:03:37.487243"
-        },
-        {
-          "relation": "performed_ritual",
-          "object": "Agni",
-          "citations": [
-            "RV 5.027.03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:27:13.837938"
-        },
-        {
-          "relation": "patronymic",
-          "object": "Traivrsna",
-          "citations": [
-            "RV 5.027.01-03"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:14.893992"
         }
       ]
     },
@@ -11065,10 +12015,6 @@
       "display_name": "had a hundred wives",
       "relations": []
     },
-    "warrior": {
-      "display_name": "warrior",
-      "relations": []
-    },
     "vimirgho_vasi": {
       "display_name": "vimirgho vasi",
       "relations": []
@@ -11167,6 +12113,10 @@
     },
     "pracina_rajan": {
       "display_name": "prācīna rājan",
+      "relations": []
+    },
+    "leads_the_soul_on_the_right_path": {
+      "display_name": "leads the soul on the right path",
       "relations": []
     },
     "female_principles": {
@@ -11270,9 +12220,9 @@
       ],
       "type": "dynasty",
       "members": [
+        "tryaruna",
         "harishchandra",
         "purukutsa",
-        "tryaruna",
         "gad"
       ]
     },
@@ -11646,40 +12596,16 @@
     },
     "agnicayana": {
       "display_name": "Agnicayana",
-      "relations": []
-    },
-    "puru": {
-      "display_name": "Puru",
       "relations": [
         {
-          "relation": "fought",
-          "object": "Vrtra",
+          "relation": "has_attribute",
+          "object": "numerological symbolism connected to the Gāyatrī meter",
           "citations": [
-            "AVŚ 20.37.3"
+            "SB 6.5.1.12"
           ],
           "confidence": "high",
           "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.859144"
-        },
-        {
-          "relation": "received_boon",
-          "object": "Indra",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:59:37.820949"
-        },
-        {
-          "relation": "allied_with",
-          "object": "Indra",
-          "citations": [
-            "AVŚ 20.37.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 08:33:15.224129"
+          "added_at": "2026-06-21 08:58:02.812064"
         }
       ]
     },
@@ -11807,6 +12733,10 @@
       "display_name": "superior to all",
       "relations": []
     },
+    "vajrabahu": {
+      "display_name": "vajrabahu",
+      "relations": []
+    },
     "three_vedas": {
       "display_name": "three Vedas",
       "relations": []
@@ -11899,6 +12829,21 @@
       "display_name": "sattrayana ritual",
       "relations": []
     },
+    "hiranya": {
+      "display_name": "hiraṇya",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "wealth",
+          "citations": [
+            "VS 8.63"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:31:40.834315"
+        }
+      ]
+    },
     "bharatas": {
       "display_name": "Bharatas",
       "relations": [
@@ -11921,6 +12866,16 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-13 13:27:03.578631"
+        },
+        {
+          "relation": "allied_with",
+          "object": "Vishvamitra",
+          "citations": [
+            "RV 3.053.12"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:45:28.235126"
         }
       ],
       "type": "dynasty",
@@ -12026,7 +12981,18 @@
     },
     "men": {
       "display_name": "men",
-      "relations": []
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "bows",
+          "citations": [
+            "RV 6.059.07"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:25:33.847609"
+        }
+      ]
     },
     "prthivi": {
       "display_name": "pṛthivī",
@@ -12104,6 +13070,10 @@
       "display_name": "drinker of Soma",
       "relations": []
     },
+    "fort_breaker": {
+      "display_name": "fort-breaker",
+      "relations": []
+    },
     "horses": {
       "display_name": "horses",
       "relations": [
@@ -12143,7 +13113,7 @@
       "relations": []
     },
     "jatavedas": {
-      "display_name": "Jātavedas",
+      "display_name": "Jatavedas",
       "relations": []
     },
     "rishabha": {
@@ -12207,6 +13177,10 @@
     },
     "remedies": {
       "display_name": "remedies",
+      "relations": []
+    },
+    "overpowered": {
+      "display_name": "overpowered",
       "relations": []
     },
     "data_vasu_muhura_dasuse_bhut": {
@@ -12354,8 +13328,16 @@
       "display_name": "might",
       "relations": []
     },
+    "arrow_handed": {
+      "display_name": "arrow-handed",
+      "relations": []
+    },
     "possesses_shaci": {
       "display_name": "possesses shaci",
+      "relations": []
+    },
+    "invincible_chariot": {
+      "display_name": "invincible chariot",
       "relations": []
     },
     "non_terrible_form": {
@@ -12524,6 +13506,21 @@
         }
       ]
     },
+    "pijavana": {
+      "display_name": "Pijavana",
+      "relations": [
+        {
+          "relation": "has_son",
+          "object": "Sudas",
+          "citations": [
+            "AB 8.21.11"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:53:38.496287"
+        }
+      ]
+    },
     "vasu": {
       "display_name": "Vasu",
       "relations": []
@@ -12589,6 +13586,10 @@
     },
     "priests_who_make_offerings": {
       "display_name": "priests who make offerings",
+      "relations": []
+    },
+    "asvamedha": {
+      "display_name": "asvamedha",
       "relations": []
     },
     "sacrifice": {
@@ -13011,6 +14012,10 @@
         }
       ]
     },
+    "demigod": {
+      "display_name": "demigod",
+      "relations": []
+    },
     "powerful_in_action": {
       "display_name": "powerful in action",
       "relations": []
@@ -13409,6 +14414,10 @@
     },
     "upanishadic": {
       "display_name": "Upanishadic",
+      "relations": []
+    },
+    "adhvara": {
+      "display_name": "Adhvara",
       "relations": []
     },
     "ugra": {
@@ -13911,6 +14920,41 @@
       "display_name": "invoked for growth of wealth",
       "relations": []
     },
+    "vitahavya": {
+      "display_name": "Vitahavya",
+      "relations": [
+        {
+          "relation": "allied_with",
+          "object": "Indra",
+          "citations": [
+            "AVŚ 20.37.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:48:52.147224"
+        },
+        {
+          "relation": "patronymic",
+          "object": "Srayasa",
+          "citations": [
+            "PB 25.16.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:27:13.463307"
+        },
+        {
+          "relation": "performed_ritual",
+          "object": "sattrayana",
+          "citations": [
+            "PB 25.16.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-13 13:32:54.509417"
+        }
+      ]
+    },
     "used_to_wish_blessings_for_good_progeny_heroic_sons_and_nourishment": {
       "display_name": "used to wish blessings for good progeny, heroic sons, and nourishment",
       "relations": []
@@ -14337,6 +15381,25 @@
         }
       ]
     },
+    "gayatri": {
+      "display_name": "Gāyatrī",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "connection to numbers eight through twelve",
+          "citations": [
+            "TS 7.3.2.2"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.470165"
+        }
+      ]
+    },
+    "connection_to_numbers_eight_through_twelve": {
+      "display_name": "connection to numbers eight through twelve",
+      "relations": []
+    },
     "bhanu": {
       "display_name": "Bhānu",
       "relations": [
@@ -14429,6 +15492,10 @@
           "provenance": "inferred",
           "added_at": "2026-06-14 20:04:11.705623"
         }
+      ],
+      "type": "dynasty",
+      "members": [
+        "sudas"
       ]
     },
     "drishadvati": {
@@ -14647,31 +15714,6 @@
         "vaidhasa"
       ]
     },
-    "vitahavya": {
-      "display_name": "Vitahavya",
-      "relations": [
-        {
-          "relation": "patronymic",
-          "object": "Srayasa",
-          "citations": [
-            "PB 25.16.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 12:27:13.463307"
-        },
-        {
-          "relation": "performed_ritual",
-          "object": "sattrayana",
-          "citations": [
-            "PB 25.16.3"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-13 13:32:54.509417"
-        }
-      ]
-    },
     "srayasa": {
       "display_name": "Srayasa",
       "relations": [
@@ -14693,6 +15735,10 @@
     },
     "antarikse": {
       "display_name": "antarikṣe",
+      "relations": []
+    },
+    "lord_of_wealth": {
+      "display_name": "lord of wealth",
       "relations": []
     },
     "invoked_to_unite_dampati": {
@@ -14778,6 +15824,21 @@
       "display_name": "flourishes",
       "relations": []
     },
+    "pitaras": {
+      "display_name": "Pitaras",
+      "relations": [
+        {
+          "relation": "performed_ritual",
+          "object": "Sarasvati",
+          "citations": [
+            "AVS 18.4.45"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:57:14.556203"
+        }
+      ]
+    },
     "ratha": {
       "display_name": "Ratha",
       "relations": []
@@ -14860,42 +15921,6 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-21 04:17:45.927800"
-        }
-      ]
-    },
-    "adhvaryu": {
-      "display_name": "adhvaryu",
-      "relations": [
-        {
-          "relation": "performed_ritual",
-          "object": "invocation",
-          "citations": [
-            "AB 3.12.4"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-20 18:50:27.259317"
-        },
-        {
-          "relation": "has_attribute",
-          "object": "born of Brahman",
-          "citations": [
-            "AVŚ 19.42.1",
-            "AVŚ 19.42.2"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 05:46:02.782359"
-        },
-        {
-          "relation": "originates_from",
-          "object": "Brahman",
-          "citations": [
-            "AVŚ 19.42.2"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 07:39:00.717849"
         }
       ]
     },
@@ -15190,6 +16215,10 @@
         }
       ]
     },
+    "bow": {
+      "display_name": "bow",
+      "relations": []
+    },
     "lord_of_men": {
       "display_name": "lord of men",
       "relations": []
@@ -15246,11 +16275,75 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-21 06:39:10.262138"
+        },
+        {
+          "relation": "same_as",
+          "object": "Sarasvati",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.420878"
+        }
+      ]
+    },
+    "purnamasa": {
+      "display_name": "Purnamasa",
+      "relations": [
+        {
+          "relation": "same_as",
+          "object": "Sarasvan",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.693964"
+        },
+        {
+          "relation": "same_as",
+          "object": "Sarasvat",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 06:39:10.454558"
+        }
+      ]
+    },
+    "sarasvan": {
+      "display_name": "Sarasvan",
+      "relations": [
+        {
+          "relation": "same_as",
+          "object": "Purnamasa",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.646916"
+        },
+        {
+          "relation": "has_spouse",
+          "object": "Sarasvati",
+          "citations": [
+            "SB 2.5.2.10"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:44:10.599692"
         }
       ]
     },
     "generous_among_people": {
       "display_name": "generous among people",
+      "relations": []
+    },
+    "aindra_mahabhiseka": {
+      "display_name": "aindra mahabhiseka",
       "relations": []
     },
     "had_100_wives": {
@@ -15782,21 +16875,6 @@
         }
       ]
     },
-    "purnamasa": {
-      "display_name": "Purnamasa",
-      "relations": [
-        {
-          "relation": "same_as",
-          "object": "Sarasvat",
-          "citations": [
-            "SB 2.5.2.10"
-          ],
-          "confidence": "high",
-          "provenance": "inferred",
-          "added_at": "2026-06-21 06:39:10.454558"
-        }
-      ]
-    },
     "naras": {
       "display_name": "Naras",
       "relations": [
@@ -15888,6 +16966,10 @@
       "display_name": "sustenance",
       "relations": []
     },
+    "aindra_mahabhisheka": {
+      "display_name": "Aindra Mahabhisheka",
+      "relations": []
+    },
     "sarathi": {
       "display_name": "sarathi",
       "relations": []
@@ -15956,6 +17038,10 @@
     },
     "vritraha": {
       "display_name": "vritraha",
+      "relations": []
+    },
+    "vritrahana": {
+      "display_name": "Vritrahana",
       "relations": []
     },
     "asani": {
@@ -16513,6 +17599,10 @@
         }
       ]
     },
+    "great_dominion": {
+      "display_name": "great dominion",
+      "relations": []
+    },
     "shamyaparasiya_ritual": {
       "display_name": "shamyaparasiya ritual",
       "relations": []
@@ -16911,6 +18001,35 @@
       "display_name": "lustre of Brahman",
       "relations": []
     },
+    "tristubh": {
+      "display_name": "Triṣṭubh",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "corresponding to eleven syllables",
+          "citations": [
+            "AB 3.12.3"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.718382"
+        },
+        {
+          "relation": "has_attribute",
+          "object": "connection to numbers eight through twelve",
+          "citations": [
+            "TS 7.3.2.2"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.601195"
+        }
+      ]
+    },
+    "corresponding_to_eleven_syllables": {
+      "display_name": "corresponding to eleven syllables",
+      "relations": []
+    },
     "invoked_for_soma_libation": {
       "display_name": "invoked for soma libation",
       "relations": []
@@ -17211,7 +18330,8 @@
           "relation": "same_as",
           "object": "Prajapati",
           "citations": [
-            "Shatapatha Brahmana 6.2.2.12"
+            "Shatapatha Brahmana 6.2.2.12",
+            "AB 2.39.7"
           ],
           "confidence": "high",
           "provenance": "inferred",
@@ -17230,8 +18350,35 @@
         }
       ]
     },
+    "vashi": {
+      "display_name": "Vashi",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "made of Ayas",
+          "citations": [
+            "RV 8.029.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:02:42.548076"
+        }
+      ]
+    },
+    "made_of_ayas": {
+      "display_name": "made of Ayas",
+      "relations": []
+    },
     "paijavana": {
       "display_name": "Paijavana",
+      "relations": []
+    },
+    "swift_and_wonderful_chariot": {
+      "display_name": "swift and wonderful chariot",
+      "relations": []
+    },
+    "numerological_symbolism_connected_to_the_gayatri_meter": {
+      "display_name": "numerological symbolism connected to the Gāyatrī meter",
       "relations": []
     },
     "rigvedic_name_rv_8_22_7_also_rv_6_46_8_appearing_as_trksim_trasadasyavam_of_the_trasadasyu_line_sped_by_the_asvins_to_great_ksatra_dominion_disputed_read_either_as_an_individual_prince_descended_from_trasadasyu_vedic_index_or_as_a_tribe_clan_of_his_descendants_talageri": {
@@ -17516,6 +18663,10 @@
       "display_name": "consecration of sacrificial animals",
       "relations": []
     },
+    "vrtrahan": {
+      "display_name": "Vrtrahan",
+      "relations": []
+    },
     "samrajyam": {
       "display_name": "sāmrājyam",
       "relations": [
@@ -17533,6 +18684,14 @@
     },
     "sovereignty": {
       "display_name": "sovereignty",
+      "relations": []
+    },
+    "wielder_of_the_thunderbolt": {
+      "display_name": "wielder of the thunderbolt",
+      "relations": []
+    },
+    "vajri": {
+      "display_name": "vajri",
       "relations": []
     },
     "ardhadeva": {
@@ -17959,6 +19118,21 @@
       "display_name": "Dūta",
       "relations": []
     },
+    "khadira": {
+      "display_name": "khadira",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "wood used for sacrificial ladles",
+          "citations": [
+            "TS 3.5.7.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:33:47.983239"
+        }
+      ]
+    },
     "rishi_of_rigveda_mandala_7": {
       "display_name": "rishi of Rigveda Mandala 7",
       "relations": []
@@ -17984,6 +19158,10 @@
     },
     "victorious_warrior": {
       "display_name": "victorious warrior",
+      "relations": []
+    },
+    "quivers": {
+      "display_name": "quivers",
       "relations": []
     },
     "chandasya": {
@@ -18094,6 +19272,10 @@
     },
     "brings_somam_shukram_pressed_from_namuchi_for_indra_to_drink_on_barhishi": {
       "display_name": "brings Somam Shukram pressed from Namuchi for Indra to drink on Barhishi",
+      "relations": []
+    },
+    "unassailable_chariot": {
+      "display_name": "unassailable chariot",
       "relations": []
     },
     "most_bounteous_among_the_liberal": {
@@ -18228,6 +19410,10 @@
       "display_name": "chariot was not encircled nor made to tremble",
       "relations": []
     },
+    "three_wheeled_chariot": {
+      "display_name": "three-wheeled chariot",
+      "relations": []
+    },
     "elder_fifty_sons": {
       "display_name": "elder fifty sons",
       "relations": [
@@ -18265,12 +19451,24 @@
       "display_name": "well-pleasing",
       "relations": []
     },
+    "swift_and_helpful_nature": {
+      "display_name": "swift and helpful nature",
+      "relations": []
+    },
     "release_the_horse_for_wealth_for_sudas": {
       "display_name": "release the horse for wealth for Sudas",
       "relations": []
     },
     "poet": {
       "display_name": "poet",
+      "relations": []
+    },
+    "wealth_and_strength": {
+      "display_name": "wealth and strength",
+      "relations": []
+    },
+    "divine_physicians": {
+      "display_name": "divine physicians",
       "relations": []
     },
     "valakakausika": {
@@ -18629,6 +19827,10 @@
       "display_name": "divi",
       "relations": []
     },
+    "mighty_warrior": {
+      "display_name": "mighty warrior",
+      "relations": []
+    },
     "held_waters_captive": {
       "display_name": "held waters captive",
       "relations": []
@@ -18724,6 +19926,10 @@
       "display_name": "Rudra-like power",
       "relations": []
     },
+    "giver_of_bounties": {
+      "display_name": "giver of bounties",
+      "relations": []
+    },
     "chose_remedies_for_maruts": {
       "display_name": "chose remedies for Maruts",
       "relations": []
@@ -18735,6 +19941,14 @@
     "friend": {
       "display_name": "friend",
       "relations": []
+    },
+    "tritsu_bharata": {
+      "display_name": "Tritsu-Bharata",
+      "relations": [],
+      "type": "dynasty",
+      "members": [
+        "sudas"
+      ]
     },
     "kuyava": {
       "display_name": "Kuyava",
@@ -18748,6 +19962,21 @@
           "confidence": "high",
           "provenance": "inferred",
           "added_at": "2026-06-20 23:04:40.690452"
+        }
+      ]
+    },
+    "vasi": {
+      "display_name": "vāśī",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "ayas",
+          "citations": [
+            "RV 8.029.03"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 13:11:01.680743"
         }
       ]
     },
@@ -18796,10 +20025,6 @@
           "added_at": "2026-06-20 00:59:49.370189"
         }
       ]
-    },
-    "hiranya": {
-      "display_name": "hiranya",
-      "relations": []
     },
     "distinct_from_ksatra": {
       "display_name": "distinct from Kṣatra",
@@ -18986,6 +20211,21 @@
       "display_name": "Agni Vaiśvānara",
       "relations": []
     },
+    "udgatr": {
+      "display_name": "Udgatr",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "recipient of the sacrificial fee",
+          "citations": [
+            "AB 5.34.1"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:50:33.587770"
+        }
+      ]
+    },
     "manu_vaivasvata": {
       "display_name": "Manu Vaivasvata",
       "relations": [
@@ -19042,6 +20282,10 @@
           "added_at": "2026-06-20 16:02:34.296043"
         }
       ]
+    },
+    "formidable_bow": {
+      "display_name": "formidable bow",
+      "relations": []
     },
     "establishes_yajna": {
       "display_name": "establishes Yajna",
@@ -19466,6 +20710,10 @@
       "display_name": "aspect of dharma",
       "relations": []
     },
+    "thousand_sons": {
+      "display_name": "thousand sons",
+      "relations": []
+    },
     "haritas": {
       "display_name": "haritas",
       "relations": []
@@ -19655,6 +20903,10 @@
       "display_name": "travel across realms",
       "relations": []
     },
+    "giver_of_nourishment": {
+      "display_name": "giver of nourishment",
+      "relations": []
+    },
     "prosperity_in_wealth": {
       "display_name": "prosperity in wealth",
       "relations": []
@@ -19678,12 +20930,35 @@
       "display_name": "seasonal",
       "relations": []
     },
+    "jagati": {
+      "display_name": "Jagatī",
+      "relations": [
+        {
+          "relation": "has_attribute",
+          "object": "connection to numbers eight through twelve",
+          "citations": [
+            "TS 7.3.2.2"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 08:58:02.666843"
+        }
+      ]
+    },
     "riding_in_a_chariot": {
       "display_name": "riding in a chariot",
       "relations": []
     },
     "rivers": {
       "display_name": "rivers",
+      "relations": []
+    },
+    "hiranyavat": {
+      "display_name": "hiraṇyavat",
+      "relations": []
+    },
+    "ugradhanvan": {
+      "display_name": "ugradhanvan",
       "relations": []
     },
     "rca": {
@@ -19817,6 +21092,10 @@
       "display_name": "thousands",
       "relations": []
     },
+    "horse_sacrifice": {
+      "display_name": "horse sacrifice",
+      "relations": []
+    },
     "rtava": {
       "display_name": "ṛtāvā",
       "relations": []
@@ -19894,6 +21173,10 @@
       "members": [
         "yadu"
       ]
+    },
+    "leader": {
+      "display_name": "leader",
+      "relations": []
     },
     "giver_of_bounty": {
       "display_name": "giver of bounty",
@@ -20200,6 +21483,10 @@
       "display_name": "dhīyanjinvam",
       "relations": []
     },
+    "traivrsna": {
+      "display_name": "Traivrsna",
+      "relations": []
+    },
     "bhimasena": {
       "display_name": "Bhimasena",
       "relations": [
@@ -20320,6 +21607,21 @@
     "gartsamada": {
       "display_name": "Gārtsamada",
       "relations": []
+    },
+    "devayantas": {
+      "display_name": "Devayantas",
+      "relations": [
+        {
+          "relation": "performed_ritual",
+          "object": "Sarasvati",
+          "citations": [
+            "AVS 18.4.45"
+          ],
+          "confidence": "high",
+          "provenance": "inferred",
+          "added_at": "2026-06-21 12:57:14.492744"
+        }
+      ]
     },
     "best": {
       "display_name": "best",
@@ -20455,6 +21757,14 @@
       "display_name": "bestowing wealth",
       "relations": []
     },
+    "arrows": {
+      "display_name": "arrows",
+      "relations": []
+    },
+    "vajra_armed": {
+      "display_name": "vajra-armed",
+      "relations": []
+    },
     "indra_protector": {
       "display_name": "Indra (protector)",
       "relations": []
@@ -20551,6 +21861,10 @@
     },
     "ikshvaku_king_of_the_shunahshepa_legend": {
       "display_name": "Ikshvaku king of the Shunahshepa legend",
+      "relations": []
+    },
+    "bows": {
+      "display_name": "bows",
       "relations": []
     },
     "hirnya": {
