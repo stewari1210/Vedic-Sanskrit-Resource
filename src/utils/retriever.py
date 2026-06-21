@@ -370,7 +370,11 @@ class HybridRetriever(BaseRetriever):
             'vajasaneyi_samhita': [
                 'vajasaneyi samhita', 'vājasaneyi saṃhitā', 'vajasaneyi',
                 'white yajurveda', 'shukla yajurveda', 'śukla yajurveda',
-                'vs',
+                # NOTE: the bare abbreviation 'vs' is intentionally NOT listed — it
+                # collides with English "vs" (versus), which wrongly forced every
+                # comparison query (e.g. "early vs later layers") to filter to the
+                # Vājasaneyi corpus. Use "vajasaneyi"/"shukla yajurveda" to target it;
+                # 'VS 1.1' citations are handled by the verse-lookup path, not here.
             ],
             'shatapatha_brahmana': [
                 'shatapatha brahmana', 'śatapatha brāhmaṇa', 'shatapatha',
@@ -413,8 +417,9 @@ class HybridRetriever(BaseRetriever):
         # Strict mode: only return docs from that corpus.
         # Use strict when exactly one corpus is explicitly named and the query
         # is clearly about that corpus (not a cross-corpus comparison).
-        comparative_keywords = ['both', 'compare', 'comparison', 'versus', 'between',
-                                 'earlier', 'later', 'across', 'layers']
+        comparative_keywords = ['both', 'compare', 'comparison', 'versus', 'vs', 'between',
+                                 'earlier', 'later', 'across', 'layers', 'evolve', 'evolution',
+                                 'over time', 'diachronic']
         is_comparative = any(kw in query_lower for kw in comparative_keywords)
 
         strict_filter = (
