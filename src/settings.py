@@ -298,11 +298,17 @@ class Settings:
                 num_gpu=get_config_value("OLLAMA_EVAL_NUM_GPU", 1, int),
             )
         elif eval_llm_provider == "gemini":
-            logger.info(f"Using Google Gemini LLM for Evaluation: {get_config_value('GEMINI_MODEL', 'gemini-2.0-flash-exp')}")
+            # Use a DEDICATED evaluator model (e.g. gemini-2.5-pro) — falling back
+            # to EVAL_MODEL then the answering GEMINI_MODEL. Previously this reused
+            # GEMINI_MODEL, so the "evaluator" was silently the same flash answerer.
+            eval_model = (get_config_value("GEMINI_EVAL_MODEL")
+                          or get_config_value("EVAL_MODEL")
+                          or get_config_value("GEMINI_MODEL", "gemini-2.0-flash-exp"))
+            logger.info(f"Using Google Gemini LLM for Evaluation: {eval_model}")
             cls._eval_llm = ChatGoogleGenerativeAI(
-                model=get_config_value("GEMINI_MODEL", "gemini-2.0-flash-exp"),
+                model=eval_model,
                 google_api_key=get_config_value("GEMINI_API_KEY"),
-                temperature=0.3,
+                temperature=0.2,
                 max_tokens=1024,
                 timeout=120,
                 max_retries=2,
