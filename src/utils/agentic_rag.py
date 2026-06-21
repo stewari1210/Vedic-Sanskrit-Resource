@@ -655,10 +655,13 @@ Provide a clear, educational answer with proper citations:"""
 8. Do NOT retreat to a generic disclaimer if layer-specific evidence exists in
    the passages — extract and contrast whatever they DO show, however partial,
    and clearly mark inference vs attestation.
-9. State the corpus coverage honestly: currently only the Rigveda (early and
-   late layers) is indexed. Atharvaveda, Yajurveda and Brahmana prose (the
-   true 'latest Vedic period') are not yet indexed, so frame conclusions as
-   'early vs late Rigveda', not the full Vedic span.""" if is_diachronic else ""
+9. The full diachronic span is now indexed — use it: Rigveda (layer 1 = family
+   books 2-7, earliest; layer 2 = maṇḍalas 1, 8-10), the Atharvaveda Śaunaka
+   (layer 3, post-RV saṃhitā), both Yajurveda saṃhitās (Vājasaneyi/Śukla and
+   Taittirīya/Kṛṣṇa), and the Brāhmaṇa prose (Aitareya, Pañcaviṃśa, Śatapatha;
+   layer 4, the latest Vedic period). Frame conclusions across the WHOLE Vedic
+   range (early RV → Brāhmaṇa prose), not just 'early vs late Rigveda', and name
+   which text/layer each piece of evidence comes from.""" if is_diachronic else ""
 
         # ── Pinned-verse grounding (home-module verse interpretation) ─────────
         # When the user's question cited a specific verse, the frontend resolves
@@ -748,7 +751,9 @@ CORPUS STATUS: No relevant passages found in the current corpus ({source_texts})
 INSTRUCTIONS:
 Please inform the user that this specific topic is not found in the available corpus and suggest:
 1. Rephrasing the question
-2. Asking about topics known to be in the Rigveda or Yajurveda
+2. Asking about topics in the indexed corpus — the Rigveda (all 10 maṇḍalas), the
+   Atharvaveda (Śaunaka), both Yajurveda saṃhitās (Vājasaneyi & Taittirīya), and the
+   Aitareya, Pañcaviṃśa & Śatapatha Brāhmaṇas
 3. Or provide very brief general knowledge if you have it (but note it's not from the corpus)
 
 Provide a helpful response:"""
