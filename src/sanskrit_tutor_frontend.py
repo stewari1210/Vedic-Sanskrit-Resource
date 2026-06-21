@@ -809,17 +809,6 @@ Have natural conversation about Sanskrit:
 
             st.session_state.current_module = module
 
-            # Progress tracking
-            st.markdown("---")
-            st.subheader("📊 Progress")
-            if st.session_state.learned_words:
-                st.metric("Words Learned", len(st.session_state.learned_words))
-
-            if st.session_state.quiz_score["total"] > 0:
-                accuracy = (st.session_state.quiz_score["correct"] / st.session_state.quiz_score["total"]) * 100
-                st.metric("Quiz Accuracy", f"{accuracy:.0f}%")
-                st.progress(accuracy / 100)
-
             # Quick reference
             st.markdown("---")
             st.markdown("### 🔤 Quick Reference")
