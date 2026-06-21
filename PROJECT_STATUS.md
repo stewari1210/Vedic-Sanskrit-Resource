@@ -397,6 +397,22 @@ prose Brāhmaṇas. Agreed scope:
   only on interpretation queries, ideally a cheap OpenRouter reasoning model with
   a Vedic rubric) — not upgrading the always-on synthesis model.
 
+### Update — later 2026-06-20 (bulk RV anukramaṇī, non-RV lookup, legend layer)
+- **RV bulk anukramaṇī shipped** (backlog #15 ✅): `ingest_rv_anukramani.py` →
+  `anukramani_rv.json` (1027 hymns) from the Akavarapu & Bhattacharya 2023 dataset.
+  Merged under the curated seed; flash's RV 10.60.2 reading became correct (Asamāti
+  = king) once the anukramaṇī patron was in front of it.
+- **Verse lookup extended to AVŚ/VS/TS** (`_lookup_nonrv_verse`): any AVŚ/VS/TS verse
+  can now be pinned and interpreted from real text + section context. Retriever
+  untouched; RV path unchanged.
+- **Bṛhaddevatā legend layer shipped** (backlog #16 ✅): `itihasa` provenance tier +
+  `legend` field + 6 curated ākhyānas + 7 itihāsa entity facts.
+- **Verse-translation bug fixed:** a pinned verse now forces `query_type=factual`, so
+  the translation module's instruction is no longer mis-classified as an
+  English→Sanskrit construction and translated.
+- **AVŚ/YV status = partial** (#17/#18): lookup works; AVŚ metadata = 2 curated hymns,
+  YV metadata = none; no clean bulk anukramaṇī source found for either.
+
 ## Backlog (rough priority)
 
 1. **Run SB ingest** — `python ingest_shatapatha_brahmana.py` (on Mac, ~15–20 min).
@@ -437,16 +453,33 @@ prose Brāhmaṇas. Agreed scope:
 14. **AV Paippalāda** (future) — more historical-geographic material than Śaunaka;
     GRETIL (Lubotsky). Defer until VS + SB are indexed and diachronic queries
     are verified.
-15. **RV anukramaṇī bulk ingest** — fetch/parse Śaunaka's & Kātyāyana's
-    anukramaṇīs (GRETIL/VedaWeb) → ṛṣi/devatā/meter for all 1028 sūktas into
-    `kg_seed.json["hymns"]`. The cleanest, highest-coverage grounding floor.
-    (Starter seed for 10.060/7.018/3.062 already in place, 2026-06-20.)
-16. **Bṛhaddevatā legend layer** — curated/extracted (Macdonell HOS ed.,
-    GRETIL/archive.org), `traditional/itihāsa` provenance; the patron/king/legend
-    anchors (Subandhu/Asamāti, Śunaḥśepa, Purūravas–Urvaśī, …) + Brāhmaṇa
-    legends. Only a few dozen hymns carry major ākhyānas → tractable.
-17. **AVŚ anukramaṇī** — Bṛhatsarvānukramaṇī → ṛṣi/devatā/meter per Śaunaka hymn.
-18. **YV (VS/TS) partial anukramaṇī** — section-level ṛṣi/devatā only (prose unit).
+15. ~~**RV anukramaṇī bulk ingest**~~ — ✅ done 2026-06-20. `ingest_rv_anukramani.py`
+    parses the Apache-2.0 Digital Rigveda Anukramaṇī (Akavarapu & Bhattacharya
+    2023, WSC/ACL; anuvṛtti pre-resolved) → `knowledge_store/anukramani_rv.json`
+    (**1027 hymns**; one line skipped vs the 1028 count — minor coverage gap to
+    chase later). Loaded as the base layer under `kg_seed.json` (curated overrides
+    per-key). Format `hymn.verses.seer.divinity.meter`.
+16. ~~**Bṛhaddevatā legend layer**~~ — ✅ done 2026-06-20. New `itihasa` provenance
+    tier (rank authoritative > itihasa > inferred; protected from inferred, yields
+    to authoritative; displays `⚑legend(itihāsa)` = "the tradition holds"). `legend`
+    field on hymns injected into the anukramaṇī block. Curated ākhyānas: Subandhu/
+    Asamāti (10.060), Śunaḥśepa (1.24-30), Purūravā–Urvaśī (10.95), Yama–Yamī
+    (10.10), Saramā–Paṇis (10.108), Agastya–Lopāmudrā (1.179) + 7 itihāsa entity
+    facts. Curated from well-attested tradition (cited Bṛhaddevatā / primary hymn /
+    AB), not a programmatic Macdonell parse. Remaining: expand the legend set;
+    Brāhmaṇa legends (now folded into #19).
+17. **AVŚ anukramaṇī** — ⏳ *partial* (2026-06-20). The pinned-verse **lookup now
+    resolves AVŚ citations** (`॥ AVŚ K.S.V ॥`) so any AVŚ verse interprets from real
+    text + hymn context. **Metadata = 2 curated hymns only** (AVŚ 20.127 Parikṣit/
+    Kuru; AVŚ 5.22 takman/peoples). **Bulk still missing** — no clean digital
+    Bṛhatsarvānukramaṇī (ṛṣi/devatā/meter per hymn) found; needs a source like the
+    RV WSC2023 dataset before a bulk ingest is possible.
+18. **YV (VS/TS) anukramaṇī** — ⏳ *partial* (2026-06-20). The lookup now **resolves
+    VS (`॥ VS A.V ॥`) and TS (`॥ TS K.P.A.V ॥`) citations** (text + section context,
+    section capped at 30 lines). **Metadata = none yet** — no curated entries and no
+    clean bulk source (Kātyāyana's Śukla Yajuḥ Sarvānukrama / TS ārṣeya not found in
+    parseable form). So VS/TS verses get text grounding but no ṛṣi/devatā/legend
+    layer until a source is found or facts are hand-verified.
 19. **Brāhmaṇa legend/topic curation** (AB/PB/SB) — no ṛṣi/devatā/meter; curate
     legend/king/ritual-topic + śākhā/author per section instead.
 20. **Gated evaluator/critic** (cost-aware) — one extra LLM call on interpretation
