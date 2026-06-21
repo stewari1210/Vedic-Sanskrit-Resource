@@ -848,6 +848,9 @@ Have natural conversation about Sanskrit:
                 unsafe_allow_html=True,
             )
             st.caption("This is a personally-funded research preview — support keeps it running. 🙏")
+            _vc = st.session_state.get("visit_count")
+            if _vc:
+                st.caption(f"🪔 {_vc:,} visits and counting")
 
     def render_home(self):
         """Render home page."""
@@ -1476,6 +1479,14 @@ Have natural conversation about Sanskrit:
 
     def run(self):
         """Main application loop."""
+        # Count one visit per browser session (not per rerun); store for display.
+        if "visit_count" not in st.session_state:
+            try:
+                from src.utils.visitor_counter import increment_visit_count
+                st.session_state.visit_count = increment_visit_count()
+            except Exception:
+                st.session_state.visit_count = None
+
         self.render_sidebar()
 
         # Route to appropriate module (Home is always available, even pre-init)

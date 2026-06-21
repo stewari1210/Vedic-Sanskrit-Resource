@@ -41,6 +41,8 @@ GAZETTEER = {
     "bheda":        ["भेद"],
     "purukutsa":    ["पुरुकुत्स"],
     "trasadasyu":   ["त्रसदस्यु"],
+    "trksi":        ["तृक्षि", "तृक्ष"],   # Tṛkṣi Trāsadasyava (RV 8.22.7, 6.x)
+    "trkshi":       ["तृक्षि", "तृक्ष"],   # ASCII spelling of the same name
     "divodasa":     ["दिवोदास"],
     "dasa":         ["दास"],
     "dasyu":        ["दस्यु"],

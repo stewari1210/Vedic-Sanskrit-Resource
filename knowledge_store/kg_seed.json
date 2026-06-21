@@ -24,6 +24,9 @@
     {"subject": "Parikshit", "relation": "has_attribute", "object": "king of the Kurus", "citation": "AVŚ 20.127"},
     {"subject": "Parikshit", "relation": "member_of_dynasty", "object": "Kuru", "citation": "AVŚ 20.127"},
 
+    {"subject": "Trkshi", "relation": "patronymic", "object": "Trasadasyava", "citation": "RV 8.22.7", "note": "Trāsadasyava is the vṛddhi patronymic of Trasadasyu — 'of Trasadasyu's line'. Grammatically certain; the person-vs-clan reading is not."},
+    {"subject": "Trkshi", "relation": "has_attribute", "object": "Rigvedic name (RV 8.22.7; also RV 6.46.8), appearing as 'tṛkṣiṃ trāsadasyavam' — of the Trasadasyu line, sped by the Aśvins to great kṣatra (dominion). DISPUTED: read either as an individual prince descended from Trasadasyu (Vedic Index) or as a tribe/clan of his descendants (Talageri).", "citation": "RV 8.22.7"},
+
     {"subject": "Shunahshepa", "relation": "has_father", "object": "Ajigarta", "citation": "Bṛhaddevatā; AB 7.13-18", "provenance": "itihasa"},
     {"subject": "Shunahshepa", "relation": "same_as", "object": "Devarata", "citation": "Bṛhaddevatā; AB 7.13-18", "provenance": "itihasa"},
     {"subject": "Harishchandra", "relation": "has_attribute", "object": "Ikshvaku king of the Shunahshepa legend", "citation": "Bṛhaddevatā; AB 7.13-18", "provenance": "itihasa"},
