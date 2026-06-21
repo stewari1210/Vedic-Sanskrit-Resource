@@ -148,6 +148,14 @@ st.markdown("""
     .getstarted-note { text-align: center; color: var(--ink-soft); font-size: .86rem;
         font-style: italic; margin: 10px auto 4px; max-width: 60ch; }
 
+    /* Buy Me a Coffee button */
+    .bmc-btn { display: block; text-align: center; text-decoration: none;
+        margin: 8px auto; max-width: 240px; background: #FFDD00; color: #3A2A1E !important;
+        font-family: 'Marcellus', serif; font-weight: 600; letter-spacing: .3px;
+        padding: 10px 16px; border-radius: 12px; border: 1px solid #E6C200;
+        box-shadow: 0 2px 6px rgba(122,46,30,.12); transition: background .15s, transform .15s; }
+    .bmc-btn:hover { background: #FFE74D; transform: translateY(-1px); }
+
     /* Buttons → saffron */
     .stButton > button { border: 1px solid #E6C98F !important; background: #FFFDF8 !important;
         color: var(--maroon) !important; border-radius: 10px !important; font-size: .9rem; }
@@ -832,6 +840,15 @@ Have natural conversation about Sanskrit:
                 - अ + उ = ओ
                 """)
 
+            # Support the project
+            st.markdown("---")
+            st.markdown(
+                '<a href="https://www.buymeacoffee.com/shiv.tewari" target="_blank" '
+                'class="bmc-btn">☕ Buy me a coffee</a>',
+                unsafe_allow_html=True,
+            )
+            st.caption("This is a personally-funded research preview — support keeps it running. 🙏")
+
     def render_home(self):
         """Render home page."""
         # ── Hero: the opening verse of the Rigveda as a headline ──────────────
@@ -985,6 +1002,16 @@ Have natural conversation about Sanskrit:
         st.markdown(
             '<div class="getstarted-note">🚀 Gemini loads automatically — just type a question above. '
             'Use the sidebar only to switch the model (Ollama, Groq) or change the query language.</div>',
+            unsafe_allow_html=True
+        )
+        st.markdown(
+            '<a href="https://www.buymeacoffee.com/shiv.tewari" target="_blank" '
+            'class="bmc-btn">☕ Buy me a coffee</a>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            '<div class="getstarted-note">A personally-funded research preview — '
+            'if it helps your study, a coffee keeps the servers and APIs running. 🙏</div>',
             unsafe_allow_html=True
         )
 
