@@ -831,18 +831,21 @@ Provide a helpful response:"""
 
 # ── Evaluator + refine prompts (live agentic pipeline) ────────────────────────
 
-_EVALUATION_PROMPT = """You are a rigorous evaluator for a Vedic Sanskrit research assistant. Judge the AI ANSWER ONLY against the SOURCE PASSAGES and the QUESTION — not your own outside knowledge.
+_EVALUATION_PROMPT = """You are a rigorous evaluator for a Vedic Sanskrit RESEARCH assistant — not a literalist fact-checker. Judge the AI ANSWER against the QUESTION, the SOURCE PASSAGES, and sound Vedic scholarship.
 
 Score 0-100 on:
-1. GROUNDING — every factual/interpretive claim is supported by the passages (or clearly marked as inference). Penalise hallucinations, invented verse numbers/citations, or claims absent from the passages.
-2. ACCURACY — citations and verse references are correct; named entities, kinship/lineage and translations match the text.
-3. RELEVANCE & COMPLETENESS — directly answers the question using the available evidence.
-4. CALIBRATION — flags genuine ambiguity / scholarly dispute instead of asserting one reading as certain; does not overstate.
+1. GROUNDING & HONESTY — claims about what the CORPUS says are supported by the passages; verse text and citations are accurate and NEVER invented. Clearly-attributed context that goes BEYOND the passages (anukramaṇī / Bṛhaddevatā / itihāsa notes, or "scholars read this as…") is WELCOME and must NOT be treated as a grounding violation, provided it is labelled as such and not passed off as a corpus quote.
+2. ACCURACY — names, kinship/lineage, translations and references match the text and established scholarship.
+3. DEPTH & CALIBRATION — for interpretive questions, the answer should engage genuine ambiguities and scholarly disputes (e.g. proper-noun vs epithet; individual vs clan; contested lineage) and distinguish attestation from inference — NOT flatten to a bare literal paraphrase, and NOT overstate one reading as settled. Reward well-judged depth.
+4. RELEVANCE — directly answers what was asked, at the right depth (an enumeration question wants the verses; an interpretation question wants reasoned analysis).
 
-If the answer honestly says it lacks information ("I do not have enough information" / "couldn't find"), DO NOT penalise — set score = -1.
+Penalise: invented citations/verse text; claiming the corpus says something it does not; asserting a contested reading as settled fact; AND shallow literalism that ignores well-known interpretive questions the answer should have raised.
+Do NOT penalise: relevant, clearly-attributed scholarly/traditional context; flagging uncertainty; refusing to over-claim.
+
+If the answer honestly says it lacks information, set score = -1.
 
 Return ONLY a JSON object, no markdown fences:
-{{"score": <int 0-100, or -1>, "reasoning": "<1-2 sentences>", "suggestions": "<concrete, specific fixes the answer should make; empty string if none needed>"}}
+{{"score": <int 0-100, or -1>, "reasoning": "<1-2 sentences>", "suggestions": "<specific improvements — prefer ADDING missing nuance/disputes or fixing ungrounded corpus claims; empty string if none needed>"}}
 
 QUESTION:
 {question}
@@ -853,13 +856,13 @@ SOURCE PASSAGES:
 AI ANSWER:
 {answer}"""
 
-_REFINE_PROMPT = """You are improving a Vedic Sanskrit research answer using an evaluator's critique. Produce a better answer that fixes the issues while staying STRICTLY grounded in the SOURCE PASSAGES.
+_REFINE_PROMPT = """You are improving a Vedic Sanskrit RESEARCH answer using an evaluator's critique. Make it MORE accurate and MORE insightful — do NOT flatten it into a shorter, more literal paraphrase.
 
 RULES:
-- Fix what the critique identifies; keep what was already correct.
-- Every claim must be supported by the passages; distinguish attestation from inference; flag genuine disputes rather than asserting one reading.
-- Use the exact verse references shown in the passages — never invent citations.
-- Preserve the user's spelling of names (no added diacritics, no Sanskritisation).
+- Fix ungrounded CORPUS claims, wrong or invented citations, and overstated readings. Keep everything that was already correct.
+- PRESERVE and SHARPEN scholarly depth: genuine ambiguities, disputes (proper-noun vs epithet; individual vs clan; contested lineage), cross-references, and the distinction between attestation and inference. Do not delete nuance to make the answer shorter.
+- You MAY include relevant context beyond the passages (anukramaṇī / tradition, or "scholars read this as…"), but clearly mark it as such — never as a corpus quote.
+- Use the exact verse references shown in the passages; never invent citations. Preserve the user's spelling of names.
 
 QUESTION:
 {question}
@@ -873,7 +876,7 @@ PREVIOUS ANSWER:
 EVALUATOR'S CRITIQUE / SUGGESTIONS:
 {suggestions}
 
-Provide the improved final answer (prose only):"""
+Provide the improved final answer (prose):"""
 
 _REFUSAL_MARKERS = (
     "do not have enough information",
