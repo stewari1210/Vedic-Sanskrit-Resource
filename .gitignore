@@ -35,3 +35,11 @@ secrets.toml*
 !requirements.txt
 !requirements-frozen.txt
 *.pdf
+# --- archived build-time / dev-only material (kept locally, excluded from package) ---
+archive/
+__pycache__/
+*.pyc
+.DS_Store
+
+# internal working doc (cluster IDs, incident postmortem) — keep out of the public package
+PROJECT_STATUS.md

@@ -1,0 +1,69 @@
+Vedic Sanskrit Tutor — Attribution & Data Provenance
+=====================================================
+
+The software in this repository is licensed under the MIT License (see LICENSE).
+This NOTICE documents the third-party data, texts, and models the project
+depends on. Each retains the license/terms of its original source; inclusion
+here does not relicense them under MIT. Users redistributing this project must
+preserve these attributions.
+
+
+1. PRIMARY SANSKRIT CORPUS (Devanāgarī / IAST source texts)
+-----------------------------------------------------------
+The corpus is built from digital-native scholarly editions, converted
+mechanically (IAST/ITRANS → Devanāgarī) by this project's ingest scripts.
+
+- Ṛgveda Saṃhitā (Maṇḍalas 1–10)
+    Source: sanskritdocuments.org (ITRANS .itx masters).
+    Terms: freely available for any use per sanskritdocuments.org.
+
+- Atharvaveda Śaunaka; Pañcaviṃśa, Śatapatha & Aitareya Brāhmaṇas;
+  Vājasaneyi & Taittirīya Saṃhitās
+    Sources: GRETIL (Göttingen Register of Electronic Texts in Indian
+    Languages, Universität Göttingen) and the TITUS project (Thesaurus
+    Indogermanischer Text- und Sprachmaterialien, Universität Frankfurt).
+    Terms: provided for scholarly, non-commercial use; copyright in the
+    digital encodings remains with the respective editors/maintainers
+    (e.g. Kümmel, Griffiths, Kobayashi, Gardner, Orlandi, Roth–Whitney).
+    See gretil.sub.uni-goettingen.de and titus.uni-frankfurt.de.
+
+2. ANUKRAMAṆĪ (hymn metadata: ṛṣi / devatā / meter)
+---------------------------------------------------
+- Digital Rigveda Anukramaṇī
+    Akavarapu & Bhattacharya (2023), World Sanskrit Conference / ACL.
+    License: Apache License 2.0. A copy of the Apache 2.0 license must
+    accompany redistribution of the derived file
+    (knowledge_store/anukramani_rv.json). See:
+    https://www.apache.org/licenses/LICENSE-2.0
+    Curated overrides and the Bṛhaddevatā legend layer in
+    knowledge_store/kg_seed.json are original editorial work by this
+    project, drawn from public-domain traditional sources (below).
+
+3. DICTIONARIES & REFERENCE WORKS (public domain)
+-------------------------------------------------
+- A Sanskrit–English Dictionary, Sir Monier Monier-Williams (1899).
+    Public domain. Used for the concept store and query expansion.
+- The Bṛhaddevatā, ed. A. A. Macdonell (1904).
+    Public domain. Basis of the itihāsa/legend layer.
+- R. T. H. Griffith translations of the Vedas (1896 and later).
+    Public domain. Kept only as a cross-checking reference layer, not as
+    corpus content.
+
+4. MODELS & MAJOR SOFTWARE DEPENDENCIES
+---------------------------------------
+- Embeddings: sentence-transformers
+    "paraphrase-multilingual-mpnet-base-v2" — Apache License 2.0.
+- Large language model: Google Gemini, accessed via API (not redistributed).
+- Frameworks: Streamlit, LangGraph / LangChain, Qdrant client, and
+  indic_transliteration — each under its own open-source license.
+
+5. SCOPE
+--------
+Original contributions of this repository — the RAG pipeline, hybrid
+retriever, Devanāgarī lexical-rescue layer, self-building knowledge graph,
+ingest/parse scripts, and Streamlit frontend — are © 2026 Shiv Tewari and
+licensed under MIT (see LICENSE). The data files above are NOT covered by
+that MIT grant and remain under their respective source terms.
+
+If you are a rights holder for any source above and have a concern about its
+inclusion, please open an issue in the repository.

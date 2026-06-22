@@ -413,6 +413,63 @@ prose Brāhmaṇas. Agreed scope:
 - **AVŚ/YV status = partial** (#17/#18): lookup works; AVŚ metadata = 2 curated hymns,
   YV metadata = none; no clean bulk anukramaṇī source found for either.
 
+## Session log — 2026-06-21 (repo cleanup + publication prep)
+
+### Package slimmed for publication
+- Repo went **385 → ~35 tracked files**. 286 build-time / dev-only files moved
+  into a local, **gitignored `archive/`** (nothing deleted — preserved on disk):
+  - `archive/docs/` (142) — dev session notes (CITATION_*, PANCAVAMSA_*,
+    SESSION_*, *_SUMMARY/FIX/GUIDE…).
+  - `archive/scripts_oneoff/` (73) — diagnostics, superseded upload/reindex
+    (incl. `upload_sanskrit_rigveda_to_cloud.py`, which carried a hardcoded
+    **dead-cluster** Qdrant key), parse/extract/download experiments, and the
+    old `scripts/` + `tools/` dirs.
+  - `archive/source_data/` (37) — raw Griffith/Sharma `.txt` dumps + 3 PDFs.
+  - `archive/tests/` (25) — ad-hoc `test_*.py`.
+  - `archive/data_intermediate/` (6) — proper-noun JSONs with 0 `src/` references.
+  - `archive/dev_config/` (3) — `.envrc`, `.code-workspace`, `.DS_Store`.
+- **Kept (the runnable package):** `src/`, the runtime data dirs
+  (`local_store/`, `vector_store/`, `knowledge_store/`, `.streamlit/`), the 4
+  runtime JSONs (Monier-Williams store, proper-noun variants, both
+  dictionaries), the current build pipeline (7 `ingest_*` + `build_corpus_lexicon`,
+  `rebuild_bm25_pickle`, `rebuild_mandala_clean`, `seed_kg`,
+  `migrate_kg_to_qdrant`, `create_qdrant_payload_index`, `keyvault.py`), config,
+  and `README.md`.
+- Verified post-move: all runtime dirs/JSONs present, every `src/*.py` parses,
+  `archive/` confirmed gitignored. (A stale `.git/index.lock` from a status
+  refresh had to be cleared locally — `rm -f .git/index.lock`.)
+
+### Licensing & attribution added
+- `LICENSE` — **MIT** (code only), © 2026 Shiv Tewari.
+- `NOTICE` — data provenance + per-source terms: Ṛgveda (sanskritdocuments.org),
+  GRETIL/TITUS editions (scholarly use), Digital Rigveda Anukramaṇī
+  (**Apache-2.0**, attribution required), Monier-Williams / Bṛhaddevatā /
+  Griffith (public domain), embeddings model (Apache-2.0). MIT explicitly does
+  **not** relicense the corpus data.
+
+### Publication-readiness checklist (status)
+- ✅ Hardcoded dead-cluster Qdrant key removed from the package (script archived).
+  ⚠️ Still present in **git history** — purge with `git filter-repo` or accept
+  that the cluster/key is dead (per the 2026-06-12 incident).
+- ✅ Live Qdrant/Gemini keys are config/secrets-based, not hardcoded.
+- ✅ Log files removed; `archive/` + `__pycache__/` + `.DS_Store` gitignored.
+- ✅ LICENSE + NOTICE present.
+- ⚠️ **Cost/abuse:** a public app bills the owner's Gemini + Qdrant quota for
+  every visitor; no auth/rate-limit yet. Consider an API quota cap before going
+  wide.
+- ⚠️ **Corpus gaps** (secondary texts): Maitrāyaṇī Saṃhitā, Kāṭhaka Saṃhitā,
+  AV Paippalāda, Baudhāyana Śrauta Sūtra — four, not two. Core canon (RV, AVŚ,
+  VS, TS, AB, PB, SB) is publishable now.
+- **Hosting:** Streamlit Community Cloud (free, git-push deploy) is the
+  recommended launch target. No native custom-domain support (you get
+  `*.streamlit.app`); a branded domain needs Cloudflare-in-front or a host like
+  Hugging Face Spaces / Render / Railway. WordPress can only `<iframe>`-embed
+  the app, not host it.
+
+> **Note:** this PROJECT_STATUS is internal dev/working documentation (it
+> records cluster IDs and the secrets-incident postmortem) and is **gitignored**
+> — the public-facing doc is `README.md`.
+
 ## Backlog (rough priority)
 
 1. **Run SB ingest** — `python ingest_shatapatha_brahmana.py` (on Mac, ~15–20 min).

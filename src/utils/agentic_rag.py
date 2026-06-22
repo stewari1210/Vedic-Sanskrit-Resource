@@ -265,6 +265,61 @@ def grammar_rules_search(sanskrit_word: str, context: str = "") -> str:
         return f"Grammar lookup failed: {e}"
 
 
+# ── LLM-informed query expansion ──────────────────────────────────────────────
+# The model already knows the Sanskrit vocabulary of the corpus (e.g. that the
+# AV śālā hymns use vaṃśa "rafter", sthūṇā "pillar", palada "thatch"). We use
+# that knowledge ONLY to widen retrieval — append the proposed Devanāgarī terms
+# to the search query so the lexical rescue / BM25 can find verses an English
+# query can't reach across scripts. The ANSWER stays grounded: synthesis runs on
+# the real verses that come back, so a wrong or absent term simply matches
+# nothing. This generalises the hand-built THEME_GAZETTEER to any topic.
+
+_QUERY_EXPANSION_PROMPT = """You help search a Devanāgarī Vedic Sanskrit corpus (Ṛgveda, Atharvaveda Śaunaka, both Yajurveda saṃhitās, and the Aitareya/Pañcaviṃśa/Śatapatha Brāhmaṇas) to answer a question.
+
+List the Sanskrit words MOST LIKELY to occur in the verses relevant to the question — the actual vocabulary a relevant passage would contain, INCLUDING specific/technical terms, not just the obvious one.
+Example — for "what houses are described?": śālā, gṛha, vaṃśa, sthūṇā, palada, durya, harmya, mānā, chadis, upamita.
+
+Rules:
+- Output ONLY Sanskrit terms in IAST, comma-separated. No English, no glosses, no numbering, no commentary.
+- 8–18 terms. Prefer short stems (they substring-match inflected forms): e.g. "gṛh", "śāl", "vaṃś", "sthūṇ".
+- Include both obvious and oblique/technical vocabulary for the topic.
+
+QUESTION: {question}
+
+Sanskrit terms (IAST, comma-separated):"""
+
+
+def llm_expand_query(question: str) -> list:
+    """Return Devanāgarī search terms the LLM judges relevant to `question`.
+
+    Retrieval-only (recall booster); never reaches the answer, so hallucinated
+    or absent terms are harmless (they match no verses). Returns [] on any error.
+    """
+    try:
+        resp = Settings.invoke_llm(
+            llm, [SystemMessage(content=_QUERY_EXPANSION_PROMPT.format(question=question))])
+        text = resp.content if hasattr(resp, "content") else str(resp)
+        raw = [t.strip() for t in re.split(r"[,\n;]+", text) if t.strip()]
+        from indic_transliteration import sanscript
+        dev = []
+        for t in raw[:20]:
+            # keep IAST letters/diacritics only; drop any stray English/punctuation
+            t = re.sub(r"[^A-Za-zāīūṛṝḷḹṃḥśṣṭḍṇñṅ\-]", "", t).strip("-").strip()
+            if not t or len(t) > 30:
+                continue
+            try:
+                d = sanscript.transliterate(t, sanscript.IAST, sanscript.DEVANAGARI).strip()
+            except Exception:
+                d = ""
+            if d and d not in dev:
+                dev.append(d)
+        logger.info(f"🔎 LLM query expansion ({len(dev)} terms): {dev}")
+        return dev
+    except Exception as e:
+        logger.warning(f"🔎 LLM query expansion failed (non-fatal): {e}")
+        return []
+
+
 @tool
 def corpus_examples_search(sanskrit_terms: str, pattern: str = "") -> str:
     """
@@ -462,6 +517,16 @@ def execute_tools_node(state: AgentState):
             # For factual/grammar queries: search using the original question
             question = state.get("question", "")
             query = question
+            # LLM-informed expansion: widen the RETRIEVAL query with Devanāgarī
+            # terms the model knows are relevant, so the rescue/BM25 can reach
+            # verses an English query can't. Factual research queries only (skip
+            # pinned-verse, which already has its exact text). Synthesis still
+            # runs on state["question"], so grounding is unaffected.
+            if query_type == "factual" and not state.get("pinned_verse"):
+                dev_terms = llm_expand_query(question)
+                if dev_terms:
+                    query = f"{question} " + " ".join(dev_terms)
+                    logger.info(f"[AGENT] Retrieval query expanded with {len(dev_terms)} Devanāgarī terms")
 
         # Retrieve raw documents directly from retriever (preserves metadata)
         retriever = get_shared_retriever()
