@@ -3,7 +3,7 @@
 **Ask questions about the Vedas in plain English and get answers grounded in the
 original Sanskrit — not colonial-era translations.**
 
-> 🔗 **Live app:** `https://https://vedic-sanskrit-resource.streamlit.app`
+> 🔗 **Live app:** [vedic-sanskrit-resource.streamlit.app](https://vedic-sanskrit-resource.streamlit.app)
 
 A retrieval-augmented question-answering system over the Vedic corpus in its
 **original Devanāgarī**. You ask in English; the system retrieves the relevant
