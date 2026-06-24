@@ -162,34 +162,68 @@ st.markdown("""
     .stButton > button:hover { border-color: var(--saffron) !important; background: var(--parchment) !important; }
 
     /* ── Widget text: force dark ink regardless of OS dark-mode ── */
-    /* Input labels */
+    /* Use hardcoded hex values here (not CSS vars) so they survive
+       mobile browsers enforcing prefers-color-scheme: dark on top of
+       Streamlit's theme config. */
     .stTextInput label, .stTextArea label, .stSelectbox label,
     .stNumberInput label, .stSlider label, .stRadio label,
-    .stCheckbox label, .stMultiSelect label {
-        color: var(--ink) !important;
-    }
-    /* Input field text & placeholder */
+    .stCheckbox label, .stMultiSelect label { color: #3A2A1E !important; }
+
     .stTextInput input, .stTextArea textarea {
-        color: var(--ink) !important;
+        color: #3A2A1E !important;
         background-color: #FFFDF8 !important;
         border: 1px solid #EAD7B0 !important;
     }
     .stTextInput input::placeholder, .stTextArea textarea::placeholder {
-        color: var(--ink-soft) !important;
-        opacity: 1 !important;
+        color: #6B5742 !important; opacity: 1 !important;
     }
-    /* Spinner */
-    .stSpinner p, [data-testid="stSpinner"] p { color: var(--ink) !important; }
-    /* General markdown / text in containers */
+    .stSpinner p, [data-testid="stSpinner"] p { color: #3A2A1E !important; }
     [data-testid="stMarkdownContainer"] p,
     [data-testid="stMarkdownContainer"] li,
     [data-testid="stMarkdownContainer"] strong,
-    [data-testid="stMarkdownContainer"] em { color: var(--ink) !important; }
-    /* Expander header */
-    .streamlit-expanderHeader { color: var(--ink) !important; }
-    /* Selectbox & multiselect text */
+    [data-testid="stMarkdownContainer"] em { color: #3A2A1E !important; }
+    .streamlit-expanderHeader { color: #3A2A1E !important; }
     .stSelectbox div[data-baseweb="select"] span,
-    .stMultiSelect div[data-baseweb="select"] span { color: var(--ink) !important; }
+    .stMultiSelect div[data-baseweb="select"] span { color: #3A2A1E !important; }
+
+    /* ── Force light theme on mobile dark-mode browsers ── */
+    /* Streamlit injects its own prefers-color-scheme:dark rules; override
+       them all with the parchment palette so the app always looks light. */
+    @media (prefers-color-scheme: dark) {
+        .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"],
+        section[data-testid="stSidebar"] {
+            background-color: #FBF3E2 !important;
+            color: #3A2A1E !important;
+        }
+        /* All text nodes */
+        p, span, li, td, th, label, div { color: #3A2A1E !important; }
+        h1, h2, h3, h4 { color: #7A2E1E !important; }
+        /* Input widgets */
+        input, textarea, select {
+            background-color: #FFFDF8 !important;
+            color: #3A2A1E !important;
+            border-color: #EAD7B0 !important;
+        }
+        input::placeholder, textarea::placeholder {
+            color: #6B5742 !important; opacity: 1 !important;
+        }
+        /* Streamlit widget wrappers */
+        [data-baseweb="input"], [data-baseweb="textarea"],
+        [data-baseweb="select"] > div {
+            background-color: #FFFDF8 !important;
+            color: #3A2A1E !important;
+        }
+        /* Sidebar */
+        section[data-testid="stSidebar"] > div { background-color: #F6E8CE !important; }
+        /* Spinner */
+        .stSpinner > div, [data-testid="stSpinner"] { color: #3A2A1E !important; }
+        /* Buttons */
+        .stButton > button {
+            background-color: #FFFDF8 !important;
+            color: #7A2E1E !important;
+            border-color: #E6C98F !important;
+        }
+    }
 
     /* Hide streamlit branding */
     #MainMenu {visibility: hidden;} footer {visibility: hidden;}
