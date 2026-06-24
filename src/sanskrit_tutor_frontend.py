@@ -161,6 +161,36 @@ st.markdown("""
         color: var(--maroon) !important; border-radius: 10px !important; font-size: .9rem; }
     .stButton > button:hover { border-color: var(--saffron) !important; background: var(--parchment) !important; }
 
+    /* ── Widget text: force dark ink regardless of OS dark-mode ── */
+    /* Input labels */
+    .stTextInput label, .stTextArea label, .stSelectbox label,
+    .stNumberInput label, .stSlider label, .stRadio label,
+    .stCheckbox label, .stMultiSelect label {
+        color: var(--ink) !important;
+    }
+    /* Input field text & placeholder */
+    .stTextInput input, .stTextArea textarea {
+        color: var(--ink) !important;
+        background-color: #FFFDF8 !important;
+        border: 1px solid #EAD7B0 !important;
+    }
+    .stTextInput input::placeholder, .stTextArea textarea::placeholder {
+        color: var(--ink-soft) !important;
+        opacity: 1 !important;
+    }
+    /* Spinner */
+    .stSpinner p, [data-testid="stSpinner"] p { color: var(--ink) !important; }
+    /* General markdown / text in containers */
+    [data-testid="stMarkdownContainer"] p,
+    [data-testid="stMarkdownContainer"] li,
+    [data-testid="stMarkdownContainer"] strong,
+    [data-testid="stMarkdownContainer"] em { color: var(--ink) !important; }
+    /* Expander header */
+    .streamlit-expanderHeader { color: var(--ink) !important; }
+    /* Selectbox & multiselect text */
+    .stSelectbox div[data-baseweb="select"] span,
+    .stMultiSelect div[data-baseweb="select"] span { color: var(--ink) !important; }
+
     /* Hide streamlit branding */
     #MainMenu {visibility: hidden;} footer {visibility: hidden;}
 

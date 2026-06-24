@@ -1,9 +1,15 @@
 [client]
 showErrorDetails = true
 
-# No [theme] block: Streamlit follows the user's OS light/dark preference
-# automatically. (A defined theme always overrides the system setting —
-# the previous block hardcoded a light background.)
+[theme]
+# Force the parchment light theme regardless of OS dark/light setting.
+# Without this, dark-mode OS renders input labels and spinners as white
+# text on pinkish Streamlit-default backgrounds.
+primaryColor        = "#E07A1F"   # saffron accent
+backgroundColor     = "#FBF3E2"   # parchment canvas
+secondaryBackgroundColor = "#F6E8CE"   # parchment-2 (sidebar, input fields)
+textColor           = "#3A2A1E"   # ink
+font                = "serif"
 
 [logger]
 level = "info"
