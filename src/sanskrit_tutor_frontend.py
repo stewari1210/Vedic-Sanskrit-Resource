@@ -263,80 +263,84 @@ class SanskritTutorApp:
             st.session_state.input_language = "English"  # ✅ NEW: Language preference
             st.session_state.last_translations = {}  # ✅ NEW: Store translations
 
-    def text_to_speech(self, text: str, lang: str = 'hi') -> Optional[bytes]:
-        """
-        Convert text to speech and return audio bytes.
+    _ENGINE_NAMES = {
+        "espeak": "eSpeak (phonetic)",
+        "vagdhenu": "Vāgdhenu (chant)",
+        "gtts": "Google (fallback)",
+    }
 
-        Args:
-            text: Text to convert (Devanagari or transliteration)
-            lang: Language code ('hi' for Hindi/Sanskrit, 'en' for English)
+    def _notify_engine(self, requested: Optional[str], used: Optional[str]):
+        """Show a caption telling the user which engine actually produced the audio."""
+        if not used:
+            return
+        nice = self._ENGINE_NAMES.get(used, used)
+        req = requested or st.session_state.get('tts_engine') or 'espeak'
+        if req != used:
+            hint = ""
+            if used == 'gtts' and req == 'espeak':
+                hint = (" — eSpeak-NG not found. Run `brew install espeak-ng` locally, "
+                        "or reboot the Cloud app so it installs from packages.txt.")
+            elif req == 'vagdhenu':
+                hint = " — Vāgdhenu Space unavailable; check network / VAGDHENU_API."
+            st.caption(f"⚠️ Requested {self._ENGINE_NAMES.get(req, req)}, "
+                       f"played **{nice}**{hint}")
+        else:
+            st.caption(f"🔊 Engine: {nice}")
 
-        Returns:
-            Audio bytes or None if failed
+    def text_to_speech(self, text: str, lang: str = 'hi',
+                       engine: Optional[str] = None) -> Optional[bytes]:
         """
-        # Check cache first
-        cache_key = f"{text}_{lang}"
+        Convert Sanskrit text to speech and return audio bytes.
+
+        Engines (see src/utils/pronunciation.py):
+          - 'espeak'   : eSpeak-NG Sanskrit voice — phonetically correct
+                         (keeps schwas, vowel length, retroflexes, ḷ); CPU-only.
+          - 'vagdhenu' : Vāgdhenu chant TTS via its Hugging Face Space — metrical
+                         chant quality; needs network + the Space's GPU.
+          - 'gtts'     : Google Hindi TTS — legacy fallback (schwa-deletes).
+
+        Vedic accent (svara) marks and IAST length diacritics present in `text`
+        are preserved end-to-end. `lang` is only used by the gTTS fallback.
+
+        Returns raw audio bytes (WAV for espeak/vagdhenu, MP3 for gtts). The
+        MIME type is stored on ``self._last_audio_mime`` for ``play_audio``.
+        """
+        if not text or not text.strip():
+            st.warning("⚠️ No text provided for pronunciation")
+            return None
+
+        # engine: explicit arg > user's session choice > module/config default
+        engine = engine or st.session_state.get('tts_engine')
+
+        cache_key = f"{text}_{engine or 'auto'}_{lang}"
         if cache_key in st.session_state.audio_cache:
-            return st.session_state.audio_cache[cache_key]
+            audio, mime, used = st.session_state.audio_cache[cache_key]
+            self._last_audio_mime = mime
+            self._notify_engine(engine, used)
+            return audio
 
         try:
-            from gtts import gTTS
-            import io
-
-            # Validate text
-            if not text or not text.strip():
-                st.warning("⚠️ No text provided for pronunciation")
-                return None
-
-            # Generate speech with error handling
-            # For Sanskrit, use Hindi (hi) which handles Devanagari well
-            try:
-                tts = gTTS(text=text, lang=lang, slow=True)  # slow=True for clearer pronunciation
-
-                # Save to BytesIO instead of file
-                audio_fp = io.BytesIO()
-                tts.write_to_fp(audio_fp)
-                audio_fp.seek(0)
-                audio_bytes = audio_fp.read()
-
-                # Verify we got audio data
-                if len(audio_bytes) == 0:
-                    st.error("❌ Audio generation returned empty data")
-                    return None
-
-                # Verify it's valid MP3 (check for ID3 tag or MP3 sync bits)
-                # MP3 files typically start with 'ID3' or 0xFF 0xFB (MP3 sync)
-                if len(audio_bytes) < 3:
-                    st.error("❌ Audio data too small")
-                    return None
-
-                # Log first few bytes for debugging
-                logger.info(f"Audio generated: {len(audio_bytes)} bytes, header: {audio_bytes[:4].hex()}")
-
-                # Cache the bytes
-                st.session_state.audio_cache[cache_key] = audio_bytes
-                return audio_bytes
-
-            except Exception as tts_error:
-                # Handle specific gTTS errors
-                error_msg = str(tts_error)
-                if "Connection" in error_msg or "timeout" in error_msg.lower():
-                    st.error("❌ Network error: Cannot reach Google TTS servers. Check your internet connection.")
-                elif "language" in error_msg.lower():
-                    st.error(f"❌ Language '{lang}' not supported by gTTS")
-                else:
-                    st.error(f"❌ TTS generation failed: {error_msg}")
-                return None
-
-        except ImportError:
-            st.warning("⚠️ gTTS not installed. Run: `pip install gtts` to enable audio pronunciation.")
-            return None
+            from src.utils.pronunciation import synthesize
         except Exception as e:
-            logger.error(f"Unexpected TTS error: {e}", exc_info=True)
-            st.error(f"❌ Unexpected error: {e}")
+            logger.error(f"pronunciation module import failed: {e}", exc_info=True)
+            st.error("❌ Pronunciation module unavailable.")
             return None
 
-    def play_audio(self, audio_data: bytes, label: str = "🔊 Listen"):
+        audio, mime, used = synthesize(text, engine=engine, lang=lang)
+
+        if not audio:
+            st.error("❌ Could not generate audio. Install `espeak-ng` (phonetic) "
+                     "or `gtts` (fallback), or check the Vāgdhenu Space.")
+            return None
+
+        self._last_audio_mime = mime or 'audio/wav'
+        st.session_state.audio_cache[cache_key] = (audio, self._last_audio_mime, used)
+        logger.info(f"Audio via '{used}': {len(audio)} bytes ({self._last_audio_mime})")
+        self._notify_engine(engine, used)
+        return audio
+
+    def play_audio(self, audio_data: bytes, label: str = "🔊 Listen",
+                   mime: Optional[str] = None):
         """
         Display audio player in Streamlit.
 
@@ -361,17 +365,15 @@ class SanskritTutorApp:
                 logger.error(f"Wrong audio data type: {type(audio_data)}")
                 return
 
-            # Display audio player
-            # Streamlit audio expects bytes-like object
-            st.audio(audio_data, format='audio/mpeg')
+            # Display audio player; format follows whichever engine produced it
+            fmt = mime or getattr(self, '_last_audio_mime', None) or 'audio/mpeg'
+            st.audio(audio_data, format=fmt)
 
             # Optional: Show debug info in expander
             with st.expander("🔧 Audio Info (debug)"):
                 st.text(f"Size: {len(audio_data):,} bytes")
-                st.text(f"Format: MP3")
-                st.text(f"Generated by: Google TTS (gTTS)")
+                st.text(f"Format: {fmt}")
                 st.text(f"Type: {type(audio_data)}")
-                # Show first few bytes as hex for debugging
                 st.text(f"Header: {audio_data[:16].hex() if len(audio_data) >= 16 else 'N/A'}")
 
         except Exception as e:
@@ -1356,15 +1358,51 @@ Have natural conversation about Sanskrit:
                     with col1:
                         self.render_devanagari(st.session_state.selected_verse, large=True)
                     with col2:
-                        audio_bytes = self.text_to_speech(st.session_state.selected_verse, lang='hi')
-                        if audio_bytes:
-                            self.play_audio(audio_bytes, label="Play Mantra")
+                        _verse_engine = {
+                            "🔉 Phonetic": "espeak",
+                            "🎵 Chant": "vagdhenu",
+                        }[st.radio(
+                            "Voice", ["🔉 Phonetic", "🎵 Chant"],
+                            horizontal=True, key="verse_tts_engine",
+                            help="Chant uses the Vāgdhenu model for metrical recitation "
+                                 "(needs network); Phonetic uses eSpeak locally.",
+                        )]
+                        if st.button("🔊 Hear it", key="verse_tts_btn"):
+                            audio_bytes = self.text_to_speech(
+                                st.session_state.selected_verse, lang='hi',
+                                engine=_verse_engine)
+                            if audio_bytes:
+                                self.play_audio(audio_bytes, label="Play Mantra")
 
     def render_pronunciation_module(self):
         """Render pronunciation practice module."""
         st.title("🗣️ Pronunciation (उच्चारण)")
 
-        st.info("💡 **Tip**: Click the audio player to hear the correct pronunciation!")
+        st.markdown(
+            "**Two voices to choose from:**\n\n"
+            "🔉 **eSpeak (phonetic)** — a rule-based voice. It sounds *deliberately "
+            "robotic*, so don't be surprised — the point is accuracy, not beauty: it "
+            "pronounces every schwa, vowel length, retroflex and the Vedic **ḷ** that a "
+            "Hindi text-to-speech would drop. Runs instantly, anywhere.\n\n"
+            "🎵 **Vāgdhenu (chant)** — a neural model (Prof. Prathosh, IISc) that *chants* "
+            "the verse with true metre and melody. Beautiful, but slower and it relies on an "
+            "external GPU service, so it may be unavailable on the hosted app — it's best "
+            "experienced when running the project locally."
+        )
+        st.info("💡 **Tip**: pick a voice below, then use the audio player to listen.")
+
+        # --- voice engine selector (Google fallback stays internal, not shown) ---
+        _engine_labels = {
+            "🔉 eSpeak (phonetic)": "espeak",
+            "🎵 Vāgdhenu (chant)": "vagdhenu",
+        }
+        _choice = st.radio(
+            "Voice",
+            list(_engine_labels.keys()),
+            horizontal=True,
+            key="pronun_engine_radio",
+        )
+        st.session_state.tts_engine = _engine_labels[_choice]
 
         word = st.text_input(
             "Enter a Sanskrit word (Devanagari or IAST):",
