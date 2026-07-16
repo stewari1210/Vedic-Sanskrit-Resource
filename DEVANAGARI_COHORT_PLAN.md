@@ -6,7 +6,7 @@ Kaushalavardhanam cohort.*
 ## Mission
 
 Make **Devanāgarī a first-class, morphology-aware input** to the Vedic Sanskrit
-Resource, and give the knowledge graph a **Devanāgarī brain** — so a Sanskrit
+Resource, and give the knowledge graph a **Devanāgarī brain** — so a Sanskrit/Hindi
 speaker can type in their own script and get robust, verse-cited answers.
 
 ## Where the project is today
